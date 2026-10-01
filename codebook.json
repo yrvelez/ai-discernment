@@ -1,0 +1,1834 @@
+{
+  "survey": {
+    "name": "Improving AI Discernment",
+    "id": "SV_ddwA8V4gMMpF00e",
+    "source": "qsf",
+    "n_blocks": 12,
+    "randomizers": [],
+    "branches": [
+      "{\"0\": {\"0\": {\"LogicType\": \"EmbeddedField\", \"LeftOperand\": \"treatment\", \"Operator\": \"GreaterThan\", \"RightOperand\": \"3\", \"_HiddenExpression\": false, \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span>  <span class=\\\"LeftOpDesc\\\">treatment</span> <span class=\\\"OpDesc\\\">Is Greater Than</span> <span class=\\\"RightOpDesc\\\"> 3 </span>\"}, \"1\": {\"LogicType\": \"EmbeddedField\", \"LeftOperand\": \"treatment\", \"Operator\": \"EqualTo\", \"RightOperand\": \"0\", \"_HiddenExpression\": false, \"Type\": \"Ex",
+      "{\"0\": {\"0\": {\"LogicType\": \"EmbeddedField\", \"LeftOperand\": \"treatment\", \"Operator\": \"LessThanOrEqual\", \"RightOperand\": \"3\", \"_HiddenExpression\": false, \"Type\": \"Expression\", \"Description\": \"<span class=\\\"ConjDesc\\\">If</span>  <span class=\\\"LeftOpDesc\\\">treatment</span> <span class=\\\"OpDesc\\\">Is Less Than or Equal to</span> <span class=\\\"RightOpDesc\\\"> 3 </span>\"}, \"1\": {\"LogicType\": \"EmbeddedField\", \"LeftOperand\": \"treatment\", \"Operator\": \"GreaterThan\", \"RightOperand\": \"0\", \"_HiddenExpression\": f"
+    ]
+  },
+  "questions": [
+    {
+      "qid": "QID1",
+      "tag": "feed_screen",
+      "type": "DB",
+      "selector": "TB",
+      "text": "",
+      "block": "Feed",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID10",
+      "tag": "pk_2",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "How many times can an individual be elected President of the United States under current laws?",
+      "block": "Pre-treatment",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pk_2"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Once",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Twice",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Four times",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Unlimited number of terms",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Don't know",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID14",
+      "tag": "nfc",
+      "type": "Matrix",
+      "selector": "Likert",
+      "text": "For each of the statements below, please indicate to what extent the statement is characteristic of you.",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "nfc_1",
+        "nfc_2",
+        "nfc_3",
+        "nfc_4",
+        "nfc_5",
+        "nfc_10"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Extremely uncharacteristic",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Somewhat uncharacteristic",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Uncertain",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Somewhat characteristic",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Extermely characteristic",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [
+        {
+          "id": "1",
+          "label": "I would prefer complex to simple problems.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "I like to have the responsibility of handling a situation that requires a lot of thinking.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Thinking is not my idea of fun.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "I really enjoy a task that involves coming up with new solutions to problems.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "10",
+          "label": "I would prefer a task that is intellectual, difficult, and important to one that is somewhat important but does not require much thought.",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "sub_selector": "SingleAnswer"
+    },
+    {
+      "qid": "QID16",
+      "tag": "subscriptions",
+      "type": "MC",
+      "selector": "MAVR",
+      "text": "Have you ever interacted with any of the following tools? Please check all that apply. If you have not interacted with any of these tools, skip to the next question.",
+      "block": "Pre-treatment",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "subscriptions_1",
+        "subscriptions_2",
+        "subscriptions_3",
+        "subscriptions_4",
+        "subscriptions_5",
+        "subscriptions_6",
+        "subscriptions_7"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "ChatGPT",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Bing Chat",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Anthropic Claude",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Character.ai",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Dall-E",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Midjourney",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "Stable Diffusion",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID17",
+      "tag": "trust_online",
+      "type": "Matrix",
+      "selector": "Likert",
+      "text": "Please rate the extent to which the following claims about you are true.",
+      "block": "AI Attitudes",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "trust_online_1",
+        "trust_online_2",
+        "trust_online_3",
+        "trust_online_4",
+        "trust_online_5",
+        "trust_online_6",
+        "trust_online_7"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strongly disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Somewhat disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Neither agree nor disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Somewhat agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Strongly agree",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [
+        {
+          "id": "1",
+          "label": "I generally trust what I see online.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "The issue of online misinformation has been blown out of proportion.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "News media cannot be trusted to tell the truth about current affairs.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Online sources are more credible than traditional sources.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "It is essential to verify information online using multiple sources.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Most of the information online is biased and inaccurate.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "These days, I have trouble telling what's real and what's not.",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "sub_selector": "SingleAnswer"
+    },
+    {
+      "qid": "QID18",
+      "tag": "Q18",
+      "type": "DB",
+      "selector": "TB",
+      "text": "",
+      "block": "Quiz",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID19",
+      "tag": "Q19",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Quiz",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "Q19_First Click",
+        "Q19_Last Click",
+        "Q19_Page Submit",
+        "Q19_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID2",
+      "tag": "feed_timer",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Feed",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "feed_timer_First Click",
+        "feed_timer_Last Click",
+        "feed_timer_Page Submit",
+        "feed_timer_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID20",
+      "tag": "Q20",
+      "type": "DB",
+      "selector": "TB",
+      "text": "COLUMBIA UNIVERSITY STUDY ABOUT CURRENT EVENTS Principal Investigator: Dr. Yamil Velez, Department of Political Science Investigators' statement: We are asking you to be in a research study. The purpose of this consent form is to give you the information you will need to help you decide whether or not to be in the study. Please read the form carefully. You may ask questions about the purpose of the research, what we would ask you to do, the possible risks and benefits, your rights as a volunteer, and anything else about the research or this form that is not clear. When all your questions have been answered, you can decide if you want to be in the study or not. This process is called ‘informed consent’. PURPOSE The purpose of this study is to examine the benefits and risks of AI. BENEFITS There are no personal benefits to participating in this study. However, this study could produce positive benefits for science by increasing our knowledge about how people process political information and interact with AI-generated content. PROCEDURES At the beginning of the study, we will ask you to answer a set of demographic and current events questions. Then, you will be asked to interact with a news feed, followed by a final round of questions about current events. RISKS, STRESS, OR DISCOMFORT Emotional stress is a potential risk. OTHER INFORMATION None of the data will be linked to you personally, as we will not collect identifying information. You may refuse to participate or withdraw from the study at any time without penalty or loss of benefits to which you are otherwise entitled. PARTICIPATION Participation in research is entirely voluntary. You may refuse to participate or withdraw from participation at any time without jeopardizing your employment, student status or any other entitlements. The investigator may withdraw you at his/her professional discretion. PRIVATE INFORMATION Any information derived from this research project that personally identifies you will not be voluntarily released or disclosed without your separate consent, except as specifically required by law. CU Human Research Protection Office may obtain access to the data collected for this study. No private information or identifiers will be collected. COMPENSATION You will be compensated by CloudResearch. CONTACT INFORMATION If at any time you have questions regarding the research or your participation, you should contact the principal investigator, Yamil Velez, who will answer all questions. His telephone number is (212) 851-4274. You should also contact the investigator or a member of the research staff if you have any concerns or complaints about the research. If at any time you have comments regarding the conduct of this research or questions about your rights as a research participant, you should contact the Institutional Review Board (IRB) Administrator at (212) 305-5883 or email the IRB at askirb@columbia.edu. PARTICIPANT’S STATEMENT I have read the above purpose of the study, and understand my role in participating in the research. I volunteer to take part in this research. I have had a chance to ask questions. If I have questions later, about the research, I can ask the investigator listed above. I understand that I may refuse to participate or withdraw from participation at any time without jeopardizing my employment, student status or other rights to which I am entitled. The investigator may withdraw me at his/her professional discretion. If I have questions about my rights as a research participant, I can call the Institutional Review Board office at (212) 305-5883 or email the IRB at askirb@columbia.edu. I certify that I am 18 years of age or older and freely give my consent to participate in this study. I will either print the form or write down the researcher's contact information before proceeding to the study in case I have any questions. Please click Next to continue if you agree with these terms.",
+      "block": "Consent",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID21",
+      "tag": "Q21",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Please answer the following questions about politics and current events.",
+      "block": "Transition",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID22",
+      "tag": "transition2",
+      "type": "DB",
+      "selector": "TB",
+      "text": "In the next section, we're hoping to see how you typically interact with social media. Feel free to click on buttons that you would normally click on. If no content captures your attention, there is no need to interact with it. We'd like you to scroll through and interact with it like you would scroll through and interact with your preferred social media platform (e.g., Facebook, Instagram, TikTok, or Twitter/X).",
+      "block": "Transition 2",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID23",
+      "tag": "Q23",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Now, we'd like to see if you know how to detect content generated by artificial intelligence or AI. AI content is computer generated content that often looks like or sounds like content generated by humans. For the following task, you'll simply mark whether something is AI or not. Try your best. If you're unsure, just go with your gut. When you are done, you will receive a quiz score indicating how accurate you are.",
+      "block": "Transition 3",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID24",
+      "tag": "Q24",
+      "type": "DB",
+      "selector": "TB",
+      "text": "For the final section, we'd like to ask you a few more questions about your thoughts on technology. After this section, the study will be complete.",
+      "block": "Transition 4",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID25",
+      "tag": "Message",
+      "type": "DB",
+      "selector": "TB",
+      "text": "",
+      "block": "Message",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID26",
+      "tag": "Q21",
+      "type": "DB",
+      "selector": "TB",
+      "text": "Click to write the question text",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID27",
+      "tag": "Q27",
+      "type": "DB",
+      "selector": "TB",
+      "text": "",
+      "block": "Feed 2",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID28",
+      "tag": "Q28",
+      "type": "Timing",
+      "selector": "PageTimer",
+      "text": "Timing",
+      "block": "Feed 2",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "Q28_First Click",
+        "Q28_Last Click",
+        "Q28_Page Submit",
+        "Q28_Click Count"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "First Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Last Click",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Page Submit",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Click Count",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID29",
+      "tag": "Q24",
+      "type": "DB",
+      "selector": "TB",
+      "text": "${e://Field/treatment}",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [],
+      "choices": [],
+      "rows": [],
+      "sub_selector": null
+    },
+    {
+      "qid": "QID3",
+      "tag": "ai_outcome",
+      "type": "Matrix",
+      "selector": "Likert",
+      "text": "Please answer the following questions about artificial intelligence.",
+      "block": "AI Attitudes",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "ai_outcome_1",
+        "ai_outcome_2",
+        "ai_outcome_3",
+        "ai_outcome_4",
+        "ai_outcome_5",
+        "ai_outcome_6",
+        "ai_outcome_7"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Strongly disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Somewhat disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Neither agree nor disagree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Somewhat agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Agree",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "Strongly agree",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [
+        {
+          "id": "1",
+          "label": "I believe that artificial intelligence will improve my life.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "I believe that artificial intelligence will improve my work.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "I think I will use artificial intelligence technology in the future.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "I think artificial intelligence technology is a threat to humans.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "I think artificial intelligence technology is positive for humanity.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "I am afraid artificial intelligence technology will be used to manipulate me.",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "7",
+          "label": "I feel confident in my ability to detect artificial intelligence.",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "sub_selector": "SingleAnswer"
+    },
+    {
+      "qid": "QID4",
+      "tag": "political_interest",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "Generally, how interested are you in politics?",
+      "block": "Pre-treatment",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "political_interest"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Extremely interested",
+          "recode": "5",
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Very interested",
+          "recode": "4",
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Somewhat interested",
+          "recode": "3",
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Not very interested",
+          "recode": "2",
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Not at all interested",
+          "recode": "1",
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID5",
+      "tag": "attention_check",
+      "type": "MC",
+      "selector": "MAVR",
+      "text": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "attention_check_1",
+        "attention_check_2",
+        "attention_check_3",
+        "attention_check_4",
+        "attention_check_5"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Extremely interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Very interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Moderately interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Slightly interested",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "Not interested at all",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID7",
+      "tag": "media_confidence",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "In general, how much trust and confidence do you have in the news media when it comes to reporting the news fully, accurately and fairly?",
+      "block": "Pre-treatment",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "media_confidence"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "A great deal",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "A fair amount",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Not very much",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "None at all",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID8",
+      "tag": "media_factchecks",
+      "type": "MC",
+      "selector": "SAHR",
+      "text": "Many news organizations issue \"fact checks\" in which they investigate whether an important news item is true or false. About how often would you say you encounter fact checks?",
+      "block": "Trash / Unused Questions",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "media_factchecks"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Never",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Sometimes",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Frequently",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    },
+    {
+      "qid": "QID9",
+      "tag": "pk_1",
+      "type": "MC",
+      "selector": "SAVR",
+      "text": "For how many years is a United States Senator elected - that is, how many years are there in one full term of oﬃce for a U.S. Senator?",
+      "block": "Pre-treatment",
+      "in_randomizer": false,
+      "free_text": false,
+      "columns": [
+        "pk_1"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "label": "Two years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "2",
+          "label": "Four years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "3",
+          "label": "Six years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "4",
+          "label": "Eight years",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "5",
+          "label": "None of these",
+          "recode": null,
+          "text_entry": false
+        },
+        {
+          "id": "6",
+          "label": "Don't know",
+          "recode": null,
+          "text_entry": false
+        }
+      ],
+      "rows": [],
+      "sub_selector": "TX"
+    }
+  ],
+  "arms": {
+    "column": "treatment",
+    "values": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "stimuli": {},
+    "source": "convention",
+    "blocks": {}
+  },
+  "embedded_data": [
+    "assignmentId",
+    "batch",
+    "participantId",
+    "projectId"
+  ],
+  "columns": [
+    {
+      "name": "StartDate",
+      "qid": "",
+      "kind": "system",
+      "dtype": "text",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": true,
+      "pii_reason": "known_identifier_column",
+      "dropped": true
+    },
+    {
+      "name": "batch",
+      "qid": "",
+      "kind": "embedded",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "political_interest",
+      "qid": "QID4",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Generally, how interested are you in politics?",
+      "values": {
+        "5": "Extremely interested",
+        "4": "Very interested",
+        "3": "Somewhat interested",
+        "2": "Not very interested",
+        "1": "Not at all interested"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk_1",
+      "qid": "QID9",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "For how many years is a United States Senator elected - that is, how many years are there in one full term of oﬃce for a U.S. Senator?",
+      "values": {
+        "1": "Two years",
+        "2": "Four years",
+        "3": "Six years",
+        "4": "Eight years",
+        "5": "None of these",
+        "6": "Don't know"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk_2",
+      "qid": "QID10",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "How many times can an individual be elected President of the United States under current laws?",
+      "values": {
+        "1": "Once",
+        "2": "Twice",
+        "3": "Four times",
+        "4": "Unlimited number of terms",
+        "5": "Don't know"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pk_score",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "chatgpt",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "bing",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "claude",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "character",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "dalle",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "midjourney",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "stable_diff",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "media_trust",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden2_real_news_005.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden_real_005.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden_real_news_001.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "election_real_news_006.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "google_real_news_003.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "hot_weather_real_news_008.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "jim_jordan_real_news_007.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "johnson_real_003.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "poland_real_news_002.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "protest_real_news_004.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "putin_real_002.webp",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "unhorse_real_004.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "untrump_real_001.webp",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "real_score",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "andersoncooper_fake_001.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden_draft_fake_009.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden_fake_003.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "biden_fake_006.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "desantis_fake_002.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trump_arrest_fake_008.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trump_epstein_fake_010.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trump_fake_004.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trump_fire_fake_007.png",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trump_voice_fake_011.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "warren_fake_012.mp4",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "fake_score",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "total_score",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_1",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I believe that artificial intelligence will improve my life.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_2",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I believe that artificial intelligence will improve my work.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_3",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I think I will use artificial intelligence technology in the future.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_4",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I think artificial intelligence technology is a threat to humans.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_5",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I think artificial intelligence technology is positive for humanity.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_6",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I am afraid artificial intelligence technology will be used to manipulate me.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "ai_outcome_7",
+      "qid": "QID3",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please answer the following questions about artificial intelligence. — I feel confident in my ability to detect artificial intelligence.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Disagree",
+        "3": "Somewhat disagree",
+        "4": "Neither agree nor disagree",
+        "5": "Somewhat agree",
+        "6": "Agree",
+        "7": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_1",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — I generally trust what I see online.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_2",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — The issue of online misinformation has been blown out of proportion.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_3",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — News media cannot be trusted to tell the truth about current affairs.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_4",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — Online sources are more credible than traditional sources.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_5",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — It is essential to verify information online using multiple sources.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_6",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — Most of the information online is biased and inaccurate.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "trust_online_7",
+      "qid": "QID17",
+      "kind": "question",
+      "dtype": "numeric",
+      "label": "Please rate the extent to which the following claims about you are true. — These days, I have trouble telling what's real and what's not.",
+      "values": {
+        "1": "Strongly disagree",
+        "2": "Somewhat disagree",
+        "3": "Neither agree nor disagree",
+        "4": "Somewhat agree",
+        "5": "Strongly agree"
+      },
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "treatment",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "age",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "hisp",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "white",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "afam_black",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "asian",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "gender_m",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    },
+    {
+      "name": "pr",
+      "qid": "",
+      "kind": "unknown",
+      "dtype": "numeric",
+      "label": "",
+      "values": {},
+      "free_text": false,
+      "pii_flag": false,
+      "pii_reason": "",
+      "dropped": false
+    }
+  ]
+}

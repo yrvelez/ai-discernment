@@ -1,0 +1,448 @@
+{
+  "source": "inputs/pap.json (transcribed from code/replication_script.R)",
+  "title": "Improving AI Discernment",
+  "constructs": [
+    "misinformation",
+    "ai_generated_content",
+    "fact_checking"
+  ],
+  "keywords": [
+    "AI-generated images",
+    "deepfakes",
+    "discernment",
+    "misinformation interventions",
+    "survey experiment",
+    "inverse probability weighting"
+  ],
+  "registration": {
+    "status": "none",
+    "url": "",
+    "note": "No pre-registration. This plan is a transcription of the authors' analysis script (code/replication_script.R): outcomes, arms, covariates, Lin adjustment, 1/pr weights and no multiple-testing correction are taken from it verbatim."
+  },
+  "design": {
+    "type": "survey_experiment",
+    "arms": {
+      "column": "treatment",
+      "treatment": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "control": "0",
+      "labels": {
+        "0": "Control",
+        "1": "Flagging",
+        "2": "Provenance",
+        "3": "Automated Flagging",
+        "4": "AI Accuracy Nudge",
+        "5": "Breathing Exercise",
+        "6": "Mindfulness",
+        "7": "Inoculation",
+        "8": "AI Literacy Infographic",
+        "9": "AI Literacy Infographic 2",
+        "10": "AI Literacy Guide",
+        "11": "AI Text Video"
+      },
+      "descriptions": {
+        "0": "Control: no intervention before the feed.",
+        "1": "Flagging: posts carry a label flagging possible AI-generated content.",
+        "2": "Provenance: posts show content-provenance information.",
+        "3": "Automated Flagging: an automated detector's flag is shown on posts.",
+        "4": "AI Accuracy Nudge: prompt to consider accuracy of AI content before the feed.",
+        "5": "Breathing Exercise: brief breathing exercise before the feed.",
+        "6": "Mindfulness: brief mindfulness exercise before the feed.",
+        "7": "Inoculation: prebunking message about AI-generated media.",
+        "8": "AI Literacy Infographic: infographic on spotting AI-generated media.",
+        "9": "AI Literacy Infographic 2: alternative infographic.",
+        "10": "AI Literacy Guide: detailed guide to artifacts of AI-generated media.",
+        "11": "AI Text Video: video on AI-generated text and media."
+      }
+    },
+    "derived": {
+      "ipw": "1 / pr",
+      "ai_scale": "(chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7"
+    },
+    "population": {
+      "country": "United States",
+      "sample": "online_panel"
+    },
+    "outcome_type": "accuracy share (real vs AI-generated classification)"
+  },
+  "registered": {
+    "outcomes": [
+      {
+        "name": "total_score",
+        "label": "Share of all items classified correctly",
+        "kind": "single_item",
+        "columns": [
+          "total_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "total_score: share of real and AI-generated items classified correctly (0-1)"
+      },
+      {
+        "name": "fake_score",
+        "label": "Accuracy on AI-generated items",
+        "kind": "single_item",
+        "columns": [
+          "fake_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "fake_score: share of AI-generated items classified correctly (0-1)"
+      },
+      {
+        "name": "real_score",
+        "label": "Accuracy on real items",
+        "kind": "single_item",
+        "columns": [
+          "real_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "real_score: share of real (authentic) items classified correctly (0-1)"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Each intervention changes total discernment accuracy relative to control.",
+        "outcome": "total_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H2",
+        "text": "Each intervention changes accuracy on AI-generated items relative to control.",
+        "outcome": "fake_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H3",
+        "text": "Each intervention changes accuracy on real items relative to control.",
+        "outcome": "real_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "implemented": {
+    "outcomes": [
+      {
+        "name": "total_score",
+        "label": "Share of all items classified correctly",
+        "kind": "single_item",
+        "columns": [
+          "total_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "total_score: share of real and AI-generated items classified correctly (0-1)"
+      },
+      {
+        "name": "fake_score",
+        "label": "Accuracy on AI-generated items",
+        "kind": "single_item",
+        "columns": [
+          "fake_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "fake_score: share of AI-generated items classified correctly (0-1)"
+      },
+      {
+        "name": "real_score",
+        "label": "Accuracy on real items",
+        "kind": "single_item",
+        "columns": [
+          "real_score"
+        ],
+        "reverse": [],
+        "scale": [
+          0,
+          1
+        ],
+        "construction": "real_score: share of real (authentic) items classified correctly (0-1)"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H1",
+        "text": "Each intervention changes total discernment accuracy relative to control.",
+        "outcome": "total_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H2",
+        "text": "Each intervention changes accuracy on AI-generated items relative to control.",
+        "outcome": "fake_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      },
+      {
+        "id": "H3",
+        "text": "Each intervention changes accuracy on real items relative to control.",
+        "outcome": "real_score",
+        "treatment": {
+          "column": "treatment",
+          "arms": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "control": "0"
+        },
+        "direction": "two_sided",
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": "ipw",
+          "covariates": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ],
+          "continuous": [
+            "media_trust",
+            "political_interest",
+            "pk_score",
+            "ai_scale"
+          ]
+        },
+        "pooled": true,
+        "subgroup": null,
+        "exclusions": []
+      }
+    ],
+    "subgroups": [],
+    "sample_exclusions": [],
+    "multiple_testing": "none",
+    "alpha": 0.05
+  },
+  "ambiguities": []
+}

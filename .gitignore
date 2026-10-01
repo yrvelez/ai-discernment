@@ -5,3 +5,12 @@
 # raw Qualtrics export contains IP addresses, locations and worker IDs; never commit
 raw_data/
 Improving+AI+Discernment_*.csv
+# raw exports carry identifiers and free text: never commit them
+inputs/*.csv
+inputs/*.sav
+inputs/*.dta
+inputs/*.xlsx
+raw_export.csv
+.mplconfig/
+__pycache__/
+run.log

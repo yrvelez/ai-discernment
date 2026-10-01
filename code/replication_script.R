@@ -63,9 +63,11 @@ cat(strrep("=", 70), "\n")
 cat("TOTAL ACCURACY (DISCERNMENT) RESULTS\n")
 cat("Model: lm_lin with Lin (2013) covariate adjustment\n")
 cat("Weights: 1/pr (inverse probability weights)\n")
-cat("SEs: Cluster-robust (clustered by participant_id)\n")
+cat("SEs: HC2 robust (one row per respondent; the released data carry no participant_id, so no clustering)\n")
 cat(strrep("=", 70), "\n\n")
 
+# Lin (2013) covariate adjustment. HC2 robust SEs: one row per respondent and the released
+# replication data have no participant_id column, so clustering is neither needed nor possible.
 # Lin (2013) covariate adjustment:
 # outcome ~ treatment, ~ covariates
 # Includes treatment * (covariate - mean(covariate)) interactions
@@ -74,8 +76,7 @@ lm_total <- lm_lin(
   total_score ~ treatment,
   covariates = ~ media_trust + political_interest + pk_score + ai_scale,
   data = analysis_data,
-  weights = 1/pr,
-  clusters = participant_id
+  weights = 1/pr
 )
 
 cat("Complete cases:", nobs(lm_total), "\n\n")
@@ -114,8 +115,7 @@ lm_fake <- lm_lin(
   fake_score ~ treatment,
   covariates = ~ media_trust + political_interest + pk_score + ai_scale,
   data = analysis_data,
-  weights = 1/pr,
-  clusters = participant_id
+  weights = 1/pr
 )
 
 cat("Complete cases:", nobs(lm_fake), "\n\n")
@@ -149,8 +149,7 @@ lm_real <- lm_lin(
   real_score ~ treatment,
   covariates = ~ media_trust + political_interest + pk_score + ai_scale,
   data = analysis_data,
-  weights = 1/pr,
-  clusters = participant_id
+  weights = 1/pr
 )
 
 cat("Complete cases:", nobs(lm_real), "\n\n")

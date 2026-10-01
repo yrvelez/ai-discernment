@@ -1,0 +1,32 @@
+{
+ "tool_version": "0.1.0",
+ "files": [
+  "RUN.md",
+  "codebook.json",
+  "codebook.md",
+  "data/clean.csv",
+  "data/raw_tidy.csv",
+  "pap.json",
+  "pap.md",
+  "provenance/literature.json",
+  "provenance/llm_log.jsonl",
+  "provenance/provenance.json",
+  "provenance/script_history/04_exploratory.py.1",
+  "report.md",
+  "results/H1.csv",
+  "results/H1_arms.csv",
+  "results/H2.csv",
+  "results/H2_arms.csv",
+  "results/H3.csv",
+  "results/H3_arms.csv",
+  "results/analysis_tags.csv",
+  "results/registered_summary.csv",
+  "review.md",
+  "scripts/01_tidy.py",
+  "scripts/02_clean.py",
+  "scripts/03_registered.py",
+  "scripts/04_exploratory.py",
+  "study.json",
+  "survey.qsf"
+ ]
+}

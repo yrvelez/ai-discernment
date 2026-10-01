@@ -1,0 +1,119 @@
+{
+ "mode": "fully_agentic",
+ "human_steps": [],
+ "reviewer_pass": true,
+ "models": {
+  "strong": "anthropic/claude-sonnet-5.5",
+  "fast": "moonshotai/kimi-k3"
+ },
+ "provider": "openrouter",
+ "zero_retention_requested": true,
+ "cost_usd": 0.732357,
+ "tokens": {
+  "in": 114179,
+  "out": 46602
+ },
+ "tool_version": "0.1.0",
+ "created": "2026-10-01T15:32:51Z",
+ "pap_source": "author-supplied pap.json",
+ "pii": {
+  "dropped": [
+   "StartDate"
+  ],
+  "kept_with_override": [],
+  "allow_pii": false,
+  "flagged": {
+   "StartDate": "known_identifier_column"
+  },
+  "scan": "header + first data row only, local regex"
+ },
+ "degraded": [
+  "silicon sampling skipped"
+ ],
+ "inputs": {
+  "raw_csv_sha256": "b8e0c6230d58dcecf3c133690e7eda4d962cac7a684ffeb44ed13779e7407459",
+  "pap_sha256": "3b0ec48b0b5854a93cf8bc664c7bb179f4f4b4ba66d67d9eb7031d01ec622f0b",
+  "qsf_sha256": "03232d51dd73491f4bd3db1f38c380cb0fece8339a955b03654127eebcc94392",
+  "pap_json_sha256": "ded9841185602e6d2229b2c03a3fa6d7fba573a763326154b43de2c257430f95"
+ },
+ "usage_by_agent": {
+  "exploratory": {
+   "calls": 6,
+   "in": 88335,
+   "out": 14870,
+   "cost": 0.297732402,
+   "models": [
+    "moonshotai/kimi-k3"
+   ]
+  },
+  "litreview": {
+   "calls": 2,
+   "in": 1584,
+   "out": 1105,
+   "cost": 0.020455974000000002,
+   "models": [
+    "moonshotai/kimi-k3"
+   ]
+  },
+  "writer": {
+   "calls": 2,
+   "in": 13967,
+   "out": 27181,
+   "cost": 0.35967347955,
+   "models": [
+    "moonshotai/kimi-k3"
+   ]
+  },
+  "reviewer": {
+   "calls": 1,
+   "in": 10293,
+   "out": 3446,
+   "cost": 0.05449554,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  }
+ },
+ "stage_seconds": {
+  "ingest": 0.0,
+  "pii": 0.07,
+  "tidy": 0.07,
+  "pap": 0.0,
+  "clean": 0.34,
+  "registered": 13.69,
+  "tag": 0.0,
+  "exploratory": 242.58,
+  "silicon": 0.0,
+  "litreview": 21.64,
+  "write": 355.01,
+  "review": 27.72,
+  "package": 0.0
+ },
+ "total_seconds": 661.1,
+ "log": [
+  "2026-10-01T15:32:51Z stage ingest",
+  "2026-10-01T15:32:51Z stage pii",
+  "2026-10-01T15:32:51Z PII scan (header + first row only): flagged 1 column(s): StartDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
+  "2026-10-01T15:32:51Z stage tidy",
+  "2026-10-01T15:32:51Z stage pap",
+  "2026-10-01T15:32:51Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+  "2026-10-01T15:32:51Z stage clean",
+  "2026-10-01T15:32:51Z wrote data/clean.csv: 2030 rows, 68 columns",
+  "2026-10-01T15:32:51Z stage registered",
+  "2026-10-01T15:33:05Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+  "2026-10-01T15:33:05Z H2: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T15:33:05Z H2: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+  "2026-10-01T15:33:05Z H3: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T15:33:05Z H3: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+  "2026-10-01T15:33:05Z wrote results/registered_summary.csv (36 rows)",
+  "2026-10-01T15:33:05Z stage tag",
+  "2026-10-01T15:33:05Z stage exploratory",
+  "2026-10-01T15:37:07Z tags: H1=unregistered, H2=unregistered, H3=unregistered",
+  "2026-10-01T15:37:07Z stage silicon",
+  "2026-10-01T15:37:07Z stage litreview",
+  "2026-10-01T15:37:29Z stage write",
+  "2026-10-01T15:43:24Z stage review",
+  "2026-10-01T15:43:52Z reviewer: 8 issue(s)",
+  "2026-10-01T15:43:52Z stage package"
+ ]
+}

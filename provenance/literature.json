@@ -1,0 +1,153 @@
+{
+ "text": "The retrieved literature offers no direct experimental evidence on H1–H3: none of the works tests an intervention intended to change human accuracy at discriminating AI-generated from real items, whether overall or by item type. The closest works address adjacent constructs—reviews of misinformation belief and its resistance to correction (Ecker et al., 2022) and of fake news and disinformation in social media [citation removed: not in retrieved set] examine why false content is believed and how corrections fare, while discussion of ChatGPT in higher education notes that AI-generated prose can be impressively fluent and thus hard to identify (Rudolph et al., 2023). These works motivate the plausibility that discernment is difficult and that interventions may matter, but they do not report effect sizes or item-type-specific accuracy changes of the kind the hypotheses require.\n\nThe remainder of the retrieved set—covering LLM training curricula, radiology AI, behavioral policy framing, LLM security, retrieval-augmented generation, IoT finance, and generative AI in education—is off-topic for these hypotheses. Overall, the list is thin for the present research question, and the study's hypotheses appear largely untested by the retrieved prior work.",
+ "works": [
+  {
+   "id": "https://openalex.org/W4226278401",
+   "title": "Discernment and Social Learning as a Companion Training Layer",
+   "authors": [
+    "Long Ouyang",
+    "Jeff Wu",
+    "Xu Jiang",
+    "Diogo Almeida"
+   ],
+   "year": 2022,
+   "doi": "10.48550/arxiv.2203.02155",
+   "venue": "arXiv (Cornell University)",
+   "cited_by": 4291,
+   "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
+  },
+  {
+   "id": "https://openalex.org/W4386222752",
+   "title": "Redefining Radiology: A Review of Artificial Intelligence Integration in Medical Imaging",
+   "authors": [
+    "Reabal Najjar"
+   ],
+   "year": 2023,
+   "doi": "10.3390/diagnostics13172760",
+   "venue": "Diagnostics",
+   "cited_by": 791,
+   "abstract": "This comprehensive review unfolds a detailed narrative of Artificial Intelligence (AI) making its foray into radiology, a move that is catalysing transformational shifts in the healthcare landscape. It traces the evolution of radiology, from the initial discovery of X-rays to the application of machine learning and deep learning in modern medical image analysis. The primary focus of this review is"
+  },
+  {
+   "id": "https://openalex.org/W4294628862",
+   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
+   "authors": [
+    "Nick Chater",
+    "George F. Loewenstein"
+   ],
+   "year": 2022,
+   "doi": "10.1017/s0140525x22002023",
+   "venue": "Behavioral and Brain Sciences",
+   "cited_by": 583,
+   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun"
+  },
+  {
+   "id": "https://openalex.org/W4317910584",
+   "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
+   "authors": [
+    "Jürgen Rudolph",
+    "Samson Tan",
+    "Shannon Tan"
+   ],
+   "year": 2023,
+   "doi": "10.37074/jalt.2023.6.1.9",
+   "venue": "Journal of Applied Learning & Teaching",
+   "cited_by": 1782,
+   "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to "
+  },
+  {
+   "id": "https://openalex.org/W4206236567",
+   "title": "The psychological drivers of misinformation belief and its resistance to correction",
+   "authors": [
+    "Ullrich K. H. Ecker",
+    "Stephan Lewandowsky",
+    "John Cook",
+    "Philipp Schmid"
+   ],
+   "year": 2022,
+   "doi": "10.1038/s44159-021-00006-y",
+   "venue": "Nature Reviews Psychology",
+   "cited_by": 1391,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W4392353733",
+   "title": "A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly",
+   "authors": [
+    "Yifan Yao",
+    "Jinhao Duan",
+    "Kaidi Xu",
+    "Yuanfang Cai"
+   ],
+   "year": 2024,
+   "doi": "10.1016/j.hcc.2024.100211",
+   "venue": "High-Confidence Computing",
+   "cited_by": 1049,
+   "abstract": "Large Language Models (LLMs), such as ChatGPT and Bard, have revolutionized natural language understanding and generation. They possess deep language comprehension, human-like text generation capabilities, contextual awareness, and robust problem-solving skills, making them invaluable in various domains (e.g., search engines, customer support, translation). In the meantime, LLMs have also gained t"
+  },
+  {
+   "id": "https://openalex.org/W4389984066",
+   "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+   "authors": [
+    "Yunfan Gao",
+    "Yun Xiong",
+    "Xinyu Gao",
+    "Kangxiang Jia"
+   ],
+   "year": 2023,
+   "doi": "10.48550/arxiv.2312.10997",
+   "venue": "arXiv (Cornell University)",
+   "cited_by": 749,
+   "abstract": "Large Language Models (LLMs) showcase impressive capabilities but encounter challenges like hallucination, outdated knowledge, and non-transparent, untraceable reasoning processes. Retrieval-Augmented Generation (RAG) has emerged as a promising solution by incorporating knowledge from external databases. This enhances the accuracy and credibility of the generation, particularly for knowledge-inten"
+  },
+  {
+   "id": "https://openalex.org/W4386961654",
+   "title": "Exploring the Full Potentials of IoT for Better Financial Growth and Stability: A Comprehensive Survey",
+   "authors": [
+    "Hanane Allioui",
+    "Youssef Mourdi"
+   ],
+   "year": 2023,
+   "doi": "10.3390/s23198015",
+   "venue": "Sensors",
+   "cited_by": 556,
+   "abstract": "Cutting-edge technologies, with a special emphasis on the Internet of Things (IoT), tend to operate as game changers, generating enormous alterations in both traditional and modern enterprises. Understanding multiple uses of IoT has become vital for effective financial management, given the ever-changing nature of organizations and the technological disruptions that come with this paradigm change."
+  },
+  {
+   "id": "https://openalex.org/W4319983294",
+   "title": "Fake news, disinformation and misinformation in social media: a review",
+   "authors": [
+    "Esma Aı̈meur",
+    "Sabrine Amri",
+    "Gilles Brassard"
+   ],
+   "year": 2023,
+   "doi": "10.1007/s13278-023-01028-5",
+   "venue": "Social Network Analysis and Mining",
+   "cited_by": 773,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W4386251129",
+   "title": "Transforming Education: A Comprehensive Review of Generative Artificial Intelligence in Educational Settings through Bibliometric and Content Analysis",
+   "authors": [
+    "Zied Bahroun",
+    "Chiraz Anane",
+    "Vian M. Ahmed",
+    "Andrew Zacca"
+   ],
+   "year": 2023,
+   "doi": "10.3390/su151712983",
+   "venue": "Sustainability",
+   "cited_by": 769,
+   "abstract": "In the ever-evolving era of technological advancements, generative artificial intelligence (GAI) emerges as a transformative force, revolutionizing education. This review paper, guided by the PRISMA framework, presents a comprehensive analysis of GAI in education, synthesizing key insights from a selection of 207 research papers to identify research gaps and future directions in the field. This st"
+  }
+ ],
+ "queries": [
+  "AI-generated content misinformation discernment interventions",
+  "deepfake detection accuracy fact-checking intervention experiment",
+  "improving human discernment of AI-generated images misinformation",
+  "media literacy interventions deepfakes survey experiment"
+ ],
+ "degraded": null
+}

@@ -1,0 +1,189 @@
+"""04_exploratory: exploratory (non-registered) analyses that help interpret H1-H3.
+
+E1  Heterogeneity by prior AI-tool use (ai_scale): do intervention effects on total
+    discernment accuracy differ between AI-naive and AI-familiar respondents?
+E2  Heterogeneity by age group (55+ vs <55): are effects concentrated among older
+    respondents, a key susceptibility group not registered as a moderator?
+E3  Placebo test on pre-treatment political knowledge (pk_score): no arm should
+    "affect" a pre-treatment covariate, validating the IPW/HC2 machinery behind the
+    significant registered effects (arms 3, 6, 10).
+
+All models: WLS with ipw weights, HC2 robust SEs (as in 03_registered.py).
+Run from the study folder: python scripts/04_exploratory.py
+"""
+import pathlib
+import warnings
+
+import numpy as np
+import pandas as pd
+
+warnings.filterwarnings("ignore")
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+RES = ROOT / "results"
+FIG = ROOT / "figures"
+RES.mkdir(exist_ok=True)
+FIG.mkdir(exist_ok=True)
+
+import statsmodels.formula.api as smf
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+ARM_LABELS = {0: "Control", 1: "Flagging", 2: "Provenance", 3: "Automated Flagging",
+              4: "AI Accuracy Nudge", 5: "Breathing Exercise", 6: "Mindfulness",
+              7: "Inoculation", 8: "AI Literacy Infographic", 9: "AI Literacy Infographic 2",
+              10: "AI Literacy Guide", 11: "AI Text Video"}
+ARMS = list(range(1, 12))
+ARM = "C(arm_code, Treatment(reference=0))"
+AI_FAMILIAR = 2 / 7  # ai_scale value for a respondent who has used 2 of 7 AI tools
+
+
+def fit_wls(formula, d):
+    return smf.wls(formula, data=d, weights=d["ipw"]).fit(cov_type="HC2")
+
+
+def lincomb(res, weights):
+    """Linear combination of coefficients given {term: weight}; returns (est, se, p)."""
+    names = list(res.params.index)
+    L = np.zeros(len(names))
+    for term, w in weights.items():
+        L[names.index(term)] = w
+    tt = res.t_test(L)
+    return float(tt.effect), float(tt.sd), float(tt.pvalue)
+
+
+def arm_term(res, k, suffix=""):
+    """Exact (unambiguous) name of the arm-k coefficient, optionally an interaction."""
+    prefix = f"{ARM}[T.{k}]{suffix}"
+    hits = [t for t in res.params.index if t == prefix or t.startswith(prefix + ":") or
+            (suffix and t == f"{ARM}[T.{k}]:{suffix}")]
+    hits = [t for t in res.params.index if t == prefix]
+    if not hits:
+        raise KeyError(f"term not found: {prefix}")
+    return hits[0]
+
+
+def main():
+    df = pd.read_csv(ROOT / "data" / "clean.csv")
+    df["arm_code"] = df["arm_code"].astype(int)
+    for c in ["media_trust", "political_interest", "pk_score", "ai_scale"]:
+        df[f"{c}_c"] = df[c] - df[c].mean()
+
+    # ------------------------------------------------------------------ E1
+    d1 = df.dropna(subset=["total_score", "ai_scale", "media_trust",
+                           "political_interest", "pk_score", "ipw"]).copy()
+    f1 = (f"total_score ~ {ARM} * ai_scale + media_trust_c + "
+          f"political_interest_c + pk_score_c")
+    r1 = fit_wls(f1, d1)
+    rows = []
+    for k in ARMS:
+        main_t = arm_term(r1, k)
+        inter_t = arm_term(r1, k, suffix="ai_scale")
+        e0, s0, p0 = lincomb(r1, {main_t: 1.0})                                  # AI-naive (ai_scale=0)
+        e1, s1, p1 = lincomb(r1, {main_t: 1.0, inter_t: AI_FAMILIAR})            # AI-familiar
+        ei, si, pi_ = lincomb(r1, {inter_t: 1.0})                                # interaction slope
+        rows.append({"analysis_id": "E1", "arm_code": k, "arm_label": ARM_LABELS[k],
+                     "effect_ai_naive": e0, "se_ai_naive": s0, "p_ai_naive": p0,
+                     "effect_ai_familiar": e1, "se_ai_familiar": s1, "p_ai_familiar": p1,
+                     "interaction_per_unit_ai_scale": ei, "se_interaction": si,
+                     "p_interaction": pi_, "n": int(r1.nobs)})
+    t1 = pd.DataFrame(rows)
+    t1.to_csv(RES / "E1_ai_use_heterogeneity.csv", index=False)
+    top = t1.loc[t1["p_interaction"].idxmin()]
+    print(f"E1: arm x ai_scale interactions on total_score (N={int(r1.nobs)}); "
+          f"strongest heterogeneity: {top['arm_label']} "
+          f"(slope={top['interaction_per_unit_ai_scale']:.3f}/unit, p={top['p_interaction']:.3f}); "
+          f"{int((t1['p_interaction'] < 0.05).sum())} of 11 interactions p<.05")
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+    ys = np.arange(len(t1))[::-1]
+    ax.errorbar(t1["interaction_per_unit_ai_scale"], ys,
+                xerr=1.96 * t1["se_interaction"], fmt="o", color="#2457a6",
+                ecolor="#2457a6", capsize=3)
+    ax.axvline(0, color="#888", lw=1)
+    ax.set_yticks(ys)
+    ax.set_yticklabels(t1["arm_label"])
+    ax.set_xlabel("Arm x AI-tool-use interaction on total accuracy\n"
+                  "(change in treatment effect per unit of ai_scale, 95% CI)")
+    ax.set_title("E1 (exploratory): effect heterogeneity by prior AI-tool use")
+    ax.spines[["top", "right"]].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(FIG / "E1_ai_use_interaction.png", dpi=150)
+    plt.close(fig)
+
+    # ------------------------------------------------------------------ E2
+    d2 = df.dropna(subset=["total_score", "age", "media_trust", "political_interest",
+                           "pk_score", "ai_scale", "ipw"]).copy()
+    d2["older"] = (d2["age"] >= 55).astype(float)
+    f2 = (f"total_score ~ {ARM} * older + media_trust_c + political_interest_c + "
+          f"pk_score_c + ai_scale_c")
+    r2 = fit_wls(f2, d2)
+    rows = []
+    for k in ARMS:
+        main_t = arm_term(r2, k)
+        inter_t = arm_term(r2, k, suffix="older")
+        ey, sy, py = lincomb(r2, {main_t: 1.0})                                  # age < 55
+        eo, so, po = lincomb(r2, {main_t: 1.0, inter_t: 1.0})                    # age 55+
+        ei, si, pi_ = lincomb(r2, {inter_t: 1.0})
+        rows.append({"analysis_id": "E2", "arm_code": k, "arm_label": ARM_LABELS[k],
+                     "effect_under55": ey, "se_under55": sy, "p_under55": py,
+                     "effect_55plus": eo, "se_55plus": so, "p_55plus": po,
+                     "interaction_55plus": ei, "se_interaction": si,
+                     "p_interaction": pi_, "n": int(r2.nobs),
+                     "n_55plus": int(d2["older"].sum()), "n_under55": int((1 - d2["older"]).sum())})
+    t2 = pd.DataFrame(rows)
+    t2.to_csv(RES / "E2_age_heterogeneity.csv", index=False)
+    top2 = t2.loc[t2["p_interaction"].idxmin()]
+    print(f"E2: arm x age(55+) interactions on total_score (N={int(r2.nobs)}, "
+          f"{int(d2['older'].sum())} aged 55+); strongest heterogeneity: {top2['arm_label']} "
+          f"(under55={top2['effect_under55']:.3f} vs 55+={top2['effect_55plus']:.3f}, "
+          f"interaction p={top2['p_interaction']:.3f}); "
+          f"{int((t2['p_interaction'] < 0.05).sum())} of 11 interactions p<.05")
+
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    ys = np.arange(len(t2))[::-1]
+    ax.errorbar(t2["effect_under55"], ys + 0.16, xerr=1.96 * t2["se_under55"],
+                fmt="o", color="#2457a6", ecolor="#2457a6", capsize=3, label="Age < 55")
+    ax.errorbar(t2["effect_55plus"], ys - 0.16, xerr=1.96 * t2["se_55plus"],
+                fmt="s", color="#c44e52", ecolor="#c44e52", capsize=3, label="Age 55+")
+    ax.axvline(0, color="#888", lw=1)
+    ax.set_yticks(ys)
+    ax.set_yticklabels(t2["arm_label"])
+    ax.set_xlabel("Effect on total accuracy vs control (95% CI)")
+    ax.set_title("E2 (exploratory): treatment effects by age group")
+    ax.legend(frameon=False, loc="lower right")
+    ax.spines[["top", "right"]].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(FIG / "E2_age_effects.png", dpi=150)
+    plt.close(fig)
+
+    # ------------------------------------------------------------------ E3
+    d3 = df.dropna(subset=["pk_score", "ipw"]).copy()
+    r3 = fit_wls(f"pk_score ~ {ARM}", d3)
+    rows = []
+    for k in ARMS:
+        t = arm_term(r3, k)
+        rows.append({"analysis_id": "E3", "arm_code": k, "arm_label": ARM_LABELS[k],
+                     "estimate": r3.params[t], "std_error": r3.bse[t],
+                     "p_value": r3.pvalues[t], "n": int(r3.nobs)})
+    names = list(r3.params.index)
+    Rm = np.zeros((len(ARMS), len(names)))
+    for i, k in enumerate(ARMS):
+        Rm[i, names.index(arm_term(r3, k))] = 1.0
+    ft = r3.f_test(Rm)
+    omni = pd.DataFrame([{"analysis_id": "E3", "arm_code": "omnibus",
+                          "arm_label": "Omnibus F: all arm dummies = 0",
+                          "estimate": float(ft.fvalue), "std_error": np.nan,
+                          "p_value": float(ft.pvalue), "n": int(r3.nobs)}])
+    t3 = pd.concat([pd.DataFrame(rows), omni], ignore_index=True)
+    t3.to_csv(RES / "E3_placebo_pk.csv", index=False)
+    worst = t3.loc[t3["arm_code"] != "omnibus"].copy()
+    worst = worst.loc[worst["p_value"].idxmin()]
+    print(f"E3: placebo on pre-treatment pk_score (N={int(r3.nobs)}); omnibus "
+          f"F({len(ARMS)},{int(r3.df_resid)})={float(ft.fvalue):.2f}, p={float(ft.pvalue):.3f}; "
+          f"largest single-arm 'effect': {worst['arm_label']} "
+          f"(b={worst['estimate']:.3f}, p={worst['p_value']:.3f})")
+
+
+if __name__ == "__main__":
+    main()
