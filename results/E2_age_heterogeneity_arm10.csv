@@ -1,3 +1,0 @@
-age_group,estimate,std_error,p_value,conf_low,conf_high,n_treated,n_control
-Young (<40),0.017,0.0303,0.5753,-0.0425,0.0765,76,75
-Older (>=40),0.0481,0.0348,0.1669,-0.0201,0.1164,73,67

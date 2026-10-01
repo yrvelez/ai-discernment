@@ -1,6 +1,6 @@
 """
 Exploratory analyses for the AI Discernment survey experiment.
-Three pre-specified exploratory checks to interpret registered results.
+Three pre-specified exploratory analyses to interpret registered results.
 """
 import pandas as pd
 import numpy as np
@@ -15,7 +15,6 @@ os.makedirs('results', exist_ok=True)
 os.makedirs('figures', exist_ok=True)
 
 df = pd.read_csv('data/clean.csv')
-df['arm_code'] = df['arm_code'].astype(int)
 
 arm_labels = {
     0: 'Control', 1: 'Flagging', 2: 'Provenance', 3: 'Automated Flagging',
@@ -24,169 +23,202 @@ arm_labels = {
     10: 'AI Literacy Guide', 11: 'AI Text Video'
 }
 
-ACCENT = '#C0392B'
-INK = '#2C3E50'
+# Arms with significant H1 (total_score) effects: 3 (Auto Flag), 6 (Mindfulness), 10 (AI Guide)
+sig_arms = [3, 6, 10]
 
-# ── E1: Attention-check exclusion robustness ──────────────────────────────────
-# Rationale: Excluding respondents who failed both attention checks (pk_score == 0)
-# tests whether registered null results are inflated by inattentive respondents.
-print("=" * 60)
-print("E1: Attention-check exclusion robustness (H1: total_score)")
-print("=" * 60)
+# ── Helper ─────────────────────────────────────────────────────────────────────
+def fit_arm_effects(sub, outcome='total_score'):
+    """Fit OLS with HC2 for all arms vs control; return dict of arm -> stats."""
+    sub = sub.dropna(subset=[outcome])
+    if sub['arm_code'].nunique() < 2:
+        return {}
+    model = smf.ols(f'{outcome} ~ C(arm_code, Treatment(reference=0))', data=sub).fit(cov_type='HC2')
+    out = {}
+    for arm in range(1, 12):
+        term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
+        if term in model.params.index:
+            ci = model.conf_int().loc[term]
+            out[arm] = {
+                'estimate': model.params[term],
+                'std_error': model.bse[term],
+                'p_value': model.pvalues[term],
+                'conf_low': ci.iloc[0],
+                'conf_high': ci.iloc[1],
+                'n': int(model.nobs)
+            }
+    return out
 
-df_e1 = df[df['pk_score'] > 0].copy()
-n_excluded = len(df) - len(df_e1)
 
-formula_e1 = 'total_score ~ C(arm_code, Treatment(reference=0))'
-model_e1 = smf.wls(formula_e1, data=df_e1, weights=df_e1['ipw']).fit(cov_type='HC2')
+# ═══════════════════════════════════════════════════════════════════════════════
+# E1: Heterogeneity by political interest
+# Rationale: Politically interested respondents may be more motivated to
+# discern media, potentially amplifying or attenuating intervention effects.
+# ═══════════════════════════════════════════════════════════════════════════════
+df['pol_int_group'] = np.where(df['political_interest'] <= 3, 'Low', 'High')
 
 rows_e1 = []
-for arm in range(1, 12):
-    term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
-    if term in model_e1.params.index:
-        rows_e1.append({
-            'arm_code': arm,
-            'arm_label': arm_labels[arm],
-            'estimate': round(model_e1.params[term], 4),
-            'std_error': round(model_e1.bse[term], 4),
-            'p_value': round(model_e1.pvalues[term], 4),
-            'conf_low': round(model_e1.conf_int().loc[term, 0], 4),
-            'conf_high': round(model_e1.conf_int().loc[term, 1], 4),
-            'n_arm': int((df_e1['arm_code'] == arm).sum()),
-            'n_control': int((df_e1['arm_code'] == 0).sum()),
-        })
+for group in ['Low', 'High']:
+    sub = df[df['pol_int_group'] == group]
+    effects = fit_arm_effects(sub)
+    for arm in sig_arms:
+        if arm in effects:
+            e = effects[arm]
+            rows_e1.append({
+                'analysis_id': f'E1:{arm}:{group}',
+                'arm_code': arm,
+                'arm_label': arm_labels[arm],
+                'pol_int_group': group,
+                'estimate': e['estimate'],
+                'std_error': e['std_error'],
+                'p_value': e['p_value'],
+                'conf_low': e['conf_low'],
+                'conf_high': e['conf_high'],
+                'n': e['n']
+            })
 
-df_e1_results = pd.DataFrame(rows_e1)
-df_e1_results.to_csv('results/E1_attention_check_robustness.csv', index=False)
+e1_df = pd.DataFrame(rows_e1)
+e1_df.to_csv('results/E1_political_interest_heterogeneity.csv', index=False)
 
-# Figure: forest plot
-fig, ax = plt.subplots(figsize=(8, 5))
-y = np.arange(len(df_e1_results))[::-1]
-ax.hlines(y,
-          df_e1_results['conf_low'].values,
-          df_e1_results['conf_high'].values,
-          color=INK, alpha=0.5, linewidth=1.2)
-ax.scatter(df_e1_results['estimate'].values, y, color=ACCENT, s=28, zorder=5)
-ax.axvline(0, color=INK, linewidth=0.7, linestyle='--')
-ax.set_yticks(y)
-ax.set_yticklabels(df_e1_results['arm_label'].values, fontsize=9)
-ax.set_xlabel('ATE on total_score (95% CI)', fontsize=10)
-ax.set_title('E1: Total-Score Effects Excluding Attention-Check Failures\n'
-             f'(n={len(df_e1)}, excluded {n_excluded} with pk_score=0)', fontsize=10)
+sig_e1 = e1_df[e1_df['p_value'] < 0.05]
+af_low = e1_df[(e1_df.arm_code == 3) & (e1_df.pol_int_group == 'Low')]['estimate'].values
+af_high = e1_df[(e1_df.arm_code == 3) & (e1_df.pol_int_group == 'High')]['estimate'].values
+print(f"E1: Political interest heterogeneity — {len(sig_e1)}/{len(e1_df)} arm×group effects sig at p<.05; "
+      f"Automated Flagging: Low={af_low[0]:+.3f}, High={af_high[0]:+.3f}")
+
+# Figure E1
+fig, ax = plt.subplots(figsize=(7.5, 3.8))
+c_dark = '#2C3E50'
+c_accent = '#C0392B'
+y_pos = 0
+ytick_labels = []
+for arm in sig_arms:
+    for group in ['Low', 'High']:
+        row = e1_df[(e1_df.arm_code == arm) & (e1_df.pol_int_group == group)]
+        if len(row):
+            est, lo, hi = row['estimate'].values[0], row['conf_low'].values[0], row['conf_high'].values[0]
+            col = c_dark if group == 'Low' else c_accent
+            ax.errorbar(est, y_pos, xerr=[[est - lo], [hi - est]],
+                        fmt='o', color=col, capsize=4, markersize=5, linewidth=1.2)
+            ax.text(hi + 0.004, y_pos, f"{est:+.3f}", va='center', fontsize=8, color='#333')
+            ytick_labels.append(f"{arm_labels[arm]} ({group})")
+            y_pos += 1
+
+ax.axvline(0, color='#999', linewidth=0.6, linestyle='--')
+ax.set_yticks(range(y_pos))
+ax.set_yticklabels(ytick_labels, fontsize=9)
+ax.set_xlabel('Effect on total_score (95% CI)', fontsize=10)
+ax.set_title('E1: H1-significant arms by political interest', fontsize=11, pad=10)
 for sp in ['top', 'right', 'left']:
     ax.spines[sp].set_visible(False)
-ax.tick_params(left=False)
 ax.grid(False)
 plt.tight_layout()
-plt.savefig('figures/E1_attention_check_robustness.png', dpi=200, facecolor='white')
+plt.savefig('figures/E1_political_interest.png', dpi=200, bbox_inches='tight')
 plt.close()
 
-sig_e1 = df_e1_results[df_e1_results['p_value'] < 0.05]
-print(f"E1: Excluded {n_excluded} respondents (pk_score=0); n={len(df_e1)} remain. "
-      f"{len(sig_e1)} arm(s) significant at p<.05: "
-      f"{', '.join(f'{r.arm_label} ({r.estimate:+.3f})' for r in sig_e1.itertuples())}")
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2: Robustness to attention-check failures
+# Rationale: Excluding respondents who failed both attention checks (pk_score=0)
+# tests whether registered effects are driven by inattentive respondents.
+# ═══════════════════════════════════════════════════════════════════════════════
+df_full = df.dropna(subset=['total_score'])
+df_restricted = df[(df['pk_score'] > 0) & df['total_score'].notna()]
 
-# ── E2: Age heterogeneity for AI Literacy Guide (arm 10) ──────────────────────
-# Rationale: The AI Literacy Guide showed the largest positive effect on total_score
-# (H1: +0.047, p=.043); testing whether this is concentrated in younger vs. older
-# respondents informs whether the intervention works through age-specific channels.
-print("\n" + "=" * 60)
-print("E2: Age heterogeneity — AI Literacy Guide (arm 10) on total_score")
-print("=" * 60)
-
-df_e2 = df[df['age'].notna()].copy()
-df_e2['age_group'] = np.where(df_e2['age'] < 40, 'Young (<40)', 'Older (>=40)')
-
-formula_e2 = 'total_score ~ C(arm_code, Treatment(reference=0))'
-term_10 = "C(arm_code, Treatment(reference=0))[T.10]"
+effects_full = fit_arm_effects(df_full)
+effects_restricted = fit_arm_effects(df_restricted)
 
 rows_e2 = []
-for grp in ['Young (<40)', 'Older (>=40)']:
-    sub = df_e2[df_e2['age_group'] == grp]
-    m = smf.wls(formula_e2, data=sub, weights=sub['ipw']).fit(cov_type='HC2')
-    if term_10 in m.params.index:
-        ci = m.conf_int().loc[term_10]
-        rows_e2.append({
-            'age_group': grp,
-            'estimate': round(m.params[term_10], 4),
-            'std_error': round(m.bse[term_10], 4),
-            'p_value': round(m.pvalues[term_10], 4),
-            'conf_low': round(ci[0], 4),
-            'conf_high': round(ci[1], 4),
-            'n_treated': int((sub['arm_code'] == 10).sum()),
-            'n_control': int((sub['arm_code'] == 0).sum()),
-        })
-
-df_e2_results = pd.DataFrame(rows_e2)
-df_e2_results.to_csv('results/E2_age_heterogeneity_arm10.csv', index=False)
-
-# Figure: two-point comparison
-fig, ax = plt.subplots(figsize=(5, 3.5))
-x = [0, 1]
-ests = df_e2_results['estimate'].values
-ses = df_e2_results['std_error'].values
-labs = df_e2_results['age_group'].values
-
-ax.errorbar(x, ests, yerr=1.96 * ses, fmt='o', color=ACCENT,
-            capsize=6, linewidth=1.5, markersize=9, ecolor=INK, elinewidth=1.2)
-ax.axhline(0, color=INK, linewidth=0.7, linestyle='--')
-ax.set_xticks(x)
-ax.set_xticklabels(labs, fontsize=10)
-ax.set_ylabel('ATE on total_score', fontsize=10)
-ax.set_title('E2: AI Literacy Guide Effect by Age', fontsize=11)
-for sp in ['top', 'right', 'left']:
-    ax.spines[sp].set_visible(False)
-ax.tick_params(left=False)
-ax.grid(False)
-for i in range(len(ests)):
-    ax.annotate(f'{ests[i]:+.3f}', (x[i], ests[i] + 1.96 * ses[i] + 0.008),
-                ha='center', fontsize=9, color=INK)
-plt.tight_layout()
-plt.savefig('figures/E2_age_heterogeneity_arm10.png', dpi=200, facecolor='white')
-plt.close()
-
-e2y = df_e2_results.iloc[0]
-e2o = df_e2_results.iloc[1]
-print(f"E2: AI Literacy Guide (arm 10) on total_score — "
-      f"Young (<40): {e2y['estimate']:+.3f} (p={e2y['p_value']:.3f}, n={e2y['n_treated']}); "
-      f"Older (>=40): {e2o['estimate']:+.3f} (p={e2o['p_value']:.3f}, n={e2o['n_treated']})")
-
-# ── E3: Manipulation check — effect of arms on attention (pk_score) ───────────
-# Rationale: If an intervention changes general attention (pk_score), it could
-# explain outcome effects through a non-specific attention channel rather than
-# the intended AI-detection mechanism.
-print("\n" + "=" * 60)
-print("E3: Manipulation check — arm effects on pk_score (attention)")
-print("=" * 60)
-
-formula_e3 = 'pk_score ~ C(arm_code, Treatment(reference=0))'
-model_e3 = smf.wls(formula_e3, data=df, weights=df['ipw']).fit(cov_type='HC2')
-
-rows_e3 = []
 for arm in range(1, 12):
-    term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
-    if term in model_e3.params.index:
-        ci = model_e3.conf_int().loc[term]
-        rows_e3.append({
+    if arm in effects_full and arm in effects_restricted:
+        ef, er = effects_full[arm], effects_restricted[arm]
+        rows_e2.append({
+            'analysis_id': f'E2:{arm}',
             'arm_code': arm,
             'arm_label': arm_labels[arm],
-            'estimate': round(model_e3.params[term], 4),
-            'std_error': round(model_e3.bse[term], 4),
-            'p_value': round(model_e3.pvalues[term], 4),
-            'conf_low': round(ci[0], 4),
-            'conf_high': round(ci[1], 4),
-            'n_arm': int((df['arm_code'] == arm).sum()),
+            'est_full': ef['estimate'], 'se_full': ef['std_error'], 'p_full': ef['p_value'],
+            'ci_full_lo': ef['conf_low'], 'ci_full_hi': ef['conf_high'],
+            'est_restricted': er['estimate'], 'se_restricted': er['std_error'], 'p_restricted': er['p_value'],
+            'ci_restricted_lo': er['conf_low'], 'ci_restricted_hi': er['conf_high'],
+            'n_full': ef['n'], 'n_restricted': er['n']
         })
 
-df_e3_results = pd.DataFrame(rows_e3)
-df_e3_results.to_csv('results/E3_manipulation_check_attention.csv', index=False)
+e2_df = pd.DataFrame(rows_e2)
+e2_df.to_csv('results/E2_attention_check_robustness.csv', index=False)
 
-sig_e3 = df_e3_results[df_e3_results['p_value'] < 0.05]
-max_idx = df_e3_results['estimate'].abs().idxmax()
-max_arm = df_e3_results.loc[max_idx, 'arm_label']
-max_est = df_e3_results.loc[max_idx, 'estimate']
-print(f"E3: {len(sig_e3)} of 11 arms significantly change pk_score (p<.05). "
-      f"Largest |effect|: {max_arm} ({max_est:+.3f}). "
-      f"Mean pk_score (control) = {df.loc[df['arm_code']==0, 'pk_score'].mean():.3f}")
+n_excluded = len(df_full) - len(df_restricted)
+sig_f = e2_df[e2_df['p_full'] < 0.05]
+sig_r = e2_df[e2_df['p_restricted'] < 0.05]
+direction_match = all(
+    np.sign(e2_df[e2_df.arm_code == a]['est_full'].values[0]) ==
+    np.sign(e2_df[e2_df.arm_code == a]['est_restricted'].values[0])
+    for a in sig_f['arm_code']
+)
+print(f"E2: Attention-check robustness — excluded {n_excluded} (pk_score=0); "
+      f"{len(sig_f)} sig in full vs {len(sig_r)} in restricted; "
+      f"direction preserved for all full-sample sig effects: {direction_match}")
 
-print("\nDone. All exploratory analyses complete.")
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Moderation by AI-tool familiarity (ai_scale)
+# Rationale: Respondents already familiar with AI tools may have higher baseline
+# detection skill, potentially attenuating the marginal benefit of interventions.
+# ═══════════════════════════════════════════════════════════════════════════════
+# Split: Low = ai_scale ≤ 0.286 (know ≤2 of 7 tools), High = > 0.286
+df['ai_fam_group'] = np.where(df['ai_scale'] <= 0.286, 'Low', 'High')
+
+rows_e3 = []
+for group in ['Low', 'High']:
+    sub = df[df['ai_fam_group'] == group]
+    effects = fit_arm_effects(sub)
+    for arm in sig_arms:
+        if arm in effects:
+            e = effects[arm]
+            rows_e3.append({
+                'analysis_id': f'E3:{arm}:{group}',
+                'arm_code': arm,
+                'arm_label': arm_labels[arm],
+                'ai_fam_group': group,
+                'estimate': e['estimate'],
+                'std_error': e['std_error'],
+                'p_value': e['p_value'],
+                'conf_low': e['conf_low'],
+                'conf_high': e['conf_high'],
+                'n': e['n']
+            })
+
+e3_df = pd.DataFrame(rows_e3)
+e3_df.to_csv('results/E3_ai_familiarity_moderation.csv', index=False)
+
+sig_e3 = e3_df[e3_df['p_value'] < 0.05]
+af3_low = e3_df[(e3_df.arm_code == 3) & (e3_df.ai_fam_group == 'Low')]['estimate'].values
+af3_high = e3_df[(e3_df.arm_code == 3) & (e3_df.ai_fam_group == 'High')]['estimate'].values
+print(f"E3: AI familiarity moderation — {len(sig_e3)}/{len(e3_df)} arm×group effects sig at p<.05; "
+      f"Automated Flagging: Low-fam={af3_low[0]:+.3f}, High-fam={af3_high[0]:+.3f}")
+
+# Figure E3
+fig, ax = plt.subplots(figsize=(7.5, 3.8))
+y_pos = 0
+ytick_labels = []
+for arm in sig_arms:
+    for group in ['Low', 'High']:
+        row = e3_df[(e3_df.arm_code == arm) & (e3_df.ai_fam_group == group)]
+        if len(row):
+            est, lo, hi = row['estimate'].values[0], row['conf_low'].values[0], row['conf_high'].values[0]
+            col = c_dark if group == 'Low' else c_accent
+            ax.errorbar(est, y_pos, xerr=[[est - lo], [hi - est]],
+                        fmt='o', color=col, capsize=4, markersize=5, linewidth=1.2)
+            ax.text(hi + 0.004, y_pos, f"{est:+.3f}", va='center', fontsize=8, color='#333')
+            ytick_labels.append(f"{arm_labels[arm]} ({group})")
+            y_pos += 1
+
+ax.axvline(0, color='#999', linewidth=0.6, linestyle='--')
+ax.set_yticks(range(y_pos))
+ax.set_yticklabels(ytick_labels, fontsize=9)
+ax.set_xlabel('Effect on total_score (95% CI)', fontsize=10)
+ax.set_title('E3: H1-significant arms by AI-tool familiarity', fontsize=11, pad=10)
+for sp in ['top', 'right', 'left']:
+    ax.spines[sp].set_visible(False)
+ax.grid(False)
+plt.tight_layout()
+plt.savefig('figures/E3_ai_familiarity.png', dpi=200, bbox_inches='tight')
+plt.close()
+
+print("All exploratory analyses complete.")
