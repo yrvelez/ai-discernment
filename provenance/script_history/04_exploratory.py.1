@@ -91,7 +91,7 @@ fig, ax = plt.subplots(figsize=(6, 2.8))
 cols = [ACCENT if p < 0.05 else GREY for p in e1_df['p_value']]
 ax.hlines(e1_df['arm_code'], e1_df['conf_low'], e1_df['conf_high'],
           color=cols, linewidth=2.2, zorder=2)
-ax.scatter(e1_df['estimate'], e1_df['arm_code'], c=cols, s=50, zorder=3)
+ax.plot(e1_df['estimate'], e1_df['arm_code'], 'o', color=cols, markersize=7, zorder=3)
 ax.axvline(0, color=INK, linewidth=0.7, linestyle='--', zorder=1)
 ax.set_yticks(e1_df['arm_code'])
 ax.set_yticklabels(e1_df['arm_label'], fontsize=9, color=INK)
@@ -135,7 +135,7 @@ e2_s = e2_df.sort_values('estimate').reset_index(drop=True)
 cols2 = [ACCENT if p < 0.05 else GREY for p in e2_s['p_value']]
 ax.hlines(e2_s['arm_code'], e2_s['conf_low'], e2_s['conf_high'],
           color=cols2, linewidth=2.2, zorder=2)
-ax.scatter(e2_s['estimate'], e2_s['arm_code'], c=cols2, s=50, zorder=3)
+ax.plot(e2_s['estimate'], e2_s['arm_code'], 'o', color=cols2, markersize=7, zorder=3)
 ax.axvline(0, color=INK, linewidth=0.7, linestyle='--', zorder=1)
 ax.set_yticks(e2_s['arm_code'])
 ax.set_yticklabels(e2_s['arm_label'], fontsize=9, color=INK)

@@ -1,6 +1,51 @@
 {
- "text": "The retrieved works do not directly address interventions targeting detection of AI-generated content or recognition of authentic content as distinct outcomes. The closest prior findings come from the inoculation and prebunking literature, which demonstrates that proactive interventions can improve people's resistance to misinformation (Lewandowsky & van der Linden, 2021; Lewandowsky et al., 2017), though these studies measured belief resistance rather than binary detection accuracy for AI-generated versus authentic items. No retrieved work reports findings on interventions that differentially affect detection of AI-generated content versus recognition of authentic content, leaving H2 and H3 without direct prior evidence in this set.",
+ "text": "The retrieved works are largely off-topic relative to the study's hypotheses on interventions affecting AI-detection accuracy, attitudes, confidence, and trust. The closest relevant work is a review of fake news and disinformation in social media [citation removed: not in retrieved set], which provides context on the broader misinformation landscape but does not report findings on interventions targeting AI-generated content detection specifically. No retrieved work directly addresses the effect of interventions on AI-detection accuracy, confidence in detection, or trust in online information.",
  "works": [
+  {
+   "id": "https://openalex.org/W2794891594",
+   "title": "Antibiotic Use in Agriculture and Its Consequential Resistance in Environmental Sources: Potential Public Health Implications",
+   "authors": [
+    "Christy Echakachi Manyi-Loh",
+    "Sampson Mamphweli",
+    "Edson L. Meyer",
+    "Anthony Ifeanyi Okoh"
+   ],
+   "year": 2018,
+   "doi": "10.3390/molecules23040795",
+   "venue": "Molecules",
+   "cited_by": 1848,
+   "abstract": "Due to the increased demand of animal protein in developing countries, intensive farming is instigated, which results in antibiotic residues in animal-derived products, and eventually, antibiotic resistance. Antibiotic resistance is of great public health concern because the antibiotic-resistant bacteria associated with the animals may be pathogenic to humans, easily transmitted to humans via food"
+  },
+  {
+   "id": "https://openalex.org/W2147173298",
+   "title": "Antimicrobial strategies centered around reactive oxygen species – bactericidal antibiotics, photodynamic therapy, and beyond",
+   "authors": [
+    "Fatma Vatansever",
+    "Wanessa Melo",
+    "Pinar Avci",
+    "Daniela Vecchio"
+   ],
+   "year": 2013,
+   "doi": "10.1111/1574-6976.12026",
+   "venue": "FEMS Microbiology Reviews",
+   "cited_by": 1147,
+   "abstract": "Reactive oxygen species (ROS) can attack a diverse range of targets to exert antimicrobial activity, which accounts for their versatility in mediating host defense against a broad range of pathogens. Most ROS are formed by the partial reduction in molecular oxygen. Four major ROS are recognized comprising superoxide (O2•-), hydrogen peroxide (H2O2), hydroxyl radical (•OH), and singlet oxygen ((1)O"
+  },
+  {
+   "id": "https://openalex.org/W2553095014",
+   "title": "Critical review on biofilm methods",
+   "authors": [
+    "Joana Azeredo",
+    "Nuno F. Azevedo",
+    "Romain Briandet",
+    "Nuno Cerca"
+   ],
+   "year": 2016,
+   "doi": "10.1080/1040841x.2016.1208146",
+   "venue": "Critical Reviews in Microbiology",
+   "cited_by": 1055,
+   "abstract": "Biofilms are widespread in nature and constitute an important strategy implemented by microorganisms to survive in sometimes harsh environmental conditions. They can be beneficial or have a negative impact particularly when formed in industrial settings or on medical devices. As such, research into the formation and elimination of biofilms is important for many disciplines. Several new methodologi"
+  },
   {
    "id": "https://openalex.org/W4206236567",
    "title": "The psychological drivers of misinformation belief and its resistance to correction",
@@ -17,34 +62,6 @@
    "abstract": ""
   },
   {
-   "id": "https://openalex.org/W3130700834",
-   "title": "Countering Misinformation and Fake News Through Inoculation and Prebunking",
-   "authors": [
-    "Stephan Lewandowsky",
-    "Sander van der Linden"
-   ],
-   "year": 2021,
-   "doi": "10.1080/10463283.2021.1876983",
-   "venue": "European Review of Social Psychology",
-   "cited_by": 793,
-   "abstract": "There has been increasing concern with the growing infusion of misinformation, or “fake news”, into public discourse and politics in many western democracies. Our article first briefly reviews the current state of the literature on conventional countermeasures to misinformation. We then explore proactive measures to prevent misinformation from finding traction in the first place that is based on t"
-  },
-  {
-   "id": "https://openalex.org/W4399518864",
-   "title": "The impact of generative artificial intelligence on socioeconomic inequalities and policy making",
-   "authors": [
-    "Valerio Capraro",
-    "Austin Lentsch",
-    "Daron Acemoğlu",
-    "Selin Akgün"
-   ],
-   "year": 2024,
-   "doi": "10.1093/pnasnexus/pgae191",
-   "venue": "PNAS Nexus",
-   "cited_by": 355,
-   "abstract": "Abstract Generative artificial intelligence (AI) has the potential to both exacerbate and ameliorate existing socioeconomic inequalities. In this article, we provide a state-of-the-art interdisciplinary overview of the potential impacts of generative AI on (mis)information and three information-intensive domains: work, education, and healthcare. Our goal is to highlight how generative AI could wor"
-  },
-  {
    "id": "https://openalex.org/W4319983294",
    "title": "Fake news, disinformation and misinformation in social media: a review",
    "authors": [
@@ -59,85 +76,82 @@
    "abstract": ""
   },
   {
-   "id": "https://openalex.org/W2954457885",
-   "title": "Seven HCI Grand Challenges",
+   "id": "https://openalex.org/W4389359039",
+   "title": "Generative artificial intelligence",
    "authors": [
-    "Constantine Stephanidis",
-    "Gavriel Salvendy",
-    "Margherita Antona",
-    "Jessie Y. C. Chen"
+    "Leonardo Banh",
+    "Gero Strobel"
    ],
-   "year": 2019,
-   "doi": "10.1080/10447318.2019.1619259",
-   "venue": "International Journal of Human-Computer Interaction",
-   "cited_by": 520,
-   "abstract": "Published with license by Taylor & Francis Group, LLC. This article aims to investigate the Grand Challenges which arise in the current and emerging landscape of rapid technological evolution towards more intelligent interactive technologies, coupled with increased and widened societal needs, as well as individual and collective expectations that HCI, as a discipline, is called upon to address. A "
+   "year": 2023,
+   "doi": "10.1007/s12525-023-00680-1",
+   "venue": "Electronic Markets",
+   "cited_by": 568,
+   "abstract": "Abstract Recent developments in the field of artificial intelligence (AI) have enabled new paradigms of machine processing, shifting from data-driven, discriminative AI tasks toward sophisticated, creative tasks through generative AI. Leveraging deep generative models, generative AI is capable of producing novel and realistic content across a broad spectrum (e.g., texts, images, or programming cod"
   },
   {
-   "id": "https://openalex.org/W2787887017",
-   "title": "The malicious use of artificial intelligence: Forecasting, prevention, and mitigation",
+   "id": "https://openalex.org/W4323655724",
+   "title": "ChatGPT for good? On opportunities and challenges of large language models for education",
    "authors": [
-    "Miles Brundage",
-    "Shahar Avin",
-    "Jack Clark",
-    "Toner, Helen"
+    "Enkelejda Kasneci",
+    "Kathrin Seßler",
+    "Stefan Küchemann",
+    "Maria Bannert"
    ],
-   "year": 2018,
-   "doi": "10.17863/cam.22520",
-   "venue": "Apollo (University of Cambridge)",
-   "cited_by": 519,
-   "abstract": "This report surveys the landscape of potential security threats from malicious uses of AI, and proposes ways to better forecast, prevent, and mitigate these threats. After analyzing the ways in which AI may influence the threat landscape in the digital, physical, and political domains, we make four high-level recommendations for AI researchers and other stakeholders. We also suggest several promis"
-  },
-  {
-   "id": "https://openalex.org/W3016902371",
-   "title": "Using social and behavioural science to support COVID-19 pandemic response",
-   "authors": [
-    "Jay Joseph Van Bavel",
-    "Katherine Baicker",
-    "Paulo S. Boggio",
-    "Valerio Capraro"
-   ],
-   "year": 2020,
-   "doi": "10.1038/s41562-020-0884-z",
-   "venue": "Nature Human Behaviour",
-   "cited_by": 5215,
+   "year": 2023,
+   "doi": "10.1016/j.lindif.2023.102274",
+   "venue": "Learning and Individual Differences",
+   "cited_by": 6760,
    "abstract": ""
   },
   {
-   "id": "https://openalex.org/W2760944227",
-   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
+   "id": "https://openalex.org/W4327810158",
+   "title": "GPT-4 Technical Report",
    "authors": [
-    "Stephan Lewandowsky",
-    "Ullrich K. H. Ecker",
-    "John Cook"
+    "OpenAI",
+    "Achiam, Josh",
+    "Adler, Steven",
+    "Agarwal, Sandhini"
    ],
-   "year": 2017,
-   "doi": "10.1016/j.jarmac.2017.07.008",
-   "venue": "Journal of Applied Research in Memory and Cognition",
-   "cited_by": 2021,
-   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct"
+   "year": 2023,
+   "doi": "10.4230/lipics.cosit.2024.11",
+   "venue": "arXiv (Cornell University)",
+   "cited_by": 2428,
+   "abstract": "Abstract—Large Language Models (LLMs) suffer from inherent stochasticity, limiting their utility in high-stakes enterprise environments where determinism and auditability are required. This paper introduces the MFOUR Vibe Framework (MVF), a platform-agnostic architectural standard that transforms probabilistic natural language intent into deterministic software artifacts. We define a five-layer to"
   },
   {
-   "id": "https://openalex.org/W3128392043",
-   "title": "Measuring the impact of COVID-19 vaccine misinformation on vaccination intent in the UK and USA",
+   "id": "https://openalex.org/W4389437528",
+   "title": "Education in the Era of Generative Artificial Intelligence (AI): Understanding the Potential Benefits of ChatGPT in Promoting Teaching and Learning",
    "authors": [
-    "Sahil Loomba",
-    "Alexandre de Figueiredo",
-    "Simon J. Piatek",
-    "Kristen de Graaf"
+    "David Baidoo-Anu",
+    "Leticia Owusu Ansah"
    ],
-   "year": 2021,
-   "doi": "10.1038/s41562-021-01056-1",
-   "venue": "Nature Human Behaviour",
-   "cited_by": 1879,
-   "abstract": ""
+   "year": 2023,
+   "doi": "10.61969/jai.1337500",
+   "venue": "Journal of AI",
+   "cited_by": 1820,
+   "abstract": "Since its maiden release into the public domain on November 30, 2022, ChatGPT garnered more than one million subscribers within a week. The generative AI tool ⎼ChatGPT took the world by surprise with it sophisticated capacity to carry out remarkably complex tasks. The extraordinary abilities of ChatGPT to perform complex tasks within the field of education has caused mixed feelings among educators"
+  },
+  {
+   "id": "https://openalex.org/W4392145873",
+   "title": "Two new Later Stone Age sites from the Final Pleistocene in the Falémé Valley, eastern Senegal",
+   "authors": [
+    "Ndiaye, Matar",
+    "Lespez, Laurent",
+    "Tribolo, Chantal",
+    "Rasse, Michel"
+   ],
+   "year": 2024,
+   "doi": "10.3929/ethz-b-000667478",
+   "venue": "Monash University Research Portal (Monash University)",
+   "cited_by": 24108,
+   "abstract": "1 Instituto de Sau´de Coletiva, Universidade Federal da Bahia, Salvador, Brazil, 2 Instituto Gonc¸alo Moniz, Fundac¸ão Oswaldo Cruz,Ministe´ rio da Sau´de, Salvador, Brazil, 3 Department of Epidemiology of Microbial Diseases, Yale School of Public Health, New Haven, Connecticut, United States of America, 4 Hospital Geral Roberto Santos (HGRS), Salvador, Brazil, 5 Faculdade de Medicina, Universidad"
   }
  ],
  "queries": [
-  "misinformation intervention AI-generated media detection",
-  "inoculation deepfake discernment accuracy",
-  "AI literacy nudge synthetic media recognition",
-  "accuracy nudge misinformation detection survey"
+  "AI-generated media detection inoculation intervention",
+  "deepfake misinformation accuracy nudge human detection",
+  "AI literacy synthetic media trust survey",
+  "synthetic content recognition intervention control accuracy"
  ],
  "degraded": null
 }
