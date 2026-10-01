@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The File Drawer: Improving AI Discernment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Crimson Pro', serif; }
+        .stat-card { transition: all 0.2s ease; }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-medium text-blue-600 uppercase tracking-wider">The File Drawer</span>
+                    <h1 class="text-2xl font-semibold text-gray-900">Improving AI Discernment</h1>
+                </div>
+                <div class="text-right text-sm text-gray-500">
+                    <div>Columbia University</div>
+                    <div>IRB Protocol: AAAU9484</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        <!-- Executive Summary -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Executive Summary</h2>
+            <div class="prose text-gray-700 space-y-4">
+                <p>As generative AI makes synthetic media increasingly indistinguishable from authentic content, the ability to detect AI-generated images and videos has become a critical media literacy skill. Deepfakes of political figures, AI-generated protest photos, and synthetic news content pose serious risks to democratic discourse and public trust.</p>
+
+                <p>This study tested whether <strong>interventions proven effective against misinformation</strong> could be adapted to improve AI discernment. We evaluated 12 treatments—including inoculation, accuracy nudges, mindfulness exercises, and AI literacy training—drawn from the misinformation literature. The results reveal a sobering challenge: <strong>most interventions that work for misinformation do not transfer to AI detection</strong>.</p>
+
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-4">
+                    <p class="font-semibold text-amber-800">The Translation Problem</p>
+                    <p class="text-amber-700">Detecting AI-generated content requires different cognitive processes than evaluating misinformation. While misinformation interventions target motivated reasoning and source credibility assessment, AI detection demands perceptual attention to visual artifacts—a fundamentally different skill that existing interventions fail to address.</p>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-400 p-4 my-4">
+                    <p class="font-semibold text-green-800">What Works: Direct Training</p>
+                    <p class="text-green-700"><strong>T10 (AI Literacy Guide)</strong> improved accuracy by 4.8pp (p=0.036) and <strong>T3 (Automated Flagging)</strong> by 4.4pp (p=0.004). Both provide concrete, specific information about AI artifacts rather than general critical thinking prompts.</p>
+                </div>
+
+                <div class="bg-red-50 border-l-4 border-red-400 p-4 my-4">
+                    <p class="font-semibold text-red-800">Backfire Effect</p>
+                    <p class="text-red-700"><strong>T6 (Mindfulness)</strong> reduced accuracy by 4.0pp (p=0.027). Slowing down and reflecting—effective for misinformation—may actually impair the rapid perceptual judgments needed for AI detection.</p>
+                </div>
+
+                <div class="bg-gray-50 border-l-4 border-gray-400 p-4 my-4">
+                    <p class="font-semibold text-gray-800">Mostly Null Results</p>
+                    <p class="text-gray-700">Eight interventions showed no significant effects, including inoculation (prebunking), accuracy nudges, and breathing exercises. The misinformation playbook does not straightforwardly apply to AI discernment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Preview -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">The Stimulus: FutureFeed Platform</h2>
+            <div class="prose text-gray-700 space-y-4">
+                <p>Participants viewed content on a custom social media platform called <strong>"FutureFeed"</strong> — a simulated feed mixing real news with AI-generated content. Each post included Like and Share buttons to simulate authentic social media engagement.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                    <div class="bg-slate-900 rounded-lg p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-8 h-8 bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white text-xs">📷</div>
+                            <span class="text-white font-semibold">FutureFeed</span>
+                        </div>
+                        <div class="bg-gray-800 rounded p-3 mb-2">
+                            <div class="text-xs text-gray-400 mb-1">AI-Generated Example:</div>
+                            <p class="text-white text-sm">"Biden Mocks Country, But Why?"</p>
+                            <p class="text-gray-400 text-xs mt-1">Deepfake video with exaggerated expressions</p>
+                        </div>
+                        <div class="flex gap-3 text-sm">
+                            <span class="text-white">Like ❤️</span>
+                            <span class="text-white">Share 🔁</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 rounded-lg p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-8 h-8 bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white text-xs">📷</div>
+                            <span class="text-white font-semibold">FutureFeed</span>
+                        </div>
+                        <div class="bg-gray-800 rounded p-3 mb-2">
+                            <div class="text-xs text-gray-400 mb-1">Real Content Example:</div>
+                            <p class="text-white text-sm">"Poland votes in election seen as most important of its 3-decade old democracy"</p>
+                            <p class="text-gray-400 text-xs mt-1">Authentic news photo</p>
+                        </div>
+                        <div class="flex gap-3 text-sm">
+                            <span class="text-white">Like ❤️</span>
+                            <span class="text-white">Share 🔁</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-semibold text-red-700 mb-2">AI-Generated Content (12 items)</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Deepfake videos: Biden, DeSantis resignation, Anderson Cooper</li>
+                            <li>• AI images: Trump arrest scenes, Biden in bizarre costume</li>
+                            <li>• Fabricated headlines: "Kim Jong Un is a masterful horse trainer"</li>
+                            <li>• Manipulated political content with exaggerated expressions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-green-700 mb-2">Real Content (12 items)</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Authentic news: Boris Johnson zip line incident, Poland election</li>
+                            <li>• Real protest photos: Palestine solidarity demonstrations</li>
+                            <li>• Genuine political footage and news screenshots</li>
+                            <li>• Verified news stories from mainstream outlets</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="text-sm text-gray-500 mt-4">
+                    <a href="https://faux-social-media.replit.app" target="_blank" class="text-blue-600 hover:underline">View live platform →</a>
+                    (Content randomizes on each visit)
+                </p>
+            </div>
+        </section>
+
+        <!-- Summary Statistics -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total N</div>
+                <div class="text-3xl font-semibold text-gray-900">2,030</div>
+                <div class="text-sm text-gray-500">Complete cases</div>
+            </div>
+            <div class="stat-card bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Survey Period</div>
+                <div class="text-3xl font-semibold text-gray-900">Nov 2023</div>
+                <div class="text-sm text-gray-500">CloudResearch</div>
+            </div>
+            <div class="stat-card bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Control Accuracy</div>
+                <div class="text-3xl font-semibold text-purple-600">69.4%</div>
+                <div class="text-sm text-gray-500">Baseline performance</div>
+            </div>
+            <div class="stat-card bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Treatments</div>
+                <div class="text-3xl font-semibold text-blue-600">12</div>
+                <div class="text-sm text-gray-500">Including control</div>
+            </div>
+        </section>
+
+        <!-- Outcome Selector -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Treatment Effects</h2>
+            <p class="text-gray-600 mb-4">Effects on AI discernment accuracy. <strong class="text-green-700">Positive estimates indicate better accuracy.</strong></p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Outcome</label>
+                    <select id="outcome-select" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="total">Total Accuracy (Discernment)</option>
+                        <option value="fake">Deepfake/AI Detection</option>
+                        <option value="real">Authentic Content Accuracy</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
+                    <select id="sort-select" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                        <option value="effect">Effect Size (Best First)</option>
+                        <option value="n">Sample Size</option>
+                        <option value="pvalue">P-Value</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-6" style="height: 450px;">
+                <canvas id="effects-chart"></canvas>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Treatment</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Label</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">N</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Effect</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">95% CI</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">P</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-table" class="bg-white divide-y divide-gray-200">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Interventions -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Intervention Descriptions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border-l-4 border-gray-300 pl-4">
+                    <p class="font-semibold text-gray-800">T0: Control</p>
+                    <p class="text-sm text-gray-600">No intervention — proceed directly to quiz</p>
+                </div>
+                <div class="border-l-4 border-gray-300 pl-4">
+                    <p class="font-semibold text-gray-800">T1: Flagging</p>
+                    <p class="text-sm text-gray-600">Content flagged as potentially AI-generated</p>
+                </div>
+                <div class="border-l-4 border-gray-300 pl-4">
+                    <p class="font-semibold text-gray-800">T2: Provenance</p>
+                    <p class="text-sm text-gray-600">Information about content source/origin</p>
+                </div>
+                <div class="border-l-4 border-green-400 pl-4">
+                    <p class="font-semibold text-gray-800">T3: Automated Flagging <span class="text-green-600 text-xs">(+4.4%, p=0.004*)</span></p>
+                    <p class="text-sm text-gray-600">Machine learning-based AI detection labels</p>
+                </div>
+                <div class="border-l-4 border-gray-300 pl-4">
+                    <p class="font-semibold text-gray-800">T4: AI Accuracy Nudge</p>
+                    <p class="text-sm text-gray-600">Interactive task: "Is this image AI-generated?"</p>
+                </div>
+                <div class="border-l-4 border-gray-300 pl-4">
+                    <p class="font-semibold text-gray-800">T5: Breathing Exercise</p>
+                    <p class="text-sm text-gray-600">Box breathing to reduce emotional reactivity</p>
+                </div>
+                <div class="border-l-4 border-red-400 pl-4">
+                    <p class="font-semibold text-gray-800">T6: Mindfulness <span class="text-red-600 text-xs">(-4.0%, p=0.027*)</span></p>
+                    <p class="text-sm text-gray-600">Mindfulness exercise — backfire effect observed</p>
+                </div>
+                <div class="border-l-4 border-yellow-300 pl-4">
+                    <p class="font-semibold text-gray-800">T7: Inoculation</p>
+                    <p class="text-sm text-gray-600">Pre-exposure to manipulation techniques (van der Linden)</p>
+                </div>
+                <div class="border-l-4 border-purple-300 pl-4">
+                    <p class="font-semibold text-gray-800">T8: AI Literacy Infographic</p>
+                    <p class="text-sm text-gray-600">Visual guide to identifying AI content</p>
+                </div>
+                <div class="border-l-4 border-purple-300 pl-4">
+                    <p class="font-semibold text-gray-800">T9: AI Literacy Infographic 2</p>
+                    <p class="text-sm text-gray-600">Alternative visual guide design</p>
+                </div>
+                <div class="border-l-4 border-green-400 pl-4">
+                    <p class="font-semibold text-gray-800">T10: AI Literacy Guide <span class="text-green-600 text-xs">(+4.8%, p=0.036*)</span></p>
+                    <p class="text-sm text-gray-600">Comprehensive guide with examples of AI artifacts</p>
+                </div>
+                <div class="border-l-4 border-orange-300 pl-4">
+                    <p class="font-semibold text-gray-800">T11: AI Text Video</p>
+                    <p class="text-sm text-gray-600">Educational video about AI-generated text</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Measures -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Outcome Measures</h2>
+            <div class="prose text-gray-700 space-y-4">
+                <h3 class="text-lg font-semibold">Discernment Task</h3>
+                <p>Participants scrolled through the FutureFeed social media platform and viewed 24 pieces of content (12 real, 12 AI-generated). For each post, they indicated whether they believed the content was AI-generated or authentic human-created media.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div class="bg-gray-50 p-4 rounded">
+                        <p class="font-semibold">Total Accuracy</p>
+                        <p class="text-sm text-gray-600">Proportion correct across all 24 items (primary outcome)</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded border-l-4 border-red-300">
+                        <p class="font-semibold">Deepfake/AI Detection</p>
+                        <p class="text-sm text-gray-600">Correctly identifying deepfakes and AI-fabricated images</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded border-l-4 border-green-300">
+                        <p class="font-semibold">Authentic Content Accuracy</p>
+                        <p class="text-sm text-gray-600">Correctly identifying real photos and videos as authentic</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-semibold mt-6">Covariates</h3>
+                <p class="text-sm text-gray-600">Models control for: <strong>media_trust</strong> (confidence in news media), <strong>political_interest</strong>, <strong>pk_score</strong> (political knowledge), and <strong>ai_scale</strong> (prior use of AI tools: ChatGPT, Bing AI, Claude, Character.ai, DALL-E, Midjourney, Stable Diffusion).</p>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Methodology</h2>
+            <div class="prose text-gray-700 space-y-4">
+                <h3 class="text-lg font-semibold">Design</h3>
+                <p>Participants were recruited via CloudResearch (November 2023) and randomly assigned to one of 12 treatment conditions using adaptive randomization across 5 batches.</p>
+
+                <h3 class="text-lg font-semibold">Statistical Model: Lin (2013) Estimator</h3>
+                <p>We estimate treatment effects using <code>lm_lin</code> from the <code>estimatr</code> package, which implements Lin's (2013) covariate adjustment for randomized experiments:</p>
+                <div class="bg-gray-100 p-3 rounded font-mono text-sm my-2">
+                    lm_lin(outcome ~ treatment,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;covariates = ~ media_trust + political_interest + pk_score + ai_scale,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weights = 1/pr, clusters = participant_id)
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+                    <p class="font-semibold text-blue-800">What does this model do?</p>
+                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                        <li>• <strong>Demeans covariates</strong>: Centers each covariate at its mean (e.g., <code>media_trust_c = media_trust - mean(media_trust)</code>)</li>
+                        <li>• <strong>Includes treatment × covariate interactions</strong>: Estimates <code>treatment × media_trust_c</code>, <code>treatment × ai_scale_c</code>, etc.</li>
+                        <li>• <strong>Inverse probability weights (1/pr)</strong>: Accounts for adaptive randomization across batches</li>
+                        <li>• <strong>Cluster-robust standard errors</strong>: Clusters by participant to account for within-person correlation across 24 trials</li>
+                    </ul>
+                    <p class="text-sm text-blue-700 mt-2">Lin (2013) showed this approach is asymptotically efficient and guarantees precision gains over unadjusted estimators in randomized experiments.</p>
+                </div>
+
+                <p class="text-sm text-gray-600 mt-2"><strong>Reference:</strong> Lin, W. (2013). "Agnostic Notes on Regression Adjustments to Experimental Data: Reexamining Freedman's Critique." <em>Annals of Applied Statistics</em>, 7(1), 295-318.</p>
+
+                <h3 class="text-lg font-semibold mt-6">Replication Materials</h3>
+                <ul class="text-sm mt-2 list-disc list-inside text-gray-600">
+                    <li><a href="replication_data.csv" class="text-blue-600 hover:underline">replication_data.csv</a> — De-identified survey data with quiz responses</li>
+                    <li><a href="replication_script.R" class="text-blue-600 hover:underline">replication_script.R</a> — R script using Lin (2013) estimator with IPW weights, cluster-robust SEs</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Acknowledgments -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Acknowledgments</h2>
+            <div class="prose text-gray-700">
+                <p>This study was conducted as part of POLS UN3768: Experimental Research at Columbia University. We thank the following students for their contributions to the research design, data collection, and analysis:</p>
+                <p class="text-sm text-gray-600 mt-3">
+                    Joshua Briz, Shawna Lane, Addeson Lehv, Alexander Meffe, Lucas Pasquina, Kathan Reddy, Alejandro Rojas, Akeyla Stewart, Miguel Toral, Jeremy Wahl, and Derek Yoo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm py-8 border-t border-gray-200">
+            <p>The File Drawer Project &bull; Yamil R. Velez, Columbia University</p>
+            <p class="mt-1">Data collected November 2023 &bull; This is a living document</p>
+            <p class="mt-1 text-xs">IRB Protocol AAAU9484</p>
+        </footer>
+    </main>
+
+    <script>
+        // Treatment labels
+        const treatmentLabels = {
+            "0": "Control",
+            "1": "Flagging",
+            "2": "Provenance",
+            "3": "Automated Flagging",
+            "4": "AI Accuracy Nudge",
+            "5": "Breathing Exercise",
+            "6": "Mindfulness",
+            "7": "Inoculation",
+            "8": "AI Literacy Infographic",
+            "9": "AI Literacy Infographic 2",
+            "10": "AI Literacy Guide",
+            "11": "AI Text Video"
+        };
+
+        // Results from R lm_lin analysis (Lin 2013 estimator with IPW weights and cluster-robust SEs)
+        const results = {
+            total: [
+                {"treatment": "10", "label": "AI Literacy Guide", "n": 162, "mean": 0.0476, "se": 0.0227, "ci_lower": 0.0031, "ci_upper": 0.0921, "pvalue": 0.0359},
+                {"treatment": "3", "label": "Automated Flagging", "n": 127, "mean": 0.0436, "se": 0.0149, "ci_lower": 0.0143, "ci_upper": 0.0729, "pvalue": 0.0036},
+                {"treatment": "4", "label": "AI Accuracy Nudge", "n": 333, "mean": 0.0176, "se": 0.0150, "ci_lower": -0.0118, "ci_upper": 0.0470, "pvalue": 0.2404},
+                {"treatment": "11", "label": "AI Text Video", "n": 293, "mean": 0.0156, "se": 0.0126, "ci_lower": -0.0091, "ci_upper": 0.0403, "pvalue": 0.2148},
+                {"treatment": "5", "label": "Breathing Exercise", "n": 134, "mean": 0.0152, "se": 0.0226, "ci_lower": -0.0291, "ci_upper": 0.0595, "pvalue": 0.5019},
+                {"treatment": "2", "label": "Provenance", "n": 145, "mean": 0.0125, "se": 0.0141, "ci_lower": -0.0151, "ci_upper": 0.0400, "pvalue": 0.3757},
+                {"treatment": "8", "label": "AI Literacy Infographic", "n": 102, "mean": 0.0111, "se": 0.0164, "ci_lower": -0.0210, "ci_upper": 0.0432, "pvalue": 0.4965},
+                {"treatment": "7", "label": "Inoculation", "n": 78, "mean": 0.0093, "se": 0.0187, "ci_lower": -0.0274, "ci_upper": 0.0459, "pvalue": 0.6192},
+                {"treatment": "0", "label": "Control", "n": 181, "mean": 0.0, "se": 0.0, "ci_lower": 0.0, "ci_upper": 0.0, "pvalue": 1.0},
+                {"treatment": "1", "label": "Flagging", "n": 215, "mean": -0.0075, "se": 0.0148, "ci_lower": -0.0365, "ci_upper": 0.0215, "pvalue": 0.6099},
+                {"treatment": "9", "label": "AI Literacy Infographic 2", "n": 80, "mean": -0.0084, "se": 0.0217, "ci_lower": -0.0511, "ci_upper": 0.0342, "pvalue": 0.6988},
+                {"treatment": "6", "label": "Mindfulness", "n": 180, "mean": -0.0405, "se": 0.0183, "ci_lower": -0.0764, "ci_upper": -0.0045, "pvalue": 0.0273}
+            ],
+            fake: [
+                {"treatment": "5", "label": "Breathing Exercise", "n": 134, "mean": 0.0894, "se": 0.0291, "ci_lower": 0.0323, "ci_upper": 0.1465, "pvalue": 0.0022},
+                {"treatment": "10", "label": "AI Literacy Guide", "n": 160, "mean": 0.0633, "se": 0.0391, "ci_lower": -0.0134, "ci_upper": 0.1399, "pvalue": 0.1056},
+                {"treatment": "9", "label": "AI Literacy Infographic 2", "n": 79, "mean": 0.0583, "se": 0.0396, "ci_lower": -0.0194, "ci_upper": 0.136, "pvalue": 0.1411},
+                {"treatment": "4", "label": "AI Accuracy Nudge", "n": 332, "mean": 0.0582, "se": 0.0278, "ci_lower": 0.0038, "ci_upper": 0.1126, "pvalue": 0.0359},
+                {"treatment": "3", "label": "Automated Flagging", "n": 127, "mean": 0.04, "se": 0.0314, "ci_lower": -0.0216, "ci_upper": 0.1016, "pvalue": 0.2028},
+                {"treatment": "2", "label": "Provenance", "n": 145, "mean": 0.0399, "se": 0.0297, "ci_lower": -0.0183, "ci_upper": 0.0982, "pvalue": 0.1794},
+                {"treatment": "8", "label": "AI Literacy Infographic", "n": 102, "mean": 0.0217, "se": 0.0314, "ci_lower": -0.0399, "ci_upper": 0.0833, "pvalue": 0.4898},
+                {"treatment": "7", "label": "Inoculation", "n": 76, "mean": 0.0184, "se": 0.0419, "ci_lower": -0.0638, "ci_upper": 0.1005, "pvalue": 0.6614},
+                {"treatment": "1", "label": "Flagging", "n": 215, "mean": 0.0065, "se": 0.0373, "ci_lower": -0.0667, "ci_upper": 0.0797, "pvalue": 0.8617},
+                {"treatment": "11", "label": "AI Text Video", "n": 293, "mean": 0.0039, "se": 0.0242, "ci_lower": -0.0435, "ci_upper": 0.0513, "pvalue": 0.8724},
+                {"treatment": "0", "label": "Control", "n": 181, "mean": 0.0, "se": 0.0, "ci_lower": 0.0, "ci_upper": 0.0, "pvalue": 1.0},
+                {"treatment": "6", "label": "Mindfulness", "n": 179, "mean": -0.0386, "se": 0.0476, "ci_lower": -0.132, "ci_upper": 0.0547, "pvalue": 0.4171}
+            ],
+            real: [
+                {"treatment": "3", "label": "Automated Flagging", "n": 127, "mean": 0.04, "se": 0.0225, "ci_lower": -0.0041, "ci_upper": 0.0841, "pvalue": 0.0752},
+                {"treatment": "10", "label": "AI Literacy Guide", "n": 162, "mean": 0.0272, "se": 0.0265, "ci_lower": -0.0248, "ci_upper": 0.0792, "pvalue": 0.3048},
+                {"treatment": "11", "label": "AI Text Video", "n": 292, "mean": 0.0211, "se": 0.0176, "ci_lower": -0.0133, "ci_upper": 0.0556, "pvalue": 0.2294},
+                {"treatment": "8", "label": "AI Literacy Infographic", "n": 100, "mean": 0.0018, "se": 0.0268, "ci_lower": -0.0508, "ci_upper": 0.0544, "pvalue": 0.9466},
+                {"treatment": "0", "label": "Control", "n": 181, "mean": 0.0, "se": 0.0, "ci_lower": 0.0, "ci_upper": 0.0, "pvalue": 1.0},
+                {"treatment": "7", "label": "Inoculation", "n": 77, "mean": -0.0054, "se": 0.0281, "ci_lower": -0.0605, "ci_upper": 0.0497, "pvalue": 0.8488},
+                {"treatment": "2", "label": "Provenance", "n": 145, "mean": -0.015, "se": 0.021, "ci_lower": -0.0561, "ci_upper": 0.0262, "pvalue": 0.4756},
+                {"treatment": "4", "label": "AI Accuracy Nudge", "n": 333, "mean": -0.0161, "se": 0.0262, "ci_lower": -0.0675, "ci_upper": 0.0353, "pvalue": 0.5394},
+                {"treatment": "1", "label": "Flagging", "n": 215, "mean": -0.041, "se": 0.0272, "ci_lower": -0.0942, "ci_upper": 0.0123, "pvalue": 0.1315},
+                {"treatment": "5", "label": "Breathing Exercise", "n": 134, "mean": -0.0445, "se": 0.0333, "ci_lower": -0.1097, "ci_upper": 0.0207, "pvalue": 0.1806},
+                {"treatment": "6", "label": "Mindfulness", "n": 179, "mean": -0.0496, "se": 0.0431, "ci_lower": -0.134, "ci_upper": 0.0348, "pvalue": 0.2495},
+                {"treatment": "9", "label": "AI Literacy Infographic 2", "n": 80, "mean": -0.0605, "se": 0.0306, "ci_lower": -0.1204, "ci_upper": -0.0006, "pvalue": 0.0477}
+            ]
+        };
+
+        let currentChart = null;
+
+        function sortData(data, sortBy) {
+            let sorted = [...data];
+            if (sortBy === 'effect') {
+                sorted.sort((a, b) => b.mean - a.mean);
+            } else if (sortBy === 'n') {
+                sorted.sort((a, b) => b.n - a.n);
+            } else if (sortBy === 'pvalue') {
+                sorted.sort((a, b) => a.pvalue - b.pvalue);
+            }
+            return sorted;
+        }
+
+        function renderResults() {
+            const outcomeSelect = document.getElementById('outcome-select');
+            const sortSelect = document.getElementById('sort-select');
+            const outcome = outcomeSelect ? outcomeSelect.value : 'total';
+            const sortBy = sortSelect ? sortSelect.value : 'effect';
+
+            let data = results[outcome] || results.total;
+            let sorted = sortData(data, sortBy);
+
+            renderTable(sorted);
+            renderChart(sorted, outcome);
+        }
+
+        function renderTable(data) {
+            const tableBody = document.getElementById('results-table');
+
+            tableBody.innerHTML = data.map(r => {
+                const isControl = r.treatment === '0';
+                const isSignificant = r.pvalue < 0.05 && !isControl;
+                const isNegative = r.mean < 0 && isSignificant;
+
+                return `
+                    <tr class="hover:bg-gray-50 ${isControl ? 'bg-gray-50' : ''} ${isSignificant && !isNegative ? 'bg-green-50' : ''} ${isNegative ? 'bg-red-50' : ''}">
+                        <td class="px-4 py-3 text-sm font-medium text-gray-900">T${r.treatment}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700">${r.label}</td>
+                        <td class="px-4 py-3 text-sm text-gray-500">${r.n}</td>
+                        <td class="px-4 py-3 text-sm font-medium ${isControl ? 'text-gray-400' : (r.mean >= 0 ? 'text-green-700' : 'text-red-700')}">${isControl ? '—' : (r.mean * 100).toFixed(1) + '%'}</td>
+                        <td class="px-4 py-3 text-sm text-gray-500">${isControl ? '—' : `[${(r.ci_lower * 100).toFixed(1)}%, ${(r.ci_upper * 100).toFixed(1)}%]`}</td>
+                        <td class="px-4 py-3 text-sm ${isSignificant ? 'font-bold' : ''} ${isNegative ? 'text-red-700' : (isSignificant ? 'text-green-700' : 'text-gray-500')}">${isControl ? 'ref' : r.pvalue.toFixed(4)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderChart(data, outcome) {
+            const ctx = document.getElementById('effects-chart').getContext('2d');
+
+            if (currentChart) currentChart.destroy();
+
+            const chartData = [...data].filter(d => d.treatment !== '0');
+
+            const titles = {
+                total: 'Treatment Effects on Total Accuracy',
+                fake: 'Treatment Effects on Deepfake/AI Detection',
+                real: 'Treatment Effects on Authentic Content Accuracy'
+            };
+
+            currentChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Treatment Effect',
+                        data: chartData.map((d, i) => ({
+                            x: d.mean * 100,
+                            y: i,
+                            treatment: d.treatment,
+                            label: d.label,
+                            n: d.n,
+                            ci_lower: d.ci_lower * 100,
+                            ci_upper: d.ci_upper * 100,
+                            pvalue: d.pvalue
+                        })),
+                        backgroundColor: chartData.map(d => d.pvalue < 0.05 ? (d.mean >= 0 ? 'rgba(34, 197, 94, 0.8)' : 'rgba(239, 68, 68, 0.8)') : 'rgba(59, 130, 246, 0.8)'),
+                        borderColor: chartData.map(d => d.pvalue < 0.05 ? (d.mean >= 0 ? 'rgba(34, 197, 94, 1)' : 'rgba(239, 68, 68, 1)') : 'rgba(59, 130, 246, 1)'),
+                        pointRadius: 7,
+                        pointHoverRadius: 9
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titles[outcome] || titles.total,
+                            font: { size: 14, family: 'Crimson Pro' }
+                        },
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const d = context.raw;
+                                    return [
+                                        `${d.label}: ${d.x >= 0 ? '+' : ''}${d.x.toFixed(1)}%`,
+                                        `95% CI: [${d.ci_lower.toFixed(1)}%, ${d.ci_upper.toFixed(1)}%]`,
+                                        `N: ${d.n}, p = ${d.pvalue.toFixed(4)}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 20
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Effect on Accuracy (percentage points)' },
+                            min: -10,
+                            max: 10,
+                            grid: {
+                                color: function(context) {
+                                    return context.tick.value === 0 ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.1)';
+                                },
+                                lineWidth: function(context) {
+                                    return context.tick.value === 0 ? 2 : 1;
+                                }
+                            }
+                        },
+                        y: {
+                            title: { display: false },
+                            min: -0.5,
+                            max: chartData.length - 0.5,
+                            reverse: true,
+                            ticks: {
+                                stepSize: 1,
+                                font: { size: 11 },
+                                callback: function(value) {
+                                    if (Number.isInteger(value) && value >= 0 && value < chartData.length) {
+                                        return chartData[value].label;
+                                    }
+                                    return '';
+                                }
+                            },
+                            grid: { display: false }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'errorBars',
+                    afterDatasetsDraw: function(chart) {
+                        const ctx = chart.ctx;
+                        const dataset = chart.data.datasets[0];
+                        const meta = chart.getDatasetMeta(0);
+
+                        meta.data.forEach((point, index) => {
+                            const d = dataset.data[index];
+                            const xScale = chart.scales.x;
+                            const y = point.y;
+                            const xLower = xScale.getPixelForValue(d.ci_lower);
+                            const xUpper = xScale.getPixelForValue(d.ci_upper);
+
+                            ctx.save();
+                            ctx.strokeStyle = 'rgba(100, 100, 100, 0.6)';
+                            ctx.lineWidth = 1.5;
+
+                            ctx.beginPath();
+                            ctx.moveTo(xLower, y);
+                            ctx.lineTo(xUpper, y);
+                            ctx.stroke();
+
+                            ctx.beginPath();
+                            ctx.moveTo(xLower, y - 4);
+                            ctx.lineTo(xLower, y + 4);
+                            ctx.stroke();
+
+                            ctx.beginPath();
+                            ctx.moveTo(xUpper, y - 4);
+                            ctx.lineTo(xUpper, y + 4);
+                            ctx.stroke();
+
+                            ctx.restore();
+                        });
+                    }
+                }]
+            });
+        }
+
+        document.getElementById('outcome-select').addEventListener('change', () => renderResults());
+        document.getElementById('sort-select').addEventListener('change', () => renderResults());
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderResults();
+        });
+    </script>
+</body>
+</html>

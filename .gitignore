@@ -1,0 +1,7 @@
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+# raw Qualtrics export contains IP addresses, locations and worker IDs; never commit
+raw_data/
+Improving+AI+Discernment_*.csv
