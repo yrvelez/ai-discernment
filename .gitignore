@@ -2,6 +2,10 @@
 .Rproj.user
 .Rhistory
 .RData
-# raw Qualtrics export contains IP addresses, locations and worker IDs; never commit
+__pycache__/
+.mplconfig/
+# the raw Qualtrics export contains IP addresses, locations and worker IDs; never commit it
 raw_data/
+inputs/raw_*
+inputs/export*.csv
 Improving+AI+Discernment_*.csv
