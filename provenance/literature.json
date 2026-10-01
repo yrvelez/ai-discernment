@@ -1,78 +1,6 @@
 {
- "text": "The retrieved literature offers only limited direct evidence on interventions targeting detection of AI-generated content specifically. The closest prior findings concern interventions that improve general credibility or misinformation discernment: Bhuiyan et al. (2021) found that nudge-based design interventions on social media can shift users toward more credible news sources, suggesting that lightweight cues may alter overall discernment accuracy (relevant to H1). Roozenbeek et al. (2022) demonstrated that psychological inoculation improves resilience against misinformation, indicating that pre-bunking-style interventions can change how people evaluate the authenticity of content (relevant to H1 and H3). However, none of the retrieved works directly test whether such interventions differentially affect detection of AI-generated versus authentic content (H2 vs. H3), leaving a clear gap that the present study addresses.",
+ "text": "The retrieved works do not directly address interventions targeting detection of AI-generated content or recognition of authentic content as distinct outcomes. The closest prior findings come from the inoculation and prebunking literature, which demonstrates that proactive interventions can improve people's resistance to misinformation (Lewandowsky & van der Linden, 2021; Lewandowsky et al., 2017), though these studies measured belief resistance rather than binary detection accuracy for AI-generated versus authentic items. No retrieved work reports findings on interventions that differentially affect detection of AI-generated content versus recognition of authentic content, leaving H2 and H3 without direct prior evidence in this set.",
  "works": [
-  {
-   "id": "https://openalex.org/W2170486072",
-   "title": "Reagent and laboratory contamination can critically impact sequence-based microbiome analyses",
-   "authors": [
-    "Susannah J. Salter",
-    "Michael J. Cox",
-    "Elena M. Turek",
-    "Szymon Calus"
-   ],
-   "year": 2014,
-   "doi": "10.1186/s12915-014-0087-z",
-   "venue": "BMC Biology",
-   "cited_by": 3674,
-   "abstract": "BACKGROUND: The study of microbial communities has been revolutionised in recent years by the widespread adoption of culture independent analytical techniques such as 16S rRNA gene sequencing and metagenomics. One potential confounder of these sequence-based approaches is the presence of contamination in DNA extraction kits and other laboratory reagents. RESULTS: In this study we demonstrate that "
-  },
-  {
-   "id": "https://openalex.org/W2015065509",
-   "title": "Agricultural uses of plant biostimulants",
-   "authors": [
-    "Pamela Calvo",
-    "Louise M. Nelson",
-    "Joseph W. Kloepper"
-   ],
-   "year": 2014,
-   "doi": "10.1007/s11104-014-2131-8",
-   "venue": "Plant and Soil",
-   "cited_by": 2315,
-   "abstract": "Background Plant biostimulants are diverse substances and microorganisms used to enhance plant growth. The global market for biostimulants is projected to increase 12 % per year and reach over $2,200 million by 2018. Despite the growing use of biostimulants in agriculture, many in the scientific community consider biostimulants to be lacking peer-reviewed scientific evaluation. Scope This article "
-  },
-  {
-   "id": "https://openalex.org/W2794891594",
-   "title": "Antibiotic Use in Agriculture and Its Consequential Resistance in Environmental Sources: Potential Public Health Implications",
-   "authors": [
-    "Christy Echakachi Manyi-Loh",
-    "Sampson Mamphweli",
-    "Edson L. Meyer",
-    "Anthony Ifeanyi Okoh"
-   ],
-   "year": 2018,
-   "doi": "10.3390/molecules23040795",
-   "venue": "Molecules",
-   "cited_by": 1848,
-   "abstract": "Due to the increased demand of animal protein in developing countries, intensive farming is instigated, which results in antibiotic residues in animal-derived products, and eventually, antibiotic resistance. Antibiotic resistance is of great public health concern because the antibiotic-resistant bacteria associated with the animals may be pathogenic to humans, easily transmitted to humans via food"
-  },
-  {
-   "id": "https://openalex.org/W3153990350",
-   "title": "Machine learning and deep learning",
-   "authors": [
-    "Christian Janiesch",
-    "Patrick Zschech",
-    "Kai Heinrich"
-   ],
-   "year": 2021,
-   "doi": "10.1007/s12525-021-00475-2",
-   "venue": "Electronic Markets",
-   "cited_by": 2660,
-   "abstract": "Abstract Today, intelligent systems that offer artificial intelligence capabilities often rely on machine learning. Machine learning describes the capacity of systems to learn from problem-specific training data to automate the process of analytical model building and solve associated tasks. Deep learning is a machine learning concept based on artificial neural networks. For many applications, dee"
-  },
-  {
-   "id": "https://openalex.org/W4317910584",
-   "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
-   "authors": [
-    "Jürgen Rudolph",
-    "Samson Tan",
-    "Shannon Tan"
-   ],
-   "year": 2023,
-   "doi": "10.37074/jalt.2023.6.1.9",
-   "venue": "Journal of Applied Learning & Teaching",
-   "cited_by": 1782,
-   "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to "
-  },
   {
    "id": "https://openalex.org/W4206236567",
    "title": "The psychological drivers of misinformation belief and its resistance to correction",
@@ -89,66 +17,127 @@
    "abstract": ""
   },
   {
-   "id": "https://openalex.org/W4293105742",
-   "title": "Psychological inoculation improves resilience against misinformation on social media",
+   "id": "https://openalex.org/W3130700834",
+   "title": "Countering Misinformation and Fake News Through Inoculation and Prebunking",
    "authors": [
-    "Jon Roozenbeek",
-    "Sander van der Linden",
-    "Beth Goldberg",
-    "Steve Rathje"
-   ],
-   "year": 2022,
-   "doi": "10.1126/sciadv.abo6254",
-   "venue": "Science Advances",
-   "cited_by": 481,
-   "abstract": "Online misinformation continues to have adverse consequences for society. Inoculation theory has been put forward as a way to reduce susceptibility to misinformation by informing people about how they might be misinformed, but its scalability has been elusive both at a theoretical level and a practical level. We developed five short videos that inoculate people against manipulation techniques comm"
-  },
-  {
-   "id": "https://openalex.org/W3175064165",
-   "title": "Determinants of individuals’ belief in fake news: A scoping review determinants of belief in fake news",
-   "authors": [
-    "Kirill Bryanov",
-    "Victoria Vziatysheva"
+    "Stephan Lewandowsky",
+    "Sander van der Linden"
    ],
    "year": 2021,
-   "doi": "10.1371/journal.pone.0253717",
-   "venue": "PLoS ONE",
-   "cited_by": 217,
-   "abstract": "BACKGROUND: Proliferation of misinformation in digital news environments can harm society in a number of ways, but its dangers are most acute when citizens believe that false news is factually accurate. A recent wave of empirical research focuses on factors that explain why people fall for the so-called fake news. In this scoping review, we summarize the results of experimental studies that test d"
+   "doi": "10.1080/10463283.2021.1876983",
+   "venue": "European Review of Social Psychology",
+   "cited_by": 793,
+   "abstract": "There has been increasing concern with the growing infusion of misinformation, or “fake news”, into public discourse and politics in many western democracies. Our article first briefly reviews the current state of the literature on conventional countermeasures to misinformation. We then explore proactive measures to prevent misinformation from finding traction in the first place that is based on t"
   },
   {
-   "id": "https://openalex.org/W3191669092",
-   "title": "NudgeCred: Supporting News Credibility Assessment on Social Media Through Nudges",
+   "id": "https://openalex.org/W4399518864",
+   "title": "The impact of generative artificial intelligence on socioeconomic inequalities and policy making",
    "authors": [
-    "Md Momen Bhuiyan",
-    "Michael Horning",
-    "Sang Won Lee",
-    "Tanushree Mitra"
+    "Valerio Capraro",
+    "Austin Lentsch",
+    "Daron Acemoğlu",
+    "Selin Akgün"
+   ],
+   "year": 2024,
+   "doi": "10.1093/pnasnexus/pgae191",
+   "venue": "PNAS Nexus",
+   "cited_by": 355,
+   "abstract": "Abstract Generative artificial intelligence (AI) has the potential to both exacerbate and ameliorate existing socioeconomic inequalities. In this article, we provide a state-of-the-art interdisciplinary overview of the potential impacts of generative AI on (mis)information and three information-intensive domains: work, education, and healthcare. Our goal is to highlight how generative AI could wor"
+  },
+  {
+   "id": "https://openalex.org/W4319983294",
+   "title": "Fake news, disinformation and misinformation in social media: a review",
+   "authors": [
+    "Esma Aı̈meur",
+    "Sabrine Amri",
+    "Gilles Brassard"
+   ],
+   "year": 2023,
+   "doi": "10.1007/s13278-023-01028-5",
+   "venue": "Social Network Analysis and Mining",
+   "cited_by": 773,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2954457885",
+   "title": "Seven HCI Grand Challenges",
+   "authors": [
+    "Constantine Stephanidis",
+    "Gavriel Salvendy",
+    "Margherita Antona",
+    "Jessie Y. C. Chen"
+   ],
+   "year": 2019,
+   "doi": "10.1080/10447318.2019.1619259",
+   "venue": "International Journal of Human-Computer Interaction",
+   "cited_by": 520,
+   "abstract": "Published with license by Taylor & Francis Group, LLC. This article aims to investigate the Grand Challenges which arise in the current and emerging landscape of rapid technological evolution towards more intelligent interactive technologies, coupled with increased and widened societal needs, as well as individual and collective expectations that HCI, as a discipline, is called upon to address. A "
+  },
+  {
+   "id": "https://openalex.org/W2787887017",
+   "title": "The malicious use of artificial intelligence: Forecasting, prevention, and mitigation",
+   "authors": [
+    "Miles Brundage",
+    "Shahar Avin",
+    "Jack Clark",
+    "Toner, Helen"
+   ],
+   "year": 2018,
+   "doi": "10.17863/cam.22520",
+   "venue": "Apollo (University of Cambridge)",
+   "cited_by": 519,
+   "abstract": "This report surveys the landscape of potential security threats from malicious uses of AI, and proposes ways to better forecast, prevent, and mitigate these threats. After analyzing the ways in which AI may influence the threat landscape in the digital, physical, and political domains, we make four high-level recommendations for AI researchers and other stakeholders. We also suggest several promis"
+  },
+  {
+   "id": "https://openalex.org/W3016902371",
+   "title": "Using social and behavioural science to support COVID-19 pandemic response",
+   "authors": [
+    "Jay Joseph Van Bavel",
+    "Katherine Baicker",
+    "Paulo S. Boggio",
+    "Valerio Capraro"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41562-020-0884-z",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 5215,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2760944227",
+   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
+   "authors": [
+    "Stephan Lewandowsky",
+    "Ullrich K. H. Ecker",
+    "John Cook"
+   ],
+   "year": 2017,
+   "doi": "10.1016/j.jarmac.2017.07.008",
+   "venue": "Journal of Applied Research in Memory and Cognition",
+   "cited_by": 2021,
+   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct"
+  },
+  {
+   "id": "https://openalex.org/W3128392043",
+   "title": "Measuring the impact of COVID-19 vaccine misinformation on vaccination intent in the UK and USA",
+   "authors": [
+    "Sahil Loomba",
+    "Alexandre de Figueiredo",
+    "Simon J. Piatek",
+    "Kristen de Graaf"
    ],
    "year": 2021,
-   "doi": "10.1145/3479571",
-   "venue": "Proceedings of the ACM on Human-Computer Interaction",
-   "cited_by": 72,
-   "abstract": "Struggling to curb misinformation, social media platforms are experimenting with design interventions to enhance consumption of credible news on their platforms. Some of these interventions, such as the use of warning messages, are examples of nudges---a choice-preserving technique to steer behavior. Despite their application, we do not know whether nudges could steer people into making conscious "
-  },
-  {
-   "id": "https://openalex.org/W2153791616",
-   "title": "Whatever next? Predictive brains, situated agents, and the future of cognitive science",
-   "authors": [
-    "Andy Clark"
-   ],
-   "year": 2013,
-   "doi": "10.1017/s0140525x12000477",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 6153,
-   "abstract": "Brains, it has recently been argued, are essentially prediction machines. They are bundles of cells that support perception and action by constantly attempting to match incoming sensory inputs with top-down expectations or predictions. This is achieved using a hierarchical generative model that aims to minimize prediction error within a bidirectional cascade of cortical processing. Such accounts o"
+   "doi": "10.1038/s41562-021-01056-1",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 1879,
+   "abstract": ""
   }
  ],
  "queries": [
-  "inoculation AI-generated media detection",
-  "deepfake detection intervention accuracy",
-  "synthetic media literacy nudge discernment",
-  "misinformation intervention AI content recognition"
+  "misinformation intervention AI-generated media detection",
+  "inoculation deepfake discernment accuracy",
+  "AI literacy nudge synthetic media recognition",
+  "accuracy nudge misinformation detection survey"
  ],
  "degraded": null
 }
