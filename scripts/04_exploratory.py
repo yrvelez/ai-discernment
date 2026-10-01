@@ -1,162 +1,176 @@
-"""Exploratory analyses for the AI discernment survey experiment.
-
-E1: Criterion-shift ("say-fake" rate) analysis -- do arms that improved fake
-    detection (H2) simply shift respondents toward labeling content as fake?
-E2: Heterogeneity of total_score effects by prior generative-AI tool use.
-E3: Placebo check -- arms should not predict pre-treatment political knowledge.
-
-All models use IPW weights and HC2 robust standard errors, matching the
-registered analyses.
 """
-import os
-import re
+Exploratory analyses for the AI Discernment survey experiment.
+Three analyses:
+  E1: Heterogeneity by prior AI experience (ChatGPT usage)
+  E2: Item-level analysis of real-content recognition (false-alarm pattern)
+  E3: Robustness to attention-check failures (pk_score = 0 exclusion)
+"""
 
-import numpy as np
 import pandas as pd
+import numpy as np
 import statsmodels.formula.api as smf
 import matplotlib
-matplotlib.use("Agg")
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import os
 
-os.makedirs("results", exist_ok=True)
-os.makedirs("figures", exist_ok=True)
+os.makedirs('results', exist_ok=True)
+os.makedirs('figures', exist_ok=True)
 
-df = pd.read_csv("data/clean.csv")
+df = pd.read_csv('data/clean.csv')
+df['arm_code'] = df['arm_code'].astype(str)
+df['chatgpt'] = df['chatgpt'].astype(int)
+df['ipw'] = 1.0 / df['pr']
 
-ARM_LABELS = {
-    0: "Control", 1: "Flagging", 2: "Provenance", 3: "Automated Flagging",
-    4: "AI Accuracy Nudge", 5: "Breathing Exercise", 6: "Mindfulness",
-    7: "Inoculation", 8: "AI Literacy Infographic",
-    9: "AI Literacy Infographic 2", 10: "AI Literacy Guide",
-    11: "AI Text Video",
-}
-ARM = "C(arm_code, Treatment(reference=0))"
+# ============================================================
+# E1: Heterogeneity by prior AI experience (ChatGPT usage)
+# Rationale: AI-literacy interventions may work better for those
+# with less prior AI experience; a pooled treatment × familiarity
+# interaction tests whether effects are driven by knowledge gaps.
+# ============================================================
+df['treat_any'] = (df['arm_code'] != '0').astype(int)
 
+formula_e1 = 'total_score ~ C(treat_any) * C(chatgpt)'
+model_e1 = smf.wls(formula_e1, data=df, weights=df['ipw'])
+res_e1 = model_e1.fit(cov_type='HC2')
 
-def tidy(model, analysis_id, keep=None):
-    ci = model.conf_int()
-    out = pd.DataFrame({
-        "analysis_id": analysis_id,
-        "term": model.params.index,
-        "estimate": model.params.values,
-        "std_error": model.bse.values,
-        "statistic": model.tvalues.values,
-        "p_value": model.pvalues.values,
-        "conf_low": ci[0].values,
-        "conf_high": ci[1].values,
+interact_term = 'C(treat_any)[T.1]:C(chatgpt)[T.1]'
+treat_term = 'C(treat_any)[T.1]'
+chat_term = 'C(chatgpt)[T.1]'
+
+e1_rows = []
+for label, term in [
+    ('Pooled treatment effect (any vs control)', treat_term),
+    ('ChatGPT usage (main effect)', chat_term),
+    ('Treatment x ChatGPT interaction', interact_term),
+]:
+    est = res_e1.params[term]
+    se = res_e1.bse[term]
+    p = res_e1.pvalues[term]
+    e1_rows.append({
+        'term': label,
+        'estimate': round(est, 4),
+        'std_error': round(se, 4),
+        'p_value': round(p, 4),
+        'ci_low': round(est - 1.96 * se, 4),
+        'ci_high': round(est + 1.96 * se, 4),
     })
-    if keep is not None:
-        out = out[out["term"].isin(keep)].reset_index(drop=True)
-    return out
 
+e1_df = pd.DataFrame(e1_rows)
+e1_df.to_csv('results/E1_ai_familiarity_interaction.csv', index=False)
 
-def arm_from_term(term):
-    m = re.search(r"\[T\.(\d+)\]", term)
-    return int(m.group(1)) if m else np.nan
+interact_est = res_e1.params[interact_term]
+interact_se = res_e1.bse[interact_term]
+interact_p = res_e1.pvalues[interact_term]
+print(f"E1: Pooled treatment x ChatGPT interaction on total_score: "
+      f"est={interact_est:.4f}, SE={interact_se:.4f}, p={interact_p:.4f}")
 
+# ============================================================
+# E2: Item-level analysis of real-content recognition
+# Rationale: Several arms (Breathing, Infographic 2, Guide) show
+# patterns suggesting increased false alarms on real content;
+# item-level inspection reveals whether the effect is
+# concentrated on particular content types.
+# ============================================================
+real_items = [
+    'biden2_real_news_005.png', 'biden_real_005.png',
+    'biden_real_news_001.png', 'election_real_news_006.png',
+    'google_real_news_003.png', 'hot_weather_real_news_008.png',
+    'jim_jordan_real_news_007.png', 'johnson_real_003.mp4',
+    'poland_real_news_002.png', 'protest_real_news_004.png',
+    'putin_real_002.webp', 'unhorse_real_004.png',
+    'untrump_real_001.webp'
+]
 
-def add_arm_cols(tab, nobs):
-    tab = tab.copy()
-    tab["arm_code"] = tab["term"].map(arm_from_term)
-    tab = tab.dropna(subset=["arm_code"])
-    tab["arm_code"] = tab["arm_code"].astype(int)
-    tab["arm_label"] = tab["arm_code"].map(ARM_LABELS)
-    tab["n"] = int(nobs)
-    cols = ["analysis_id", "arm_code", "arm_label", "term", "estimate",
-            "std_error", "statistic", "p_value", "conf_low", "conf_high", "n"]
-    return tab[cols].sort_values("arm_code").reset_index(drop=True)
+arms_of_interest = ['5', '9', '10']
+arm_labels = {'5': 'Breathing Exercise', '9': 'AI Literacy Infographic 2',
+              '10': 'AI Literacy Guide'}
 
+e2_rows = []
+for arm in arms_of_interest:
+    ctrl = df[df['arm_code'] == '0']
+    trt = df[df['arm_code'] == arm]
+    for item in real_items:
+        ctrl_mean = ctrl[item].mean()
+        trt_mean = trt[item].mean()
+        diff = trt_mean - ctrl_mean
+        e2_rows.append({
+            'arm_code': arm,
+            'arm_label': arm_labels[arm],
+            'item': item,
+            'mean_control': round(ctrl_mean, 4),
+            'mean_treated': round(trt_mean, 4),
+            'diff': round(diff, 4),
+            'n_control': int(ctrl[item].notna().sum()),
+            'n_treated': int(trt[item].notna().sum()),
+        })
 
-def forest(tab, title, xlabel, path):
-    t = tab.sort_values("estimate").reset_index(drop=True)
-    y = np.arange(len(t))
-    fig, ax = plt.subplots(figsize=(7, 5))
-    ax.errorbar(t["estimate"], y,
-                xerr=[t["estimate"] - t["conf_low"],
-                      t["conf_high"] - t["estimate"]],
-                fmt="o", color="black", ecolor="gray", capsize=3, ms=5)
-    ax.axvline(0, color="red", ls="--", lw=1)
-    ax.set_yticks(y)
-    ax.set_yticklabels(t["arm_label"], fontsize=9)
-    ax.set_xlabel(xlabel)
-    ax.set_title(title, fontsize=10)
-    fig.tight_layout()
-    fig.savefig(path, dpi=150)
-    plt.close(fig)
+e2_df = pd.DataFrame(e2_rows)
+e2_df.to_csv('results/E2_real_item_analysis.csv', index=False)
 
+e2_summary = e2_df.groupby(['arm_code', 'arm_label'])['diff'].mean().reset_index()
+e2_summary.columns = ['arm_code', 'arm_label', 'mean_item_diff']
+print("E2: Mean item-level diff on real content — " +
+      ", ".join([f"{r.arm_label}: {r.mean_item_diff:.4f}"
+                 for r in e2_summary.itertuples()]))
 
-# ---------------------------------------------------------------------------
-# E1: "Say-fake" rate (criterion shift). For fake items, said-fake = response;
-# for real items, said-fake = 1 - response. Averaged over all 24 items.
-# ---------------------------------------------------------------------------
-fake_cols = [c for c in df.columns if "_fake_" in c]
-real_cols = [c for c in df.columns if "_real_" in c]
-said_fake = pd.concat([df[fake_cols], 1.0 - df[real_cols]], axis=1)
-df["say_fake"] = said_fake.mean(axis=1)
+# Figure: horizontal bar charts, one panel per arm
+fig, axes = plt.subplots(1, 3, figsize=(15, 6), sharey=True)
+for ax, arm in zip(axes, arms_of_interest):
+    sub = e2_df[e2_df['arm_code'] == arm].copy()
+    short_labels = [x.replace('.png', '').replace('.mp4', '').replace('.webp', '')
+                    for x in sub['item']]
+    colors = ['#e74c3c' if d < 0 else '#27ae60' for d in sub['diff']]
+    ax.barh(range(len(sub)), sub['diff'], color=colors, edgecolor='white', height=0.7)
+    ax.set_yticks(range(len(sub)))
+    ax.set_yticklabels(short_labels, fontsize=7)
+    ax.axvline(0, color='black', linewidth=0.8)
+    ax.set_title(arm_labels[arm], fontsize=11, fontweight='bold')
+    ax.set_xlabel('Diff from control (treated − control)')
+    ax.set_xlim(-0.15, 0.15)
+plt.suptitle('E2: Item-level accuracy on real content vs. control', y=1.02, fontsize=12)
+plt.tight_layout()
+plt.savefig('figures/E2_real_item_diffs.png', dpi=150, bbox_inches='tight')
+plt.close()
 
-d1 = df.dropna(subset=["say_fake"]).copy()
-m1 = smf.wls(f"say_fake ~ {ARM}", data=d1,
-             weights=d1["ipw"]).fit(cov_type="HC2")
-arm_terms1 = [t for t in m1.params.index if t.startswith("C(arm_code")]
-t1 = add_arm_cols(tidy(m1, "E1", keep=arm_terms1), m1.nobs)
-t1.to_csv("results/E1_say_fake_rate.csv", index=False)
-forest(t1, "E1: Effect on propensity to label content AI-generated",
-       "Difference in say-fake rate vs control (IPW, HC2)",
-       "figures/E1_say_fake_forest.png")
+# ============================================================
+# E3: Robustness — exclude attention-check failures (pk_score=0)
+# Rationale: Respondents failing both attention checks may not
+# have engaged with the task; excluding them tests whether the
+# registered results are robust to this alternative exclusion.
+# ============================================================
+n_before = len(df)
+df_e3 = df[df['pk_score'] > 0].copy()
+n_excluded = n_before - len(df_e3)
 
-sig1 = t1[t1["p_value"] < 0.05]
-top1 = t1.loc[t1["estimate"].idxmax()]
-print(f"E1: {len(sig1)}/11 arms significantly shifted the say-fake rate; "
-      f"largest shift = {top1['arm_label']} "
-      f"({top1['estimate']:+.3f}, p={top1['p_value']:.3f}).")
+formula_e3 = 'total_score ~ C(arm_code, Treatment(reference="0"))'
+model_e3 = smf.wls(formula_e3, data=df_e3, weights=df_e3['ipw'])
+res_e3 = model_e3.fit(cov_type='HC2')
 
-# ---------------------------------------------------------------------------
-# E2: Heterogeneity by prior generative-AI tool use (ai_scale > 0).
-# ---------------------------------------------------------------------------
-df["ai_user"] = (df["ai_scale"] > 0).astype(int)
-d2 = df.dropna(subset=["total_score"]).copy()
-m2 = smf.wls(f"total_score ~ {ARM} * ai_user", data=d2,
-             weights=d2["ipw"]).fit(cov_type="HC2")
-inter_terms = [t for t in m2.params.index if ":ai_user" in t]
-t2 = add_arm_cols(tidy(m2, "E2", keep=inter_terms), m2.nobs)
-wt2 = m2.wald_test(", ".join(f"{t} = 0" for t in inter_terms))
-joint2 = pd.DataFrame({
-    "analysis_id": ["E2"], "arm_code": [np.nan], "arm_label": ["JOINT"],
-    "term": ["JOINT: all arm x ai_user interactions = 0"],
-    "estimate": [np.nan], "std_error": [np.nan],
-    "statistic": [float(np.asarray(wt2.statistic))],
-    "p_value": [float(wt2.pvalue)],
-    "conf_low": [np.nan], "conf_high": [np.nan], "n": [int(m2.nobs)],
-})
-t2 = pd.concat([t2, joint2], ignore_index=True)
-t2.to_csv("results/E2_ai_use_heterogeneity.csv", index=False)
-forest(t2[t2["arm_label"] != "JOINT"],
-       "E2: Arm x prior-AI-use interactions (total_score)",
-       "Interaction estimate vs control (IPW, HC2)",
-       "figures/E2_ai_use_interaction_forest.png")
+e3_rows = []
+for arm in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']:
+    term = f'C(arm_code, Treatment(reference="0"))[T.{arm}]'
+    if term in res_e3.params.index:
+        est = res_e3.params[term]
+        se = res_e3.bse[term]
+        p = res_e3.pvalues[term]
+        e3_rows.append({
+            'arm_code': arm,
+            'estimate': round(est, 4),
+            'std_error': round(se, 4),
+            'p_value': round(p, 4),
+            'ci_low': round(est - 1.96 * se, 4),
+            'ci_high': round(est + 1.96 * se, 4),
+        })
 
-print(f"E2: joint test of arm x prior-AI-use interactions on total_score: "
-      f"F={float(np.asarray(wt2.statistic)):.2f}, p={float(wt2.pvalue):.3f}.")
+e3_df = pd.DataFrame(e3_rows)
+e3_df.to_csv('results/E3_no_attention_failures.csv', index=False)
 
-# ---------------------------------------------------------------------------
-# E3: Placebo -- arms should not predict pre-treatment political knowledge.
-# ---------------------------------------------------------------------------
-d3 = df.dropna(subset=["pk_score"]).copy()
-m3 = smf.wls(f"pk_score ~ {ARM}", data=d3,
-             weights=d3["ipw"]).fit(cov_type="HC2")
-arm_terms3 = [t for t in m3.params.index if t.startswith("C(arm_code")]
-t3 = add_arm_cols(tidy(m3, "E3", keep=arm_terms3), m3.nobs)
-wt3 = m3.wald_test(", ".join(f"{t} = 0" for t in arm_terms3))
-joint3 = pd.DataFrame({
-    "analysis_id": ["E3"], "arm_code": [np.nan], "arm_label": ["JOINT"],
-    "term": ["JOINT: all arm dummies = 0"],
-    "estimate": [np.nan], "std_error": [np.nan],
-    "statistic": [float(np.asarray(wt3.statistic))],
-    "p_value": [float(wt3.pvalue)],
-    "conf_low": [np.nan], "conf_high": [np.nan], "n": [int(m3.nobs)],
-})
-t3 = pd.concat([t3, joint3], ignore_index=True)
-t3.to_csv("results/E3_placebo_pk.csv", index=False)
+sig_arms = {'3': 'Automated Flagging', '6': 'Mindfulness', '10': 'AI Literacy Guide'}
+sig_results = e3_df[e3_df['arm_code'].isin(sig_arms.keys())]
+print(f"E3: N={len(df_e3)} (excluded {n_excluded} with pk_score=0). "
+      f"Previously significant arms: " +
+      ", ".join([f"{sig_arms[r.arm_code]}: est={r.estimate:.4f}, p={r.p_value:.4f}"
+                 for r in sig_results.itertuples()]))
 
-print(f"E3: placebo joint test of arm dummies on pre-treatment pk_score: "
-      f"F={float(np.asarray(wt3.statistic)):.2f}, p={float(wt3.pvalue):.3f}.")
+print("\nAll exploratory analyses complete.")

@@ -1,0 +1,40 @@
+arm_code,arm_label,item,mean_control,mean_treated,diff,n_control,n_treated
+5,Breathing Exercise,biden2_real_news_005.png,0.843,0.9062,0.0632,172,128
+5,Breathing Exercise,biden_real_005.png,0.2373,0.2977,0.0604,177,131
+5,Breathing Exercise,biden_real_news_001.png,0.9023,0.8605,-0.0418,174,129
+5,Breathing Exercise,election_real_news_006.png,0.7471,0.7812,0.0341,174,128
+5,Breathing Exercise,google_real_news_003.png,0.8652,0.8889,0.0237,178,126
+5,Breathing Exercise,hot_weather_real_news_008.png,0.8793,0.872,-0.0073,174,125
+5,Breathing Exercise,jim_jordan_real_news_007.png,0.6629,0.6016,-0.0613,175,128
+5,Breathing Exercise,johnson_real_003.mp4,0.7931,0.7656,-0.0275,174,128
+5,Breathing Exercise,poland_real_news_002.png,0.6824,0.6977,0.0153,170,129
+5,Breathing Exercise,protest_real_news_004.png,0.8382,0.8254,-0.0128,173,126
+5,Breathing Exercise,putin_real_002.webp,0.5614,0.5,-0.0614,171,126
+5,Breathing Exercise,unhorse_real_004.png,0.4743,0.4427,-0.0315,175,131
+5,Breathing Exercise,untrump_real_001.webp,0.7283,0.6719,-0.0564,173,128
+9,AI Literacy Infographic 2,biden2_real_news_005.png,0.843,0.8133,-0.0297,172,75
+9,AI Literacy Infographic 2,biden_real_005.png,0.2373,0.209,-0.0283,177,67
+9,AI Literacy Infographic 2,biden_real_news_001.png,0.9023,0.84,-0.0623,174,75
+9,AI Literacy Infographic 2,election_real_news_006.png,0.7471,0.75,0.0029,174,76
+9,AI Literacy Infographic 2,google_real_news_003.png,0.8652,0.8696,0.0044,178,69
+9,AI Literacy Infographic 2,hot_weather_real_news_008.png,0.8793,0.863,-0.0163,174,73
+9,AI Literacy Infographic 2,jim_jordan_real_news_007.png,0.6629,0.625,-0.0379,175,72
+9,AI Literacy Infographic 2,johnson_real_003.mp4,0.7931,0.8028,0.0097,174,71
+9,AI Literacy Infographic 2,poland_real_news_002.png,0.6824,0.6143,-0.0681,170,70
+9,AI Literacy Infographic 2,protest_real_news_004.png,0.8382,0.7297,-0.1084,173,74
+9,AI Literacy Infographic 2,putin_real_002.webp,0.5614,0.4028,-0.1586,171,72
+9,AI Literacy Infographic 2,unhorse_real_004.png,0.4743,0.3067,-0.1676,175,75
+9,AI Literacy Infographic 2,untrump_real_001.webp,0.7283,0.6111,-0.1172,173,72
+10,AI Literacy Guide,biden2_real_news_005.png,0.843,0.8718,0.0288,172,156
+10,AI Literacy Guide,biden_real_005.png,0.2373,0.22,-0.0173,177,150
+10,AI Literacy Guide,biden_real_news_001.png,0.9023,0.8581,-0.0442,174,155
+10,AI Literacy Guide,election_real_news_006.png,0.7471,0.7115,-0.0356,174,156
+10,AI Literacy Guide,google_real_news_003.png,0.8652,0.891,0.0259,178,156
+10,AI Literacy Guide,hot_weather_real_news_008.png,0.8793,0.8105,-0.0689,174,153
+10,AI Literacy Guide,jim_jordan_real_news_007.png,0.6629,0.5641,-0.0988,175,156
+10,AI Literacy Guide,johnson_real_003.mp4,0.7931,0.8506,0.0575,174,154
+10,AI Literacy Guide,poland_real_news_002.png,0.6824,0.5935,-0.0888,170,155
+10,AI Literacy Guide,protest_real_news_004.png,0.8382,0.7792,-0.0589,173,154
+10,AI Literacy Guide,putin_real_002.webp,0.5614,0.4645,-0.0969,171,155
+10,AI Literacy Guide,unhorse_real_004.png,0.4743,0.4248,-0.0494,175,153
+10,AI Literacy Guide,untrump_real_001.webp,0.7283,0.6558,-0.0725,173,154
