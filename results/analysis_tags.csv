@@ -1,4 +1,7 @@
 analysis_id,kind,tag,n_differences,differences,justification
-H1,hypothesis,unregistered,0,[],
-H2,hypothesis,unregistered,0,[],
-H3,hypothesis,unregistered,0,[],
+H1,hypothesis,deviation,1,"[{""field"": ""estimator.cluster"", ""registered"": ""participant_id"", ""implemented"": null}]","HC2 robust standard errors without clustering (the shipped data has one row per respondent and no participant_id column; clustering is impossible and, with one observation per respondent, unnecessary)"
+H2,hypothesis,deviation,1,"[{""field"": ""estimator.cluster"", ""registered"": ""participant_id"", ""implemented"": null}]",HC2 robust standard errors without clustering (as for H1)
+H3,hypothesis,deviation,1,"[{""field"": ""estimator.cluster"", ""registered"": ""participant_id"", ""implemented"": null}]",HC2 robust standard errors without clustering (as for H1)
+E1,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E2,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E3,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered

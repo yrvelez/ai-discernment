@@ -1,60 +1,6 @@
 {
- "text": "The retrieved literature offers no direct experimental evidence on H1–H3: none of the works tests an intervention intended to change human accuracy at discriminating AI-generated from real items, whether overall or by item type. The closest works address adjacent constructs—reviews of misinformation belief and its resistance to correction (Ecker et al., 2022) and of fake news and disinformation in social media [citation removed: not in retrieved set] examine why false content is believed and how corrections fare, while discussion of ChatGPT in higher education notes that AI-generated prose can be impressively fluent and thus hard to identify (Rudolph et al., 2023). These works motivate the plausibility that discernment is difficult and that interventions may matter, but they do not report effect sizes or item-type-specific accuracy changes of the kind the hypotheses require.\n\nThe remainder of the retrieved set—covering LLM training curricula, radiology AI, behavioral policy framing, LLM security, retrieval-augmented generation, IoT finance, and generative AI in education—is off-topic for these hypotheses. Overall, the list is thin for the present research question, and the study's hypotheses appear largely untested by the retrieved prior work.",
+ "text": "Prior work on misinformation discernment suggests that individual-level cognitive interventions—such as accuracy prompts, inoculation, and media-literacy tools—can improve people's ability to judge the veracity of online content, providing a basis for expecting intervention effects on overall discernment accuracy (H1) (Kozyreva et al., 2020; Ecker et al., 2022). Reviews of fake news and disinformation similarly document a range of countermeasures, though with variable effectiveness across contexts [citation removed: not in retrieved set]. At the same time, critiques of individual-focused behavioral policy caution that such interventions often yield modest, short-lived effects when the surrounding information environment is unchanged (Chater & Loewenstein, 2022).\n\nHowever, the retrieved list is largely off-topic for this study: most items concern AI in education, healthcare, or machine-learning deployment rather than content discernment. None of the retrieved works directly test interventions targeting the detection of AI-generated content (H2) or the recognition of authentic content (H3), so these hypotheses lack direct empirical precedent in the works provided here.",
  "works": [
-  {
-   "id": "https://openalex.org/W4226278401",
-   "title": "Discernment and Social Learning as a Companion Training Layer",
-   "authors": [
-    "Long Ouyang",
-    "Jeff Wu",
-    "Xu Jiang",
-    "Diogo Almeida"
-   ],
-   "year": 2022,
-   "doi": "10.48550/arxiv.2203.02155",
-   "venue": "arXiv (Cornell University)",
-   "cited_by": 4291,
-   "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
-  },
-  {
-   "id": "https://openalex.org/W4386222752",
-   "title": "Redefining Radiology: A Review of Artificial Intelligence Integration in Medical Imaging",
-   "authors": [
-    "Reabal Najjar"
-   ],
-   "year": 2023,
-   "doi": "10.3390/diagnostics13172760",
-   "venue": "Diagnostics",
-   "cited_by": 791,
-   "abstract": "This comprehensive review unfolds a detailed narrative of Artificial Intelligence (AI) making its foray into radiology, a move that is catalysing transformational shifts in the healthcare landscape. It traces the evolution of radiology, from the initial discovery of X-rays to the application of machine learning and deep learning in modern medical image analysis. The primary focus of this review is"
-  },
-  {
-   "id": "https://openalex.org/W4294628862",
-   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
-   "authors": [
-    "Nick Chater",
-    "George F. Loewenstein"
-   ],
-   "year": 2022,
-   "doi": "10.1017/s0140525x22002023",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 583,
-   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun"
-  },
-  {
-   "id": "https://openalex.org/W4317910584",
-   "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
-   "authors": [
-    "Jürgen Rudolph",
-    "Samson Tan",
-    "Shannon Tan"
-   ],
-   "year": 2023,
-   "doi": "10.37074/jalt.2023.6.1.9",
-   "venue": "Journal of Applied Learning & Teaching",
-   "cited_by": 1782,
-   "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to "
-  },
   {
    "id": "https://openalex.org/W4206236567",
    "title": "The psychological drivers of misinformation belief and its resistance to correction",
@@ -71,49 +17,6 @@
    "abstract": ""
   },
   {
-   "id": "https://openalex.org/W4392353733",
-   "title": "A survey on large language model (LLM) security and privacy: The Good, The Bad, and The Ugly",
-   "authors": [
-    "Yifan Yao",
-    "Jinhao Duan",
-    "Kaidi Xu",
-    "Yuanfang Cai"
-   ],
-   "year": 2024,
-   "doi": "10.1016/j.hcc.2024.100211",
-   "venue": "High-Confidence Computing",
-   "cited_by": 1049,
-   "abstract": "Large Language Models (LLMs), such as ChatGPT and Bard, have revolutionized natural language understanding and generation. They possess deep language comprehension, human-like text generation capabilities, contextual awareness, and robust problem-solving skills, making them invaluable in various domains (e.g., search engines, customer support, translation). In the meantime, LLMs have also gained t"
-  },
-  {
-   "id": "https://openalex.org/W4389984066",
-   "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
-   "authors": [
-    "Yunfan Gao",
-    "Yun Xiong",
-    "Xinyu Gao",
-    "Kangxiang Jia"
-   ],
-   "year": 2023,
-   "doi": "10.48550/arxiv.2312.10997",
-   "venue": "arXiv (Cornell University)",
-   "cited_by": 749,
-   "abstract": "Large Language Models (LLMs) showcase impressive capabilities but encounter challenges like hallucination, outdated knowledge, and non-transparent, untraceable reasoning processes. Retrieval-Augmented Generation (RAG) has emerged as a promising solution by incorporating knowledge from external databases. This enhances the accuracy and credibility of the generation, particularly for knowledge-inten"
-  },
-  {
-   "id": "https://openalex.org/W4386961654",
-   "title": "Exploring the Full Potentials of IoT for Better Financial Growth and Stability: A Comprehensive Survey",
-   "authors": [
-    "Hanane Allioui",
-    "Youssef Mourdi"
-   ],
-   "year": 2023,
-   "doi": "10.3390/s23198015",
-   "venue": "Sensors",
-   "cited_by": 556,
-   "abstract": "Cutting-edge technologies, with a special emphasis on the Internet of Things (IoT), tend to operate as game changers, generating enormous alterations in both traditional and modern enterprises. Understanding multiple uses of IoT has become vital for effective financial management, given the ever-changing nature of organizations and the technological disruptions that come with this paradigm change."
-  },
-  {
    "id": "https://openalex.org/W4319983294",
    "title": "Fake news, disinformation and misinformation in social media: a review",
    "authors": [
@@ -126,6 +29,60 @@
    "venue": "Social Network Analysis and Mining",
    "cited_by": 773,
    "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W3003606046",
+   "title": "Citizens Versus the Internet: Confronting Digital Challenges With Cognitive Tools",
+   "authors": [
+    "Anastasia Kozyreva",
+    "Stephan Lewandowsky",
+    "Ralph Hertwig"
+   ],
+   "year": 2020,
+   "doi": "10.1177/1529100620946707",
+   "venue": "Gothic.net",
+   "cited_by": 460,
+   "abstract": "The Internet has evolved into a ubiquitous and indispensable digital environment in which people communicate, seek information, and make decisions. Despite offering various benefits, online environments are also replete with smart, highly adaptive choice architectures designed primarily to maximize commercial interests, capture and sustain users' attention, monetize user data, and predict and infl"
+  },
+  {
+   "id": "https://openalex.org/W4294628862",
+   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
+   "authors": [
+    "Nick Chater",
+    "George F. Loewenstein"
+   ],
+   "year": 2022,
+   "doi": "10.1017/s0140525x22002023",
+   "venue": "Behavioral and Brain Sciences",
+   "cited_by": 583,
+   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun"
+  },
+  {
+   "id": "https://openalex.org/W4392769984",
+   "title": "A scoping review of artificial intelligence in medical education: BEME Guide No. 84",
+   "authors": [
+    "Morris A. Gordon",
+    "Michelle M. Daniel",
+    "Aderonke Ajiboye",
+    "Hussein Uraiby"
+   ],
+   "year": 2024,
+   "doi": "10.1080/0142159x.2024.2314198",
+   "venue": "Medical Teacher",
+   "cited_by": 539,
+   "abstract": "BACKGROUND: Artificial Intelligence (AI) is rapidly transforming healthcare, and there is a critical need for a nuanced understanding of how AI is reshaping teaching, learning, and educational practice in medical education. This review aimed to map the literature regarding AI applications in medical education, core areas of findings, potential candidates for formal systematic review and gaps for f"
+  },
+  {
+   "id": "https://openalex.org/W4388797251",
+   "title": "Improving health literacy using the power of digital communications to achieve better health outcomes for patients and practitioners",
+   "authors": [
+    "Patrick J. Fitzpatrick"
+   ],
+   "year": 2023,
+   "doi": "10.3389/fdgth.2023.1264780",
+   "venue": "Frontiers in Digital Health",
+   "cited_by": 408,
+   "abstract": "Digital communication tools have demonstrated significant potential to improve health literacy which ultimately leads to better health outcomes. In this article, we examine the power of digital communication tools such as mobile health apps, telemedicine and online health information resources to promote health and digital literacy. We outline evidence that digital tools facilitate patient educati"
   },
   {
    "id": "https://openalex.org/W4386251129",
@@ -141,13 +98,57 @@
    "venue": "Sustainability",
    "cited_by": 769,
    "abstract": "In the ever-evolving era of technological advancements, generative artificial intelligence (GAI) emerges as a transformative force, revolutionizing education. This review paper, guided by the PRISMA framework, presents a comprehensive analysis of GAI in education, synthesizing key insights from a selection of 207 research papers to identify research gaps and future directions in the field. This st"
+  },
+  {
+   "id": "https://openalex.org/W3104128335",
+   "title": "Challenges in Deploying Machine Learning: A Survey of Case Studies",
+   "authors": [
+    "Andrei Paleyes",
+    "Raoul-Gabriel Urma",
+    "Neil David Lawrence"
+   ],
+   "year": 2022,
+   "doi": "10.1145/3533378",
+   "venue": "ACM Computing Surveys",
+   "cited_by": 631,
+   "abstract": "In recent years, machine learning has transitioned from a field of academic research interest to a field capable of solving real-world business problems. However, the deployment of machine learning models in production systems can present a number of issues and concerns. This survey reviews published reports of deploying machine learning solutions in a variety of use cases, industries, and applica"
+  },
+  {
+   "id": "https://openalex.org/W2969625533",
+   "title": "Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy",
+   "authors": [
+    "Yogesh Kumar Dwivedi",
+    "Laurie Hughes",
+    "Elvira Ismagilova",
+    "Gert Aarts"
+   ],
+   "year": 2019,
+   "doi": "10.1016/j.ijinfomgt.2019.08.002",
+   "venue": "International Journal of Information Management",
+   "cited_by": 4523,
+   "abstract": "As far back as the industrial revolution, significant development in technical innovation has succeeded in transforming numerous manual tasks and processes that had been in existence for decades where humans had reached the limits of physical capacity. Artificial Intelligence (AI) offers this same transformative potential for the augmentation and potential replacement of human tasks and activities"
+  },
+  {
+   "id": "https://openalex.org/W4360620450",
+   "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
+   "authors": [
+    "Yogesh Kumar Dwivedi",
+    "Nir Kshetri",
+    "Laurie Hughes",
+    "Emma Louise Slade"
+   ],
+   "year": 2023,
+   "doi": "10.1016/j.ijinfomgt.2023.102642",
+   "venue": "International Journal of Information Management",
+   "cited_by": 4418,
+   "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
   }
  ],
  "queries": [
-  "AI-generated content misinformation discernment interventions",
-  "deepfake detection accuracy fact-checking intervention experiment",
-  "improving human discernment of AI-generated images misinformation",
-  "media literacy interventions deepfakes survey experiment"
+  "deepfake detection misinformation interventions inoculation accuracy nudge",
+  "AI-generated media discernment literacy detection accuracy",
+  "synthetic media deepfakes trust credibility perception",
+  "misinformation intervention effectiveness AI content recognition"
  ],
  "degraded": null
 }

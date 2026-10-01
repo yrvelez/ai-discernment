@@ -1,24 +1,28 @@
 {
- "source": "inputs/pap.json (transcribed from code/replication_script.R)",
- "title": "Improving AI Discernment",
- "constructs": [
-  "misinformation",
-  "ai_generated_content",
-  "fact_checking"
- ],
- "keywords": [
-  "AI-generated images",
-  "deepfakes",
-  "discernment",
-  "misinformation interventions",
-  "survey experiment",
-  "inverse probability weighting"
- ],
+ "source": "inputs/pap.md",
+ "title": "Improving AI Discernment: do misinformation interventions help people spot AI-generated media?",
  "registration": {
   "status": "none",
   "url": "",
-  "note": "No pre-registration. This plan is a transcription of the authors' analysis script (code/replication_script.R): outcomes, arms, covariates, Lin adjustment, 1/pr weights and no multiple-testing correction are taken from it verbatim."
+  "note": "the original analysis script (original/code/replication_script.R) and the study write-up; no pre-registration exists"
  },
+ "constructs": [
+  "ai_generated_content",
+  "misinformation",
+  "media_trust",
+  "persuasion",
+  "survey_methodology"
+ ],
+ "keywords": [
+  "AI discernment",
+  "deepfakes",
+  "synthetic media",
+  "inoculation",
+  "accuracy nudge",
+  "AI literacy",
+  "misinformation interventions",
+  "Lin estimator"
+ ],
  "design": {
   "type": "survey_experiment",
   "arms": {
@@ -52,35 +56,36 @@
     "11": "AI Text Video"
    },
    "descriptions": {
-    "0": "Control: no intervention before the feed.",
-    "1": "Flagging: posts carry a label flagging possible AI-generated content.",
-    "2": "Provenance: posts show content-provenance information.",
-    "3": "Automated Flagging: an automated detector's flag is shown on posts.",
-    "4": "AI Accuracy Nudge: prompt to consider accuracy of AI content before the feed.",
-    "5": "Breathing Exercise: brief breathing exercise before the feed.",
-    "6": "Mindfulness: brief mindfulness exercise before the feed.",
-    "7": "Inoculation: prebunking message about AI-generated media.",
-    "8": "AI Literacy Infographic: infographic on spotting AI-generated media.",
-    "9": "AI Literacy Infographic 2: alternative infographic.",
-    "10": "AI Literacy Guide: detailed guide to artifacts of AI-generated media.",
-    "11": "AI Text Video: video on AI-generated text and media."
+    "0": "No intervention; the respondent proceeds directly to the discernment task.",
+    "1": "Posts in the feed are flagged as potentially AI-generated.",
+    "2": "Posts carry information about the content's source and origin (provenance).",
+    "3": "Posts carry machine-learning-based AI-detection labels (automated flagging).",
+    "4": "Before the feed, an interactive task asks 'Is this image AI-generated?' (accuracy nudge).",
+    "5": "Before the feed, a box-breathing exercise to reduce emotional reactivity.",
+    "6": "Before the feed, a short mindfulness exercise.",
+    "7": "Before the feed, an inoculation message pre-exposing the respondent to manipulation techniques used in AI-generated media.",
+    "8": "Before the feed, an infographic on how to identify AI-generated content.",
+    "9": "Before the feed, an alternative infographic on how to identify AI-generated content.",
+    "10": "Before the feed, a comprehensive guide with examples of AI artifacts in images and videos.",
+    "11": "Before the feed, an educational video about AI-generated text."
    }
   },
   "derived": {
-   "ipw": "1 / pr",
-   "ai_scale": "(chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7"
+   "ipw": "1 / pr"
   },
   "population": {
-   "country": "United States",
-   "sample": "online_panel"
+   "country": "US",
+   "sample": "other"
   },
-  "outcome_type": "accuracy share (real vs AI-generated classification)"
+  "outcome_type": "proportion_correct",
+  "fielded": "2023-10-30 to 2023-11-21",
+  "irb": "Columbia University AAAU9484"
  },
  "registered": {
   "outcomes": [
    {
     "name": "total_score",
-    "label": "Share of all items classified correctly",
+    "label": "Total discernment accuracy (proportion of 24 posts judged correctly)",
     "kind": "single_item",
     "columns": [
      "total_score"
@@ -90,11 +95,11 @@
      0,
      1
     ],
-    "construction": "total_score: share of real and AI-generated items classified correctly (0-1)"
+    "construction": "shipped in the data; mean of 24 item-correctness indicators"
    },
    {
     "name": "fake_score",
-    "label": "Accuracy on AI-generated items",
+    "label": "AI-content detection accuracy (proportion of 12 AI-generated posts identified)",
     "kind": "single_item",
     "columns": [
      "fake_score"
@@ -104,11 +109,11 @@
      0,
      1
     ],
-    "construction": "fake_score: share of AI-generated items classified correctly (0-1)"
+    "construction": "shipped in the data"
    },
    {
     "name": "real_score",
-    "label": "Accuracy on real items",
+    "label": "Authentic-content accuracy (proportion of 12 real posts identified)",
     "kind": "single_item",
     "columns": [
      "real_score"
@@ -118,7 +123,27 @@
      0,
      1
     ],
-    "construction": "real_score: share of real (authentic) items classified correctly (0-1)"
+    "construction": "shipped in the data"
+   },
+   {
+    "name": "ai_scale",
+    "label": "Prior AI tool use (covariate): proportion of 7 tools used",
+    "kind": "mean_items",
+    "columns": [
+     "chatgpt",
+     "bing",
+     "claude",
+     "character",
+     "dalle",
+     "midjourney",
+     "stable_diff"
+    ],
+    "reverse": [],
+    "scale": [
+     0,
+     1
+    ],
+    "construction": "mean of seven 0/1 tool-use indicators; used as a covariate"
    }
   ],
   "hypotheses": [
@@ -147,7 +172,7 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": null,
+     "cluster": "participant_id",
      "weights": "ipw",
      "covariates": [
       "media_trust",
@@ -160,15 +185,18 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    },
    {
     "id": "H2",
-    "text": "Each intervention changes accuracy on AI-generated items relative to control.",
+    "text": "Each intervention changes detection of AI-generated content relative to control.",
     "outcome": "fake_score",
     "treatment": {
      "column": "treatment",
@@ -191,7 +219,7 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": null,
+     "cluster": "participant_id",
      "weights": "ipw",
      "covariates": [
       "media_trust",
@@ -204,15 +232,18 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    },
    {
     "id": "H3",
-    "text": "Each intervention changes accuracy on real items relative to control.",
+    "text": "Each intervention changes recognition of authentic content relative to control.",
     "outcome": "real_score",
     "treatment": {
      "column": "treatment",
@@ -235,7 +266,7 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": null,
+     "cluster": "participant_id",
      "weights": "ipw",
      "covariates": [
       "media_trust",
@@ -248,15 +279,20 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    }
   ],
   "subgroups": [],
-  "sample_exclusions": [],
+  "sample_exclusions": [
+   "total_score == total_score"
+  ],
   "multiple_testing": "none",
   "alpha": 0.05
  },
@@ -264,7 +300,7 @@
   "outcomes": [
    {
     "name": "total_score",
-    "label": "Share of all items classified correctly",
+    "label": "Total discernment accuracy (proportion of 24 posts judged correctly)",
     "kind": "single_item",
     "columns": [
      "total_score"
@@ -274,11 +310,11 @@
      0,
      1
     ],
-    "construction": "total_score: share of real and AI-generated items classified correctly (0-1)"
+    "construction": "shipped in the data; mean of 24 item-correctness indicators"
    },
    {
     "name": "fake_score",
-    "label": "Accuracy on AI-generated items",
+    "label": "AI-content detection accuracy (proportion of 12 AI-generated posts identified)",
     "kind": "single_item",
     "columns": [
      "fake_score"
@@ -288,11 +324,11 @@
      0,
      1
     ],
-    "construction": "fake_score: share of AI-generated items classified correctly (0-1)"
+    "construction": "shipped in the data"
    },
    {
     "name": "real_score",
-    "label": "Accuracy on real items",
+    "label": "Authentic-content accuracy (proportion of 12 real posts identified)",
     "kind": "single_item",
     "columns": [
      "real_score"
@@ -302,7 +338,27 @@
      0,
      1
     ],
-    "construction": "real_score: share of real (authentic) items classified correctly (0-1)"
+    "construction": "shipped in the data"
+   },
+   {
+    "name": "ai_scale",
+    "label": "Prior AI tool use (covariate): proportion of 7 tools used",
+    "kind": "mean_items",
+    "columns": [
+     "chatgpt",
+     "bing",
+     "claude",
+     "character",
+     "dalle",
+     "midjourney",
+     "stable_diff"
+    ],
+    "reverse": [],
+    "scale": [
+     0,
+     1
+    ],
+    "construction": "mean of seven 0/1 tool-use indicators; used as a covariate"
    }
   ],
   "hypotheses": [
@@ -344,15 +400,18 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    },
    {
     "id": "H2",
-    "text": "Each intervention changes accuracy on AI-generated items relative to control.",
+    "text": "Each intervention changes detection of AI-generated content relative to control.",
     "outcome": "fake_score",
     "treatment": {
      "column": "treatment",
@@ -388,15 +447,18 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    },
    {
     "id": "H3",
-    "text": "Each intervention changes accuracy on real items relative to control.",
+    "text": "Each intervention changes recognition of authentic content relative to control.",
     "outcome": "real_score",
     "treatment": {
      "column": "treatment",
@@ -432,17 +494,59 @@
       "political_interest",
       "pk_score",
       "ai_scale"
-     ]
+     ],
+     "categorical": []
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": []
+    "exclusions": [
+     "total_score == total_score"
+    ]
    }
   ],
   "subgroups": [],
-  "sample_exclusions": [],
+  "sample_exclusions": [
+   "total_score == total_score"
+  ],
   "multiple_testing": "none",
   "alpha": 0.05
  },
- "ambiguities": []
+ "ambiguities": [
+  {
+   "hypothesis": "H1",
+   "field": "estimator.cluster",
+   "kind": "deviation",
+   "pap_text": "clusters = participant_id",
+   "interpretation": "HC2 robust standard errors without clustering",
+   "alternatives": [],
+   "reason": "the shipped data has one row per respondent and no participant_id column; clustering is impossible and, with one observation per respondent, unnecessary"
+  },
+  {
+   "hypothesis": "H2",
+   "field": "estimator.cluster",
+   "kind": "deviation",
+   "pap_text": "clusters = participant_id",
+   "interpretation": "HC2 robust standard errors without clustering",
+   "alternatives": [],
+   "reason": "as for H1"
+  },
+  {
+   "hypothesis": "H3",
+   "field": "estimator.cluster",
+   "kind": "deviation",
+   "pap_text": "clusters = participant_id",
+   "interpretation": "HC2 robust standard errors without clustering",
+   "alternatives": [],
+   "reason": "as for H1"
+  },
+  {
+   "hypothesis": "H1",
+   "field": "sample_exclusions",
+   "kind": "interpretation",
+   "pap_text": "filter(!is.na(treatment)) %>% filter(!is.na(total_score))",
+   "interpretation": "rows outside the twelve arms are dropped by the arm filter; total_score == total_score drops missing outcomes",
+   "alternatives": [],
+   "reason": "pandas query equivalent of the R filters"
+  }
+ ]
 }

@@ -13,9 +13,9 @@ import pandas as pd
 warnings.filterwarnings("ignore")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-OUTCOMES = json.loads("[{\"name\": \"total_score\", \"label\": \"Share of all items classified correctly\", \"kind\": \"single_item\", \"columns\": [\"total_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"total_score: share of real and AI-generated items classified correctly (0-1)\"}, {\"name\": \"fake_score\", \"label\": \"Accuracy on AI-generated items\", \"kind\": \"single_item\", \"columns\": [\"fake_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"fake_score: share of AI-generated items classified correctly (0-1)\"}, {\"name\": \"real_score\", \"label\": \"Accuracy on real items\", \"kind\": \"single_item\", \"columns\": [\"real_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"real_score: share of real (authentic) items classified correctly (0-1)\"}]")
-EXCLUSIONS = []
-DERIVED = json.loads("{\"ipw\": \"1 / pr\", \"ai_scale\": \"(chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7\"}")
+OUTCOMES = json.loads("[{\"name\": \"total_score\", \"label\": \"Total discernment accuracy (proportion of 24 posts judged correctly)\", \"kind\": \"single_item\", \"columns\": [\"total_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"shipped in the data; mean of 24 item-correctness indicators\"}, {\"name\": \"fake_score\", \"label\": \"AI-content detection accuracy (proportion of 12 AI-generated posts identified)\", \"kind\": \"single_item\", \"columns\": [\"fake_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"shipped in the data\"}, {\"name\": \"real_score\", \"label\": \"Authentic-content accuracy (proportion of 12 real posts identified)\", \"kind\": \"single_item\", \"columns\": [\"real_score\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"shipped in the data\"}, {\"name\": \"ai_scale\", \"label\": \"Prior AI tool use (covariate): proportion of 7 tools used\", \"kind\": \"mean_items\", \"columns\": [\"chatgpt\", \"bing\", \"claude\", \"character\", \"dalle\", \"midjourney\", \"stable_diff\"], \"reverse\": [], \"scale\": [0, 1], \"construction\": \"mean of seven 0/1 tool-use indicators; used as a covariate\"}]")
+EXCLUSIONS = ["total_score == total_score"]
+DERIVED = json.loads("{\"ipw\": \"1 / pr\"}")
 ARM_COL = "treatment"
 TREATED = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]            # list of treated arm values (strings)
 CONTROL = "0"
