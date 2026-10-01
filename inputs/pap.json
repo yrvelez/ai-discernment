@@ -1,10 +1,10 @@
 {
- "source": "inputs/pap.md",
+ "source": "inputs/pap.md (AsPredicted #151,281, transcribed verbatim)",
  "title": "Improving AI Discernment: do misinformation interventions help people spot AI-generated media?",
  "registration": {
-  "status": "none",
-  "url": "",
-  "note": "the original analysis script (original/code/replication_script.R) and the study write-up; no pre-registration exists"
+  "status": "registered",
+  "url": "https://aspredicted.org/q2eh95.pdf",
+  "note": "AsPredicted #151,281, registered 2023-11-15 (amends #151208). Some data had been collected at registration; batches 3-4 followed the plan."
  },
  "constructs": [
   "ai_generated_content",
@@ -71,11 +71,12 @@
    }
   },
   "derived": {
-   "ipw": "1 / pr"
+   "ipw": "1 / pr",
+   "ai_scale": "(chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7"
   },
   "population": {
-   "country": "US",
-   "sample": "other"
+   "country": "United States",
+   "sample": "online_panel"
   },
   "outcome_type": "proportion_correct",
   "fielded": "2023-10-30 to 2023-11-21",
@@ -85,7 +86,7 @@
   "outcomes": [
    {
     "name": "total_score",
-    "label": "Total discernment accuracy (proportion of 24 posts judged correctly)",
+    "label": "Accuracy (share of 24 posts judged correctly)",
     "kind": "single_item",
     "columns": [
      "total_score"
@@ -95,61 +96,74 @@
      0,
      1
     ],
-    "construction": "shipped in the data; mean of 24 item-correctness indicators"
+    "construction": "Registered primary outcome: overall accuracy score across the 24 videos/images"
    },
    {
-    "name": "fake_score",
-    "label": "AI-content detection accuracy (proportion of 12 AI-generated posts identified)",
-    "kind": "single_item",
-    "columns": [
-     "fake_score"
-    ],
-    "reverse": [],
-    "scale": [
-     0,
-     1
-    ],
-    "construction": "shipped in the data"
-   },
-   {
-    "name": "real_score",
-    "label": "Authentic-content accuracy (proportion of 12 real posts identified)",
-    "kind": "single_item",
-    "columns": [
-     "real_score"
-    ],
-    "reverse": [],
-    "scale": [
-     0,
-     1
-    ],
-    "construction": "shipped in the data"
-   },
-   {
-    "name": "ai_scale",
-    "label": "Prior AI tool use (covariate): proportion of 7 tools used",
+    "name": "ai_attitudes",
+    "label": "AI attitudes (opportunity vs threat, 6 items)",
     "kind": "mean_items",
     "columns": [
-     "chatgpt",
-     "bing",
-     "claude",
-     "character",
-     "dalle",
-     "midjourney",
-     "stable_diff"
+     "ai_outcome_1",
+     "ai_outcome_2",
+     "ai_outcome_3",
+     "ai_outcome_4",
+     "ai_outcome_5",
+     "ai_outcome_6"
+    ],
+    "reverse": [
+     "ai_outcome_4",
+     "ai_outcome_6"
+    ],
+    "scale": [
+     1,
+     7
+    ],
+    "construction": "Mean of six 7-point items; threat items (4, 6) reverse-coded so higher = AI seen as an opportunity"
+   },
+   {
+    "name": "ai_confidence",
+    "label": "Confidence in AI detection (single 7-point item)",
+    "kind": "single_item",
+    "columns": [
+     "ai_outcome_7"
     ],
     "reverse": [],
     "scale": [
-     0,
-     1
+     1,
+     7
     ],
-    "construction": "mean of seven 0/1 tool-use indicators; used as a covariate"
+    "construction": "'I feel confident in my ability to detect artificial intelligence'"
+   },
+   {
+    "name": "trust_online",
+    "label": "Trust in online information (7 items)",
+    "kind": "mean_items",
+    "columns": [
+     "trust_online_1",
+     "trust_online_2",
+     "trust_online_3",
+     "trust_online_4",
+     "trust_online_5",
+     "trust_online_6",
+     "trust_online_7"
+    ],
+    "reverse": [
+     "trust_online_3",
+     "trust_online_5",
+     "trust_online_6",
+     "trust_online_7"
+    ],
+    "scale": [
+     1,
+     5
+    ],
+    "construction": "Mean of seven 5-point items; distrust/verification items (3, 5, 6, 7) reverse-coded so higher = more trust"
    }
   ],
   "hypotheses": [
    {
     "id": "H1",
-    "text": "Each intervention changes total discernment accuracy relative to control.",
+    "text": "Each intervention changes AI-detection accuracy relative to control.",
     "outcome": "total_score",
     "treatment": {
      "column": "treatment",
@@ -172,32 +186,29 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": "participant_id",
+     "cluster": null,
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
    },
    {
     "id": "H2",
-    "text": "Each intervention changes detection of AI-generated content relative to control.",
-    "outcome": "fake_score",
+    "text": "Each intervention changes attitudes toward AI relative to control.",
+    "outcome": "ai_attitudes",
     "treatment": {
      "column": "treatment",
      "arms": [
@@ -219,32 +230,29 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": "participant_id",
+     "cluster": null,
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
    },
    {
     "id": "H3",
-    "text": "Each intervention changes recognition of authentic content relative to control.",
-    "outcome": "real_score",
+    "text": "Each intervention changes confidence in detecting AI relative to control.",
+    "outcome": "ai_confidence",
     "treatment": {
      "column": "treatment",
      "arms": [
@@ -266,33 +274,72 @@
     "estimator": {
      "kind": "lin",
      "robust": "HC2",
-     "cluster": "participant_id",
+     "cluster": null,
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
+   },
+   {
+    "id": "H4",
+    "text": "Each intervention changes trust in online information relative to control.",
+    "outcome": "trust_online",
+    "treatment": {
+     "column": "treatment",
+     "arms": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+     ],
+     "control": "0"
+    },
+    "direction": "two_sided",
+    "estimator": {
+     "kind": "lin",
+     "robust": "HC2",
+     "cluster": null,
+     "weights": "ipw",
+     "covariates": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ],
+     "continuous": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ]
+    },
+    "pooled": true,
+    "subgroup": null,
+    "exclusions": []
    }
   ],
   "subgroups": [],
-  "sample_exclusions": [
-   "total_score == total_score"
-  ],
+  "sample_exclusions": [],
   "multiple_testing": "none",
   "alpha": 0.05
  },
@@ -300,7 +347,7 @@
   "outcomes": [
    {
     "name": "total_score",
-    "label": "Total discernment accuracy (proportion of 24 posts judged correctly)",
+    "label": "Accuracy (share of 24 posts judged correctly)",
     "kind": "single_item",
     "columns": [
      "total_score"
@@ -310,11 +357,72 @@
      0,
      1
     ],
-    "construction": "shipped in the data; mean of 24 item-correctness indicators"
+    "construction": "Registered primary outcome: overall accuracy score across the 24 videos/images"
+   },
+   {
+    "name": "ai_attitudes",
+    "label": "AI attitudes (opportunity vs threat, 6 items)",
+    "kind": "mean_items",
+    "columns": [
+     "ai_outcome_1",
+     "ai_outcome_2",
+     "ai_outcome_3",
+     "ai_outcome_4",
+     "ai_outcome_5",
+     "ai_outcome_6"
+    ],
+    "reverse": [
+     "ai_outcome_4",
+     "ai_outcome_6"
+    ],
+    "scale": [
+     1,
+     7
+    ],
+    "construction": "Mean of six 7-point items; threat items (4, 6) reverse-coded so higher = AI seen as an opportunity"
+   },
+   {
+    "name": "ai_confidence",
+    "label": "Confidence in AI detection (single 7-point item)",
+    "kind": "single_item",
+    "columns": [
+     "ai_outcome_7"
+    ],
+    "reverse": [],
+    "scale": [
+     1,
+     7
+    ],
+    "construction": "'I feel confident in my ability to detect artificial intelligence'"
+   },
+   {
+    "name": "trust_online",
+    "label": "Trust in online information (7 items)",
+    "kind": "mean_items",
+    "columns": [
+     "trust_online_1",
+     "trust_online_2",
+     "trust_online_3",
+     "trust_online_4",
+     "trust_online_5",
+     "trust_online_6",
+     "trust_online_7"
+    ],
+    "reverse": [
+     "trust_online_3",
+     "trust_online_5",
+     "trust_online_6",
+     "trust_online_7"
+    ],
+    "scale": [
+     1,
+     5
+    ],
+    "construction": "Mean of seven 5-point items; distrust/verification items (3, 5, 6, 7) reverse-coded so higher = more trust"
    },
    {
     "name": "fake_score",
-    "label": "AI-content detection accuracy (proportion of 12 AI-generated posts identified)",
+    "label": "AI-content detection accuracy (share of 12 AI-generated posts identified)",
     "kind": "single_item",
     "columns": [
      "fake_score"
@@ -324,11 +432,11 @@
      0,
      1
     ],
-    "construction": "shipped in the data"
+    "construction": "Not registered; reported in the authors' script"
    },
    {
     "name": "real_score",
-    "label": "Authentic-content accuracy (proportion of 12 real posts identified)",
+    "label": "Authentic-content accuracy (share of 12 real posts identified)",
     "kind": "single_item",
     "columns": [
      "real_score"
@@ -338,33 +446,13 @@
      0,
      1
     ],
-    "construction": "shipped in the data"
-   },
-   {
-    "name": "ai_scale",
-    "label": "Prior AI tool use (covariate): proportion of 7 tools used",
-    "kind": "mean_items",
-    "columns": [
-     "chatgpt",
-     "bing",
-     "claude",
-     "character",
-     "dalle",
-     "midjourney",
-     "stable_diff"
-    ],
-    "reverse": [],
-    "scale": [
-     0,
-     1
-    ],
-    "construction": "mean of seven 0/1 tool-use indicators; used as a covariate"
+    "construction": "Not registered; reported in the authors' script"
    }
   ],
   "hypotheses": [
    {
     "id": "H1",
-    "text": "Each intervention changes total discernment accuracy relative to control.",
+    "text": "Each intervention changes AI-detection accuracy relative to control.",
     "outcome": "total_score",
     "treatment": {
      "column": "treatment",
@@ -391,27 +479,156 @@
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
    },
    {
     "id": "H2",
-    "text": "Each intervention changes detection of AI-generated content relative to control.",
+    "text": "Each intervention changes attitudes toward AI relative to control.",
+    "outcome": "ai_attitudes",
+    "treatment": {
+     "column": "treatment",
+     "arms": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+     ],
+     "control": "0"
+    },
+    "direction": "two_sided",
+    "estimator": {
+     "kind": "lin",
+     "robust": "HC2",
+     "cluster": null,
+     "weights": "ipw",
+     "covariates": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ],
+     "continuous": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ]
+    },
+    "pooled": true,
+    "subgroup": null,
+    "exclusions": []
+   },
+   {
+    "id": "H3",
+    "text": "Each intervention changes confidence in detecting AI relative to control.",
+    "outcome": "ai_confidence",
+    "treatment": {
+     "column": "treatment",
+     "arms": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+     ],
+     "control": "0"
+    },
+    "direction": "two_sided",
+    "estimator": {
+     "kind": "lin",
+     "robust": "HC2",
+     "cluster": null,
+     "weights": "ipw",
+     "covariates": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ],
+     "continuous": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ]
+    },
+    "pooled": true,
+    "subgroup": null,
+    "exclusions": []
+   },
+   {
+    "id": "H4",
+    "text": "Each intervention changes trust in online information relative to control.",
+    "outcome": "trust_online",
+    "treatment": {
+     "column": "treatment",
+     "arms": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+     ],
+     "control": "0"
+    },
+    "direction": "two_sided",
+    "estimator": {
+     "kind": "lin",
+     "robust": "HC2",
+     "cluster": null,
+     "weights": "ipw",
+     "covariates": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ],
+     "continuous": [
+      "media_trust",
+      "pk_score",
+      "ai_scale",
+      "political_interest"
+     ]
+    },
+    "pooled": true,
+    "subgroup": null,
+    "exclusions": []
+   },
+   {
+    "id": "H5",
+    "text": "Not registered: each intervention changes detection of AI-generated posts relative to control.",
     "outcome": "fake_score",
     "treatment": {
      "column": "treatment",
@@ -438,27 +655,24 @@
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
    },
    {
-    "id": "H3",
-    "text": "Each intervention changes recognition of authentic content relative to control.",
+    "id": "H6",
+    "text": "Not registered: each intervention changes recognition of authentic posts relative to control.",
     "outcome": "real_score",
     "treatment": {
      "column": "treatment",
@@ -485,68 +699,63 @@
      "weights": "ipw",
      "covariates": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
+      "ai_scale",
+      "political_interest"
      ],
      "continuous": [
       "media_trust",
-      "political_interest",
       "pk_score",
-      "ai_scale"
-     ],
-     "categorical": []
+      "ai_scale",
+      "political_interest"
+     ]
     },
     "pooled": true,
     "subgroup": null,
-    "exclusions": [
-     "total_score == total_score"
-    ]
+    "exclusions": []
    }
   ],
   "subgroups": [],
-  "sample_exclusions": [
-   "total_score == total_score"
-  ],
+  "sample_exclusions": [],
   "multiple_testing": "none",
   "alpha": 0.05
  },
  "ambiguities": [
   {
-   "hypothesis": "H1",
-   "field": "estimator.cluster",
-   "kind": "deviation",
-   "pap_text": "clusters = participant_id",
-   "interpretation": "HC2 robust standard errors without clustering",
-   "alternatives": [],
-   "reason": "the shipped data has one row per respondent and no participant_id column; clustering is impossible and, with one observation per respondent, unnecessary"
-  },
-  {
    "hypothesis": "H2",
-   "field": "estimator.cluster",
-   "kind": "deviation",
-   "pap_text": "clusters = participant_id",
-   "interpretation": "HC2 robust standard errors without clustering",
+   "field": "outcome.reverse",
+   "kind": "interpretation",
+   "pap_text": "a six-item scale capturing whether AI is seen as an opportunity or threat",
+   "interpretation": "Items 4 and 6 (threat, manipulation) reverse-coded; higher = opportunity",
    "alternatives": [],
-   "reason": "as for H1"
+   "reason": "The registration does not state the scoring direction"
   },
   {
-   "hypothesis": "H3",
-   "field": "estimator.cluster",
-   "kind": "deviation",
-   "pap_text": "clusters = participant_id",
-   "interpretation": "HC2 robust standard errors without clustering",
+   "hypothesis": "H4",
+   "field": "outcome.reverse",
+   "kind": "interpretation",
+   "pap_text": "a seven-item scale capturing willingness to believe and verify information",
+   "interpretation": "Items 3, 5, 6, 7 (distrust, verification) reverse-coded; higher = trust",
    "alternatives": [],
-   "reason": "as for H1"
+   "reason": "The registration says '(dis)trust' without a scoring direction"
   },
   {
    "hypothesis": "H1",
-   "field": "sample_exclusions",
+   "field": "estimator.robust",
    "kind": "interpretation",
-   "pap_text": "filter(!is.na(treatment)) %>% filter(!is.na(total_score))",
-   "interpretation": "rows outside the twelve arms are dropped by the arm filter; total_score == total_score drops missing outcomes",
+   "pap_text": "Linear regression ... using the Lin (2013) estimator",
+   "interpretation": "HC2 robust standard errors, no clustering",
    "alternatives": [],
-   "reason": "pandas query equivalent of the R filters"
+   "reason": "The registration does not specify the variance estimator; one row per respondent"
+  },
+  {
+   "hypothesis": "H1",
+   "field": "estimator.continuous",
+   "kind": "interpretation",
+   "pap_text": "media trust, political knowledge, AI usage, and political interest",
+   "interpretation": "All four covariates enter linearly",
+   "alternatives": [],
+   "reason": "The registration lists the covariates without coding; the authors' script enters them linearly"
   }
  ]
 }
