@@ -1,4 +1,0 @@
-term,estimate,std_error,p_value,ci_low,ci_high
-Pooled treatment effect (any vs control),0.0601,0.0203,0.0031,0.0203,0.1
-ChatGPT usage (main effect),0.0833,0.0213,0.0001,0.0415,0.1251
-Treatment x ChatGPT interaction,-0.0614,0.024,0.0104,-0.1085,-0.0144

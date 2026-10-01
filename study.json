@@ -5,7 +5,7 @@
  "authors": [
   "Yamil Velez"
  ],
- "summary": "This survey experiment tested 11 interventions against a control condition on AI-generated media discernment among US respondents (N raw = 2,257; N analysis = 2,030). No pre-registration exists; all tests are post hoc. The primary outcome was total discernment accuracy (proportion correct across all items). Three arms showed statistically significant effects on total accuracy: Automated Flagging (+0.044, p = 0.004, two-sided), Mindfulness (−0.039, p = 0.032, two-sided), and AI Literacy Guide (+0.047, p = 0.043, two-sided). The pooled random-effects estimate across all 11 arms was 0.010 (p = 0.132), not distinguishable from zero. On the sub-outcome of detecting AI-generated content (fake_score), the pooled effect was 0.038 (p = 0.000371, two-sided), with three individually significant arms.",
+ "summary": "This study tested eleven interventions aimed at improving people's ability to discern AI-generated media from authentic content in a US survey experiment. Because no pre-registration exists, all tests are post hoc. Three interventions produced significant effects on total discernment accuracy: Automated Flagging raised it by 4.4 points (95% CI [1.4, 7.3], p = 0.004, two-sided), AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2], p = 0.043), and Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3], p = 0.032). The pooled effect across arms was not distinguishable from zero. For detection of AI-generated content, three arms were significant: Breathing Exercise (+9.1 points, 95% CI [3.2, 15.0], p = 0.003), AI Accuracy Nudge (+6.6 points, 95% CI [1.4, 11.9], p = 0.014), and AI Literacy Gu",
  "created": "2026-10-01",
  "synthetic": false,
  "design": {
@@ -579,7 +579,7 @@
   },
   {
    "id": "E1",
-   "text": "Heterogeneity by prior AI experience (ChatGPT usage)",
+   "text": "Heterogeneity by ChatGPT usage",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -589,7 +589,7 @@
   },
   {
    "id": "E2",
-   "text": "Item-level analysis of real-content recognition (false-alarm pattern)",
+   "text": "Robustness excluding attention-check failures",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -599,7 +599,7 @@
   },
   {
    "id": "E3",
-   "text": "Robustness to attention-check failures (pk_score = 0 exclusion)",
+   "text": "Decomposition by media type (video vs. image)",
    "tag": "exploratory",
    "estimate": null,
    "se": null,
@@ -623,13 +623,13 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.074708,
+  "cost_usd": 0.078964,
   "tokens": {
-   "in": 69529,
-   "out": 11125
+   "in": 71618,
+   "out": 14983
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-01T16:35:42Z",
+  "created": "2026-10-01T18:06:55Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [
@@ -654,36 +654,36 @@
   "usage_by_agent": {
    "exploratory": {
     "calls": 3,
-    "in": 47466,
-    "out": 7456,
-    "cost": 0.033063343632,
+    "in": 48826,
+    "out": 5467,
+    "cost": 0.024516533051999998,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "litreview": {
     "calls": 2,
-    "in": 1729,
-    "out": 376,
-    "cost": 0.0009404505,
+    "in": 1655,
+    "out": 996,
+    "cost": 0.00311450436,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "writer": {
     "calls": 1,
-    "in": 9921,
-    "out": 1738,
-    "cost": 0.004692303,
+    "in": 10397,
+    "out": 7096,
+    "cost": 0.0159697395,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "reviewer": {
     "calls": 1,
-    "in": 10413,
-    "out": 1555,
-    "cost": 0.03601224,
+    "in": 10740,
+    "out": 1424,
+    "cost": 0.0353628,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
@@ -691,45 +691,45 @@
   },
   "stage_seconds": {
    "ingest": 0.0,
-   "pii": 0.08,
-   "tidy": 0.06,
+   "pii": 0.06,
+   "tidy": 0.07,
    "pap": 0.0,
-   "clean": 0.34,
-   "registered": 11.53,
+   "clean": 0.37,
+   "registered": 18.44,
    "tag": 0.0,
-   "exploratory": 115.95,
+   "exploratory": 63.73,
    "silicon": 0.0,
-   "litreview": 7.87,
-   "write": 25.07,
-   "review": 14.08,
+   "litreview": 10.07,
+   "write": 126.99,
+   "review": 13.16,
    "package": 0.0
   },
-  "total_seconds": 175.0,
+  "total_seconds": 232.9,
   "log": [
-   "2026-10-01T16:35:42Z stage ingest",
-   "2026-10-01T16:35:42Z stage pii",
-   "2026-10-01T16:35:42Z PII scan (header + first row only): flagged 1 column(s): StartDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
-   "2026-10-01T16:35:42Z stage tidy",
-   "2026-10-01T16:35:42Z stage pap",
-   "2026-10-01T16:35:42Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
-   "2026-10-01T16:35:42Z stage clean",
-   "2026-10-01T16:35:43Z wrote data/clean.csv: 2030 rows, 68 columns",
-   "2026-10-01T16:35:43Z stage registered",
-   "2026-10-01T16:35:54Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
-   "2026-10-01T16:35:54Z H2: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-01T16:35:54Z H2: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
-   "2026-10-01T16:35:54Z H3: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-01T16:35:54Z H3: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
-   "2026-10-01T16:35:54Z wrote results/registered_summary.csv (36 rows)",
-   "2026-10-01T16:35:54Z stage tag",
-   "2026-10-01T16:35:54Z stage exploratory",
-   "2026-10-01T16:37:50Z tags: H1=deviation, H2=deviation, H3=deviation, E1=exploratory, E2=exploratory, E3=exploratory",
-   "2026-10-01T16:37:50Z stage silicon",
-   "2026-10-01T16:37:50Z stage litreview",
-   "2026-10-01T16:37:58Z stage write",
-   "2026-10-01T16:38:23Z stage review",
-   "2026-10-01T16:38:37Z reviewer: 8 issue(s)",
-   "2026-10-01T16:38:37Z stage package"
+   "2026-10-01T18:06:55Z stage ingest",
+   "2026-10-01T18:06:55Z stage pii",
+   "2026-10-01T18:06:55Z PII scan (header + first row only): flagged 1 column(s): StartDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
+   "2026-10-01T18:06:55Z stage tidy",
+   "2026-10-01T18:06:55Z stage pap",
+   "2026-10-01T18:06:55Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+   "2026-10-01T18:06:55Z stage clean",
+   "2026-10-01T18:06:55Z wrote data/clean.csv: 2030 rows, 68 columns",
+   "2026-10-01T18:06:55Z stage registered",
+   "2026-10-01T18:07:14Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+   "2026-10-01T18:07:14Z H2: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-01T18:07:14Z H2: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+   "2026-10-01T18:07:14Z H3: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-01T18:07:14Z H3: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + political_interest_c + pk_score_c + ai_scale_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+   "2026-10-01T18:07:14Z wrote results/registered_summary.csv (36 rows)",
+   "2026-10-01T18:07:14Z stage tag",
+   "2026-10-01T18:07:14Z stage exploratory",
+   "2026-10-01T18:08:18Z tags: H1=deviation, H2=deviation, H3=deviation, E1=exploratory, E2=exploratory, E3=exploratory",
+   "2026-10-01T18:08:18Z stage silicon",
+   "2026-10-01T18:08:18Z stage litreview",
+   "2026-10-01T18:08:28Z stage write",
+   "2026-10-01T18:10:35Z stage review",
+   "2026-10-01T18:10:48Z reviewer: 8 issue(s)",
+   "2026-10-01T18:10:48Z stage package"
   ]
  },
  "links": {

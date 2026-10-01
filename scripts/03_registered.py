@@ -19,6 +19,27 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# Tufte-leaning figure style: ink on white, no chart junk, direct labels. Matches the dashboard palette.
+INK, MUTED, RULE, ACCENT, POOL = "#1c1b19", "#8a877f", "#d9d5cc", "#8b1e2d", "#2f6f3e"
+plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"],
+                     "font.size": 9.5, "axes.titlesize": 10.5, "axes.titleweight": "normal", "axes.titlelocation": "left",
+                     "axes.labelsize": 9.5, "axes.labelcolor": INK, "xtick.labelsize": 8.5, "ytick.labelsize": 9,
+                     "xtick.color": MUTED, "ytick.color": INK, "axes.edgecolor": RULE, "axes.linewidth": 0.8,
+                     "figure.facecolor": "white", "axes.facecolor": "white", "savefig.facecolor": "white", "savefig.dpi": 200,
+                     "axes.spines.top": False, "axes.spines.right": False, "axes.spines.left": False})
+
+def tufte(ax, zero=True):
+    """Strip the frame, keep a light baseline, mark zero with a thin dashed rule."""
+    ax.tick_params(axis="y", length=0)
+    ax.tick_params(axis="x", length=3, width=0.6)
+    ax.grid(False)
+    if zero:
+        ax.axvline(0, color=MUTED, lw=0.8, ls=(0, (3, 3)), zorder=1)
+    ax.xaxis.set_major_locator(plt.MaxNLocator(5))
+
+def fmt_est(e, lo, hi, d=3):
+    return f"{e:+.{d}f}  [{lo:+.{d}f}, {hi:+.{d}f}]"
+
 HYPOTHESES = json.loads("[{\"id\": \"H1\", \"text\": \"Each intervention changes total discernment accuracy relative to control.\", \"outcome\": \"total_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"continuous\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"categorical\": []}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"total_score == total_score\"]}, {\"id\": \"H2\", \"text\": \"Each intervention changes detection of AI-generated content relative to control.\", \"outcome\": \"fake_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"continuous\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"categorical\": []}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"total_score == total_score\"]}, {\"id\": \"H3\", \"text\": \"Each intervention changes recognition of authentic content relative to control.\", \"outcome\": \"real_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"continuous\": [\"media_trust\", \"political_interest\", \"pk_score\", \"ai_scale\"], \"categorical\": []}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"total_score == total_score\"]}]")
 SUBGROUPS = json.loads("[]")
 MULTIARM = json.loads("{\"H1\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H2\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H3\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}}")     # hypothesis id -> {arms, control, labels, pooled}
@@ -122,25 +143,38 @@ def pool(effects, variances):
             "conf_low": est - 1.96 * se, "conf_high": est + 1.96 * se}
 
 def forest(hid, arms_df, pooled, outcome):
-    a = arms_df.sort_values("estimate").reset_index(drop=True)
+    """One row per arm, sorted by estimate; dot + thin 95% CI; estimate printed at the right margin;
+    pooled estimate as a diamond on its own row below a hairline."""
+    a = arms_df.sort_values("estimate", ascending=True).reset_index(drop=True)
     k = len(a)
-    fig, ax = plt.subplots(figsize=(6.5, 1.6 + 0.4 * (k + 1)))
-    ys = np.arange(k) + 1
-    ax.errorbar(a["estimate"], ys, xerr=[a["estimate"] - a["conf_low"], a["conf_high"] - a["estimate"]],
-                fmt="o", color="#2457a6", ecolor="#2457a6", capsize=3, ms=4)
-    labels = [f"{l} (n={int(n)})" for l, n in zip(a["arm_label"], a["n_arm"])]
+    extra = 1 if pooled is not None else 0
+    fig, ax = plt.subplots(figsize=(7.4, 1.3 + 0.36 * (k + extra)))
+    ys = np.arange(k) + (1.6 if pooled is not None else 0.5)
+    for y, (e, lo, hi, sup) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"], a["supported"])):
+        ax.plot([lo, hi], [y, y], color=INK, lw=1.0, solid_capstyle="butt", zorder=2)
+        ax.plot(e, y, "o", ms=5, color=INK if sup else "white", markeredgecolor=INK, markeredgewidth=1.0, zorder=3)
+    labels = [f"{l}  (n = {int(n)})" for l, n in zip(a["arm_label"], a["n_arm"])]
+    ticks = list(ys)
+    xmin = min(a["conf_low"].min(), pooled["conf_low"] if pooled is not None else 0, 0)
+    xmax = max(a["conf_high"].max(), pooled["conf_high"] if pooled is not None else 0, 0)
+    span = xmax - xmin
+    for y, (e, lo, hi) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"])):
+        ax.text(xmax + 0.06 * span, y, fmt_est(e, lo, hi), va="center", ha="left", fontsize=8, color=MUTED, family="monospace")
     if pooled is not None:
-        ax.plot([pooled["conf_low"], pooled["estimate"], pooled["conf_high"], pooled["estimate"], pooled["conf_low"]],
-                [0, 0.2, 0, -0.2, 0], color="#d9822b", lw=1.2)
-        ax.fill([pooled["conf_low"], pooled["estimate"], pooled["conf_high"], pooled["estimate"]], [0, 0.2, 0, -0.2], color="#d9822b", alpha=0.6)
-        ax.axvline(pooled["estimate"], color="#d9822b", lw=1, ls="--")
-        ys = np.concatenate([[0], ys]); labels = ["Pooled (random effects)"] + labels
-    ax.axvline(0, color="#888", lw=1)
-    ax.set_yticks(ys); ax.set_yticklabels(labels, fontsize=8)
-    ax.set_xlabel(f"Effect on {outcome} vs control (95% CI)")
-    ax.set_title(f"{hid}: treatment arms", fontsize=10)
-    ax.spines[["top", "right"]].set_visible(False)
-    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png", dpi=150); plt.close(fig)
+        y0 = 0.5
+        ax.axhline(1.05, color=RULE, lw=0.6)
+        ax.plot([pooled["conf_low"], pooled["conf_high"]], [y0, y0], color=POOL, lw=1.2, zorder=2)
+        ax.plot(pooled["estimate"], y0, "D", ms=5.5, color=POOL, zorder=3)
+        ax.text(xmax + 0.06 * span, y0, fmt_est(pooled["estimate"], pooled["conf_low"], pooled["conf_high"]),
+                va="center", ha="left", fontsize=8, color=POOL, family="monospace")
+        ticks = [y0] + ticks; labels = ["Pooled, random effects"] + labels
+    ax.set_yticks(ticks); ax.set_yticklabels(labels)
+    ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
+    ax.set_ylim(-0.2, ys[-1] + 0.8)
+    ax.set_xlabel(f"Difference from control in {outcome} (95% CI). Filled dots: p < {ALPHA}.")
+    ax.set_title(f"{hid}. Effect of each arm on {outcome}")
+    tufte(ax)
+    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png"); plt.close(fig)
 
 def run_multiarm(h, d, est, covs):
     spec = MULTIARM[h["id"]]
@@ -278,15 +312,21 @@ def main():
     # coefficient plot: one row per two-arm hypothesis and per pooled multi-arm estimate
     main_rows = [r for r in summary if "term" not in r]
     if main_rows:
-        fig, ax = plt.subplots(figsize=(6, 0.8 + 0.6 * len(main_rows)))
-        ys = range(len(main_rows))
-        ax.errorbar([r["estimate"] for r in main_rows], list(ys), xerr=[1.96 * r["std_error"] for r in main_rows],
-                    fmt="o", color="#2457a6", ecolor="#2457a6", capsize=3)
-        ax.axvline(0, color="#888", lw=1)
-        ax.set_yticks(list(ys)); ax.set_yticklabels([f"{r['analysis_id']}: {r['outcome']}" for r in main_rows])
-        ax.set_xlabel("Treatment effect (95% CI)")
-        ax.spines[["top", "right"]].set_visible(False)
-        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png", dpi=150); plt.close(fig)
+        fig, ax = plt.subplots(figsize=(7.4, 1.2 + 0.42 * len(main_rows)))
+        ys = list(range(len(main_rows)))
+        ests = [float(r["estimate"]) for r in main_rows]; ses = [float(r["std_error"]) for r in main_rows]
+        los = [e - 1.96 * se for e, se in zip(ests, ses)]; his = [e + 1.96 * se for e, se in zip(ests, ses)]
+        xmin, xmax = min(los + [0]), max(his + [0]); span = (xmax - xmin) or 1.0
+        for y, r, e, lo, hi in zip(ys, main_rows, ests, los, his):
+            ax.plot([lo, hi], [y, y], color=INK, lw=1.0, zorder=2)
+            ax.plot(e, y, "o", ms=5, color=INK if r.get("supported") else "white", markeredgecolor=INK, zorder=3)
+            ax.text(xmax + 0.06 * span, y, fmt_est(e, lo, hi), va="center", ha="left", fontsize=8, color=MUTED, family="monospace")
+        ax.set_yticks(ys); ax.set_yticklabels([f"{r['analysis_id']}: {r['outcome']}" for r in main_rows])
+        ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
+        ax.set_xlabel(f"Treatment effect (95% CI). Filled dots: p < {ALPHA}.")
+        ax.set_title("Planned treatment effects")
+        tufte(ax)
+        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png"); plt.close(fig)
     print(f"wrote results/registered_summary.csv ({len(summary)} rows)")
 
 if __name__ == "__main__":
