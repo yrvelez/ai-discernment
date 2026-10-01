@@ -1,35 +1,35 @@
 {
- "text": "The retrieved works are largely off-topic relative to the study's hypotheses on interventions affecting AI-detection accuracy, attitudes, confidence, and trust. The closest relevant work is a review of fake news and disinformation in social media [citation removed: not in retrieved set], which provides context on the broader misinformation landscape but does not report findings on interventions targeting AI-generated content detection specifically. No retrieved work directly addresses the effect of interventions on AI-detection accuracy, confidence in detection, or trust in online information.",
+ "text": "A small body of experimental work on deepfake-related interventions is directly relevant to the present hypotheses. Ternovski et al. (2021) found that warnings about deepfakes increased participants' disbelief of political videos but did not improve their ability to discriminate between synthetic and authentic content, suggesting that such interventions may shift confidence without improving detection accuracy (H1, H3, H5, H6). A follow-up study by the same team (Ternovski et al., 2022) reported that informing voters about deepfakes produced negative downstream effects on trust in online information, consistent with a potential adverse effect on H4. Vaccari and Chadwick (2020) similarly showed that exposure to synthetic political video heightened uncertainty and eroded trust in news, providing evidence that awareness of AI-generated media can reduce trust even in the absence of a detection-accuracy gain. The broader misinformation-experimental literature (Murphy et al., 2023) notes a growing but heterogeneous set of intervention studies, though few have isolated the specific detection-accuracy and confidence outcomes targeted here.",
  "works": [
   {
-   "id": "https://openalex.org/W2794891594",
-   "title": "Antibiotic Use in Agriculture and Its Consequential Resistance in Environmental Sources: Potential Public Health Implications",
+   "id": "https://openalex.org/W3039360174",
+   "title": "Cholangiocarcinoma 2020: the next horizon in mechanisms and management",
    "authors": [
-    "Christy Echakachi Manyi-Loh",
-    "Sampson Mamphweli",
-    "Edson L. Meyer",
-    "Anthony Ifeanyi Okoh"
+    "Jesús M. Bañales",
+    "José J.G. Marı́n",
+    "Ángela Lamarca",
+    "Pedro Miguel Rodrigues"
    ],
-   "year": 2018,
-   "doi": "10.3390/molecules23040795",
-   "venue": "Molecules",
-   "cited_by": 1848,
-   "abstract": "Due to the increased demand of animal protein in developing countries, intensive farming is instigated, which results in antibiotic residues in animal-derived products, and eventually, antibiotic resistance. Antibiotic resistance is of great public health concern because the antibiotic-resistant bacteria associated with the animals may be pathogenic to humans, easily transmitted to humans via food"
+   "year": 2020,
+   "doi": "10.1038/s41575-020-0310-z",
+   "venue": "Nature Reviews Gastroenterology & Hepatology",
+   "cited_by": 2542,
+   "abstract": "Cholangiocarcinoma (CCA) includes a cluster of highly heterogeneous biliary malignant tumours that can arise at any point of the biliary tree. Their incidence is increasing globally, currently accounting for ~15% of all primary liver cancers and ~3% of gastrointestinal malignancies. The silent presentation of these tumours combined with their highly aggressive nature and refractoriness to chemothe"
   },
   {
-   "id": "https://openalex.org/W2147173298",
-   "title": "Antimicrobial strategies centered around reactive oxygen species – bactericidal antibiotics, photodynamic therapy, and beyond",
+   "id": "https://openalex.org/W3001279689",
+   "title": "Scaling Laws for Neural Language Models",
    "authors": [
-    "Fatma Vatansever",
-    "Wanessa Melo",
-    "Pinar Avci",
-    "Daniela Vecchio"
+    "Kaplan, Jared",
+    "Sam McCandlish",
+    "Tom Henighan",
+    "Brown, Tom B."
    ],
-   "year": 2013,
-   "doi": "10.1111/1574-6976.12026",
-   "venue": "FEMS Microbiology Reviews",
-   "cited_by": 1147,
-   "abstract": "Reactive oxygen species (ROS) can attack a diverse range of targets to exert antimicrobial activity, which accounts for their versatility in mediating host defense against a broad range of pathogens. Most ROS are formed by the partial reduction in molecular oxygen. Four major ROS are recognized comprising superoxide (O2•-), hydrogen peroxide (H2O2), hydroxyl radical (•OH), and singlet oxygen ((1)O"
+   "year": 2020,
+   "doi": "10.48550/arxiv.2001.08361",
+   "venue": "arXiv (Cornell University)",
+   "cited_by": 1514,
+   "abstract": "This paper develops a transport-validity theory for agentic AI interventions that are first screened on small systems and later considered for frontier-scale deployment. Rather than predicting absolute frontier performance, it asks when a comparative gain observed at small scale can be carried forward without overclaiming. The analysis targets an explicitly delimited class of operationally isolata"
   },
   {
    "id": "https://openalex.org/W2553095014",
@@ -47,61 +47,47 @@
    "abstract": "Biofilms are widespread in nature and constitute an important strategy implemented by microorganisms to survive in sometimes harsh environmental conditions. They can be beneficial or have a negative impact particularly when formed in industrial settings or on medical devices. As such, research into the formation and elimination of biofilms is important for many disciplines. Several new methodologi"
   },
   {
-   "id": "https://openalex.org/W4206236567",
-   "title": "The psychological drivers of misinformation belief and its resistance to correction",
+   "id": "https://openalex.org/W4214735287",
+   "title": "Negative Consequences of Informing Voters about Deepfakes: Evidence from Two Survey Experiments",
    "authors": [
-    "Ullrich K. H. Ecker",
-    "Stephan Lewandowsky",
-    "John Cook",
-    "Philipp Schmid"
+    "John Ternovski",
+    "Joshua Kalla",
+    "Peter Michael Aronow"
    ],
    "year": 2022,
-   "doi": "10.1038/s44159-021-00006-y",
-   "venue": "Nature Reviews Psychology",
-   "cited_by": 1391,
-   "abstract": ""
+   "doi": "10.54501/jots.v1i2.28",
+   "venue": "Journal of Online Trust and Safety",
+   "cited_by": 68,
+   "abstract": "Advances in machine learning have made possible “deepfakes,” or realistic, computer-generated videos of public figures saying something they have not actually said. Policymakers have expressed concern that deepfakes could mislead voters, but prior research has found that such videos have minimal effects. There has nevertheless been extensive media coverage of the dangers of deepfakes, urging voter"
   },
   {
-   "id": "https://openalex.org/W4319983294",
-   "title": "Fake news, disinformation and misinformation in social media: a review",
+   "id": "https://openalex.org/W4388688439",
+   "title": "What do we study when we study misinformation? A scoping review of experimental research (2016-2022)",
    "authors": [
-    "Esma Aı̈meur",
-    "Sabrine Amri",
-    "Gilles Brassard"
+    "Gillian Murphy",
+    "Constance de Saint Laurent",
+    "Megan Reynolds",
+    "Omar Aftab"
    ],
    "year": 2023,
-   "doi": "10.1007/s13278-023-01028-5",
-   "venue": "Social Network Analysis and Mining",
-   "cited_by": 773,
-   "abstract": ""
+   "doi": "10.37016/mr-2020-130",
+   "venue": "Harvard Kennedy School Misinformation Review",
+   "cited_by": 41,
+   "abstract": "We reviewed 555 papers published from 2016–2022 that presented misinformation to participants. We identified several trends in the literature—increasing frequency of misinformation studies over time, a wide variety of topics covered, and a significant focus on COVID-19 misinformation since 2020. We also identified several important shortcomings, including overrepresentation of samples from the Uni"
   },
   {
-   "id": "https://openalex.org/W4389359039",
-   "title": "Generative artificial intelligence",
+   "id": "https://openalex.org/W4232480655",
+   "title": "Deepfake Warnings for Political Videos Increase Disbelief but Do Not Improve Discernment: Evidence from Two Experiments",
    "authors": [
-    "Leonardo Banh",
-    "Gero Strobel"
+    "John Ternovski",
+    "Joshua Kalla",
+    "Peter Michael Aronow"
    ],
-   "year": 2023,
-   "doi": "10.1007/s12525-023-00680-1",
-   "venue": "Electronic Markets",
-   "cited_by": 568,
-   "abstract": "Abstract Recent developments in the field of artificial intelligence (AI) have enabled new paradigms of machine processing, shifting from data-driven, discriminative AI tasks toward sophisticated, creative tasks through generative AI. Leveraging deep generative models, generative AI is capable of producing novel and realistic content across a broad spectrum (e.g., texts, images, or programming cod"
-  },
-  {
-   "id": "https://openalex.org/W4323655724",
-   "title": "ChatGPT for good? On opportunities and challenges of large language models for education",
-   "authors": [
-    "Enkelejda Kasneci",
-    "Kathrin Seßler",
-    "Stefan Küchemann",
-    "Maria Bannert"
-   ],
-   "year": 2023,
-   "doi": "10.1016/j.lindif.2023.102274",
-   "venue": "Learning and Individual Differences",
-   "cited_by": 6760,
-   "abstract": ""
+   "year": 2021,
+   "doi": "10.31219/osf.io/dta97",
+   "venue": "",
+   "cited_by": 39,
+   "abstract": "Recent advances in machine learning have led to the development of the “deepfake,” a convincingly realistic, computer-generated video of a public figure saying something they have not actually said. Policymakers have expressed concern that deepfakes could mislead voters and affect election outcomes, but existing research has found minimal persuasive effects. In this paper, we explore a downstream "
   },
   {
    "id": "https://openalex.org/W4327810158",
@@ -119,39 +105,54 @@
    "abstract": "Abstract—Large Language Models (LLMs) suffer from inherent stochasticity, limiting their utility in high-stakes enterprise environments where determinism and auditability are required. This paper introduces the MFOUR Vibe Framework (MVF), a platform-agnostic architectural standard that transforms probabilistic natural language intent into deterministic software artifacts. We define a five-layer to"
   },
   {
-   "id": "https://openalex.org/W4389437528",
-   "title": "Education in the Era of Generative Artificial Intelligence (AI): Understanding the Potential Benefits of ChatGPT in Promoting Teaching and Learning",
+   "id": "https://openalex.org/W4210916416",
+   "title": "Tackling Climate Change with Machine Learning",
    "authors": [
-    "David Baidoo-Anu",
-    "Leticia Owusu Ansah"
+    "Lynn H. Kaack",
+    "David Rolnick",
+    "Priya L. Donti",
+    "Kelly Kochanski"
    ],
-   "year": 2023,
-   "doi": "10.61969/jai.1337500",
-   "venue": "Journal of AI",
-   "cited_by": 1820,
-   "abstract": "Since its maiden release into the public domain on November 30, 2022, ChatGPT garnered more than one million subscribers within a week. The generative AI tool ⎼ChatGPT took the world by surprise with it sophisticated capacity to carry out remarkably complex tasks. The extraordinary abilities of ChatGPT to perform complex tasks within the field of education has caused mixed feelings among educators"
+   "year": 2022,
+   "doi": "10.1145/3485128",
+   "venue": "OPUS 4 (Zuse Institute Berlin)",
+   "cited_by": 1011,
+   "abstract": "Climate change is one of the greatest challenges facing humanity, and we, as machine learning experts, may wonder how we can help. Here we describe how machine learning can be a powerful tool in reducing greenhouse gas emissions and helping society adapt to a changing climate. From smart grids to disaster management, we identify high impact problems where existing gaps can be filled by machine lea"
   },
   {
-   "id": "https://openalex.org/W4392145873",
-   "title": "Two new Later Stone Age sites from the Final Pleistocene in the Falémé Valley, eastern Senegal",
+   "id": "https://openalex.org/W3007419529",
+   "title": "Deepfakes and Disinformation: Exploring the Impact of Synthetic Political Video on Deception, Uncertainty, and Trust in News",
    "authors": [
-    "Ndiaye, Matar",
-    "Lespez, Laurent",
-    "Tribolo, Chantal",
-    "Rasse, Michel"
+    "Cristian Vaccari",
+    "Andrew T. Chadwick"
    ],
-   "year": 2024,
-   "doi": "10.3929/ethz-b-000667478",
-   "venue": "Monash University Research Portal (Monash University)",
-   "cited_by": 24108,
-   "abstract": "1 Instituto de Sau´de Coletiva, Universidade Federal da Bahia, Salvador, Brazil, 2 Instituto Gonc¸alo Moniz, Fundac¸ão Oswaldo Cruz,Ministe´ rio da Sau´de, Salvador, Brazil, 3 Department of Epidemiology of Microbial Diseases, Yale School of Public Health, New Haven, Connecticut, United States of America, 4 Hospital Geral Roberto Santos (HGRS), Salvador, Brazil, 5 Faculdade de Medicina, Universidad"
+   "year": 2020,
+   "doi": "10.1177/2056305120903408",
+   "venue": "Social Media + Society",
+   "cited_by": 951,
+   "abstract": "Artificial Intelligence (AI) now enables the mass creation of what have become known as “deepfakes”: synthetic videos that closely resemble real videos. Integrating theories about the power of visual communication and the role played by uncertainty in undermining trust in public discourse, we explain the likely contribution of deepfakes to online disinformation. Administering novel experimental tr"
+  },
+  {
+   "id": "https://openalex.org/W4360620450",
+   "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
+   "authors": [
+    "Yogesh Kumar Dwivedi",
+    "Nir Kshetri",
+    "Laurie Hughes",
+    "Emma Louise Slade"
+   ],
+   "year": 2023,
+   "doi": "10.1016/j.ijinfomgt.2023.102642",
+   "venue": "International Journal of Information Management",
+   "cited_by": 4418,
+   "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
   }
  ],
  "queries": [
-  "AI-generated media detection inoculation intervention",
-  "deepfake misinformation accuracy nudge human detection",
-  "AI literacy synthetic media trust survey",
-  "synthetic content recognition intervention control accuracy"
+  "inoculation intervention AI-generated content detection accuracy",
+  "misinformation nudge deepfake synthetic media discernment",
+  "AI literacy media trust detection of synthetic media survey",
+  "accuracy nudge AI-generated posts recognition control experiment"
  ],
  "degraded": null
 }

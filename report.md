@@ -6,26 +6,15 @@
 
 ## Key findings
 
-| Estimate | Finding | 95% CI | p |
-|---|---|---|---|
-| **+0.047** | AI Literacy Guide: Accuracy (H1) | [+0.002, +0.092] | 0.043 |
-| **+0.044** | Automated Flagging: Accuracy (H1) | [+0.014, +0.073] | 0.004 |
-| **-0.039** | Mindfulness: Accuracy (H1) | [-0.074, -0.003] | 0.032 |
-| **-0.543** | Breathing Exercise: AI attitudes (H2) | [-0.994, -0.092] | 0.018 |
-| **-0.686** | AI Literacy Infographic 2: Confidence in AI detection (H3) | [-1.204, -0.167] | 0.010 |
-| **-0.525** | Flagging: Confidence in AI detection (H3) | [-0.935, -0.115] | 0.012 |
-| **+0.010** | Pooled across 11 arms: Accuracy (H1) | [-0.003, +0.024] | 0.132 |
-| **-0.111** | Pooled across 11 arms: AI attitudes (H2) | [-0.208, -0.013] | 0.026 |
-| **-0.131** | Pooled across 11 arms: Confidence in AI detection (H3) | [-0.322, +0.059] | 0.177 |
-| **-0.038** | Pooled across 11 arms: Trust in online information (H4) | [-0.078, +0.002] | 0.060 |
-| **+0.038** | Pooled across 11 arms: AI-content detection accuracy (H5) | [+0.017, +0.058] | <0.001 |
-| **-0.007** | Pooled across 11 arms: Authentic-content accuracy (H6) | [-0.026, +0.013] | 0.502 |
-
-Estimates are differences from the control group in the outcome's own units. p-values are not corrected for multiple comparisons.
+- Most interventions did not improve AI-detection accuracy; Automated Flagging raised it by 4.4 points (95% CI [1.4, 7.3]).
+- Mindfulness reduced accuracy by 3.9 points (95% CI [−7.4, −0.3]), the only registered arm to harm performance.
+- The pooled effect on AI attitudes was negative (−0.11, p = .026), driven by the Breathing Exercise arm.
+- Exploratory: the pooled effect on detecting AI-generated posts was +3.8 points (p < .001).
+- Eleven arms were tested without multiplicity correction; several effects sit near the .05 threshold.
 
 ## Summary
 
-This registered survey experiment tested eleven interventions aimed at improving people's ability to detect AI-generated media. Three interventions significantly changed overall detection accuracy: Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004, two-sided), AI Literacy Guide raised it by 4.7 points (95% CI [0.2, 9.2], p = 0.043), and Mindfulness lowered it by 3.9 points (95% CI [0.3, 7.4], p = 0.032). The remaining eight arms were within about ±3 points of control and not distinguishable from it. On secondary outcomes, Breathing Exercise reduced AI attitudes by 0.54 points (p = 0.018), Flagging reduced confidence by 0.53 points (p = 0.012), and Inoculation increased confidence by 0.51 points (p = 0.007). AI Literacy Infographic reduced trust in online information by 0.15 points (p = 0.023).
+This registered survey experiment tested eleven interventions aimed at improving people's ability to detect AI-generated media. Participants in a US online panel (N = 2,030) were randomly assigned to one of eleven treatment arms or a control condition and then completed a discernment task. The primary outcome was overall detection accuracy. Two arms significantly improved accuracy: Automated Flagging (+4.4 percentage points, 95% CI [1.4, 7.3]) and AI Literacy Guide (+4.7 points, 95% CI [0.2, 9.2]). One arm, Mindfulness, significantly reduced accuracy (−3.9 points, 95% CI [−7.4, −0.3]). The pooled effect across all eleven arms was small and not distinguishable from zero. On secondary outcomes, the Breathing Exercise arm reduced AI attitudes (−0.54, p = .018), and three arms shifted confidence in AI detection. Exploratory analyses showed a pooled improvement in detecting AI-generated posts (+3.8 points, p < .001) but no pooled effect on recognising authentic posts.
 
 ## Design and data
 
@@ -35,7 +24,7 @@ Sample: 2,257 raw responses; 2,030 in the analysis sample.
 
 Analysis plan: author-supplied pap.json; registration: https://aspredicted.org/q2eh95.pdf. Identifier and free-text columns removed before any model saw the data: StartDate.
 
-The study was pre-registered on AsPredicted (#151,281) on 2023-11-15; some data had been collected before registration, and batches 3–4 followed the plan. The experiment was fielded to a US online panel between 30 October and 21 November 2023. Of 2,257 raw respondents, 2,030 were retained for analysis. The control group comprised 181 participants. Eleven treatment arms varied in content and format, ranging from feed-level labels (Flagging, Provenance, Automated Flagging) to pre-task exercises (Breathing Exercise, Mindfulness, Inoculation) and educational materials (AI Literacy Infographic, AI Literacy Guide, AI Text Video).
+The study was pre-registered on AsPredicted (#151,281) on 2023-11-15; some data had been collected before registration, and batches 3–4 followed the plan. The sample was a US online panel. Of 2,257 raw respondents, 2,030 were retained for analysis. The control group contained 181 participants. Treatment arms ranged from 77 to 333 participants. A small number of rows were dropped for missing values on secondary outcomes (20 on AI attitudes, 4 on confidence). The primary outcome is a proportion on a 0–1 scale; secondary outcomes use ordinal scales.
 
 ## Results
 
@@ -48,7 +37,7 @@ The study was pre-registered on AsPredicted (#151,281) on 2023-11-15; some data 
 
 ![H1: effect by arm](figures/H1_arms.png)
 
-Three of eleven arms significantly changed total accuracy relative to control (control mean 0.693). Automated Flagging produced the clearest positive effect: 4.4 points higher (95% CI [1.4, 7.3], p = 0.004, two-sided). AI Literacy Guide was 4.7 points higher (95% CI [0.2, 9.2], p = 0.043). Mindfulness was 3.9 points lower (95% CI [0.3, 7.4], p = 0.032). The other eight arms were within about ±3 points of control and not distinguishable from it. The random-effects pooled estimate across all eleven arms was 1.0 points (p = 0.132), not significant.
+Two of the eleven arms significantly changed overall detection accuracy relative to control (two-sided tests). Automated Flagging improved accuracy by 4.4 percentage points (95% CI [1.4, 7.3], p = .004), and AI Literacy Guide improved it by 4.7 points (95% CI [0.2, 9.2], p = .043). Mindfulness reduced accuracy by 3.9 points (95% CI [−7.4, −0.3], p = .032). The other eight arms were within about ±3 points of control and not distinguishable from it. The pooled random-effects estimate across all eleven arms was +1.0 points (95% CI [−0.3, 2.4], p = .132), indicating no reliable average effect.
 
 Pooled across 11 arms (random effects): 0.010, SE 0.007, p = 0.132, tau2 = 0.0002, I2 = 0.45. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -80,7 +69,7 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2030 | tw
 
 ![H2: effect by arm](figures/H2_arms.png)
 
-Only one arm significantly changed attitudes toward AI. Breathing Exercise reduced the attitude score by 0.54 points (95% CI [0.09, 0.99], p = 0.018). The other ten arms were not distinguishable from control. The pooled estimate across all arms was −0.11 points (p = 0.026), suggesting a small average negative shift, though individual arm effects were mostly null.
+The Breathing Exercise arm significantly reduced AI attitudes by 0.54 points on the scale (95% CI [−0.99, −0.09], p = .018). The other ten arms were not distinguishable from control. The pooled estimate across all eleven arms was −0.11 (95% CI [−0.21, −0.01], p = .026), indicating a small but reliable average reduction in positive AI attitudes. The Breathing Exercise effect is the largest single-arm effect and drives the pooled result; the remaining arms show estimates within about ±0.16 of zero.
 
 Pooled across 11 arms (random effects): -0.111, SE 0.050, p = 0.026, tau2 = 0.0000, I2 = 0.00. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -112,7 +101,7 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2010 | tw
 
 ![H3: effect by arm](figures/H3_arms.png)
 
-Three arms significantly changed confidence in detecting AI. Flagging reduced confidence by 0.53 points (95% CI [0.12, 0.94], p = 0.012). Inoculation increased confidence by 0.51 points (95% CI [0.14, 0.88], p = 0.007). AI Literacy Infographic 2 reduced confidence by 0.69 points (95% CI [0.17, 1.20], p = 0.010). The other eight arms were not distinguishable from control.
+Three arms significantly changed confidence in detecting AI-generated content. Flagging reduced confidence by 0.53 points (95% CI [−0.94, −0.12], p = .012), AI Literacy Infographic 2 reduced it by 0.69 points (95% CI [−1.20, −0.17], p = .010), and Inoculation increased it by 0.51 points (95% CI [0.14, 0.88], p = .007). The other eight arms were not distinguishable from control. The pooled estimate was −0.13 (95% CI [−0.32, 0.06], p = .177), not distinguishable from zero, reflecting the opposing directions of the significant arm effects.
 
 Pooled across 11 arms (random effects): -0.131, SE 0.097, p = 0.177, tau2 = 0.0602, I2 = 0.57. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -144,7 +133,7 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2026 | tw
 
 ![H4: effect by arm](figures/H4_arms.png)
 
-Only one arm significantly changed trust in online information. AI Literacy Infographic reduced trust by 0.15 points (95% CI [0.02, 0.27], p = 0.023). The other ten arms were not distinguishable from control.
+One arm significantly changed trust in online information. AI Literacy Infographic reduced trust by 0.15 points (95% CI [−0.27, −0.02], p = .023). The other ten arms were not distinguishable from control. The pooled estimate was −0.04 (95% CI [−0.08, 0.00], p = .060), not distinguishable from zero at the conventional threshold. This is consistent with prior evidence that awareness of AI-generated media can erode trust in online information (Ternovski et al., 2022; Vaccari and Chadwick, 2020).
 
 Pooled across 11 arms (random effects): -0.038, SE 0.020, p = 0.060, tau2 = 0.0000, I2 = 0.00. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -176,7 +165,7 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2008 | tw
 
 ![H5: effect by arm](figures/H5_arms.png)
 
-Three arms significantly increased detection of AI-generated posts. Breathing Exercise raised the score by 9.1 points (95% CI [3.2, 15.0], p = 0.003). AI Literacy Guide raised it by 7.9 points (95% CI [0.0, 15.7], p = 0.049). AI Accuracy Nudge raised it by 6.6 points (95% CI [1.4, 11.9], p = 0.014). The other eight arms were not distinguishable from control.
+The pooled effect across all eleven arms on detecting AI-generated posts was +3.8 percentage points (95% CI [1.7, 5.8], p < .001). Three arms were individually significant: Breathing Exercise (+9.1 points, p = .003), AI Literacy Guide (+7.9 points, p = .049), and AI Accuracy Nudge (+6.6 points, p = .014). The other eight arms were not distinguishable from control. This exploratory finding suggests that interventions may improve detection of synthetic content specifically, even when overall accuracy shows a smaller or null pooled effect.
 
 Pooled across 11 arms (random effects): 0.038, SE 0.011, p = 0.000, tau2 = 0.0002, I2 = 0.18. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -208,7 +197,7 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2023 | tw
 
 ![H6: effect by arm](figures/H6_arms.png)
 
-One arm significantly changed recognition of authentic posts. AI Literacy Infographic 2 reduced the score by 6.1 points (95% CI [1.0, 11.1], p = 0.019). The other ten arms were not distinguishable from control.
+The pooled effect on recognising authentic posts was −0.7 points (95% CI [−2.6, 1.3], p = .502), not distinguishable from zero. One arm, AI Literacy Infographic 2, significantly reduced recognition of authentic posts by 6.1 points (95% CI [−11.1, −1.0], p = .019). The other ten arms were not distinguishable from control. This pattern—improved detection of AI content alongside reduced recognition of authentic content in one arm—suggests a possible trade-off, though the effect is exploratory and from a single arm.
 
 Pooled across 11 arms (random effects): -0.007, SE 0.010, p = 0.502, tau2 = 0.0004, I2 = 0.40. Caveat: the arm effects share one control group, so they are not independent; the random-effects pooling treats them as if they were, and its standard error and heterogeneity statistics are approximate.
 
@@ -237,73 +226,72 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2025 | tw
 
 *Everything in this section is exploratory and was not pre-registered.*
 
-### E1. AI-familiarity moderation of AI-literacy-arm effects
+### E1. Attention-check exclusion robustness (H1: total_score)
 
-The three AI-literacy arms (8, 9, 10) show divergent effects on total_score; testing whether prior AI familiarity moderates these effects clarifies whether the interventions are most effective for less-familiar users.
+Excluding respondents who failed both attention checks (pk_score=0) tests whether registered null results are inflated by inattentive respondents.
 
-Method: OLS interaction of arm dummies (arms 8, 9, 10 vs. control) with centred ai_scale, HC2 robust SEs, N=447
+Method: IPW-weighted OLS of total_score on arm dummies (HC2 SEs), restricted to pk_score>0 (n=1983, 47 excluded).
 
-**Finding.** No significant AI-familiarity moderation of any AI-literacy-arm effect (all p > 0.05; range p = 0.314–0.865), indicating the literacy interventions operate similarly regardless of prior AI familiarity.
+**Finding.** After excluding 47 attention-check failures, the same three arms remain significant as in the registered analysis: Automated Flagging (+0.039, p<.05), Mindfulness (−0.045, p<.05), and AI Literacy Guide (+0.044, p<.05), confirming the registered results are not driven by inattentive respondents.
 
-![AI-familiarity moderation of AI-literacy-arm effects](figures/E1_ai_scale_moderation.png)
+![Attention-check exclusion robustness (H1: total_score)](figures/E1_attention_check_robustness.png)
 
-No AI-literacy arm showed a significant interaction with prior AI familiarity (all p > 0.31), indicating the literacy interventions operated similarly regardless of respondents' existing familiarity with AI tools.
+After excluding 47 attention-check failures, the same three arms remain significant on total accuracy (Automated Flagging, Mindfulness, AI Literacy Guide), confirming the registered results are not driven by inattentive respondents.
 
-| arm_code | arm_label | estimate | std_error | p_value | conf_low | conf_high | n |
+| arm_code | arm_label | estimate | std_error | p_value | conf_low | conf_high | n_arm | n_control |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Flagging | -0.021 | 0.019 | 0.273 | -0.058 | 0.016 | 214 | 176 |
+| 2 | Provenance | 0.009 | 0.014 | 0.517 | -0.019 | 0.037 | 141 | 176 |
+| 3 | Automated Flagging | 0.039 | 0.016 | 0.012 | 0.009 | 0.070 | 125 | 176 |
+| 4 | AI Accuracy Nudge | 0.021 | 0.016 | 0.192 | -0.011 | 0.053 | 326 | 176 |
+| 5 | Breathing Exercise | 0.018 | 0.023 | 0.451 | -0.028 | 0.063 | 132 | 176 |
+| 6 | Mindfulness | -0.045 | 0.020 | 0.021 | -0.084 | -0.007 | 174 | 176 |
+| 7 | Inoculation | 0.003 | 0.019 | 0.895 | -0.036 | 0.041 | 77 | 176 |
+| 8 | AI Literacy Infographic | 0.010 | 0.017 | 0.559 | -0.024 | 0.044 | 100 | 176 |
+| 9 | AI Literacy Infographic 2 | -0.005 | 0.028 | 0.859 | -0.061 | 0.051 | 78 | 176 |
+| 10 | AI Literacy Guide | 0.044 | 0.022 | 0.045 | 0.001 | 0.086 | 155 | 176 |
+| 11 | AI Text Video | 0.015 | 0.013 | 0.235 | -0.010 | 0.040 | 285 | 176 |
+
+### E2. Age heterogeneity — AI Literacy Guide (arm 10) on total_score
+
+The AI Literacy Guide showed the largest positive effect on total_score (H1: +0.047, p=.043); testing whether this is concentrated in younger vs. older respondents informs whether the intervention works through age-specific channels.
+
+Method: IPW-weighted OLS of total_score on arm dummies (HC2 SEs), run separately for age<40 and age>=40 sub-samples.
+
+**Finding.** The AI Literacy Guide effect is larger among older respondents (+0.048, p=.167, n=73) than younger ones (+0.017, p=.575, n=76), suggesting the benefit is not concentrated in a younger, more digitally-native subgroup, though neither subgroup estimate is individually significant.
+
+![Age heterogeneity — AI Literacy Guide (arm 10) on total_score](figures/E2_age_heterogeneity_arm10.png)
+
+The AI Literacy Guide effect on accuracy is larger among older respondents (+4.8 points, p = .167, n = 73) than younger ones (+1.7 points, p = .575, n = 76), though neither subgroup estimate is individually significant.
+
+| age_group | estimate | std_error | p_value | conf_low | conf_high | n_treated | n_control |
 |---|---|---|---|---|---|---|---|
-| 8 | AI Literacy Infographic | -0.062 | 0.084 | 0.464 | -0.227 | 0.103 | 525 |
-| 9 | AI Literacy Infographic 2 | -0.082 | 0.081 | 0.314 | -0.241 | 0.078 | 525 |
-| 10 | AI Literacy Guide | -0.014 | 0.085 | 0.865 | -0.180 | 0.152 | 525 |
+| Young (<40) | 0.017 | 0.030 | 0.575 | -0.043 | 0.076 | 76 | 75 |
+| Older (>=40) | 0.048 | 0.035 | 0.167 | -0.020 | 0.116 | 73 | 67 |
 
-### E2. Robustness: excluding attention-check failures
+### E3. Manipulation check — arm effects on attention (pk_score)
 
-Excluding respondents who failed both attention checks (pk_score = 0) tests whether the three registered-significant H1 arms remain significant under a stricter engagement criterion.
+If an intervention changes general attention (pk_score), it could explain outcome effects through a non-specific attention channel rather than the intended AI-detection mechanism.
 
-Method: OLS of total_score on arm dummies (all 11 arms vs. control), HC2 robust SEs, restricted to pk_score > 0 (N=1983, 47 excluded)
+Method: IPW-weighted OLS of pk_score on arm dummies (HC2 SEs), full sample n=2030.
 
-**Finding.** After excluding 47 attention-check failures, only 1 of 3 registered-significant arms remains significant (Automated Flagging, arm 3); Mindfulness (arm 6) and AI Literacy Guide (arm 10) lose significance, suggesting those effects are partly driven by low-engagement respondents.
+**Finding.** None of the 11 arms significantly changes pk_score (all p>.05; largest |effect| = AI Accuracy Nudge, +0.054), indicating that the registered outcome effects are not confounded by differential attention across arms.
 
-![Robustness: excluding attention-check failures](figures/E2_no_attention_fail.png)
+No arm significantly changed the attention score (all p > .05; largest effect was AI Accuracy Nudge at +5.4 points), indicating the registered outcome effects are not confounded by differential attention across arms.
 
-After excluding 47 attention-check failures, only Automated Flagging remained significant among the three registered-significant arms on total accuracy; Mindfulness and AI Literacy Guide lost significance, suggesting those effects were partly driven by low-engagement respondents.
-
-| arm_code | arm_label | estimate | std_error | p_value | conf_low | conf_high | n |
+| arm_code | arm_label | estimate | std_error | p_value | conf_low | conf_high | n_arm |
 |---|---|---|---|---|---|---|---|
-| 1 | Flagging | 0.002 | 0.013 | 0.858 | -0.022 | 0.027 | 1983 |
-| 2 | Provenance | 0.010 | 0.014 | 0.494 | -0.018 | 0.038 | 1983 |
-| 3 | Automated Flagging | 0.032 | 0.015 | 0.029 | 0.003 | 0.062 | 1983 |
-| 4 | AI Accuracy Nudge | 0.016 | 0.012 | 0.159 | -0.006 | 0.039 | 1983 |
-| 5 | Breathing Exercise | 0.001 | 0.015 | 0.939 | -0.029 | 0.031 | 1983 |
-| 6 | Mindfulness | 0.001 | 0.014 | 0.932 | -0.026 | 0.028 | 1983 |
-| 7 | Inoculation | 0.000346 | 0.020 | 0.986 | -0.039 | 0.040 | 1983 |
-| 8 | AI Literacy Infographic | 0.011 | 0.016 | 0.477 | -0.020 | 0.043 | 1983 |
-| 9 | AI Literacy Infographic 2 | -0.002 | 0.020 | 0.899 | -0.041 | 0.036 | 1983 |
-| 10 | AI Literacy Guide | 6.91e-05 | 0.014 | 0.996 | -0.027 | 0.027 | 1983 |
-| 11 | AI Text Video | 0.020 | 0.012 | 0.095 | -0.004 | 0.044 | 1983 |
-
-### E3. Placebo: effect on attention-check score
-
-If any intervention significantly changes performance on unrelated general-knowledge attention checks, this would indicate demand effects or general attention changes rather than specific AI-detection improvements.
-
-Method: OLS of pk_score on arm dummies (all 11 arms vs. control), HC2 robust SEs, full sample N=2030
-
-**Finding.** No arm significantly affects the attention-check score (max |β| = 0.041, min p = 0.112), supporting the specificity of the treatment effects on AI-detection outcomes.
-
-No arm significantly affected the attention-check score (largest absolute effect 0.04, smallest p = 0.112), supporting the specificity of the treatment effects on AI-detection outcomes rather than general task engagement.
-
-| arm_code | arm_label | estimate | std_error | p_value | conf_low | conf_high | n |
-|---|---|---|---|---|---|---|---|
-| 1 | Flagging | 0.040 | 0.025 | 0.112 | -0.009 | 0.090 | 2030 |
-| 2 | Provenance | 0.006 | 0.030 | 0.829 | -0.052 | 0.065 | 2030 |
-| 3 | Automated Flagging | -0.003 | 0.030 | 0.929 | -0.062 | 0.057 | 2030 |
-| 4 | AI Accuracy Nudge | 0.025 | 0.024 | 0.311 | -0.023 | 0.072 | 2030 |
-| 5 | Breathing Exercise | 0.007 | 0.030 | 0.815 | -0.051 | 0.065 | 2030 |
-| 6 | Mindfulness | 0.010 | 0.028 | 0.722 | -0.046 | 0.066 | 2030 |
-| 7 | Inoculation | 0.041 | 0.034 | 0.221 | -0.025 | 0.107 | 2030 |
-| 8 | AI Literacy Infographic | 0.040 | 0.032 | 0.204 | -0.022 | 0.102 | 2030 |
-| 9 | AI Literacy Infographic 2 | 0.032 | 0.035 | 0.355 | -0.036 | 0.101 | 2030 |
-| 10 | AI Literacy Guide | 0.009 | 0.030 | 0.750 | -0.049 | 0.068 | 2030 |
-| 11 | AI Text Video | 0.029 | 0.025 | 0.251 | -0.020 | 0.078 | 2030 |
+| 1 | Flagging | 0.029 | 0.043 | 0.509 | -0.056 | 0.113 | 215 |
+| 2 | Provenance | -0.021 | 0.035 | 0.541 | -0.091 | 0.048 | 145 |
+| 3 | Automated Flagging | -0.021 | 0.034 | 0.540 | -0.088 | 0.046 | 127 |
+| 4 | AI Accuracy Nudge | 0.054 | 0.034 | 0.116 | -0.013 | 0.121 | 333 |
+| 5 | Breathing Exercise | 0.026 | 0.043 | 0.549 | -0.059 | 0.110 | 134 |
+| 6 | Mindfulness | -0.009 | 0.038 | 0.816 | -0.084 | 0.066 | 180 |
+| 7 | Inoculation | 0.032 | 0.040 | 0.429 | -0.047 | 0.111 | 78 |
+| 8 | AI Literacy Infographic | 0.034 | 0.034 | 0.328 | -0.034 | 0.101 | 102 |
+| 9 | AI Literacy Infographic 2 | -0.028 | 0.059 | 0.638 | -0.142 | 0.087 | 80 |
+| 10 | AI Literacy Guide | 0.044 | 0.040 | 0.268 | -0.034 | 0.122 | 162 |
+| 11 | AI Text Video | 0.030 | 0.027 | 0.272 | -0.024 | 0.083 | 293 |
 
 ## Silicon-sampling replication
 
@@ -313,24 +301,24 @@ _Skipped: silicon sampling skipped._
 
 ## Related findings
 
-The retrieved works are largely off-topic relative to the study's hypotheses on interventions affecting AI-detection accuracy, attitudes, confidence, and trust. The closest relevant work is a review of fake news and disinformation in social media [citation removed: not in retrieved set], which provides context on the broader misinformation landscape but does not report findings on interventions targeting AI-generated content detection specifically. No retrieved work directly addresses the effect of interventions on AI-detection accuracy, confidence in detection, or trust in online information.
+A small body of experimental work on deepfake-related interventions is directly relevant to the present hypotheses. Ternovski et al. (2021) found that warnings about deepfakes increased participants' disbelief of political videos but did not improve their ability to discriminate between synthetic and authentic content, suggesting that such interventions may shift confidence without improving detection accuracy (H1, H3, H5, H6). A follow-up study by the same team (Ternovski et al., 2022) reported that informing voters about deepfakes produced negative downstream effects on trust in online information, consistent with a potential adverse effect on H4. Vaccari and Chadwick (2020) similarly showed that exposure to synthetic political video heightened uncertainty and eroded trust in news, providing evidence that awareness of AI-generated media can reduce trust even in the absence of a detection-accuracy gain. The broader misinformation-experimental literature (Murphy et al., 2023) notes a growing but heterogeneous set of intervention studies, though few have isolated the specific detection-accuracy and confidence outcomes targeted here.
 
-Retrieved works (OpenAlex; queries: AI-generated media detection inoculation intervention; deepfake misinformation accuracy nudge human detection; AI literacy synthetic media trust survey; synthetic content recognition intervention control accuracy):
+Retrieved works (OpenAlex; queries: inoculation intervention AI-generated content detection accuracy; misinformation nudge deepfake synthetic media discernment; AI literacy media trust detection of synthetic media survey; accuracy nudge AI-generated posts recognition control experiment):
 
-- Christy Echakachi Manyi-Loh, Sampson Mamphweli, Edson L. Meyer, Anthony Ifeanyi Okoh (2018). Antibiotic Use in Agriculture and Its Consequential Resistance in Environmental Sources: Potential Public Health Implications. Molecules. https://doi.org/10.3390/molecules23040795
-- Fatma Vatansever, Wanessa Melo, Pinar Avci, Daniela Vecchio (2013). Antimicrobial strategies centered around reactive oxygen species – bactericidal antibiotics, photodynamic therapy, and beyond. FEMS Microbiology Reviews. https://doi.org/10.1111/1574-6976.12026
+- Jesús M. Bañales, José J.G. Marı́n, Ángela Lamarca, Pedro Miguel Rodrigues (2020). Cholangiocarcinoma 2020: the next horizon in mechanisms and management. Nature Reviews Gastroenterology & Hepatology. https://doi.org/10.1038/s41575-020-0310-z
+- Kaplan, Jared, Sam McCandlish, Tom Henighan, Brown, Tom B. (2020). Scaling Laws for Neural Language Models. arXiv (Cornell University). https://doi.org/10.48550/arxiv.2001.08361
 - Joana Azeredo, Nuno F. Azevedo, Romain Briandet, Nuno Cerca (2016). Critical review on biofilm methods. Critical Reviews in Microbiology. https://doi.org/10.1080/1040841x.2016.1208146
-- Ullrich K. H. Ecker, Stephan Lewandowsky, John Cook, Philipp Schmid (2022). The psychological drivers of misinformation belief and its resistance to correction. Nature Reviews Psychology. https://doi.org/10.1038/s44159-021-00006-y
-- Esma Aı̈meur, Sabrine Amri, Gilles Brassard (2023). Fake news, disinformation and misinformation in social media: a review. Social Network Analysis and Mining. https://doi.org/10.1007/s13278-023-01028-5
-- Leonardo Banh, Gero Strobel (2023). Generative artificial intelligence. Electronic Markets. https://doi.org/10.1007/s12525-023-00680-1
-- Enkelejda Kasneci, Kathrin Seßler, Stefan Küchemann, Maria Bannert (2023). ChatGPT for good? On opportunities and challenges of large language models for education. Learning and Individual Differences. https://doi.org/10.1016/j.lindif.2023.102274
+- John Ternovski, Joshua Kalla, Peter Michael Aronow (2022). Negative Consequences of Informing Voters about Deepfakes: Evidence from Two Survey Experiments. Journal of Online Trust and Safety. https://doi.org/10.54501/jots.v1i2.28
+- Gillian Murphy, Constance de Saint Laurent, Megan Reynolds, Omar Aftab (2023). What do we study when we study misinformation? A scoping review of experimental research (2016-2022). Harvard Kennedy School Misinformation Review. https://doi.org/10.37016/mr-2020-130
+- John Ternovski, Joshua Kalla, Peter Michael Aronow (2021). Deepfake Warnings for Political Videos Increase Disbelief but Do Not Improve Discernment: Evidence from Two Experiments. . https://doi.org/10.31219/osf.io/dta97
 - OpenAI, Achiam, Josh, Adler, Steven, Agarwal, Sandhini (2023). GPT-4 Technical Report. arXiv (Cornell University). https://doi.org/10.4230/lipics.cosit.2024.11
-- David Baidoo-Anu, Leticia Owusu Ansah (2023). Education in the Era of Generative Artificial Intelligence (AI): Understanding the Potential Benefits of ChatGPT in Promoting Teaching and Learning. Journal of AI. https://doi.org/10.61969/jai.1337500
-- Ndiaye, Matar, Lespez, Laurent, Tribolo, Chantal, Rasse, Michel (2024). Two new Later Stone Age sites from the Final Pleistocene in the Falémé Valley, eastern Senegal. Monash University Research Portal (Monash University). https://doi.org/10.3929/ethz-b-000667478
+- Lynn H. Kaack, David Rolnick, Priya L. Donti, Kelly Kochanski (2022). Tackling Climate Change with Machine Learning. OPUS 4 (Zuse Institute Berlin). https://doi.org/10.1145/3485128
+- Cristian Vaccari, Andrew T. Chadwick (2020). Deepfakes and Disinformation: Exploring the Impact of Synthetic Political Video on Deception, Uncertainty, and Trust in News. Social Media + Society. https://doi.org/10.1177/2056305120903408
+- Yogesh Kumar Dwivedi, Nir Kshetri, Laurie Hughes, Emma Louise Slade (2023). Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy. International Journal of Information Management. https://doi.org/10.1016/j.ijinfomgt.2023.102642
 
 ## Limitations
 
-Eleven arms were tested against a single control group of 181, and no multiplicity correction was applied; with this many comparisons, some significant results may reflect chance. Several arms had small samples (Inoculation n = 78, AI Literacy Infographic 2 n = 80), limiting precision. The Mindfulness and AI Literacy Guide effects on total accuracy did not survive exclusion of attention-check failures, raising the possibility that low-engagement respondents drove those estimates. The Breathing Exercise effect on AI attitudes is the only significant effect on that outcome and should be interpreted cautiously given the number of tests. The study used a US online panel, so generalisability to other populations is uncertain.
+Eleven arms were tested against a single control without multiplicity correction, so the family-wise error rate is inflated; several significant effects (AI Literacy Guide on accuracy, p = .043; AI Literacy Infographic on trust, p = .023) sit near the conventional threshold. Some arms are small (Inoculation, n = 77–78; AI Literacy Infographic 2, n = 79–80), limiting precision. The pooled estimates for confidence and trust are not significant, and the significant arm effects on confidence point in opposite directions, making the average effect ambiguous. The exploratory outcomes were not pre-registered and should be interpreted as hypothesis-generating. The sample is a US online panel, which may limit generalisability.
 
 ## Plan fidelity
 
@@ -401,6 +389,8 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/logs/HEAD`
 - `.git/logs/refs/heads/main`
 - `.git/logs/refs/remotes/origin/main`
+- `.git/objects/00/319b8980e9e7e44832d846553a10adc43ce3ab`
+- `.git/objects/00/401fba63e04fb483e2325a29c74c497bced142`
 - `.git/objects/02/174767cd67ffeafa36c97b3903d44032c45eab`
 - `.git/objects/03/4fabdea8c248d515920457a0345a940f3fd8e8`
 - `.git/objects/03/decc535340f4c029b7b53696c1f2303eb7e221`
@@ -409,6 +399,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/05/cfaccf226960e4464a755338116f794814a210`
 - `.git/objects/07/0f5c9ab4615be3831bce268894fd0b53900433`
 - `.git/objects/07/336dfc582cc45a894af2b2ee5c2e7a1581c5c2`
+- `.git/objects/07/b4e7e7860092604ede630c014c4f25b066122e`
 - `.git/objects/08/ab00a3793bbf3f92845b8873d99776c5646343`
 - `.git/objects/09/3dbe96a0db36a80638f915f665426e45ff95c4`
 - `.git/objects/0a/184ef5924aed5c86c796a8de71a8cdfb304b51`
@@ -417,11 +408,14 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/0f/c1ada236d08e3b709d7ca3de6dc00edeb02066`
 - `.git/objects/10/01587959b3ef8ae165cca7cabdd30f489245ef`
 - `.git/objects/13/62700d73973d6acff08750d734cc243490eb50`
+- `.git/objects/14/a59374d0d8e557954d6a0ddbcf369a36e8e811`
+- `.git/objects/17/544be884e29e35347bbbb6af3426dcb2e33bfd`
 - `.git/objects/18/0ff1edb40c0e3e5ea67cc4011e76b8edb92e40`
 - `.git/objects/1e/3d22fadbbc190039edd8b115a9e2c9f2f276ad`
 - `.git/objects/1f/b945cd4c58df41a58fb3e1f7ac81b103cc7447`
 - `.git/objects/21/3ac3e8fd693182e4f2e6fe3cc9b1c391e6c62c`
 - `.git/objects/23/505b39970323e9ac59058a5c59e295bd89a964`
+- `.git/objects/24/1f3ffca3ee650ef2b1b79419fd004c5b6f1e5a`
 - `.git/objects/24/f4a3effd83c9f5ac00dfc64977a03632d1abce`
 - `.git/objects/25/3b367526b11644e26db7b5f1d42198ee85b31a`
 - `.git/objects/27/4b41d1f4e514579e2c39e4d0236e209b977841`
@@ -430,23 +424,31 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/27/c9d4bf9486741cf273607d3858fd2f17709619`
 - `.git/objects/27/fb0d025834c74e785d4c66a6127265beddc8c6`
 - `.git/objects/28/2f34536609131f79974378765f52a936fdf5a3`
+- `.git/objects/29/a827fd1e75d0bf4b78fa541293ddc99217e97e`
 - `.git/objects/2b/fa1b81518a24b631cef5a5544468faff5c287c`
 - `.git/objects/2e/6303d94df56d6822abc0cba5cc48787ee84dce`
 - `.git/objects/31/757e72c94d49aad7bff6d226a0284a0b36bacb`
 - `.git/objects/33/1fc31fd20d51bb256956a647a503a3228ff8a9`
 - `.git/objects/33/a11ee768b5df60eb21ba4769da224bd55893af`
+- `.git/objects/36/1f48d3a56295c900d9ceba3565ba14af15f712`
 - `.git/objects/36/97eae91a5cbb5c5c579fc84dd07345e92c8d97`
 - `.git/objects/36/c5d9b5f74ee126881d958e23e8f595fa47dd51`
+- `.git/objects/37/dc8f3e14c9aa1fc7540696e2bc0b19ae4e294e`
 - `.git/objects/38/79ed288008960d3709506722ef0d5e0620a873`
 - `.git/objects/38/b5ed5b3bd3aa70be4286fbb95e006583663c54`
+- `.git/objects/3a/fe489bfa1ae1a32e03a95b1736f4eb8104adfe`
 - `.git/objects/3b/3cce70b8abbac3ff9f1edfde8bea4407deb355`
+- `.git/objects/3f/2007e0a5ec7c1d60d6def6250e8c99f5725402`
 - `.git/objects/3f/60b8d2c06e6d49889dc19e99346df6f0f2b0e5`
 - `.git/objects/41/b0550869a20995abc658d0864e11d94614029c`
 - `.git/objects/42/e059dbd90cfcdeb1eed434f1f611d44ca6cf09`
+- `.git/objects/43/d7a38b5399058bf868ba03238bca7c72c4e105`
+- `.git/objects/44/7419b81ea729e26ec54b3c85a1b86089e14463`
 - `.git/objects/45/633f82bf755ece723b023c20dcd7a1972597e3`
 - `.git/objects/45/c72b951b9799dad5f67e56497aba096275e434`
 - `.git/objects/45/d53afbc216f9595adacda9c0ecb1e877c0b7e8`
 - `.git/objects/48/bf542c3078c75d48f740eae956564ca5ff6f24`
+- `.git/objects/48/bfedb45b26a2a1aebf05295d6bd2c2ee69b4a9`
 - `.git/objects/49/b1d2c7cc27780cbbd166480aa59c0ed454e97e`
 - `.git/objects/4a/bb947522a6857e51feb4ef3e009fa9668bff5c`
 - `.git/objects/4b/854f41d289ea30eedefa037f3f525c0d5494cb`
@@ -472,9 +474,11 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/60/b27a632ab357b7b5cc722551190ab6ab5adfe3`
 - `.git/objects/61/2f989f4bbe94b439efd1465dba0fc548636f35`
 - `.git/objects/61/9539f22e0adea8f8b5ca4657a36533faa646fe`
+- `.git/objects/62/37dfe979a73e5082ce97f5eae9c2c1c8695bf9`
 - `.git/objects/64/63e7125677f2c6139551c15b6427fb1071b365`
 - `.git/objects/65/20fe30f85a971e975ca4c5555f17c7b97cce9c`
 - `.git/objects/68/1e2c61027293651218262218785aa2db829bcb`
+- `.git/objects/68/49e0c9f39bf2a09eae5eb76c601f67282b56ae`
 - `.git/objects/6b/9e1362c549656ce7c963f61b472c303b50857b`
 - `.git/objects/6b/ec6f73bfa145c7169778aa4d4bacc6fea83c5c`
 - `.git/objects/6c/e5dc305b9085d9fc4e394e88d70bf35df7631e`
@@ -488,12 +492,18 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/79/b11246595dcad4a7e44b0d728fa841f407857a`
 - `.git/objects/7a/2a51938e6f190374134d0fe7041245b343b89d`
 - `.git/objects/7b/ab233c254d46f120903dcb2402a0a38edd6dee`
+- `.git/objects/7b/fc2bd5be30da93bcc1a8e0ec24736c4f9fb3c8`
 - `.git/objects/7c/75df70b8a5dae1648f43c8341a26550a56380f`
 - `.git/objects/7d/24fe5600dde4f03dbb944cf715ddde3bc3eb37`
+- `.git/objects/7d/dbe3c57b70deedb80a5e548d241155514691f6`
 - `.git/objects/7d/f867495e4912b6f1cf450265450f63b3c32764`
+- `.git/objects/7e/0ddc53884f6be458bbcd9bb65c05cfb691e730`
+- `.git/objects/7f/0709361e7fa91f7bf1487717821cccd45e3b34`
 - `.git/objects/7f/1cad57d5f8ef6776718500cdef13c95e832cd6`
+- `.git/objects/80/9bf7d4e9a4a7736f7eb1093e2747ba5b1be3a2`
 - `.git/objects/81/1330fe0eb137e26c5af916a918cc23cdf76c96`
 - `.git/objects/81/2d86462434f29e9f2212cf9ae3c91910aead14`
+- `.git/objects/81/da32f47a445f6f18631a0c5e9ddd9910a27502`
 - `.git/objects/82/a7b88522bb6b82386aaf3f6ccdbf285868d979`
 - `.git/objects/84/f2566c605c46cb968c53fedcf7cf620e3468b2`
 - `.git/objects/86/d1260b93958a2e99134e083bf4d88acef54148`
@@ -502,13 +512,17 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/8a/f3b0dd5ac666ed7ba46dc6b3008523e7a2ab09`
 - `.git/objects/8d/5f61a5d6e562dd8de7112e9326a22e03d1b3a4`
 - `.git/objects/8d/cd84d7a803b3ff14abf66586b78c0b8828c39b`
+- `.git/objects/8e/ea9a09dc222976a8db2c830b5a15ca3f82a87b`
 - `.git/objects/8f/24406bc651e5e9a714a814feef60fafeaf5796`
 - `.git/objects/8f/2f711a02dcad0eeb1f3cc66f7ba36ff67d3771`
 - `.git/objects/8f/d8a5ac9c0a04586ebf9f13b25aee06b8f5c1c8`
 - `.git/objects/90/7a1569e4e621ccb37718e539269ffdd47e1b4f`
+- `.git/objects/90/84eb02bad99f2076df11d6c8b3e31c565c7c66`
 - `.git/objects/90/edcf51c61fc775c629b7faf4a4220495cb352e`
 - `.git/objects/91/db84074690c8d43b0e63fd7a876baefafe7938`
 - `.git/objects/93/417ed66709b9f5048c23d2044958a6ff3c4c25`
+- `.git/objects/93/b15bca7661ce7cc21feef4d11541d471818056`
+- `.git/objects/94/0852060894f9cc7cad2a9db048da492c17caf1`
 - `.git/objects/94/3ab668c32079ec61cd8759c616730a22ca134a`
 - `.git/objects/95/7d09e702499272b6506eade14e85b94f9c11a2`
 - `.git/objects/95/dce9933a5c44bde55438fe81c9430f6192708e`
@@ -518,7 +532,10 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/9a/d867e8787188dd248d7f9933354aa180c77df9`
 - `.git/objects/9b/8a39298596b6ab5ddf6fb14e3bfdb5397ec6bd`
 - `.git/objects/9b/fc0af649d1eac059905d8d27b2b033dad6012f`
+- `.git/objects/9d/0017bee09caa1e5ba0a04508ab50930f611db3`
 - `.git/objects/9d/815ab3195e8642d988dd6db3688cc45a2f8c9c`
+- `.git/objects/9e/374382d4a0e50d79d46027b5c0eb34551ee212`
+- `.git/objects/9e/da7da1e10420a7718b2da2a6884352cd8cc710`
 - `.git/objects/a3/042fa56ef6cde690b72594465363c2efe7acb4`
 - `.git/objects/a7/a96d31d78381834db9f60eaa57f131f53af33e`
 - `.git/objects/a7/f6f3dac40c53127c06add7c4eec10a8b6ce385`
@@ -528,42 +545,61 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/ae/d75af6a54b7f6aa61b95b05a871d7febfb2a13`
 - `.git/objects/af/ad37ff08e042895e595e6ce84a7a8f932059a0`
 - `.git/objects/b1/ff5fb00a98239fe0e426e590a5ace1d873f692`
+- `.git/objects/b2/52e1fe65ef83a7e32c0ff99e8c00bd69dca8fe`
 - `.git/objects/b4/30e7e3153fc588d7021e2089c3372b551990b2`
 - `.git/objects/b4/3c4ed005af6c5d6ab177ee499a33b977685b1d`
 - `.git/objects/b5/72f20a4e3cf135c7c8922622c860eab78b6114`
 - `.git/objects/b6/89f92ba46a1ea4d4e6c4e3ab0194ab3b4bba37`
+- `.git/objects/b8/dd23339fe1cd15eb26dce5703e0cdd98d853f4`
 - `.git/objects/b9/cbf4c9400004053522f846734a72e67bcb30e9`
 - `.git/objects/ba/8617f035bc08d2d844ae3fd921e2c94eaca0cb`
 - `.git/objects/be/839ec41d534977727031bf16c79712a05e4da3`
+- `.git/objects/bf/11658b7c8b3aace0ba39e986be2645f04f6e24`
 - `.git/objects/bf/72383baddeb9031e7550ed3a9521aafa35a0e4`
+- `.git/objects/c1/541a953c23b7924b236d59195663c405e2f128`
+- `.git/objects/c1/7112985716f1b35252a42df7dd61ef853f2fd0`
 - `.git/objects/c1/d03126397137d69747628e414ee6db612ab1d9`
 - `.git/objects/c2/f01b3140ddcc29f0606d38147a740608abc580`
 - `.git/objects/c2/fd2f78390c490bc2aca885152877d73f939529`
 - `.git/objects/c6/0a64c5f53e4515bf1ef2a128603c9e1c9c1e13`
 - `.git/objects/c6/cd35531fcebd0326e137b001b973135b2c7015`
 - `.git/objects/c7/ca595fc1aee229524a6289adafff86340e830e`
+- `.git/objects/c9/f317c6513034014a6d036e670adda991e43a8f`
 - `.git/objects/cb/49e5980af0a20e3bf35625565be6fe1e5778fa`
 - `.git/objects/cb/6774eafe5598fb266fb8218e09ffc4b662305f`
+- `.git/objects/cb/b599e64f6897945c3d8e32d824b259f4e8d8b2`
 - `.git/objects/cd/3d6363e87021053eb6337974e6a8c408eabf30`
 - `.git/objects/cd/d6cd3a01b272e3a2f8a6f11bb36686383aa44d`
 - `.git/objects/ce/bc94822dbeae158769089d5d8e4bb0165df81b`
 - `.git/objects/d2/50fdae70f3a9a2cb28e95badff8191de137f73`
+- `.git/objects/d2/e920de474d12a6ad9bc0a388e66a4309efb351`
+- `.git/objects/d4/c21fce65106e818b2257684bcc15702bdd003e`
+- `.git/objects/d6/ae8697572d1438a921b667d328d1c5e10b9473`
+- `.git/objects/d9/595fdd76575028f8ea23c1ff1b77cbd8c13253`
 - `.git/objects/da/04366ef1d58bdeefd8c7372b7b08bea5713bd9`
+- `.git/objects/db/cbe65a182f699fd925eb4786e29771bafa577a`
+- `.git/objects/dc/83958f5a1ac3ea87a68aae50471ba7481ef431`
 - `.git/objects/dd/68c8d28a31454b065bb7598bc594c5ce71f63d`
 - `.git/objects/df/51acf94816367d3fc0e2be723705a37d71bd1a`
 - `.git/objects/e0/5fe4de4ebbd3e6323956ea0f968507eee8fb4e`
 - `.git/objects/e0/9c1775b2cb4cbde13f0b4df945f7b0c9c2d738`
 - `.git/objects/e0/d473666d557509034764cc231cbc67dc43d5ec`
+- `.git/objects/e0/d814ffc71e94c77e2c78646475d44e850e722b`
 - `.git/objects/e1/d9d58cd819532c4ee36bedd59541e4b4dc8f90`
 - `.git/objects/e3/55f42aab28857306a83c5d2414f79eabeb3b4d`
 - `.git/objects/e4/e3c839ff86ce3f400cc840dd89f3e6448444b1`
+- `.git/objects/e5/2356acbe2dc94050275fe699cc29f6cc0e3ebc`
 - `.git/objects/e8/5211ed4d5ea4a01f7a00bd2de62c6d2247e801`
 - `.git/objects/eb/6a1b9b850145c35d8fa7251fe3c535631ce6c1`
+- `.git/objects/eb/c63afe7f5c8763984b6b0059a176974dd5ee52`
+- `.git/objects/ee/af86525f3d46a481c1399b8768f11ae9cbac11`
 - `.git/objects/ef/5cd123213298bee0ebda3c0d7ac5c64422257c`
 - `.git/objects/f0/745d6e68bd6a9214932f4492074d58e54d7108`
+- `.git/objects/f1/ad38be860aaa08df0c60ca98df495f97b36f06`
 - `.git/objects/f2/648f477170bd3aceb4d139bccbdf34a2d4aedc`
 - `.git/objects/f2/dd7d894f844bbef0c0481e7e9daf65031329ac`
 - `.git/objects/f4/07eff62d53c9816df178e92a0aced5dbc9fb91`
+- `.git/objects/f4/52eb277591ebe4a9742e099d488a8c98812392`
 - `.git/objects/f6/59ee1c186f17b56c90cd7f7dd8b71a230fbd9b`
 - `.git/objects/f7/124109f0733789a6ec201f292b5ff83a0e6e0d`
 - `.git/objects/f8/a938240fdc143c7144332fc3ef331114c0311a`
@@ -587,9 +623,9 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `codebook.md`
 - `data/clean.csv`
 - `data/raw_tidy.csv`
-- `figures/E1_ai_scale_moderation.png`
+- `figures/E1_attention_check_robustness.png`
 - `figures/E1_chatgpt_moderator.png`
-- `figures/E2_no_attention_fail.png`
+- `figures/E2_age_heterogeneity_arm10.png`
 - `figures/E2_real_item_effects.png`
 - `figures/H1_arms.png`
 - `figures/H2_arms.png`
@@ -611,9 +647,9 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `provenance/llm_log.jsonl`
 - `provenance/provenance.json`
 - `report.md`
-- `results/E1_ai_scale_moderation.csv`
-- `results/E2_no_attention_fail.csv`
-- `results/E3_placebo_pk_score.csv`
+- `results/E1_attention_check_robustness.csv`
+- `results/E2_age_heterogeneity_arm10.csv`
+- `results/E3_manipulation_check_attention.csv`
 - `results/H1.csv`
 - `results/H1_arms.csv`
 - `results/H2.csv`

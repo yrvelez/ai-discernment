@@ -8,13 +8,13 @@
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.118946,
+ "cost_usd": 0.111253,
  "tokens": {
-  "in": 144770,
-  "out": 19839
+  "in": 92751,
+  "out": 21624
  },
  "tool_version": "0.1.0",
- "created": "2026-10-01T18:53:48Z",
+ "created": "2026-10-01T19:10:01Z",
  "pap_source": "author-supplied pap.json",
  "pii": {
   "dropped": [
@@ -38,88 +38,88 @@
  },
  "usage_by_agent": {
   "exploratory": {
-   "calls": 5,
-   "in": 118679,
-   "out": 11591,
-   "cost": 0.052480384308000005,
+   "calls": 3,
+   "in": 65882,
+   "out": 8656,
+   "cost": 0.038597123664,
    "models": [
     "qwen/qwen3.8-27b"
    ]
   },
   "litreview": {
    "calls": 2,
-   "in": 1730,
-   "out": 675,
-   "cost": 0.00294936246,
+   "in": 1890,
+   "out": 1333,
+   "cost": 0.00489993372,
    "models": [
     "qwen/qwen3.8-27b"
    ]
   },
   "writer": {
    "calls": 1,
-   "in": 13354,
-   "out": 6003,
-   "cost": 0.026179786908,
+   "in": 14255,
+   "out": 10008,
+   "cost": 0.03041527005,
    "models": [
     "qwen/qwen3.8-27b"
    ]
   },
   "reviewer": {
    "calls": 1,
-   "in": 11007,
-   "out": 1570,
-   "cost": 0.03733686,
+   "in": 10724,
+   "out": 1627,
+   "cost": 0.03734082,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
   }
  },
  "stage_seconds": {
-  "ingest": 0.01,
+  "ingest": 0.0,
   "pii": 0.07,
   "tidy": 0.06,
   "pap": 0.0,
-  "clean": 0.37,
-  "registered": 2.42,
+  "clean": 0.34,
+  "registered": 12.12,
   "tag": 0.0,
-  "exploratory": 143.05,
+  "exploratory": 114.86,
   "silicon": 0.0,
-  "litreview": 16.04,
-  "write": 93.7,
-  "review": 15.39,
+  "litreview": 31.18,
+  "write": 44.46,
+  "review": 16.13,
   "package": 0.0
  },
- "total_seconds": 271.1,
+ "total_seconds": 219.2,
  "log": [
-  "2026-10-01T18:53:48Z stage ingest",
-  "2026-10-01T18:53:48Z stage pii",
-  "2026-10-01T18:53:48Z PII scan (header + first row only): flagged 1 column(s): StartDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
-  "2026-10-01T18:53:48Z stage tidy",
-  "2026-10-01T18:53:48Z stage pap",
-  "2026-10-01T18:53:48Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
-  "2026-10-01T18:53:48Z stage clean",
-  "2026-10-01T18:53:49Z wrote data/clean.csv: 2030 rows, 71 columns",
-  "2026-10-01T18:53:49Z stage registered",
-  "2026-10-01T18:53:51Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
-  "2026-10-01T18:53:51Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-01T18:53:51Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
-  "2026-10-01T18:53:51Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-01T18:53:51Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
-  "2026-10-01T18:53:51Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-01T18:53:51Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
-  "2026-10-01T18:53:51Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-01T18:53:51Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
-  "2026-10-01T18:53:51Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-  "2026-10-01T18:53:51Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
-  "2026-10-01T18:53:51Z wrote results/registered_summary.csv (72 rows)",
-  "2026-10-01T18:53:51Z stage tag",
-  "2026-10-01T18:53:51Z stage exploratory",
-  "2026-10-01T18:56:14Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory, E1=exploratory, E2=exploratory, E3=exploratory",
-  "2026-10-01T18:56:14Z stage silicon",
-  "2026-10-01T18:56:14Z stage litreview",
-  "2026-10-01T18:56:30Z stage write",
-  "2026-10-01T18:58:04Z stage review",
-  "2026-10-01T18:58:19Z reviewer: 8 issue(s)",
-  "2026-10-01T18:58:19Z stage package"
+  "2026-10-01T19:10:01Z stage ingest",
+  "2026-10-01T19:10:01Z stage pii",
+  "2026-10-01T19:10:01Z PII scan (header + first row only): flagged 1 column(s): StartDate [known_identifier_column]. Action: dropped 1, kept by whitelist 0.",
+  "2026-10-01T19:10:01Z stage tidy",
+  "2026-10-01T19:10:01Z stage pap",
+  "2026-10-01T19:10:01Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+  "2026-10-01T19:10:01Z stage clean",
+  "2026-10-01T19:10:02Z wrote data/clean.csv: 2030 rows, 71 columns",
+  "2026-10-01T19:10:02Z stage registered",
+  "2026-10-01T19:10:14Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+  "2026-10-01T19:10:14Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T19:10:14Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
+  "2026-10-01T19:10:14Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T19:10:14Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
+  "2026-10-01T19:10:14Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T19:10:14Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
+  "2026-10-01T19:10:14Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T19:10:14Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+  "2026-10-01T19:10:14Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+  "2026-10-01T19:10:14Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+  "2026-10-01T19:10:14Z wrote results/registered_summary.csv (72 rows)",
+  "2026-10-01T19:10:14Z stage tag",
+  "2026-10-01T19:10:14Z stage exploratory",
+  "2026-10-01T19:12:09Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory, E1=exploratory, E2=exploratory, E3=exploratory",
+  "2026-10-01T19:12:09Z stage silicon",
+  "2026-10-01T19:12:09Z stage litreview",
+  "2026-10-01T19:12:40Z stage write",
+  "2026-10-01T19:13:24Z stage review",
+  "2026-10-01T19:13:40Z reviewer: 8 issue(s)",
+  "2026-10-01T19:13:40Z stage package"
  ]
 }
