@@ -1,40 +1,40 @@
 {
  "id": "boundary",
  "kind": "boundary",
- "title": "Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?",
- "rationale": "In the source study the AI Literacy Guide raised accuracy by 4.7 points (95% CI [0.2, 9.2]) and Automated Flagging by 4.4 points (95% CI [1.4, 7.3]), but the Guide result vanished without weights and the panel was online and U.S.-based. Effects may depend on age and digital familiarity, which the source did not stratify. This tests the Guide and automated flagging among respondents aged 55+, a group likely to have less experience with AI media.",
- "contribution": "Shows whether AI-discernment interventions generalise to older, less digitally experienced adults.",
+ "title": "Does Automated Flagging hold when detector labels are imperfect?",
+ "rationale": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect across 11 arms was only +1.0 point (95% CI [-0.3, 2.4]). Real detectors err, so we test whether the gain survives lower label reliability, a context the source did not cover, and whether people over-rely on wrong labels.",
+ "contribution": "Maps the range of label reliability within which automated AI-detection labels help rather than mislead.",
  "limitations": [
-  "Online panel still excludes offline older adults",
-  "Single session, immediate effects only",
-  "Post set is new and may differ in difficulty",
-  "Moderate sample may leave wide intervals"
+  "Label reliability is simulated, not produced by a real detector",
+  "Small stimulus set; image-only",
+  "Immediate effects in a single session on an online panel",
+  "Stimulus files and ground-truth labels must be supplied by the team"
  ],
  "design": {
-  "title": "Discernment interventions among adults aged 55+",
-  "overview": "US adults aged 55+ are randomised to control, the AI Literacy Guide, or automated flagging labels, then judge 12 posts (6 AI, 6 real) and answer confidence and attitude items.",
-  "hypothesis": "Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.",
-  "primaryOutcome": "Share of 12 posts correctly classified as AI-generated or real.",
-  "comparison": "Each treatment arm vs control on accuracy.",
-  "population": "US online panel respondents aged 55 or older, about 250 per arm.",
+  "title": "Automated AI-detection labels at varying reliability",
+  "overview": "Respondents see images, each with an automated detection label, and judge whether each is AI-generated. Label reliability is randomised to 90% or 60% correct, versus no labels.",
+  "hypothesis": "Labels at 90% reliability raise accuracy relative to no labels; labels at 60% reliability do not raise accuracy and lower it on posts where the label is wrong.",
+  "primaryOutcome": "Share of posts judged correctly",
+  "comparison": "High-reliability labels vs no labels vs low-reliability labels; secondary: accuracy on label-incorrect posts, and confidence in AI detection.",
+  "population": "U.S. online panel adults, about 300 per arm",
   "conditions": [
    {
-    "id": "c_control",
-    "title": "Control",
-    "description": "No intervention before the feed.",
-    "nodeId": "arm_control"
+    "id": "c_none",
+    "title": "No labels",
+    "description": "Images shown without labels.",
+    "nodeId": "arm_none"
    },
    {
-    "id": "c_guide",
-    "title": "AI Literacy Guide",
-    "description": "Guide with examples of AI artifacts before the feed.",
-    "nodeId": "arm_guide"
+    "id": "c_high",
+    "title": "90% reliable labels",
+    "description": "Automated labels correct on 90% of images.",
+    "nodeId": "arm_high"
    },
    {
-    "id": "c_flag",
-    "title": "Automated Flagging",
-    "description": "Posts carry automated AI-detection labels.",
-    "nodeId": "arm_flag"
+    "id": "c_low",
+    "title": "60% reliable labels",
+    "description": "Automated labels correct on 60% of images.",
+    "nodeId": "arm_low"
    }
   ],
   "blocks": [
@@ -45,19 +45,19 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to a research study about how people judge online media. It takes about 10 minutes and is voluntary. Do you consent to participate?",
+      "text": "This is a research study about judging online images. It takes about 8 minutes and participation is voluntary. Do you agree to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
         "id": "yes",
-        "text": "I consent",
+        "text": "I agree",
         "recode": "1"
        },
        {
         "id": "no",
-        "text": "I do not consent",
+        "text": "I do not agree",
         "recode": "0"
        }
       ],
@@ -67,89 +67,14 @@
     ]
    },
    {
-    "id": "b_pre",
-    "title": "Pre-treatment",
+    "id": "b_none",
+    "title": "Instructions no labels",
     "questions": [
      {
-      "id": "q_age",
-      "type": "MC",
-      "text": "What is your age group?",
-      "tag": "age_group",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "a1",
-        "text": "18-54",
-        "recode": "0"
-       },
-       {
-        "id": "a2",
-        "text": "55-64",
-        "recode": "1"
-       },
-       {
-        "id": "a3",
-        "text": "65 or older",
-        "recode": "2"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_tools",
-      "type": "MC",
-      "text": "Have you ever interacted with any of the following tools? Please check all that apply. If you have not interacted with any of these tools, skip to the next question.",
-      "tag": "subscriptions",
-      "multiple": true,
-      "required": false,
-      "choices": [
-       {
-        "id": "t1",
-        "text": "ChatGPT",
-        "recode": "1"
-       },
-       {
-        "id": "t2",
-        "text": "Bing Chat",
-        "recode": "2"
-       },
-       {
-        "id": "t3",
-        "text": "Anthropic Claude",
-        "recode": "3"
-       },
-       {
-        "id": "t4",
-        "text": "Dall-E",
-        "recode": "4"
-       },
-       {
-        "id": "t5",
-        "text": "Midjourney",
-        "recode": "5"
-       },
-       {
-        "id": "t6",
-        "text": "Stable Diffusion",
-        "recode": "6"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": "QID16"
-     }
-    ]
-   },
-   {
-    "id": "b_guide",
-    "title": "Guide",
-    "questions": [
-     {
-      "id": "q_guide",
+      "id": "q_i_none",
       "type": "DB",
-      "text": "Please read this guide on spotting AI-generated media. {{ed:guide}}",
-      "tag": "guide_view",
+      "text": "Next you will see images. For each, decide whether it is AI-generated. Go with your gut if unsure.",
+      "tag": "intro_none",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -159,14 +84,31 @@
     ]
    },
    {
-    "id": "b_flag",
-    "title": "Flag notice",
+    "id": "b_high",
+    "title": "Instructions high",
     "questions": [
      {
-      "id": "q_flagnote",
+      "id": "q_i_high",
       "type": "DB",
-      "text": "In the next section, posts carry labels from an automated AI-detection system. The labels are not always correct.",
-      "tag": "flag_notice",
+      "text": "Next you will see images, each with an automated AI-detection label. The tool is correct about 90% of the time. For each image, decide whether it is AI-generated.",
+      "tag": "intro_high",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_low",
+    "title": "Instructions low",
+    "questions": [
+     {
+      "id": "q_i_low",
+      "type": "DB",
+      "text": "Next you will see images, each with an automated AI-detection label. The tool is correct about 60% of the time. For each image, decide whether it is AI-generated.",
+      "tag": "intro_low",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -177,24 +119,13 @@
    },
    {
     "id": "b_task",
-    "title": "Discernment task",
+    "title": "Judgment task",
     "questions": [
-     {
-      "id": "q_intro",
-      "type": "DB",
-      "text": "For the following task, you will mark whether each post is AI-generated or not. If you're unsure, go with your gut.",
-      "tag": "task_intro",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": "QID23"
-     },
      {
       "id": "q_p1",
       "type": "DB",
       "text": "{{ed:post1}}",
-      "tag": "post1_view",
+      "tag": "post1_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -204,8 +135,8 @@
      {
       "id": "q_j1",
       "type": "MC",
-      "text": "Is this post AI-generated?",
-      "tag": "judge_post1",
+      "text": "Is this image AI-generated?",
+      "tag": "judge1",
       "multiple": false,
       "required": true,
       "choices": [
@@ -227,7 +158,7 @@
       "id": "q_p2",
       "type": "DB",
       "text": "{{ed:post2}}",
-      "tag": "post2_view",
+      "tag": "post2_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -237,8 +168,8 @@
      {
       "id": "q_j2",
       "type": "MC",
-      "text": "Is this post AI-generated?",
-      "tag": "judge_post2",
+      "text": "Is this image AI-generated?",
+      "tag": "judge2",
       "multiple": false,
       "required": true,
       "choices": [
@@ -264,49 +195,54 @@
     "questions": [
      {
       "id": "q_conf",
-      "type": "MC",
-      "text": "I feel confident in my ability to detect artificial intelligence.",
+      "type": "Matrix",
+      "text": "Please answer the following.",
       "tag": "ai_confidence",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "c1",
+        "id": "s1",
         "text": "Strongly disagree",
         "recode": "1"
        },
        {
-        "id": "c2",
+        "id": "s2",
         "text": "Disagree",
         "recode": "2"
        },
        {
-        "id": "c3",
+        "id": "s3",
         "text": "Somewhat disagree",
         "recode": "3"
        },
        {
-        "id": "c4",
+        "id": "s4",
         "text": "Neither agree nor disagree",
         "recode": "4"
        },
        {
-        "id": "c5",
+        "id": "s5",
         "text": "Somewhat agree",
         "recode": "5"
        },
        {
-        "id": "c6",
+        "id": "s6",
         "text": "Agree",
         "recode": "6"
        },
        {
-        "id": "c7",
+        "id": "s7",
         "text": "Strongly agree",
         "recode": "7"
        }
       ],
-      "rows": [],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "I feel confident in my ability to detect artificial intelligence."
+       }
+      ],
       "sourceQuestionId": "QID3"
      }
     ]
@@ -316,10 +252,27 @@
     "title": "Debrief",
     "questions": [
      {
-      "id": "q_debrief",
+      "id": "q_deb",
       "type": "DB",
-      "text": "Thank you. Some posts you saw were AI-generated and labels or guides may have been part of an experiment on detecting such media. Please stay critical of online media.",
+      "text": "Thank you. In this study some automated labels were deliberately inaccurate to test how people use them. Real detection tools can make mistakes.",
       "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_end",
+    "title": "End",
+    "questions": [
+     {
+      "id": "q_endmsg",
+      "type": "DB",
+      "text": "Thank you for your time. You did not consent, so the survey ends.",
+      "tag": "end_msg",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -343,23 +296,12 @@
     "operator": "equals"
    },
    {
-    "id": "n_end",
-    "type": "end",
-    "label": "End non-consent",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_branch",
+    "id": "n_br",
     "type": "branch",
-    "label": "Non-consent",
+    "label": "No consent",
     "children": [
-     "n_end"
+     "n_endb",
+     "n_end_nc"
     ],
     "blockId": "",
     "field": "",
@@ -369,11 +311,23 @@
     "operator": "selected"
    },
    {
-    "id": "n_pre",
+    "id": "n_endb",
     "type": "block",
-    "label": "Pre",
+    "label": "End message",
     "children": [],
-    "blockId": "b_pre",
+    "blockId": "b_end",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_end_nc",
+    "type": "end",
+    "label": "End no consent",
+    "children": [],
+    "blockId": "",
     "field": "",
     "value": "",
     "questionId": "",
@@ -383,11 +337,11 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Assign",
+    "label": "Arms",
     "children": [
-     "arm_control",
-     "arm_guide",
-     "arm_flag"
+     "arm_none",
+     "arm_high",
+     "arm_low"
     ],
     "blockId": "",
     "field": "",
@@ -397,11 +351,15 @@
     "operator": "equals"
    },
    {
-    "id": "arm_control",
+    "id": "arm_none",
     "type": "group",
-    "label": "Control",
+    "label": "No labels",
     "children": [
-     "set_control"
+     "set_none",
+     "t_none",
+     "e1n",
+     "e2n",
+     "n_task_n"
     ],
     "blockId": "",
     "field": "",
@@ -411,63 +369,23 @@
     "operator": "equals"
    },
    {
-    "id": "set_control",
+    "id": "set_none",
     "type": "embedded",
-    "label": "cond control",
+    "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "control",
+    "value": "none",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "arm_guide",
-    "type": "group",
-    "label": "Guide",
-    "children": [
-     "set_guide",
-     "set_guideimg",
-     "treat_guide"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_guide",
-    "type": "embedded",
-    "label": "cond guide",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "guide",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_guideimg",
-    "type": "embedded",
-    "label": "guide media",
-    "children": [],
-    "blockId": "",
-    "field": "guide",
-    "value": "[IMAGE: Illustrated guide showing common artifacts in AI images and videos such as distorted hands, odd text, and inconsistent lighting]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "treat_guide",
+    "id": "t_none",
     "type": "block",
-    "label": "Guide",
+    "label": "Intro",
     "children": [],
-    "blockId": "b_guide",
+    "blockId": "b_none",
     "field": "",
     "value": "",
     "questionId": "",
@@ -475,70 +393,187 @@
     "operator": "equals"
    },
    {
-    "id": "arm_flag",
-    "type": "group",
-    "label": "Flag",
-    "children": [
-     "set_flag",
-     "treat_flag"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_flag",
-    "type": "embedded",
-    "label": "cond flag",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "flag",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "treat_flag",
-    "type": "block",
-    "label": "Flag notice",
-    "children": [],
-    "blockId": "b_flag",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_p1",
+    "id": "e1n",
     "type": "embedded",
     "label": "post1",
     "children": [],
     "blockId": "",
     "field": "post1",
-    "value": "[IMAGE: A photorealistic street scene post, with an automated label if the respondent is in the flagging condition]",
+    "value": "[IMAGE: a photorealistic scene, no label]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "set_p2",
+    "id": "e2n",
     "type": "embedded",
     "label": "post2",
     "children": [],
     "blockId": "",
     "field": "post2",
-    "value": "[IMAGE: A photograph of a crowd at an outdoor event posted to a social feed]",
+    "value": "[IMAGE: a second photorealistic scene, no label]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_task",
+    "id": "n_task_n",
+    "type": "block",
+    "label": "Task",
+    "children": [],
+    "blockId": "b_task",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_high",
+    "type": "group",
+    "label": "High",
+    "children": [
+     "set_high",
+     "t_high",
+     "e1h",
+     "e2h",
+     "n_task_h"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_high",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "high",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_high",
+    "type": "block",
+    "label": "Intro",
+    "children": [],
+    "blockId": "b_high",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e1h",
+    "type": "embedded",
+    "label": "post1",
+    "children": [],
+    "blockId": "",
+    "field": "post1",
+    "value": "[IMAGE: a photorealistic scene with an automated detection label, mostly correct]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e2h",
+    "type": "embedded",
+    "label": "post2",
+    "children": [],
+    "blockId": "",
+    "field": "post2",
+    "value": "[IMAGE: a second scene with an automated detection label, mostly correct]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_task_h",
+    "type": "block",
+    "label": "Task",
+    "children": [],
+    "blockId": "b_task",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_low",
+    "type": "group",
+    "label": "Low",
+    "children": [
+     "set_low",
+     "t_low",
+     "e1l",
+     "e2l",
+     "n_task_l"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_low",
+    "type": "embedded",
+    "label": "cond",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "low",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_low",
+    "type": "block",
+    "label": "Intro",
+    "children": [],
+    "blockId": "b_low",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e1l",
+    "type": "embedded",
+    "label": "post1",
+    "children": [],
+    "blockId": "",
+    "field": "post1",
+    "value": "[IMAGE: a photorealistic scene with an automated detection label, often wrong]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e2l",
+    "type": "embedded",
+    "label": "post2",
+    "children": [],
+    "blockId": "",
+    "field": "post2",
+    "value": "[IMAGE: a second scene with an automated detection label, often wrong]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_task_l",
     "type": "block",
     "label": "Task",
     "children": [],
@@ -562,7 +597,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -572,35 +607,43 @@
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
    }
   ],
   "roots": [
    "n_consent",
-   "n_branch",
-   "n_pre",
+   "n_br",
    "r1",
-   "set_p1",
-   "set_p2",
-   "n_task",
    "n_out",
-   "n_debrief"
+   "n_deb",
+   "n_end"
   ],
   "assumptions": [
-   "Sample about 250 per arm, 750 total, recruited from an online panel with age quota 55+",
-   "Only two posts are shown here for brevity; the fielded task uses 12 posts",
-   "Compensation per panel standard"
+   "About 300 per arm gives roughly 80% power for a 4-point accuracy difference over 8 items",
+   "Only two example posts are shown in the schema; the full task uses 8 images with fixed ground truth, and label correctness is preset per image",
+   "Online U.S. panel, about 8 minutes"
   ],
   "unresolved": [
-   "Actual image and guide media files must be supplied by the research team",
-   "Full 12-post set and IRB number to be supplied",
-   "Compensation amount to be set"
+   "Actual image files and per-image label assignments must be supplied by the research team",
+   "Compensation and IRB number to be supplied by the research team"
   ],
   "evidence": [
    {
-    "id": "e1",
-    "title": "Source study package",
+    "id": "ev1",
+    "title": "Source study",
     "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "the source study this extension builds on",
+    "claim": "Automated Flagging raised accuracy by 4.4 points",
     "excerpt": "",
     "origin": "supplied"
    }

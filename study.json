@@ -1294,10 +1294,10 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.97646,
+  "cost_usd": 1.529185,
   "tokens": {
-   "in": 454968,
-   "out": 66338
+   "in": 576272,
+   "out": 97908
   },
   "tool_version": "0.1.0",
   "created": "2026-10-02T03:11:04Z",
@@ -1369,10 +1369,19 @@
     ]
    },
    "extensions": {
-    "calls": 11,
-    "in": 140659,
-    "out": 41550,
-    "cost": 0.68984982,
+    "calls": 18,
+    "in": 239831,
+    "out": 70520,
+    "cost": 1.1730133799999998,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "review_orchestrator": {
+    "calls": 1,
+    "in": 22132,
+    "out": 2600,
+    "cost": 0.06956136,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
@@ -1448,7 +1457,8 @@
    "2026-10-02T03:23:04Z stage write (with addenda)",
    "2026-10-02T03:23:22Z stage review (second pass)",
    "2026-10-02T13:03:46Z extensions: 1 proposal(s) validated by autoexperiment; dropped: mechanism: d_control: researcher input required before survey construction.; d_both: researcher input required before survey construction.; d_learn: researcher input required before survey construction.; boundary: q_feed: researcher input required before survey construction.",
-   "2026-10-02T13:06:13Z extensions: 3 proposal(s) validated by autoexperiment"
+   "2026-10-02T13:06:13Z extensions: 3 proposal(s) validated by autoexperiment",
+   "2026-10-02T16:16:32Z extensions: 1 proposal(s) validated by autoexperiment; dropped: boundary: design.blocks.5.questions.0.rows.0: Expected object, received string; alternative: design.blocks.4.questions.0.rows.0: Expected object, received string"
   ],
   "address_rounds": [
    {
@@ -1490,28 +1500,28 @@
   {
    "id": "mechanism",
    "kind": "mechanism",
-   "title": "Why does automated flagging help? Sensitivity versus suspicion shift",
-   "hypothesis": "Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.",
-   "primary_outcome": "Share of posts judged correctly",
+   "title": "Does Automated Flagging improve discernment or just shift response bias?",
+   "hypothesis": "Accurate labels raise both AI-post and real-post accuracy relative to control; uninformative labels shift the share of 'AI' responses without improving overall accuracy.",
+   "primary_outcome": "Discernment: hit rate on AI posts minus false-alarm rate on real posts (d-prime secondary).",
    "conditions": [
-    "No labels",
-    "Accurate detector labels",
+    "No label",
+    "Accurate automated labels",
     "Uninformative labels"
    ],
-   "status": "built",
-   "built_at": "2026-10-02",
+   "status": "proposed",
+   "built_at": null,
    "qsf": "extensions/mechanism.qsf"
   },
   {
    "id": "boundary",
    "kind": "boundary",
-   "title": "Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?",
-   "hypothesis": "Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.",
-   "primary_outcome": "Share of 12 posts correctly classified as AI-generated or real.",
+   "title": "Does Automated Flagging hold when detector labels are imperfect?",
+   "hypothesis": "Labels at 90% reliability raise accuracy relative to no labels; labels at 60% reliability do not raise accuracy and lower it on posts where the label is wrong.",
+   "primary_outcome": "Share of posts judged correctly",
    "conditions": [
-    "Control",
-    "AI Literacy Guide",
-    "Automated Flagging"
+    "No labels",
+    "90% reliable labels",
+    "60% reliable labels"
    ],
    "status": "proposed",
    "built_at": null,
@@ -1520,13 +1530,13 @@
   {
    "id": "alternative",
    "kind": "alternative",
-   "title": "Feedback-based practice versus the AI Literacy Guide for spotting AI media",
-   "hypothesis": "Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.",
-   "primary_outcome": "Share of 8 test posts correctly classified as AI-generated or authentic.",
+   "title": "Does a brief AI Literacy Guide or a mindfulness exercise change AI-media accuracy in an adequately powered replication?",
+   "hypothesis": "The Guide raises total accuracy and mindfulness lowers it relative to control, in both weighted and unweighted estimates.",
+   "primary_outcome": "Share of posts judged correctly (AI or authentic).",
    "conditions": [
     "Control",
-    "Passive guide",
-    "Practice with feedback"
+    "AI Literacy Guide",
+    "Mindfulness"
    ],
    "status": "proposed",
    "built_at": null,

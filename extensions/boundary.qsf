@@ -1,7 +1,7 @@
 {
  "SurveyEntry": {
   "SurveyID": "SV_filedrawer00000",
-  "SurveyName": "Discernment interventions among adults aged 55+ (extension of: Improving AI Discernment: do misinfor",
+  "SurveyName": "Automated AI-detection labels at varying reliability (extension of: Improving AI Discernment: do mis",
   "SurveyDescription": null,
   "SurveyOwnerID": "UR_filedrawer00000",
   "SurveyBrandID": "",
@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-02 15:45:30",
+  "SurveyCreationDate": "2026-10-02 16:18:23",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-02 15:45:30",
+  "LastModified": "2026-10-02 16:18:23",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -39,16 +39,20 @@
     },
     {
      "Type": "Standard",
-     "Description": "Pre-treatment",
-     "ID": "BL_b_pre",
+     "Description": "Instructions no labels",
+     "ID": "BL_b_none",
      "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID2"
-      },
-      {
-       "Type": "Page Break"
-      },
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Instructions high",
+     "ID": "BL_b_high",
+     "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID3"
@@ -57,8 +61,8 @@
     },
     {
      "Type": "Standard",
-     "Description": "Guide",
-     "ID": "BL_b_guide",
+     "Description": "Instructions low",
+     "ID": "BL_b_low",
      "BlockElements": [
       {
        "Type": "Question",
@@ -68,20 +72,16 @@
     },
     {
      "Type": "Standard",
-     "Description": "Flag notice",
-     "ID": "BL_b_flag",
+     "Description": "Judgment task",
+     "ID": "BL_b_task",
      "BlockElements": [
       {
        "Type": "Question",
        "QuestionID": "QID5"
-      }
-     ]
-    },
-    {
-     "Type": "Standard",
-     "Description": "Discernment task",
-     "ID": "BL_b_task",
-     "BlockElements": [
+      },
+      {
+       "Type": "Page Break"
+      },
       {
        "Type": "Question",
        "QuestionID": "QID6"
@@ -99,20 +99,6 @@
       {
        "Type": "Question",
        "QuestionID": "QID8"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID9"
-      },
-      {
-       "Type": "Page Break"
-      },
-      {
-       "Type": "Question",
-       "QuestionID": "QID10"
       }
      ]
     },
@@ -123,7 +109,7 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID11"
+       "QuestionID": "QID9"
       }
      ]
     },
@@ -134,7 +120,18 @@
      "BlockElements": [
       {
        "Type": "Question",
-       "QuestionID": "QID12"
+       "QuestionID": "QID10"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "End",
+     "ID": "BL_b_end",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
       }
      ]
     },
@@ -164,7 +161,7 @@
      {
       "Type": "Branch",
       "FlowID": "FL_3",
-      "Description": "Non-consent",
+      "Description": "No consent",
       "BranchLogic": {
        "0": {
         "0": {
@@ -184,16 +181,16 @@
       },
       "Flow": [
        {
+        "Type": "Standard",
+        "ID": "BL_b_end",
+        "FlowID": "FL_4",
+        "Autofill": []
+       },
+       {
         "Type": "EndSurvey",
-        "FlowID": "FL_4"
+        "FlowID": "FL_5"
        }
       ]
-     },
-     {
-      "Type": "Standard",
-      "ID": "BL_b_pre",
-      "FlowID": "FL_5",
-      "Autofill": []
      },
      {
       "Type": "BlockRandomizer",
@@ -204,7 +201,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_7",
-        "Description": "Control",
+        "Description": "No labels",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -217,29 +214,28 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "control"
+            "Value": "none"
            }
           ]
-         }
-        ]
-       },
-       {
-        "Type": "Group",
-        "FlowID": "FL_9",
-        "Description": "Guide",
-        "Flow": [
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_none",
+          "FlowID": "FL_9",
+          "Autofill": []
+         },
          {
           "Type": "EmbeddedData",
           "FlowID": "FL_10",
           "EmbeddedData": [
            {
-            "Description": "condition",
+            "Description": "post1",
             "Type": "Custom",
-            "Field": "condition",
+            "Field": "post1",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "guide"
+            "Value": "[IMAGE TO SUPPLY: a photorealistic scene, no label]"
            }
           ]
          },
@@ -248,19 +244,19 @@
           "FlowID": "FL_11",
           "EmbeddedData": [
            {
-            "Description": "guide",
+            "Description": "post2",
             "Type": "Custom",
-            "Field": "guide",
+            "Field": "post2",
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "[IMAGE TO SUPPLY: Illustrated guide showing common artifacts in AI images and videos such as distorted hands, odd text, and inconsistent lighting]"
+            "Value": "[IMAGE TO SUPPLY: a second photorealistic scene, no label]"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_guide",
+          "ID": "BL_b_task",
           "FlowID": "FL_12",
           "Autofill": []
          }
@@ -269,7 +265,7 @@
        {
         "Type": "Group",
         "FlowID": "FL_13",
-        "Description": "Flag",
+        "Description": "High",
         "Flow": [
          {
           "Type": "EmbeddedData",
@@ -282,14 +278,114 @@
             "VariableType": "String",
             "DataVisibility": [],
             "AnalyzeText": false,
-            "Value": "flag"
+            "Value": "high"
            }
           ]
          },
          {
           "Type": "Standard",
-          "ID": "BL_b_flag",
+          "ID": "BL_b_high",
           "FlowID": "FL_15",
+          "Autofill": []
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_16",
+          "EmbeddedData": [
+           {
+            "Description": "post1",
+            "Type": "Custom",
+            "Field": "post1",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a photorealistic scene with an automated detection label, mostly correct]"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_17",
+          "EmbeddedData": [
+           {
+            "Description": "post2",
+            "Type": "Custom",
+            "Field": "post2",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a second scene with an automated detection label, mostly correct]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_task",
+          "FlowID": "FL_18",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_19",
+        "Description": "Low",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_20",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "low"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_low",
+          "FlowID": "FL_21",
+          "Autofill": []
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_22",
+          "EmbeddedData": [
+           {
+            "Description": "post1",
+            "Type": "Custom",
+            "Field": "post1",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a photorealistic scene with an automated detection label, often wrong]"
+           }
+          ]
+         },
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_23",
+          "EmbeddedData": [
+           {
+            "Description": "post2",
+            "Type": "Custom",
+            "Field": "post2",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "[IMAGE TO SUPPLY: a second scene with an automated detection label, often wrong]"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_task",
+          "FlowID": "FL_24",
           "Autofill": []
          }
         ]
@@ -297,56 +393,24 @@
       ]
      },
      {
-      "Type": "EmbeddedData",
-      "FlowID": "FL_16",
-      "EmbeddedData": [
-       {
-        "Description": "post1",
-        "Type": "Custom",
-        "Field": "post1",
-        "VariableType": "String",
-        "DataVisibility": [],
-        "AnalyzeText": false,
-        "Value": "[IMAGE TO SUPPLY: A photorealistic street scene post, with an automated label if the respondent is in the flagging condition]"
-       }
-      ]
-     },
-     {
-      "Type": "EmbeddedData",
-      "FlowID": "FL_17",
-      "EmbeddedData": [
-       {
-        "Description": "post2",
-        "Type": "Custom",
-        "Field": "post2",
-        "VariableType": "String",
-        "DataVisibility": [],
-        "AnalyzeText": false,
-        "Value": "[IMAGE TO SUPPLY: A photograph of a crowd at an outdoor event posted to a social feed]"
-       }
-      ]
-     },
-     {
-      "Type": "Standard",
-      "ID": "BL_b_task",
-      "FlowID": "FL_18",
-      "Autofill": []
-     },
-     {
       "Type": "Standard",
       "ID": "BL_b_out",
-      "FlowID": "FL_19",
+      "FlowID": "FL_25",
       "Autofill": []
      },
      {
       "Type": "Standard",
       "ID": "BL_b_debrief",
-      "FlowID": "FL_20",
+      "FlowID": "FL_26",
       "Autofill": []
+     },
+     {
+      "Type": "EndSurvey",
+      "FlowID": "FL_27"
      }
     ],
     "Properties": {
-     "Count": 20,
+     "Count": 27,
      "RemovedFieldsets": []
     }
    }
@@ -359,7 +423,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "159cbbb7-b391-4b7a-80d3-60d240777700"
+    "PreviewID": "84b91930-1678-4741-93a7-936a41150eb6"
    }
   },
   {
@@ -377,7 +441,7 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "QC",
    "PrimaryAttribute": "Survey Question Count",
-   "SecondaryAttribute": "12",
+   "SecondaryAttribute": "11",
    "TertiaryAttribute": null,
    "Payload": null
   },
@@ -427,7 +491,7 @@
     "ValidationMessage": null,
     "PreviousButton": "",
     "NextButton": "",
-    "SurveyTitle": "Discernment interventions among adults aged 55+ (extension of: Improving AI Discernment: do misinfor",
+    "SurveyTitle": "Automated AI-detection labels at varying reliability (extension of: Improving AI Discernment: do mis",
     "SkinLibrary": "Qualtrics",
     "SkinType": "templated",
     "Skin": {
@@ -436,7 +500,7 @@
      "overrides": null
     },
     "NewScoring": 1,
-    "SurveyMetaDescription": "US adults aged 55+ are randomised to control, the AI Literacy Guide, or automated flagging labels..."
+    "SurveyMetaDescription": "Respondents see images, each with an automated detection label, and judge whether each is AI-gene..."
    }
   },
   {
@@ -454,10 +518,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID1",
-   "SecondaryAttribute": "You are invited to a research study about how people judge online media. It take",
+   "SecondaryAttribute": "This is a research study about judging online images. It takes about 8 minutes a",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "You are invited to a research study about how people judge online media. It takes about 10 minutes and is voluntary. Do you consent to participate?",
+    "QuestionText": "This is a research study about judging online images. It takes about 8 minutes and participation is voluntary. Do you agree to participate?",
     "DataExportTag": "consent",
     "DataVisibility": {
      "Private": false,
@@ -466,7 +530,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "You are invited to a research study about how people judge online media. It takes about 10 minute...",
+    "QuestionDescription": "This is a research study about judging online images. It takes about 8 minutes and participation...",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -481,10 +545,10 @@
     "SubSelector": "TX",
     "Choices": {
      "1": {
-      "Display": "I consent"
+      "Display": "I agree"
      },
      "2": {
-      "Display": "I do not consent"
+      "Display": "I do not agree"
      }
     },
     "ChoiceOrder": [
@@ -503,11 +567,10 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID2",
-   "SecondaryAttribute": "What is your age group?",
+   "SecondaryAttribute": "Next you will see images. For each, decide whether it is AI-generated. Go with y",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "What is your age group?",
-    "DataExportTag": "age_group",
+    "QuestionText": "Next you will see images. For each, decide whether it is AI-generated. Go with your gut if unsure.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -515,53 +578,32 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "What is your age group?",
+    "QuestionDescription": "Next you will see images. For each, decide whether it is AI-generated. Go with your gut if unsure.",
     "Validation": {
      "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
       "Type": "None"
      }
     },
     "Language": [],
     "QuestionID": "QID2",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "18-54"
-     },
-     "2": {
-      "Display": "55-64"
-     },
-     "3": {
-      "Display": "65 or older"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2",
-     "3"
-    ],
-    "NextChoiceId": 4,
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "0",
-     "2": "1",
-     "3": "2"
-    }
+    "DataExportTag": "q_i_none"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID3",
-   "SecondaryAttribute": "Have you ever interacted with any of the following tools? Please check all that ",
+   "SecondaryAttribute": "Next you will see images, each with an automated AI-detection label. The tool is",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Have you ever interacted with any of the following tools? Please check all that apply. If you have not interacted with any of these tools, skip to the next question.",
-    "DataExportTag": "subscriptions",
+    "QuestionText": "Next you will see images, each with an automated AI-detection label. The tool is correct about 90% of the time. For each image, decide whether it is AI-generated.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -569,7 +611,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Have you ever interacted with any of the following tools? Please check all that apply. If you hav...",
+    "QuestionDescription": "Next you will see images, each with an automated AI-detection label. The tool is correct about 90...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -577,57 +619,24 @@
     },
     "Language": [],
     "QuestionID": "QID3",
-    "QuestionType": "MC",
-    "Selector": "MAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "ChatGPT"
-     },
-     "2": {
-      "Display": "Bing Chat"
-     },
-     "3": {
-      "Display": "Anthropic Claude"
-     },
-     "4": {
-      "Display": "Dall-E"
-     },
-     "5": {
-      "Display": "Midjourney"
-     },
-     "6": {
-      "Display": "Stable Diffusion"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2",
-     "3",
-     "4",
-     "5",
-     "6"
-    ],
-    "NextChoiceId": 7,
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "2",
-     "3": "3",
-     "4": "4",
-     "5": "5",
-     "6": "6"
-    }
+    "DataExportTag": "q_i_high"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID4",
-   "SecondaryAttribute": "Please read this guide on spotting AI-generated media. {{ed:guide}}",
+   "SecondaryAttribute": "Next you will see images, each with an automated AI-detection label. The tool is",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Please read this guide on spotting AI-generated media. ${e://Field/guide}",
+    "QuestionText": "Next you will see images, each with an automated AI-detection label. The tool is correct about 60% of the time. For each image, decide whether it is AI-generated.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -635,7 +644,7 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Please read this guide on spotting AI-generated media. ${e://Field/guide}",
+    "QuestionDescription": "Next you will see images, each with an automated AI-detection label. The tool is correct about 60...",
     "Validation": {
      "Settings": {
       "Type": "None"
@@ -650,79 +659,13 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_guide"
+    "DataExportTag": "q_i_low"
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID5",
-   "SecondaryAttribute": "In the next section, posts carry labels from an automated AI-detection system. T",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "In the next section, posts carry labels from an automated AI-detection system. The labels are not always correct.",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "In the next section, posts carry labels from an automated AI-detection system. The labels are not...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID5",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_flagnote"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID6",
-   "SecondaryAttribute": "For the following task, you will mark whether each post is AI-generated or not. ",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "For the following task, you will mark whether each post is AI-generated or not. If you're unsure, go with your gut.",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "For the following task, you will mark whether each post is AI-generated or not. If you're unsure,...",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID6",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_intro"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID7",
    "SecondaryAttribute": "{{ed:post1}}",
    "TertiaryAttribute": null,
    "Payload": {
@@ -741,7 +684,7 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID7",
+    "QuestionID": "QID5",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,
@@ -755,12 +698,12 @@
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID8",
-   "SecondaryAttribute": "Is this post AI-generated?",
+   "PrimaryAttribute": "QID6",
+   "SecondaryAttribute": "Is this image AI-generated?",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Is this post AI-generated?",
-    "DataExportTag": "judge_post1",
+    "QuestionText": "Is this image AI-generated?",
+    "DataExportTag": "judge1",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -768,7 +711,89 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Is this post AI-generated?",
+    "QuestionDescription": "Is this image AI-generated?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID6",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "AI-generated"
+     },
+     "2": {
+      "Display": "Not AI-generated"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "{{ed:post2}}",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "${e://Field/post2}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "${e://Field/post2}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID7",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_p2"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "Is this image AI-generated?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Is this image AI-generated?",
+    "DataExportTag": "judge2",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Is this image AI-generated?",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -805,101 +830,24 @@
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
    "PrimaryAttribute": "QID9",
-   "SecondaryAttribute": "{{ed:post2}}",
+   "SecondaryAttribute": "Please answer the following.",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "${e://Field/post2}",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "${e://Field/post2}",
-    "Validation": {
-     "Settings": {
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID9",
-    "QuestionType": "DB",
-    "Selector": "TB",
-    "DefaultChoices": false,
-    "ChoiceOrder": [],
-    "GradingData": [],
-    "NextChoiceId": 1,
-    "NextAnswerId": 1,
-    "DataExportTag": "q_p2"
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID10",
-   "SecondaryAttribute": "Is this post AI-generated?",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "Is this post AI-generated?",
-    "DataExportTag": "judge_post2",
-    "DataVisibility": {
-     "Private": false,
-     "Hidden": false
-    },
-    "Configuration": {
-     "QuestionDescriptionOption": "UseText"
-    },
-    "QuestionDescription": "Is this post AI-generated?",
-    "Validation": {
-     "Settings": {
-      "ForceResponse": "ON",
-      "ForceResponseType": "ON",
-      "Type": "None"
-     }
-    },
-    "Language": [],
-    "QuestionID": "QID10",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
-    "Choices": {
-     "1": {
-      "Display": "AI-generated"
-     },
-     "2": {
-      "Display": "Not AI-generated"
-     }
-    },
-    "ChoiceOrder": [
-     "1",
-     "2"
-    ],
-    "NextChoiceId": 3,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "0"
-    }
-   }
-  },
-  {
-   "SurveyID": "SV_filedrawer00000",
-   "Element": "SQ",
-   "PrimaryAttribute": "QID11",
-   "SecondaryAttribute": "I feel confident in my ability to detect artificial intelligence.",
-   "TertiaryAttribute": null,
-   "Payload": {
-    "QuestionText": "I feel confident in my ability to detect artificial intelligence.",
+    "QuestionText": "Please answer the following.",
     "DataExportTag": "ai_confidence",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
     },
     "Configuration": {
-     "QuestionDescriptionOption": "UseText"
+     "QuestionDescriptionOption": "UseText",
+     "TextPosition": "inline",
+     "ChoiceColumnWidth": 25,
+     "RepeatHeaders": "none",
+     "WhiteSpace": "OFF",
+     "MobileFirst": true
     },
-    "QuestionDescription": "I feel confident in my ability to detect artificial intelligence.",
+    "QuestionDescription": "Please answer the following.",
     "Validation": {
      "Settings": {
       "ForceResponse": "ON",
@@ -908,11 +856,22 @@
      }
     },
     "Language": [],
-    "QuestionID": "QID11",
-    "QuestionType": "MC",
-    "Selector": "SAVR",
-    "SubSelector": "TX",
+    "QuestionID": "QID9",
+    "QuestionType": "Matrix",
+    "Selector": "Likert",
+    "SubSelector": "SingleAnswer",
+    "DefaultChoices": false,
+    "GradingData": [],
+    "ChoiceDataExportTags": false,
     "Choices": {
+     "1": {
+      "Display": "I feel confident in my ability to detect artificial intelligence."
+     }
+    },
+    "ChoiceOrder": [
+     "1"
+    ],
+    "Answers": {
      "1": {
       "Display": "Strongly disagree"
      },
@@ -935,7 +894,7 @@
       "Display": "Strongly agree"
      }
     },
-    "ChoiceOrder": [
+    "AnswerOrder": [
      "1",
      "2",
      "3",
@@ -944,27 +903,18 @@
      "6",
      "7"
     ],
-    "NextChoiceId": 8,
-    "NextAnswerId": 1,
-    "RecodeValues": {
-     "1": "1",
-     "2": "2",
-     "3": "3",
-     "4": "4",
-     "5": "5",
-     "6": "6",
-     "7": "7"
-    }
+    "NextChoiceId": 2,
+    "NextAnswerId": 8
    }
   },
   {
    "SurveyID": "SV_filedrawer00000",
    "Element": "SQ",
-   "PrimaryAttribute": "QID12",
-   "SecondaryAttribute": "Thank you. Some posts you saw were AI-generated and labels or guides may have be",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "Thank you. In this study some automated labels were deliberately inaccurate to t",
    "TertiaryAttribute": null,
    "Payload": {
-    "QuestionText": "Thank you. Some posts you saw were AI-generated and labels or guides may have been part of an experiment on detecting such media. Please stay critical of online media.",
+    "QuestionText": "Thank you. In this study some automated labels were deliberately inaccurate to test how people use them. Real detection tools can make mistakes.",
     "DataVisibility": {
      "Private": false,
      "Hidden": false
@@ -972,14 +922,14 @@
     "Configuration": {
      "QuestionDescriptionOption": "UseText"
     },
-    "QuestionDescription": "Thank you. Some posts you saw were AI-generated and labels or guides may have been part of an exp...",
+    "QuestionDescription": "Thank you. In this study some automated labels were deliberately inaccurate to test how people us...",
     "Validation": {
      "Settings": {
       "Type": "None"
      }
     },
     "Language": [],
-    "QuestionID": "QID12",
+    "QuestionID": "QID10",
     "QuestionType": "DB",
     "Selector": "TB",
     "DefaultChoices": false,
@@ -987,7 +937,40 @@
     "GradingData": [],
     "NextChoiceId": 1,
     "NextAnswerId": 1,
-    "DataExportTag": "q_debrief"
+    "DataExportTag": "q_deb"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "Thank you for your time. You did not consent, so the survey ends.",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Thank you for your time. You did not consent, so the survey ends.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Thank you for your time. You did not consent, so the survey ends.",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID11",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_endmsg"
    }
   }
  ]

@@ -1,40 +1,39 @@
 {
  "id": "alternative",
  "kind": "alternative",
- "title": "Feedback-based practice versus the AI Literacy Guide for spotting AI media",
- "rationale": "In the source study, passive pre-feed materials mostly did not help: the pooled accuracy effect was +1.0 point (95% CI [-0.3, +2.4]), and the AI Literacy Guide's +4.7 points had a CI that barely excluded zero. Automated flagging (+4.4) worked but needs external infrastructure. Active practice with immediate correctness feedback could teach detection without labels on each post.",
- "contribution": "Tests whether learning by practice with feedback beats passive literacy materials for AI-media discernment.",
+ "title": "Does a brief AI Literacy Guide or a mindfulness exercise change AI-media accuracy in an adequately powered replication?",
+ "rationale": "In the source study the AI Literacy Guide (+4.7 points, CI barely above zero) and Mindfulness (-3.9 points) effects depended on IPW weighting, and arms had only 78 to 181 respondents. This design replicates both against a control with equal, larger arms and pre-specifies weighted and unweighted estimates.",
+ "contribution": "Gives a well-powered, pre-specified replication of the two weight-dependent accuracy effects with weighted and unweighted estimates reported side by side.",
  "limitations": [
-  "Immediate effects in one session only",
-  "Online panel; practice items may resemble test items",
-  "Feedback may shift response bias toward answering AI instead of improving sensitivity",
-  "Sample size is a judgment call and effects may be small"
+  "Single session, immediate effects only",
+  "Online U.S. panel; quota matching is an imperfect benchmark for the correct weighting model",
+  "Uses a different image set than the original 24 posts, so stimulus effects may differ"
  ],
  "design": {
-  "title": "Practice with feedback vs literacy guide vs control",
-  "overview": "Respondents are randomised to control, a passive AI-literacy guide, or a 6-item practice task with correctness feedback. All then judge the same 8 posts and answer a confidence item.",
-  "hypothesis": "Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.",
-  "primaryOutcome": "Share of 8 test posts correctly classified as AI-generated or authentic.",
-  "comparison": "Practice-with-feedback vs guide vs control on test accuracy.",
-  "population": "US adults from an online panel, about 300 per arm.",
+  "title": "Replication of Guide and Mindfulness effects on AI-media discernment",
+  "overview": "Respondents are randomised to control, a comprehensive AI Literacy Guide, or a short mindfulness exercise, then judge images as AI-generated or authentic and answer the source confidence item.",
+  "hypothesis": "The Guide raises total accuracy and mindfulness lowers it relative to control, in both weighted and unweighted estimates.",
+  "primaryOutcome": "Share of posts judged correctly (AI or authentic).",
+  "comparison": "Guide vs control and Mindfulness vs control on total accuracy, reported unweighted and with IPW.",
+  "population": "U.S. adults on an online panel with age, gender, race and education quotas; about 600 per arm.",
   "conditions": [
    {
     "id": "c_control",
     "title": "Control",
-    "description": "No intervention before the judgment task.",
+    "description": "No pre-task material.",
     "nodeId": "arm_control"
    },
    {
     "id": "c_guide",
-    "title": "Passive guide",
-    "description": "Reads a short guide with examples of AI artifacts in images and video.",
+    "title": "AI Literacy Guide",
+    "description": "Guide with examples of AI artifacts in images and videos.",
     "nodeId": "arm_guide"
    },
    {
-    "id": "c_practice",
-    "title": "Practice with feedback",
-    "description": "Classifies practice posts and sees whether each answer was correct, with a brief explanation.",
-    "nodeId": "arm_practice"
+    "id": "c_mind",
+    "title": "Mindfulness",
+    "description": "Short mindfulness exercise.",
+    "nodeId": "arm_mind"
    }
   ],
   "blocks": [
@@ -45,19 +44,19 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "This is a research study about how people judge online media. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "text": "This is a research study about judging online media. It takes about 10 minutes and participation is voluntary. Do you agree to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
         "id": "yes",
-        "text": "I consent",
+        "text": "I agree",
         "recode": "1"
        },
        {
         "id": "no",
-        "text": "I do not consent",
+        "text": "I do not agree",
         "recode": "0"
        }
       ],
@@ -73,7 +72,7 @@
      {
       "id": "q_guide",
       "type": "DB",
-      "text": "AI-generated images and videos often show telltale artifacts: distorted hands or teeth, inconsistent shadows, garbled text, overly smooth skin, and unnatural motion or lip sync. Examples: {{ed:guide_img}} Read this carefully before continuing.",
+      "text": "Guide: How to spot AI-generated images and videos. Look for unnatural hands and teeth, inconsistent lighting and shadows, garbled text, overly smooth skin, odd backgrounds, and mismatched audio and lip movement. Please read carefully.",
       "tag": "guide_text",
       "multiple": false,
       "required": false,
@@ -84,14 +83,31 @@
     ]
    },
    {
-    "id": "b_practice",
-    "title": "Practice",
+    "id": "b_mind",
+    "title": "Mindfulness",
     "questions": [
      {
-      "id": "q_p1",
+      "id": "q_mind",
       "type": "DB",
-      "text": "Practice post 1: {{ed:prac1}}",
-      "tag": "prac1_show",
+      "text": "Please take two minutes. Close your eyes if comfortable, notice your breathing, and gently return attention to it whenever your mind wanders. Observe thoughts and sensations without judging them.",
+      "tag": "mind_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_task",
+    "title": "Task",
+    "questions": [
+     {
+      "id": "q_intro",
+      "type": "DB",
+      "text": "Now you will see images. For each, mark whether it is AI-generated or not. If unsure, go with your gut.",
+      "tag": "task_intro",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -99,10 +115,21 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_p1a",
+      "id": "q_p1s",
+      "type": "DB",
+      "text": "{{ed:post1}}",
+      "tag": "post1_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p1",
       "type": "MC",
-      "text": "Is this post AI-generated?",
-      "tag": "prac1_answer",
+      "text": "Is this image AI-generated?",
+      "tag": "post1_judge",
       "multiple": false,
       "required": true,
       "choices": [
@@ -121,27 +148,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_p1f",
+      "id": "q_p2s",
       "type": "DB",
-      "text": "Feedback: {{ed:prac1_fb}}",
-      "tag": "prac1_feedback",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
-    "id": "b_test",
-    "title": "Test",
-    "questions": [
-     {
-      "id": "q_t1",
-      "type": "DB",
-      "text": "Post 1: {{ed:test1}}",
-      "tag": "test1_show",
+      "text": "{{ed:post2}}",
+      "tag": "post2_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -149,10 +159,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_t1a",
+      "id": "q_p2",
       "type": "MC",
-      "text": "Is this post AI-generated?",
-      "tag": "test1_answer",
+      "text": "Is this image AI-generated?",
+      "tag": "post2_judge",
       "multiple": false,
       "required": true,
       "choices": [
@@ -177,10 +187,10 @@
     "title": "Outcomes",
     "questions": [
      {
-      "id": "q_conf",
+      "id": "q_att",
       "type": "Matrix",
       "text": "Please answer the following question about artificial intelligence.",
-      "tag": "ai_conf",
+      "tag": "ai_outcome",
       "multiple": false,
       "required": true,
       "choices": [
@@ -222,7 +232,7 @@
       ],
       "rows": [
        {
-        "id": "r_conf",
+        "id": "r1",
         "text": "I feel confident in my ability to detect artificial intelligence."
        }
       ],
@@ -237,7 +247,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some posts were AI-generated and some were authentic. The study tests which approaches help people recognise AI-generated media.",
+      "text": "Thank you. Some images were AI-generated and others were authentic. The study tests whether short materials change how people judge media.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -262,7 +272,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_noconsent",
+    "id": "n_br",
     "type": "branch",
     "label": "No consent",
     "children": [
@@ -294,7 +304,7 @@
     "children": [
      "arm_control",
      "arm_guide",
-     "arm_practice"
+     "arm_mind"
     ],
     "blockId": "",
     "field": "",
@@ -308,7 +318,7 @@
     "type": "group",
     "label": "Control",
     "children": [
-     "set_control"
+     "set_c"
     ],
     "blockId": "",
     "field": "",
@@ -318,9 +328,9 @@
     "operator": "equals"
    },
    {
-    "id": "set_control",
+    "id": "set_c",
     "type": "embedded",
-    "label": "cond control",
+    "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -334,9 +344,8 @@
     "type": "group",
     "label": "Guide",
     "children": [
-     "set_guide",
-     "e_guide",
-     "t_guide"
+     "set_g",
+     "t_g"
     ],
     "blockId": "",
     "field": "",
@@ -346,9 +355,9 @@
     "operator": "equals"
    },
    {
-    "id": "set_guide",
+    "id": "set_g",
     "type": "embedded",
-    "label": "cond guide",
+    "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -358,19 +367,7 @@
     "operator": "equals"
    },
    {
-    "id": "e_guide",
-    "type": "embedded",
-    "label": "guide image",
-    "children": [],
-    "blockId": "",
-    "field": "guide_img",
-    "value": "[IMAGE: infographic with side-by-side examples of AI artifacts such as distorted hands and garbled text]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_guide",
+    "id": "t_g",
     "type": "block",
     "label": "Guide",
     "children": [],
@@ -382,14 +379,12 @@
     "operator": "equals"
    },
    {
-    "id": "arm_practice",
+    "id": "arm_mind",
     "type": "group",
-    "label": "Practice",
+    "label": "Mindfulness",
     "children": [
-     "set_practice",
-     "e_prac1",
-     "e_prac1fb",
-     "t_practice"
+     "set_m",
+     "t_m"
     ],
     "blockId": "",
     "field": "",
@@ -399,47 +394,23 @@
     "operator": "equals"
    },
    {
-    "id": "set_practice",
+    "id": "set_m",
     "type": "embedded",
-    "label": "cond practice",
+    "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "practice",
+    "value": "mindfulness",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_prac1",
-    "type": "embedded",
-    "label": "practice 1",
-    "children": [],
-    "blockId": "",
-    "field": "prac1",
-    "value": "[IMAGE: photorealistic portrait of a person that is AI-generated]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_prac1fb",
-    "type": "embedded",
-    "label": "practice 1 feedback",
-    "children": [],
-    "blockId": "",
-    "field": "prac1_fb",
-    "value": "This image was AI-generated. Note the distorted earrings and blurred hair strands.",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_practice",
+    "id": "t_m",
     "type": "block",
-    "label": "Practice",
+    "label": "Mindfulness",
     "children": [],
-    "blockId": "b_practice",
+    "blockId": "b_mind",
     "field": "",
     "value": "",
     "questionId": "",
@@ -447,23 +418,35 @@
     "operator": "equals"
    },
    {
-    "id": "e_test1",
+    "id": "e_p1",
     "type": "embedded",
-    "label": "test 1",
+    "label": "post1",
     "children": [],
     "blockId": "",
-    "field": "test1",
-    "value": "[IMAGE: photograph of a street scene]",
+    "field": "post1",
+    "value": "[IMAGE: a photorealistic AI-generated street scene]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "n_test",
-    "type": "block",
-    "label": "Test",
+    "id": "e_p2",
+    "type": "embedded",
+    "label": "post2",
     "children": [],
-    "blockId": "b_test",
+    "blockId": "",
+    "field": "post2",
+    "value": "[IMAGE: an authentic photograph of a crowd at a public event]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_task",
+    "type": "block",
+    "label": "Task",
+    "children": [],
+    "blockId": "b_task",
     "field": "",
     "value": "",
     "questionId": "",
@@ -483,7 +466,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -497,36 +480,38 @@
   ],
   "roots": [
    "n_consent",
-   "n_noconsent",
+   "n_br",
    "r1",
-   "e_test1",
-   "n_test",
+   "e_p1",
+   "e_p2",
+   "n_task",
    "n_out",
-   "n_debrief"
+   "n_deb"
   ],
   "assumptions": [
-   "About 300 per arm gives roughly 80% power for a 5-point accuracy difference",
-   "Online panel, about 8 minutes",
-   "Test items are disjoint from practice items; only one practice and one test item are shown here, and the full set is 6 practice and 8 test items"
+   "About 600 per arm gives roughly 80% power for a 4-point effect with SD near 0.15",
+   "Online panel; compensation per panel standard",
+   "12 images in the full instrument, only two shown here for brevity"
   ],
   "unresolved": [
-   "The actual image and video files for the practice and test items must be supplied by the research team",
-   "Compensation and IRB approval details"
+   "Actual image files and the full set of 12 stimuli must be supplied by the research team",
+   "IRB approval number and compensation must be supplied by the research team",
+   "Quota and weighting targets must be fixed before launch"
   ],
   "evidence": [
    {
     "id": "ev1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "Pooled accuracy +1.0 point; Guide +4.7",
+    "claim": "Guide and Mindfulness effects depended on IPW weights",
     "excerpt": "",
     "origin": "supplied"
    },
    {
     "id": "ev2",
-    "title": "Pre-registration",
+    "title": "Pre-registration of the source study",
     "url": "https://aspredicted.org/q2eh95.pdf",
-    "claim": "Registered accuracy outcome",
+    "claim": "registered design and outcomes",
     "excerpt": "",
     "origin": "supplied"
    }

@@ -2,7 +2,7 @@
 
 *Yamil Velez · 2026-10-02 · N = 2,030 analysed of 2,257 collected · survey experiment*
 
-> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-02; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 2. Release status: draft. Model calls: $0.98, 455k tokens in and 66k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
+> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-02; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 2. Release status: draft. Model calls: $1.53, 576k tokens in and 98k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
 
 ## Abstract
 
@@ -306,98 +306,170 @@ Retrieved works (OpenAlex; queries: misinformation intervention AI-generated con
 
 The study tested eleven arms across four registered outcomes, plus exploratory ones, without correcting for multiple comparisons, so some significant arm effects are likely chance. Several arms are small (78 to 181 respondents, including the control), giving wide intervals. The AI Literacy Guide and Mindfulness accuracy results vanish without weights, and the Guide's interval barely excludes zero. Some data were collected before registration. Pooling treats arms as independent despite the shared control, so pooled intervals are approximate. The panel is online and U.S.-based, and the experiment measures immediate effects in a single session.
 
+## Peer review
+
+*Automated review. Reviewers and models: reviewer `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonnet-5.5`. Registered analyses are never changed to satisfy a reviewer; robustness checks sit beside them.*
+
+**Editor's assessment after the responses.** The evidence supports a flat pooled effect on total accuracy (+1.0 point, CI spanning zero) and one fairly robust arm result: Automated Flagging, +4.4 weighted and +3.7 unweighted. The Guide and Mindfulness accuracy effects disappear without weights (+0.4 and +0.2), and several other claims are stated more strongly than the tables allow. The registered plan has no multiplicity correction, so about 11 arms across 4 outcomes yield isolated p-values near 0.02-0.04 that are probably chance. The most important caveat is that only Automated Flagging is stable across specifications; the Guide, Mindfulness, Breathing Exercise (H2) and Infographic findings are fragile.
+
+#### R4 · medium · Answered with a robustness check · round 1
+
+*Pooled estimates.* The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.
+
+**Response.** Added H2a, a robustness re-estimate of H2: collapse all treated arms vs control in one model. H2: -0.111 (SE 0.050, p = 0.026, N = 2010). H2a: -0.118 (SE 0.107, p = 0.269, N = 2010).
+
+#### R5 · medium · Answered with a robustness check · round 1
+
+*Design and data / weights.* The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.
+
+**Response.** Added H1a, a robustness re-estimate of H1: re-fit without inverse probability weights. H1: +0.010 (SE 0.007, p = 0.132, N = 2030). H1a: +0.012 (SE 0.004, p = 0.004, N = 2030).
+
+#### R1 · high · Declined · round 2
+
+*H1 / Abstract / Key findings.* Headline arm effects (Automated Flagging, Guide, Mindfulness) are presented as findings across 11 arms x 4 outcomes with no multiplicity correction; the Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction. The abstract states them without hedging in the sentence itself.
+
+**Disposition.** The plan specifies no multiplicity correction, so adding Holm/BH would change the registered analysis; only tone can be tempered.
+
+#### R2 · high · Editorial · round 2
+
+*H1a robustness.* The unweighted refit (H1a) shows different estimates (e.g. Flagging +0.008 vs -0.010, Guide +0.004 vs +0.047), implying results are sensitive to IPW, yet the report never discusses it.
+
+**Disposition.** H1a already exists; the report must discuss the weight dependence in the abstract and key findings.
+
+#### R3 · high · Robustness check proposed · round 2
+
+*Design and data.* Registration came after some data were collected, which is a deviation. It is mentioned only in passing and the tags list no differences. How many responses preceded registration, and whether arms/outcomes were chosen after seeing the data, is not stated.
+
+**Disposition.** A sensitivity re-fit restricted to post-registration batches 3-4 is possible, and the early-batch count should be reported.
+
+#### R4 · medium · Editorial · round 2
+
+*H1 / Key findings.* The Mindfulness arm's mean_arm (0.696) equals its control-adjacent value, yet the estimate is -0.039 with control mean 0.693; the arm means in the summary table don't match the estimates (e.g. Guide mean 0.699 vs +0.047). Adjusted and raw quantities are mixed and unexplained.
+
+**Disposition.** Estimates are covariate-adjusted and weighted while the arm means are raw; the tables need a note.
+
+#### R5 · medium · Robustness check proposed · round 2
+
+*H5.* The exploratory H5 prose reports pooled p<0.001 and gains in specific arms, but H1 total accuracy is flat. The AI-detection gain is likely offset by a drop in authentic-content accuracy, suggesting a response bias (more 'AI' answers) rather than better discernment. The report does not say so.
+
+**Disposition.** H5 and H6 are already estimated, so a discernment difference or d' can be computed from the same data as an exploratory addition.
+
+#### R6 · medium · Robustness check proposed · round 2
+
+*Abstract / H2.* The pooled attitude effect (-0.11, p=0.026) is described as a finding while the arm effects are inconsistent and the only significant arm is Breathing Exercise. SEs vary oddly across arms (0.116 to 0.280), and Nudge with n=331 has SE 0.276.
+
+**Disposition.** Leverage/outlier checks and the outcome distribution can be reported from existing data; H2a already shows the pooled effect is null.
+
+#### R7 · low · Editorial · round 2
+
+*H1 text.* The claim 'other eight arms within about ±2 points' is false: Nudge is +2.0 and Flagging -1.0, which is fine, but Infographic 2 and others are within range; Provenance/Breathing at 1.5 OK. Pooled CI also uses an approximate SE with a shared control.
+
+**Disposition.** The range claim holds; the clumsy wording should be cleaned up, and H2a already supplies a treated-vs-control pooled model.
+
+#### R8 · low · Editorial · round 2
+
+*H6.* The H6 section is truncated, with an empty 'Details' block and no table.
+
+**Disposition.** The H6 table is present in the report text, so the truncation appears to be a rendering problem to fix.
+
+#### Claim checks
+
+| Claim | Where | Verdict | Evidence |
+|---|---|---|---|
+| Automated Flagging raised total accuracy by 4.4 percentage points (95% CI [1.4, 7.3]) | Abstract | **supported** | H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004; unweighted H1a 0.037, p=0.011. |
+| AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]) | Abstract | **overstated** | H1 row 10: 0.047, p=0.043. In H1a unweighted it is 0.004, CI [-0.023, 0.031]. The abstract does not mention this weight dependence. |
+| Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]) | Abstract | **overstated** | H1 row 6: -0.039, p=0.032; H1a unweighted +0.002, CI [-0.024, 0.028]. The sign reverses to about zero. |
+| The pooled accuracy effect was small and inconclusive (+1.0 point, 95% CI [−0.3, +2.4]) | Abstract | **supported** | H1 pooled 0.010, SE 0.007, p=0.132; the CI is consistent with this. The unweighted pooled estimate is 0.012, p=0.004. |
+| Pooled attitudes toward AI were slightly lower (-0.11, CI [-0.21, -0.01]) | Key findings | **overstated** | Random-effects pooled -0.111, p=0.026, but the direct treated-vs-control model H2a gives -0.118, SE 0.107, p=0.269, CI [-0.328, 0.091]. |
+| Flagging and AI Literacy Infographic 2 lowered confidence in AI detection | Key findings | **supported** | H3: Flagging -0.525, p=0.012; Infographic 2 -0.686, p=0.010. The pooled estimate is inconclusive and the tests are uncorrected. |
+| Registered: Mindfulness lowered total accuracy | Key findings | **overstated** | The effect is significant only in the IPW model (p=0.032) and is null unweighted (H1a). |
+| Trust in online information was not distinguishable from unchanged | Key findings | **overstated** | H4: pooled -0.038, p=0.060; Infographic -0.146, p=0.023. This is inconclusive rather than evidence of no change. |
+| The other eight arms were within about ±2 points of control | H1 | **supported** | H1 estimates range from -0.010 to +0.020 for the other eight arms. |
+| Breathing Exercise lowered attitudes by 0.54 points | H2 | **overstated** | H2 row 5: -0.543, p=0.018, with SE 0.230 relative to other arms' 0.12-0.17. Uncorrected, and the other arms are null. |
+| Detection of AI-generated posts was higher in several arms; pooled gain 3.8 points | H5 | **overstated** | H5 pooled 0.038, p<0.001, but H1 total accuracy is flat and H6 pooled is -0.7 points. This is consistent with a shift toward answering 'AI' rather than better discernment. |
+
+#### Editorial guidance
+
+- Put the weight dependence of the Guide and Mindfulness accuracy effects in the abstract and key findings.
+- Correct the claim that H2a matches the pooled attitude result: the direct model gives p=0.269.
+- Report how many responses preceded registration and flag the timing as a deviation.
+- Interpret H5 and H6 together; do not present the AI-detection gain as improved discernment.
+- Say trust effects are inconclusive, not unchanged.
+- Explain that estimates are adjusted and weighted while arm means are raw, and describe the IPW weights.
+
+#### Unresolved questions
+
+- **U1.** Do Automated Flagging labels improve discernment (sensitivity and specificity) rather than shifting response bias, in a pre-registered replication with adequate arm sizes? Arms are small, the tests uncorrected, and only total accuracy was registered; the H1 and H5/H6 patterns cannot separate discernment from bias. Taken up by the proposed extensions *Does Automated Flagging improve discernment or just shift response bias?* and *Does Automated Flagging hold when detector labels are imperfect?*.
+- **U2.** Would the Guide and Mindfulness effects replicate, and which weighting model reflects the target population? The effects depend on IPW and no single dataset can show which weighting specification is correct. Taken up by the proposed extension *Does a brief AI Literacy Guide or a mindfulness exercise change AI-media accuracy in an adequately powered replication?*.
+
+
 ## Proposed extensions
 
 *3 follow-up experiments proposed by the pipeline from these results. Each ships as an importable Qualtrics file (`extensions/<id>.qsf`: in Qualtrics, Create project, Survey, How do you want to start: Import a QSF file). Advanced: with a Qualtrics API token and the local Qualtrics MCP server, `filedrawer build-extension . <id>` creates the draft directly. They are proposals, not findings.*
 
-### Mechanism: Why does automated flagging help? Sensitivity versus suspicion shift
+### Mechanism: Does Automated Flagging improve discernment or just shift response bias?
 
-Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect was only +1.0 point and generic Flagging showed -1.0. This leaves open whether detector labels add information (better discrimination) or simply make people more suspicious of everything; the source reported fake and real accuracy separately but did not test the mechanism.
+Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]), but total accuracy cannot separate real discernment from a bias toward answering 'AI'. Randomising label validity (accurate vs uninformative) lets a gain from accurate labels beyond the uninformative arm indicate discernment, while the share of 'AI' responses indicates bias.
 
-**Hypothesis.** Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.
+*Answers the open reviewer question U1 (see Peer review).*
 
-**Design.** No labels vs. Accurate detector labels vs. Uninformative labels; primary outcome: Share of posts judged correctly. Status: built as an unpublished Qualtrics draft on 2026-10-02.
+**Hypothesis.** Accurate labels raise both AI-post and real-post accuracy relative to control; uninformative labels shift the share of 'AI' responses without improving overall accuracy.
 
-Survey file: [`extensions/mechanism.qsf`](extensions/mechanism.qsf); 2 media stimuli to supply after import.
+**Design.** No label vs. Accurate automated labels vs. Uninformative labels; primary outcome: Discernment: hit rate on AI posts minus false-alarm rate on real posts (d-prime secondary).
+
+Survey file: [`extensions/mechanism.qsf`](extensions/mechanism.qsf); 3 media stimuli to supply after import.
 
 #### Details: open items before fielding (mechanism)
 
-- Image files and label overlays must be supplied by the research team
+- Actual image and video files and label overlays must be supplied by the research team
 - IRB number and compensation to be set by the research team
-- Supply media: post1: image stimulus to supply (social media post with a photo, shown with the condition's label if any)
-- Supply media: post2: image stimulus to supply (second social media post with a photo, shown with the condition's label if any)
+- Supply media: feed_note: image stimulus to supply (a social media post, shown without any label)
+- Supply media: feed_note: image stimulus to supply (a social media post with an automated AI-detection label that is correct about 8)
+- Supply media: feed_note: image stimulus to supply (a social media post with an automated AI-detection label assigned at random)
 
-### Boundary condition: Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?
+### Boundary condition: Does Automated Flagging hold when detector labels are imperfect?
 
-In the source study the AI Literacy Guide raised accuracy by 4.7 points (95% CI [0.2, 9.2]) and Automated Flagging by 4.4 points (95% CI [1.4, 7.3]), but the Guide result vanished without weights and the panel was online and U.S.-based. Effects may depend on age and digital familiarity, which the source did not stratify. This tests the Guide and automated flagging among respondents aged 55+, a group likely to have less experience with AI media.
+Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect across 11 arms was only +1.0 point (95% CI [-0.3, 2.4]). Real detectors err, so we test whether the gain survives lower label reliability, a context the source did not cover, and whether people over-rely on wrong labels.
 
-**Hypothesis.** Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.
+*Answers the open reviewer question U1 (see Peer review).*
 
-**Design.** Control vs. AI Literacy Guide vs. Automated Flagging; primary outcome: Share of 12 posts correctly classified as AI-generated or real.
+**Hypothesis.** Labels at 90% reliability raise accuracy relative to no labels; labels at 60% reliability do not raise accuracy and lower it on posts where the label is wrong.
 
-Survey file: [`extensions/boundary.qsf`](extensions/boundary.qsf); 3 media stimuli to supply after import.
+**Design.** No labels vs. 90% reliable labels vs. 60% reliable labels; primary outcome: Share of posts judged correctly.
+
+Survey file: [`extensions/boundary.qsf`](extensions/boundary.qsf); 6 media stimuli to supply after import.
 
 #### Details: open items before fielding (boundary)
 
-- Actual image and guide media files must be supplied by the research team
-- Full 12-post set and IRB number to be supplied
-- Compensation amount to be set
-- Supply media: guide: image stimulus to supply (Illustrated guide showing common artifacts in AI images and videos such as disto)
-- Supply media: post1: image stimulus to supply (A photorealistic street scene post, with an automated label if the respondent is)
-- Supply media: post2: image stimulus to supply (A photograph of a crowd at an outdoor event posted to a social feed)
+- Actual image files and per-image label assignments must be supplied by the research team
+- Compensation and IRB number to be supplied by the research team
+- Supply media: post1: image stimulus to supply (a photorealistic scene, no label)
+- Supply media: post2: image stimulus to supply (a second photorealistic scene, no label)
+- Supply media: post1: image stimulus to supply (a photorealistic scene with an automated detection label, mostly correct)
+- Supply media: post2: image stimulus to supply (a second scene with an automated detection label, mostly correct)
+- Supply media: post1: image stimulus to supply (a photorealistic scene with an automated detection label, often wrong)
+- Supply media: post2: image stimulus to supply (a second scene with an automated detection label, often wrong)
 
-### Alternative explanation: Feedback-based practice versus the AI Literacy Guide for spotting AI media
+### Alternative explanation: Does a brief AI Literacy Guide or a mindfulness exercise change AI-media accuracy in an adequately powered replication?
 
-In the source study, passive pre-feed materials mostly did not help: the pooled accuracy effect was +1.0 point (95% CI [-0.3, +2.4]), and the AI Literacy Guide's +4.7 points had a CI that barely excluded zero. Automated flagging (+4.4) worked but needs external infrastructure. Active practice with immediate correctness feedback could teach detection without labels on each post.
+In the source study the AI Literacy Guide (+4.7 points, CI barely above zero) and Mindfulness (-3.9 points) effects depended on IPW weighting, and arms had only 78 to 181 respondents. This design replicates both against a control with equal, larger arms and pre-specifies weighted and unweighted estimates.
 
-**Hypothesis.** Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.
+*Answers the open reviewer question U2 (see Peer review).*
 
-**Design.** Control vs. Passive guide vs. Practice with feedback; primary outcome: Share of 8 test posts correctly classified as AI-generated or authentic.
+**Hypothesis.** The Guide raises total accuracy and mindfulness lowers it relative to control, in both weighted and unweighted estimates.
 
-Survey file: [`extensions/alternative.qsf`](extensions/alternative.qsf); 3 media stimuli to supply after import.
+**Design.** Control vs. AI Literacy Guide vs. Mindfulness; primary outcome: Share of posts judged correctly (AI or authentic).
+
+Survey file: [`extensions/alternative.qsf`](extensions/alternative.qsf); 2 media stimuli to supply after import.
 
 #### Details: open items before fielding (alternative)
 
-- The actual image and video files for the practice and test items must be supplied by the research team
-- Compensation and IRB approval details
-- Supply media: guide_img: image stimulus to supply (infographic with side-by-side examples of AI artifacts such as distorted hands a)
-- Supply media: prac1: image stimulus to supply (photorealistic portrait of a person that is AI-generated)
-- Supply media: test1: image stimulus to supply (photograph of a street scene)
+- Actual image files and the full set of 12 stimuli must be supplied by the research team
+- IRB approval number and compensation must be supplied by the research team
+- Quota and weighting targets must be fixed before launch
+- Supply media: post1: image stimulus to supply (a photorealistic AI-generated street scene)
+- Supply media: post2: image stimulus to supply (an authentic photograph of a crowd at a public event)
 
-
-## Reviewer responses
-
-*Robustness addenda added in reply to the automated reviewer; the registered analyses above are unchanged. Full memo in `responses.md`.*
-
-
-Round 1 raised 7 issue(s); 2 analytical issue(s) were answered with robustness addenda, approved by unattended (--yes) on 2026-10-01. Registered analyses were not changed.
-
-#### R4: The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.
-
-**Response.** Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly. Added H2a, a robustness re-estimation of H2: collapse all treated arms vs control in one model (`{"collapse_arms": true, "pooled": false}`).
-
-**Result.** H2: -0.111 (SE 0.050, p = 0.026, N = 2010). H2a: -0.118 (SE 0.107, p = 0.269, N = 2010).
-
-#### R5: The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.
-
-**Response.** The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting. Added H1a, a robustness re-estimation of H1: re-fit without inverse probability weights (`{"estimator": {"kind": "lin", "robust": "HC2", "cluster": null, "weights": null, "covariates": ["media_trust", "pk_score", "ai_scale", "political_interest"], "continuous": ["media_trust", "pk_score", "ai_scale", "political_interest"]}}`).
-
-**Result.** H1: +0.010 (SE 0.007, p = 0.132, N = 2030). H1a: +0.012 (SE 0.004, p = 0.004, N = 2030).
-
-#### Second reviewer pass
-
-Mostly consistent reporting of arm estimates, but the report leans on uncorrected borderline findings, contains a pooled-vs-arm inconsistency, hides a large robustness sensitivity, and is truncated.
-
-Remaining issues:
-
-- **high** R1 — H1 / Abstract / Key findings: Headline arm effects (Automated Flagging, Guide, Mindfulness) are presented as findings across 11 arms x 4 outcomes with no multiplicity correction; the Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction. The abstract states them without hedging in the sentence itself.
-- **high** R2 — H1a robustness: The unweighted refit (H1a) shows different estimates (e.g. Flagging +0.008 vs -0.010, Guide +0.004 vs +0.047), implying results are sensitive to IPW, yet the report never discusses it.
-- **high** R3 — Design and data: Registration came after some data were collected, which is a deviation. It is mentioned only in passing and the tags list no differences. How many responses preceded registration, and whether arms/outcomes were chosen after seeing the data, is not stated.
-- **medium** R4 — H1 / Key findings: The Mindfulness arm's mean_arm (0.696) equals its control-adjacent value, yet the estimate is -0.039 with control mean 0.693; the arm means in the summary table don't match the estimates (e.g. Guide mean 0.699 vs +0.047). Adjusted and raw quantities are mixed and unexplained.
-- **medium** R5 — H5: The exploratory H5 prose reports pooled p<0.001 and gains in specific arms, but H1 total accuracy is flat. The AI-detection gain is likely offset by a drop in authentic-content accuracy, suggesting a response bias (more 'AI' answers) rather than better discernment. The report does not say so.
-- **medium** R6 — Abstract / H2: The pooled attitude effect (-0.11, p=0.026) is described as a finding while the arm effects are inconsistent and the only significant arm is Breathing Exercise. SEs vary oddly across arms (0.116 to 0.280), and Nudge with n=331 has SE 0.276.
-- **low** R7 — H1 text: The claim 'other eight arms within about ±2 points' is false: Nudge is +2.0 and Flagging -1.0, which is fine, but Infographic 2 and others are within range; Provenance/Breathing at 1.5 OK. Pooled CI also uses an approximate SE with a shared control.
-- **low** R8 — H6: The H6 section is truncated, with an empty 'Details' block and no table.
 
 ## Technical appendix
 

@@ -1,6 +1,6 @@
 {
  "model": "anthropic/claude-sonnet-5.5",
- "overall": "Mostly consistent reporting of arm estimates, but the report leans on uncorrected borderline findings, contains a pooled-vs-arm inconsistency, hides a large robustness sensitivity, and is truncated.",
+ "overall": "The evidence supports a flat pooled effect on total accuracy (+1.0 point, CI spanning zero) and one fairly robust arm result: Automated Flagging, +4.4 weighted and +3.7 unweighted. The Guide and Mindfulness accuracy effects disappear without weights (+0.4 and +0.2), and several other claims are stated more strongly than the tables allow. The registered plan has no multiplicity correction, so about 11 arms across 4 outcomes yield isolated p-values near 0.02-0.04 that are probably chance. The most important caveat is that only Automated Flagging is stable across specifications; the Guide, Mindfulness, Breathing Exercise (H2) and Infographic findings are fragile.",
  "issues": [
   {
    "severity": "high",
@@ -12,7 +12,9 @@
     "target": "H1",
     "type": "robustness"
    },
-   "id": "R1"
+   "id": "R1",
+   "disposition": "declined",
+   "disposition_reason": "The plan specifies no multiplicity correction, so adding Holm/BH would change the registered analysis; only tone can be tempered."
   },
   {
    "severity": "high",
@@ -21,7 +23,9 @@
    "fix": "Present H1a beside H1, explain the weights, and state that the Guide effect depends on weighting.",
    "kind": "presentational",
    "change": null,
-   "id": "R2"
+   "id": "R2",
+   "disposition": "editorial",
+   "disposition_reason": "H1a already exists; the report must discuss the weight dependence in the abstract and key findings."
   },
   {
    "severity": "high",
@@ -33,7 +37,9 @@
     "target": "H1",
     "type": "exclusion"
    },
-   "id": "R3"
+   "id": "R3",
+   "disposition": "address",
+   "disposition_reason": "A sensitivity re-fit restricted to post-registration batches 3-4 is possible, and the early-batch count should be reported."
   },
   {
    "severity": "medium",
@@ -42,7 +48,9 @@
    "fix": "Explain that the estimates are covariate-adjusted and weighted while the means are raw, or correct the table.",
    "kind": "presentational",
    "change": null,
-   "id": "R4"
+   "id": "R4",
+   "disposition": "editorial",
+   "disposition_reason": "Estimates are covariate-adjusted and weighted while the arm means are raw; the tables need a note."
   },
   {
    "severity": "medium",
@@ -54,7 +62,9 @@
     "target": "H5",
     "type": "robustness"
    },
-   "id": "R5"
+   "id": "R5",
+   "disposition": "address",
+   "disposition_reason": "H5 and H6 are already estimated, so a discernment difference or d' can be computed from the same data as an exploratory addition."
   },
   {
    "severity": "medium",
@@ -66,7 +76,9 @@
     "target": "H2",
     "type": "estimator"
    },
-   "id": "R6"
+   "id": "R6",
+   "disposition": "address",
+   "disposition_reason": "Leverage/outlier checks and the outcome distribution can be reported from existing data; H2a already shows the pooled effect is null."
   },
   {
    "severity": "low",
@@ -75,7 +87,9 @@
    "fix": "Verify the range claim and use a pooled treated-vs-control model for the pooled estimate.",
    "kind": "presentational",
    "change": null,
-   "id": "R7"
+   "id": "R7",
+   "disposition": "editorial",
+   "disposition_reason": "The range claim holds; the clumsy wording should be cleaned up, and H2a already supplies a treated-vs-control pooled model."
   },
   {
    "severity": "low",
@@ -84,7 +98,206 @@
    "fix": "Include the H6 model and arm table.",
    "kind": "presentational",
    "change": null,
-   "id": "R8"
+   "id": "R8",
+   "disposition": "editorial",
+   "disposition_reason": "The H6 table is present in the report text, so the truncation appears to be a rendering problem to fix."
+  },
+  {
+   "id": "K1",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Abstract",
+   "issue": "Overstated claim: \"AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])\". H1 row 10: 0.047, p=0.043. In H1a unweighted it is 0.004, CI [-0.023, 0.031]. The abstract does not mention this weight dependence.",
+   "fix": "State that the effect appears only in the weighted model and is borderline.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K2",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Abstract",
+   "issue": "Overstated claim: \"Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])\". H1 row 6: -0.039, p=0.032; H1a unweighted +0.002, CI [-0.024, 0.028]. The sign reverses to about zero.",
+   "fix": "Report as weighting-dependent and not robust.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K3",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Pooled attitudes toward AI were slightly lower (-0.11, CI [-0.21, -0.01])\". Random-effects pooled -0.111, p=0.026, but the direct treated-vs-control model H2a gives -0.118, SE 0.107, p=0.269, CI [-0.328, 0.091].",
+   "fix": "Say the pooled effect is not distinguishable from zero in the single treated-vs-control model; the report's claim that H2a matches the pooled row is wrong.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K4",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Registered: Mindfulness lowered total accuracy\". The effect is significant only in the IPW model (p=0.032) and is null unweighted (H1a).",
+   "fix": "Add the weighting dependence.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K5",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Trust in online information was not distinguishable from unchanged\". H4: pooled -0.038, p=0.060; Infographic -0.146, p=0.023. This is inconclusive rather than evidence of no change.",
+   "fix": "Say the data are inconclusive; effects are small, up to about 0.1 points lower.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K6",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "H2",
+   "issue": "Overstated claim: \"Breathing Exercise lowered attitudes by 0.54 points\". H2 row 5: -0.543, p=0.018, with SE 0.230 relative to other arms' 0.12-0.17. Uncorrected, and the other arms are null.",
+   "fix": "Flag it as a single uncorrected result with an unusually large SE.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
+  },
+  {
+   "id": "K7",
+   "source": "claims",
+   "severity": "medium",
+   "kind": "presentational",
+   "change": null,
+   "location": "H5",
+   "issue": "Overstated claim: \"Detection of AI-generated posts was higher in several arms; pooled gain 3.8 points\". H5 pooled 0.038, p<0.001, but H1 total accuracy is flat and H6 pooled is -0.7 points. This is consistent with a shift toward answering 'AI' rather than better discernment.",
+   "fix": "Interpret H5 with H6 and caveat as a possible response bias.",
+   "disposition": "editorial",
+   "disposition_reason": "claim checked against the tables by the orchestrator"
   }
- ]
+ ],
+ "synthesis": {
+  "model": "anthropic/claude-sonnet-5.5",
+  "assessment": "The evidence supports a flat pooled effect on total accuracy (+1.0 point, CI spanning zero) and one fairly robust arm result: Automated Flagging, +4.4 weighted and +3.7 unweighted. The Guide and Mindfulness accuracy effects disappear without weights (+0.4 and +0.2), and several other claims are stated more strongly than the tables allow. The registered plan has no multiplicity correction, so about 11 arms across 4 outcomes yield isolated p-values near 0.02-0.04 that are probably chance. The most important caveat is that only Automated Flagging is stable across specifications; the Guide, Mindfulness, Breathing Exercise (H2) and Infographic findings are fragile.",
+  "claims": [
+   {
+    "claim": "Automated Flagging raised total accuracy by 4.4 percentage points (95% CI [1.4, 7.3])",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004; unweighted H1a 0.037, p=0.011.",
+    "fix": ""
+   },
+   {
+    "claim": "AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])",
+    "location": "Abstract",
+    "verdict": "overstated",
+    "evidence": "H1 row 10: 0.047, p=0.043. In H1a unweighted it is 0.004, CI [-0.023, 0.031]. The abstract does not mention this weight dependence.",
+    "fix": "State that the effect appears only in the weighted model and is borderline."
+   },
+   {
+    "claim": "Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])",
+    "location": "Abstract",
+    "verdict": "overstated",
+    "evidence": "H1 row 6: -0.039, p=0.032; H1a unweighted +0.002, CI [-0.024, 0.028]. The sign reverses to about zero.",
+    "fix": "Report as weighting-dependent and not robust."
+   },
+   {
+    "claim": "The pooled accuracy effect was small and inconclusive (+1.0 point, 95% CI [−0.3, +2.4])",
+    "location": "Abstract",
+    "verdict": "supported",
+    "evidence": "H1 pooled 0.010, SE 0.007, p=0.132; the CI is consistent with this. The unweighted pooled estimate is 0.012, p=0.004.",
+    "fix": ""
+   },
+   {
+    "claim": "Pooled attitudes toward AI were slightly lower (-0.11, CI [-0.21, -0.01])",
+    "location": "Key findings",
+    "verdict": "overstated",
+    "evidence": "Random-effects pooled -0.111, p=0.026, but the direct treated-vs-control model H2a gives -0.118, SE 0.107, p=0.269, CI [-0.328, 0.091].",
+    "fix": "Say the pooled effect is not distinguishable from zero in the single treated-vs-control model; the report's claim that H2a matches the pooled row is wrong."
+   },
+   {
+    "claim": "Flagging and AI Literacy Infographic 2 lowered confidence in AI detection",
+    "location": "Key findings",
+    "verdict": "supported",
+    "evidence": "H3: Flagging -0.525, p=0.012; Infographic 2 -0.686, p=0.010. The pooled estimate is inconclusive and the tests are uncorrected.",
+    "fix": "Add the uncorrected, tentative caveat."
+   },
+   {
+    "claim": "Registered: Mindfulness lowered total accuracy",
+    "location": "Key findings",
+    "verdict": "overstated",
+    "evidence": "The effect is significant only in the IPW model (p=0.032) and is null unweighted (H1a).",
+    "fix": "Add the weighting dependence."
+   },
+   {
+    "claim": "Trust in online information was not distinguishable from unchanged",
+    "location": "Key findings",
+    "verdict": "overstated",
+    "evidence": "H4: pooled -0.038, p=0.060; Infographic -0.146, p=0.023. This is inconclusive rather than evidence of no change.",
+    "fix": "Say the data are inconclusive; effects are small, up to about 0.1 points lower."
+   },
+   {
+    "claim": "The other eight arms were within about ±2 points of control",
+    "location": "H1",
+    "verdict": "supported",
+    "evidence": "H1 estimates range from -0.010 to +0.020 for the other eight arms.",
+    "fix": ""
+   },
+   {
+    "claim": "Breathing Exercise lowered attitudes by 0.54 points",
+    "location": "H2",
+    "verdict": "overstated",
+    "evidence": "H2 row 5: -0.543, p=0.018, with SE 0.230 relative to other arms' 0.12-0.17. Uncorrected, and the other arms are null.",
+    "fix": "Flag it as a single uncorrected result with an unusually large SE."
+   },
+   {
+    "claim": "Detection of AI-generated posts was higher in several arms; pooled gain 3.8 points",
+    "location": "H5",
+    "verdict": "overstated",
+    "evidence": "H5 pooled 0.038, p<0.001, but H1 total accuracy is flat and H6 pooled is -0.7 points. This is consistent with a shift toward answering 'AI' rather than better discernment.",
+    "fix": "Interpret H5 with H6 and caveat as a possible response bias."
+   }
+  ],
+  "editorial": [
+   "Put the weight dependence of the Guide and Mindfulness accuracy effects in the abstract and key findings.",
+   "Correct the claim that H2a matches the pooled attitude result: the direct model gives p=0.269.",
+   "Report how many responses preceded registration and flag the timing as a deviation.",
+   "Interpret H5 and H6 together; do not present the AI-detection gain as improved discernment.",
+   "Say trust effects are inconclusive, not unchanged.",
+   "Explain that estimates are adjusted and weighted while arm means are raw, and describe the IPW weights."
+  ],
+  "unresolved": [
+   {
+    "question": "Do Automated Flagging labels improve discernment (sensitivity and specificity) rather than shifting response bias, in a pre-registered replication with adequate arm sizes?",
+    "why": "Arms are small, the tests uncorrected, and only total accuracy was registered; the H1 and H5/H6 patterns cannot separate discernment from bias.",
+    "from": [
+     "R1",
+     "R5"
+    ],
+    "id": "U1"
+   },
+   {
+    "question": "Would the Guide and Mindfulness effects replicate, and which weighting model reflects the target population?",
+    "why": "The effects depend on IPW and no single dataset can show which weighting specification is correct.",
+    "from": [
+     "R2"
+    ],
+    "id": "U2"
+   }
+  ]
+ },
+ "models": {
+  "orchestrator": "anthropic/claude-sonnet-5.5"
+ }
 }
