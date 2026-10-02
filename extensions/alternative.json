@@ -1,0 +1,535 @@
+{
+ "id": "alternative",
+ "kind": "alternative",
+ "title": "Feedback-based practice versus the AI Literacy Guide for spotting AI media",
+ "rationale": "In the source study, passive pre-feed materials mostly did not help: the pooled accuracy effect was +1.0 point (95% CI [-0.3, +2.4]), and the AI Literacy Guide's +4.7 points had a CI that barely excluded zero. Automated flagging (+4.4) worked but needs external infrastructure. Active practice with immediate correctness feedback could teach detection without labels on each post.",
+ "contribution": "Tests whether learning by practice with feedback beats passive literacy materials for AI-media discernment.",
+ "limitations": [
+  "Immediate effects in one session only",
+  "Online panel; practice items may resemble test items",
+  "Feedback may shift response bias toward answering AI instead of improving sensitivity",
+  "Sample size is a judgment call and effects may be small"
+ ],
+ "design": {
+  "title": "Practice with feedback vs literacy guide vs control",
+  "overview": "Respondents are randomised to control, a passive AI-literacy guide, or a 6-item practice task with correctness feedback. All then judge the same 8 posts and answer a confidence item.",
+  "hypothesis": "Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.",
+  "primaryOutcome": "Share of 8 test posts correctly classified as AI-generated or authentic.",
+  "comparison": "Practice-with-feedback vs guide vs control on test accuracy.",
+  "population": "US adults from an online panel, about 300 per arm.",
+  "conditions": [
+   {
+    "id": "c_control",
+    "title": "Control",
+    "description": "No intervention before the judgment task.",
+    "nodeId": "arm_control"
+   },
+   {
+    "id": "c_guide",
+    "title": "Passive guide",
+    "description": "Reads a short guide with examples of AI artifacts in images and video.",
+    "nodeId": "arm_guide"
+   },
+   {
+    "id": "c_practice",
+    "title": "Practice with feedback",
+    "description": "Classifies practice posts and sees whether each answer was correct, with a brief explanation.",
+    "nodeId": "arm_practice"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "This is a research study about how people judge online media. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "yes",
+        "text": "I consent",
+        "recode": "1"
+       },
+       {
+        "id": "no",
+        "text": "I do not consent",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_guide",
+    "title": "Guide",
+    "questions": [
+     {
+      "id": "q_guide",
+      "type": "DB",
+      "text": "AI-generated images and videos often show telltale artifacts: distorted hands or teeth, inconsistent shadows, garbled text, overly smooth skin, and unnatural motion or lip sync. Examples: {{ed:guide_img}} Read this carefully before continuing.",
+      "tag": "guide_text",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_practice",
+    "title": "Practice",
+    "questions": [
+     {
+      "id": "q_p1",
+      "type": "DB",
+      "text": "Practice post 1: {{ed:prac1}}",
+      "tag": "prac1_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p1a",
+      "type": "MC",
+      "text": "Is this post AI-generated?",
+      "tag": "prac1_answer",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Authentic",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p1f",
+      "type": "DB",
+      "text": "Feedback: {{ed:prac1_fb}}",
+      "tag": "prac1_feedback",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_test",
+    "title": "Test",
+    "questions": [
+     {
+      "id": "q_t1",
+      "type": "DB",
+      "text": "Post 1: {{ed:test1}}",
+      "tag": "test1_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_t1a",
+      "type": "MC",
+      "text": "Is this post AI-generated?",
+      "tag": "test1_answer",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Authentic",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_out",
+    "title": "Outcomes",
+    "questions": [
+     {
+      "id": "q_conf",
+      "type": "Matrix",
+      "text": "Please answer the following question about artificial intelligence.",
+      "tag": "ai_conf",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Strongly disagree",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Disagree",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Somewhat disagree",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Neither agree nor disagree",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Somewhat agree",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "Strongly agree",
+        "recode": "7"
+       }
+      ],
+      "rows": [
+       {
+        "id": "r_conf",
+        "text": "I feel confident in my ability to detect artificial intelligence."
+       }
+      ],
+      "sourceQuestionId": "QID3"
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. Some posts were AI-generated and some were authentic. The study tests which approaches help people recognise AI-generated media.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "n_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_noconsent",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "n_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "no",
+    "operator": "selected"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Arm",
+    "children": [
+     "arm_control",
+     "arm_guide",
+     "arm_practice"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_control",
+    "type": "group",
+    "label": "Control",
+    "children": [
+     "set_control"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_control",
+    "type": "embedded",
+    "label": "cond control",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "control",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_guide",
+    "type": "group",
+    "label": "Guide",
+    "children": [
+     "set_guide",
+     "e_guide",
+     "t_guide"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_guide",
+    "type": "embedded",
+    "label": "cond guide",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "guide",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_guide",
+    "type": "embedded",
+    "label": "guide image",
+    "children": [],
+    "blockId": "",
+    "field": "guide_img",
+    "value": "[IMAGE: infographic with side-by-side examples of AI artifacts such as distorted hands and garbled text]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_guide",
+    "type": "block",
+    "label": "Guide",
+    "children": [],
+    "blockId": "b_guide",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_practice",
+    "type": "group",
+    "label": "Practice",
+    "children": [
+     "set_practice",
+     "e_prac1",
+     "e_prac1fb",
+     "t_practice"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_practice",
+    "type": "embedded",
+    "label": "cond practice",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "practice",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_prac1",
+    "type": "embedded",
+    "label": "practice 1",
+    "children": [],
+    "blockId": "",
+    "field": "prac1",
+    "value": "[IMAGE: photorealistic portrait of a person that is AI-generated]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_prac1fb",
+    "type": "embedded",
+    "label": "practice 1 feedback",
+    "children": [],
+    "blockId": "",
+    "field": "prac1_fb",
+    "value": "This image was AI-generated. Note the distorted earrings and blurred hair strands.",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_practice",
+    "type": "block",
+    "label": "Practice",
+    "children": [],
+    "blockId": "b_practice",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_test1",
+    "type": "embedded",
+    "label": "test 1",
+    "children": [],
+    "blockId": "",
+    "field": "test1",
+    "value": "[IMAGE: photograph of a street scene]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_test",
+    "type": "block",
+    "label": "Test",
+    "children": [],
+    "blockId": "b_test",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_out",
+    "type": "block",
+    "label": "Outcomes",
+    "children": [],
+    "blockId": "b_out",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "n_consent",
+   "n_noconsent",
+   "r1",
+   "e_test1",
+   "n_test",
+   "n_out",
+   "n_debrief"
+  ],
+  "assumptions": [
+   "About 300 per arm gives roughly 80% power for a 5-point accuracy difference",
+   "Online panel, about 8 minutes",
+   "Test items are disjoint from practice items; only one practice and one test item are shown here, and the full set is 6 practice and 8 test items"
+  ],
+  "unresolved": [
+   "The actual image and video files for the practice and test items must be supplied by the research team",
+   "Compensation and IRB approval details"
+  ],
+  "evidence": [
+   {
+    "id": "ev1",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/ai-discernment",
+    "claim": "Pooled accuracy +1.0 point; Guide +4.7",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "ev2",
+    "title": "Pre-registration",
+    "url": "https://aspredicted.org/q2eh95.pdf",
+    "claim": "Registered accuracy outcome",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

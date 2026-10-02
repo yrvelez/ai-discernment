@@ -1086,186 +1086,6 @@
    "i2": 0.4038257317383188,
    "k_arms": 11,
    "supported": false
-  },
-  {
-   "id": "H2a",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: collapse all treated arms vs control in one model)",
-   "outcome": "ai_attitudes",
-   "tag": "robustness",
-   "estimate": -0.11843507673791381,
-   "se": 0.10707676004580473,
-   "p": 0.2686934547016081,
-   "n": 2010,
-   "supported": false
-  },
-  {
-   "id": "H1a:1",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Flagging",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "1",
-   "arm_label": "Flagging",
-   "estimate": 0.008403140011276265,
-   "se": 0.012227805075000509,
-   "p": 0.4919467922626941,
-   "n": 2030,
-   "n_arm": 215,
-   "supported": false
-  },
-  {
-   "id": "H1a:2",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Provenance",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "2",
-   "arm_label": "Provenance",
-   "estimate": 0.00947405777620089,
-   "se": 0.013963525183479882,
-   "p": 0.4974635326599929,
-   "n": 2030,
-   "n_arm": 145,
-   "supported": false
-  },
-  {
-   "id": "H1a:3",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Automated Flagging",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "3",
-   "arm_label": "Automated Flagging",
-   "estimate": 0.036703735296432206,
-   "se": 0.0144801868390946,
-   "p": 0.01125257887067507,
-   "n": 2030,
-   "n_arm": 127,
-   "supported": true
-  },
-  {
-   "id": "H1a:4",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — AI Accuracy Nudge",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "4",
-   "arm_label": "AI Accuracy Nudge",
-   "estimate": 0.018936598505264447,
-   "se": 0.01141895558171385,
-   "p": 0.09724731025303333,
-   "n": 2030,
-   "n_arm": 333,
-   "supported": false
-  },
-  {
-   "id": "H1a:5",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Breathing Exercise",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "5",
-   "arm_label": "Breathing Exercise",
-   "estimate": 0.000727465733586688,
-   "se": 0.014451662605979012,
-   "p": 0.9598531560350414,
-   "n": 2030,
-   "n_arm": 134,
-   "supported": false
-  },
-  {
-   "id": "H1a:6",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Mindfulness",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "6",
-   "arm_label": "Mindfulness",
-   "estimate": 0.002079933883124902,
-   "se": 0.013450857051453128,
-   "p": 0.8771113850554942,
-   "n": 2030,
-   "n_arm": 180,
-   "supported": false
-  },
-  {
-   "id": "H1a:7",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — Inoculation",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "7",
-   "arm_label": "Inoculation",
-   "estimate": 0.0024885317358450676,
-   "se": 0.019946833447833143,
-   "p": 0.9007149525849606,
-   "n": 2030,
-   "n_arm": 78,
-   "supported": false
-  },
-  {
-   "id": "H1a:8",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — AI Literacy Infographic",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "8",
-   "arm_label": "AI Literacy Infographic",
-   "estimate": 0.014701731957397594,
-   "se": 0.01571151316162327,
-   "p": 0.34941229424617115,
-   "n": 2030,
-   "n_arm": 102,
-   "supported": false
-  },
-  {
-   "id": "H1a:9",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — AI Literacy Infographic 2",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "9",
-   "arm_label": "AI Literacy Infographic 2",
-   "estimate": -0.0025028498215943365,
-   "se": 0.01959914080069573,
-   "p": 0.898384793429957,
-   "n": 2030,
-   "n_arm": 80,
-   "supported": false
-  },
-  {
-   "id": "H1a:10",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — AI Literacy Guide",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "10",
-   "arm_label": "AI Literacy Guide",
-   "estimate": 0.003848626571344667,
-   "se": 0.013672895544970119,
-   "p": 0.778343391427061,
-   "n": 2030,
-   "n_arm": 162,
-   "supported": false
-  },
-  {
-   "id": "H1a:11",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — AI Text Video",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "11",
-   "arm_label": "AI Text Video",
-   "estimate": 0.02279739986641302,
-   "se": 0.012048629172637113,
-   "p": 0.05847557306569098,
-   "n": 2030,
-   "n_arm": 293,
-   "supported": false
-  },
-  {
-   "id": "H1a:pooled",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights) — pooled across 11 arms (random effects; arms share the control group)",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "pooled",
-   "estimate": 0.012093988456332654,
-   "se": 0.00422668651752176,
-   "p": 0.0042185398004964195,
-   "n": 2030,
-   "tau2": 0.0,
-   "i2": 0.0,
-   "k_arms": 11,
-   "supported": true
   }
  ],
  "release_status": "draft",
@@ -1294,10 +1114,10 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.28661,
+  "cost_usd": 0.97646,
   "tokens": {
-   "in": 314309,
-   "out": 24788
+   "in": 454968,
+   "out": 66338
   },
   "tool_version": "0.1.0",
   "created": "2026-10-02T03:11:04Z",
@@ -1364,6 +1184,15 @@
     "in": 12824,
     "out": 844,
     "cost": 0.03374712,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "extensions": {
+    "calls": 11,
+    "in": 140659,
+    "out": 41550,
+    "cost": 0.68984982,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
@@ -1437,7 +1266,9 @@
    "2026-10-02T03:23:04Z H1a: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs; 1 arm(s) supported; pooled=0.012 (SE 0.004, p=0.0042, tau2=0.0000, I2=0.00)",
    "2026-10-02T03:23:04Z wrote results/registered_summary.csv (85 rows)",
    "2026-10-02T03:23:04Z stage write (with addenda)",
-   "2026-10-02T03:23:22Z stage review (second pass)"
+   "2026-10-02T03:23:22Z stage review (second pass)",
+   "2026-10-02T13:03:46Z extensions: 1 proposal(s) validated by autoexperiment; dropped: mechanism: d_control: researcher input required before survey construction.; d_both: researcher input required before survey construction.; d_learn: researcher input required before survey construction.; boundary: q_feed: researcher input required before survey construction.",
+   "2026-10-02T13:06:13Z extensions: 3 proposal(s) validated by autoexperiment"
   ],
   "address_rounds": [
    {
@@ -1462,7 +1293,7 @@
    "base": "H2",
    "responds_to": "R4",
    "label": "collapse all treated arms vs control in one model",
-   "status": "approved",
+   "status": "run",
    "approved_by": "unattended (--yes)"
   },
   {
@@ -1470,10 +1301,54 @@
    "base": "H1",
    "responds_to": "R5",
    "label": "re-fit without inverse probability weights",
-   "status": "approved",
+   "status": "run",
    "approved_by": "unattended (--yes)"
   }
  ],
  "responses": "responses.md",
+ "extensions": [
+  {
+   "id": "mechanism",
+   "kind": "mechanism",
+   "title": "Why does automated flagging help? Sensitivity versus suspicion shift",
+   "hypothesis": "Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.",
+   "primary_outcome": "Share of posts judged correctly",
+   "conditions": [
+    "No labels",
+    "Accurate detector labels",
+    "Uninformative labels"
+   ],
+   "status": "built",
+   "built_at": "2026-10-02"
+  },
+  {
+   "id": "boundary",
+   "kind": "boundary",
+   "title": "Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?",
+   "hypothesis": "Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.",
+   "primary_outcome": "Share of 12 posts correctly classified as AI-generated or real.",
+   "conditions": [
+    "Control",
+    "AI Literacy Guide",
+    "Automated Flagging"
+   ],
+   "status": "proposed",
+   "built_at": null
+  },
+  {
+   "id": "alternative",
+   "kind": "alternative",
+   "title": "Feedback-based practice versus the AI Literacy Guide for spotting AI media",
+   "hypothesis": "Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.",
+   "primary_outcome": "Share of 8 test posts correctly classified as AI-generated or authentic.",
+   "conditions": [
+    "Control",
+    "Passive guide",
+    "Practice with feedback"
+   ],
+   "status": "proposed",
+   "built_at": null
+  }
+ ],
  "review": "review.json"
 }

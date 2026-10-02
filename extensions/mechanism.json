@@ -1,0 +1,566 @@
+{
+ "id": "mechanism",
+ "kind": "mechanism",
+ "title": "Why does automated flagging help? Sensitivity versus suspicion shift",
+ "rationale": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect was only +1.0 point and generic Flagging showed -1.0. This leaves open whether detector labels add information (better discrimination) or simply make people more suspicious of everything; the source reported fake and real accuracy separately but did not test the mechanism.",
+ "contribution": "Separates informative-label (sensitivity) from label-presence (response bias) accounts of the automated flagging gain.",
+ "limitations": [
+  "Single session, online U.S. panel",
+  "Small stimulus set so label reliability manipulations are coarse",
+  "Self-reported reliance is a noisy mechanism measure"
+ ],
+ "design": {
+  "title": "Label informativeness and AI-detection accuracy",
+  "overview": "Respondents judge posts (half AI, half real) in a feed under one of three label conditions: no labels, accurate detector labels (correct 85% of the time), or uninformative labels (random with the same 50% flag rate). If gains come from information, only accurate labels help; if from raised suspicion, both labels shift judgments toward AI.",
+  "hypothesis": "Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.",
+  "primaryOutcome": "Share of posts judged correctly",
+  "comparison": "Accurate labels vs random labels vs control; secondary: share of posts judged AI (bias), accuracy on real and AI posts separately",
+  "population": "U.S. online panel adults, about 300 per arm",
+  "conditions": [
+   {
+    "id": "control",
+    "title": "No labels",
+    "description": "Posts shown without any labels.",
+    "nodeId": "arm_control"
+   },
+   {
+    "id": "accurate",
+    "title": "Accurate detector labels",
+    "description": "Posts carry automated AI-detection labels that are correct 85% of the time.",
+    "nodeId": "arm_accurate"
+   },
+   {
+    "id": "random",
+    "title": "Uninformative labels",
+    "description": "Posts carry automated AI-detection labels assigned at random, flagging half of posts.",
+    "nodeId": "arm_random"
+   }
+  ],
+  "blocks": [
+   {
+    "id": "b_consent",
+    "title": "Consent",
+    "questions": [
+     {
+      "id": "q_consent",
+      "type": "MC",
+      "text": "You are invited to a research study about judging online posts. It takes about 10 minutes and is voluntary. Do you consent to participate?",
+      "tag": "consent",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "c_yes",
+        "text": "Yes, I consent",
+        "recode": "1"
+       },
+       {
+        "id": "c_no",
+        "text": "No",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_control",
+    "title": "Control feed",
+    "questions": [
+     {
+      "id": "q_ctrl_intro",
+      "type": "DB",
+      "text": "You will now see several posts. For each, decide whether it is AI-generated.",
+      "tag": "ctrl_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_accurate",
+    "title": "Accurate label feed",
+    "questions": [
+     {
+      "id": "q_acc_intro",
+      "type": "DB",
+      "text": "You will now see several posts. Each carries an automated detector label. The detector is correct most of the time but not always. For each post, decide whether it is AI-generated.",
+      "tag": "acc_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_random",
+    "title": "Random label feed",
+    "questions": [
+     {
+      "id": "q_rand_intro",
+      "type": "DB",
+      "text": "You will now see several posts. Each carries an automated detector label. The detector is correct most of the time but not always. For each post, decide whether it is AI-generated.",
+      "tag": "rand_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_judge",
+    "title": "Judgments",
+    "questions": [
+     {
+      "id": "q_post1",
+      "type": "DB",
+      "text": "{{ed:post1}}",
+      "tag": "post1_view",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_post1_j",
+      "type": "MC",
+      "text": "Is this post AI-generated?",
+      "tag": "post1_judge",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Not AI-generated",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_post2",
+      "type": "DB",
+      "text": "{{ed:post2}}",
+      "tag": "post2_view",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_post2_j",
+      "type": "MC",
+      "text": "Is this post AI-generated?",
+      "tag": "post2_judge",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Not AI-generated",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_after",
+    "title": "Follow-up",
+    "questions": [
+     {
+      "id": "q_rely",
+      "type": "MC",
+      "text": "How much did you rely on the labels, if any, when judging posts?",
+      "tag": "label_reliance",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "r1",
+        "text": "Not at all",
+        "recode": "1"
+       },
+       {
+        "id": "r2",
+        "text": "A little",
+        "recode": "2"
+       },
+       {
+        "id": "r3",
+        "text": "Somewhat",
+        "recode": "3"
+       },
+       {
+        "id": "r4",
+        "text": "A lot",
+        "recode": "4"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_conf",
+      "type": "MC",
+      "text": "I feel confident in my ability to detect artificial intelligence.",
+      "tag": "ai_confidence",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "s1",
+        "text": "Strongly disagree",
+        "recode": "1"
+       },
+       {
+        "id": "s2",
+        "text": "Disagree",
+        "recode": "2"
+       },
+       {
+        "id": "s3",
+        "text": "Somewhat disagree",
+        "recode": "3"
+       },
+       {
+        "id": "s4",
+        "text": "Neither agree nor disagree",
+        "recode": "4"
+       },
+       {
+        "id": "s5",
+        "text": "Somewhat agree",
+        "recode": "5"
+       },
+       {
+        "id": "s6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "s7",
+        "text": "Strongly agree",
+        "recode": "7"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": "QID3"
+     }
+    ]
+   },
+   {
+    "id": "b_debrief",
+    "title": "Debrief",
+    "questions": [
+     {
+      "id": "q_debrief",
+      "type": "DB",
+      "text": "Thank you. Some labels you saw may have been inaccurate or random, and this was part of the study. Please do not rely on them as real detector output.",
+      "tag": "debrief",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   }
+  ],
+  "flow": [
+   {
+    "id": "f_consent",
+    "type": "block",
+    "label": "Consent",
+    "children": [],
+    "blockId": "b_consent",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "f_noconsent",
+    "type": "branch",
+    "label": "No consent",
+    "children": [
+     "f_end"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "q_consent",
+    "choiceId": "c_no",
+    "operator": "selected"
+   },
+   {
+    "id": "f_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "r1",
+    "type": "randomizer",
+    "label": "Assign condition",
+    "children": [
+     "arm_control",
+     "arm_accurate",
+     "arm_random"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_control",
+    "type": "group",
+    "label": "Control",
+    "children": [
+     "set_control",
+     "t_control"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_control",
+    "type": "embedded",
+    "label": "cond control",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "control",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_control",
+    "type": "block",
+    "label": "Control intro",
+    "children": [],
+    "blockId": "b_control",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_accurate",
+    "type": "group",
+    "label": "Accurate",
+    "children": [
+     "set_accurate",
+     "t_accurate"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_accurate",
+    "type": "embedded",
+    "label": "cond accurate",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "accurate",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_accurate",
+    "type": "block",
+    "label": "Accurate intro",
+    "children": [],
+    "blockId": "b_accurate",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_random",
+    "type": "group",
+    "label": "Random",
+    "children": [
+     "set_random",
+     "t_random"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_random",
+    "type": "embedded",
+    "label": "cond random",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "random",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_random",
+    "type": "block",
+    "label": "Random intro",
+    "children": [],
+    "blockId": "b_random",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post1",
+    "type": "embedded",
+    "label": "post1",
+    "children": [],
+    "blockId": "",
+    "field": "post1",
+    "value": "[IMAGE: social media post with a photo, shown with the condition's label if any]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e_post2",
+    "type": "embedded",
+    "label": "post2",
+    "children": [],
+    "blockId": "",
+    "field": "post2",
+    "value": "[IMAGE: second social media post with a photo, shown with the condition's label if any]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "f_judge",
+    "type": "block",
+    "label": "Judgments",
+    "children": [],
+    "blockId": "b_judge",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "f_after",
+    "type": "block",
+    "label": "Follow-up",
+    "children": [],
+    "blockId": "b_after",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "f_debrief",
+    "type": "block",
+    "label": "Debrief",
+    "children": [],
+    "blockId": "b_debrief",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   }
+  ],
+  "roots": [
+   "f_consent",
+   "f_noconsent",
+   "r1",
+   "e_post1",
+   "e_post2",
+   "f_judge",
+   "f_after",
+   "f_debrief"
+  ],
+  "assumptions": [
+   "About 300 per arm for roughly 80% power to detect 4-point differences",
+   "Instrument shows two example posts; the full study would use 12",
+   "Labels per post are set by condition and ground truth by the research team",
+   "Online panel, about 10 minutes"
+  ],
+  "unresolved": [
+   "Image files and label overlays must be supplied by the research team",
+   "IRB number and compensation to be set by the research team"
+  ],
+  "evidence": [
+   {
+    "id": "ev1",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/ai-discernment",
+    "claim": "Automated Flagging raised accuracy by 4.4 points",
+    "excerpt": "",
+    "origin": "supplied"
+   },
+   {
+    "id": "ev2",
+    "title": "Pre-registration",
+    "url": "https://aspredicted.org/q2eh95.pdf",
+    "claim": "registered design and outcomes",
+    "excerpt": "",
+    "origin": "supplied"
+   }
+  ]
+ }
+}

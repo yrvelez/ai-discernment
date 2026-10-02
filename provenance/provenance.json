@@ -19,10 +19,10 @@
  },
  "provider": "openrouter",
  "zero_retention_requested": true,
- "cost_usd": 0.28661,
+ "cost_usd": 0.97646,
  "tokens": {
-  "in": 314309,
-  "out": 24788
+  "in": 454968,
+  "out": 66338
  },
  "tool_version": "0.1.0",
  "created": "2026-10-02T03:11:04Z",
@@ -89,6 +89,15 @@
    "in": 12824,
    "out": 844,
    "cost": 0.03374712,
+   "models": [
+    "anthropic/claude-sonnet-5.5"
+   ]
+  },
+  "extensions": {
+   "calls": 11,
+   "in": 140659,
+   "out": 41550,
+   "cost": 0.68984982,
    "models": [
     "anthropic/claude-sonnet-5.5"
    ]
@@ -162,7 +171,9 @@
   "2026-10-02T03:23:04Z H1a: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs; 1 arm(s) supported; pooled=0.012 (SE 0.004, p=0.0042, tau2=0.0000, I2=0.00)",
   "2026-10-02T03:23:04Z wrote results/registered_summary.csv (85 rows)",
   "2026-10-02T03:23:04Z stage write (with addenda)",
-  "2026-10-02T03:23:22Z stage review (second pass)"
+  "2026-10-02T03:23:22Z stage review (second pass)",
+  "2026-10-02T13:03:46Z extensions: 1 proposal(s) validated by autoexperiment; dropped: mechanism: d_control: researcher input required before survey construction.; d_both: researcher input required before survey construction.; d_learn: researcher input required before survey construction.; boundary: q_feed: researcher input required before survey construction.",
+  "2026-10-02T13:06:13Z extensions: 3 proposal(s) validated by autoexperiment"
  ],
  "address_rounds": [
   {

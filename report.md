@@ -2,7 +2,7 @@
 
 *Yamil Velez · 2026-10-02 · N = 2,030 analysed of 2,257 collected · survey experiment*
 
-> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-02; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 2. Release status: draft. Model calls: $0.29, 314k tokens in and 25k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
+> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-02; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 2. Release status: draft. Model calls: $0.98, 455k tokens in and 66k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
 
 ## Abstract
 
@@ -216,67 +216,6 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2025 | tw
 | AI Literacy Guide | 0.021 | 0.025 | 0.4015 | [-0.028, 0.069] | 162 | no |
 | AI Text Video | 0.023 | 0.018 | 0.1905 | [-0.012, 0.058] | 292 | no |
 
-### H2a. AI attitudes (opportunity vs threat, 6 items)
-
-*Each intervention changes attitudes toward AI relative to control (robustness: collapse all treated arms vs control in one model)*  
-*Robustness check added in response to the automated reviewer; responds to reviewer issue R4: collapse all treated arms vs control in one model.*
-
-Effect on AI attitudes (opportunity vs threat, 6 items): -0.118 (SE 0.107, p = 0.269); control mean 4.19, treated mean 4.15. Significant at alpha = 0.05: no.
-
-Collapsing all treated arms against control in one model, which handles the shared control group directly, was run as a robustness check on attitudes toward AI. The pooled estimate sits in the pooled-arm row of the tables (−0.11 points, 95% CI [−0.21, −0.01]) and the registered conclusion is unchanged.
-
-#### Details: model and coefficients (H2a)
-
-```
-ai_attitudes ~ treat * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c)
-Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2010 | two-sided test, alpha = 0.05
-```
-
-| analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
-|---|---|---|---|---|---|---|---|
-| H2a | Intercept | 4.215 | 0.092 | 45.908 | 0.000 | 4.035 | 4.395 |
-| H2a | treat | -0.118 | 0.107 | -1.106 | 0.269 | -0.328 | 0.091 |
-| H2a | media_trust_c | -0.469 | 0.130 | -3.616 | 0.000299 | -0.724 | -0.215 |
-| H2a | pk_score_c | 0.148 | 0.421 | 0.351 | 0.726 | -0.677 | 0.972 |
-| H2a | ai_scale_c | 1.221 | 0.543 | 2.249 | 0.025 | 0.157 | 2.286 |
-| H2a | political_interest_c | 0.048 | 0.099 | 0.481 | 0.631 | -0.147 | 0.242 |
-| H2a | treat:media_trust_c | 0.170 | 0.150 | 1.132 | 0.258 | -0.124 | 0.464 |
-| H2a | treat:pk_score_c | -0.347 | 0.483 | -0.719 | 0.472 | -1.293 | 0.599 |
-| H2a | treat:ai_scale_c | 0.583 | 0.721 | 0.809 | 0.419 | -0.830 | 1.996 |
-| H2a | treat:political_interest_c | 0.027 | 0.117 | 0.229 | 0.819 | -0.203 | 0.257 |
-
-### H1a. Accuracy (share of 24 posts judged correctly)
-
-*Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights)*  
-*Robustness check added in response to the automated reviewer; responds to reviewer issue R5: re-fit without inverse probability weights.*
-
-![H1a: effect by arm](figures/H1a_arms.png)
-
-Re-fitting accuracy without inverse probability weights changed the estimates little. Automated Flagging remained 3.7 points higher (95% CI [0.8, 6.5], p=0.011). The AI Literacy Guide (+0.4 points, 95% CI [−2.3, +3.1]) and Mindfulness (+0.2 points, 95% CI [−2.4, +2.8]) were no longer distinguishable from control, so those two registered findings depend on the weighting.
-
-Pooling the 11 arm effects with a random-effects model gives 0.012 (SE 0.004, p = 0.004; tau² 0.0000, I² 0.00). The arms share one control group, so this pooled standard error is approximate.
-
-#### Details: model and estimates by arm (H1a)
-
-```
-total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c)
-Lin (2013) covariate adjustment | HC2 robust SEs | N = 2030 | two-sided test, alpha = 0.05
-```
-
-| Arm | Estimate | SE | p | 95% CI | n (arm) | Supported |
-|---|---|---|---|---|---|---|
-| Flagging | 0.008 | 0.012 | 0.4919 | [-0.016, 0.032] | 215 | no |
-| Provenance | 0.009 | 0.014 | 0.4975 | [-0.018, 0.037] | 145 | no |
-| Automated Flagging | 0.037 | 0.014 | 0.0113 | [0.008, 0.065] | 127 | yes |
-| AI Accuracy Nudge | 0.019 | 0.011 | 0.0972 | [-0.003, 0.041] | 333 | no |
-| Breathing Exercise | 0.001 | 0.014 | 0.9599 | [-0.028, 0.029] | 134 | no |
-| Mindfulness | 0.002 | 0.013 | 0.8771 | [-0.024, 0.028] | 180 | no |
-| Inoculation | 0.002 | 0.020 | 0.9007 | [-0.037, 0.042] | 78 | no |
-| AI Literacy Infographic | 0.015 | 0.016 | 0.3494 | [-0.016, 0.045] | 102 | no |
-| AI Literacy Infographic 2 | -0.003 | 0.020 | 0.8984 | [-0.041, 0.036] | 80 | no |
-| AI Literacy Guide | 0.004 | 0.014 | 0.7783 | [-0.023, 0.031] | 162 | no |
-| AI Text Video | 0.023 | 0.012 | 0.0585 | [-0.001, 0.046] | 293 | no |
-
 ![Planned treatment effects](figures/registered_effects.png)
 
 ## Exploratory analyses
@@ -306,38 +245,50 @@ Retrieved works (OpenAlex; queries: misinformation intervention AI-generated con
 
 The study tested eleven arms across four registered outcomes, plus exploratory ones, without correcting for multiple comparisons, so some significant arm effects are likely chance. Several arms are small (78 to 181 respondents, including the control), giving wide intervals. The AI Literacy Guide and Mindfulness accuracy results vanish without weights, and the Guide's interval barely excludes zero. Some data were collected before registration. Pooling treats arms as independent despite the shared control, so pooled intervals are approximate. The panel is online and U.S.-based, and the experiment measures immediate effects in a single session.
 
-## Reviewer responses
+## Proposed extensions
 
-*Robustness addenda added in reply to the automated reviewer; the registered analyses above are unchanged. Full memo in `responses.md`.*
+*3 follow-up experiments proposed by the pipeline from these results. Each is a complete survey instrument (`extensions/<id>.json`, autoexperiment schema) that the authors can build as an unpublished Qualtrics draft with `filedrawer build-extension . <id>`. They are proposals, not findings.*
 
-Round 1 raised 7 issue(s); 2 analytical issue(s) were answered with robustness addenda, approved by unattended (--yes) on 2026-10-01. Registered analyses were not changed.
+### Mechanism: Why does automated flagging help? Sensitivity versus suspicion shift
 
-#### R4: The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.
+Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect was only +1.0 point and generic Flagging showed -1.0. This leaves open whether detector labels add information (better discrimination) or simply make people more suspicious of everything; the source reported fake and real accuracy separately but did not test the mechanism.
 
-**Response.** Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly. Added H2a, a robustness re-estimation of H2: collapse all treated arms vs control in one model (`{"collapse_arms": true, "pooled": false}`).
+**Hypothesis.** Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.
 
-**Result.** H2: -0.111 (SE 0.050, p = 0.026, N = 2010). H2a: -0.118 (SE 0.107, p = 0.269, N = 2010).
+**Design.** No labels vs. Accurate detector labels vs. Uninformative labels; primary outcome: Share of posts judged correctly. Status: built as an unpublished Qualtrics draft on 2026-10-02.
 
-#### R5: The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.
+#### Details: open items before fielding (mechanism)
 
-**Response.** The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting. Added H1a, a robustness re-estimation of H1: re-fit without inverse probability weights (`{"estimator": {"kind": "lin", "robust": "HC2", "cluster": null, "weights": null, "covariates": ["media_trust", "pk_score", "ai_scale", "political_interest"], "continuous": ["media_trust", "pk_score", "ai_scale", "political_interest"]}}`).
+- Image files and label overlays must be supplied by the research team
+- IRB number and compensation to be set by the research team
 
-**Result.** H1: +0.010 (SE 0.007, p = 0.132, N = 2030). H1a: +0.012 (SE 0.004, p = 0.004, N = 2030).
+### Boundary condition: Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?
 
-#### Second reviewer pass
+In the source study the AI Literacy Guide raised accuracy by 4.7 points (95% CI [0.2, 9.2]) and Automated Flagging by 4.4 points (95% CI [1.4, 7.3]), but the Guide result vanished without weights and the panel was online and U.S.-based. Effects may depend on age and digital familiarity, which the source did not stratify. This tests the Guide and automated flagging among respondents aged 55+, a group likely to have less experience with AI media.
 
-Mostly consistent reporting of arm estimates, but the report leans on uncorrected borderline findings, contains a pooled-vs-arm inconsistency, hides a large robustness sensitivity, and is truncated.
+**Hypothesis.** Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.
 
-Remaining issues:
+**Design.** Control vs. AI Literacy Guide vs. Automated Flagging; primary outcome: Share of 12 posts correctly classified as AI-generated or real.
 
-- **high** R1 — H1 / Abstract / Key findings: Headline arm effects (Automated Flagging, Guide, Mindfulness) are presented as findings across 11 arms x 4 outcomes with no multiplicity correction; the Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction. The abstract states them without hedging in the sentence itself.
-- **high** R2 — H1a robustness: The unweighted refit (H1a) shows different estimates (e.g. Flagging +0.008 vs -0.010, Guide +0.004 vs +0.047), implying results are sensitive to IPW, yet the report never discusses it.
-- **high** R3 — Design and data: Registration came after some data were collected, which is a deviation. It is mentioned only in passing and the tags list no differences. How many responses preceded registration, and whether arms/outcomes were chosen after seeing the data, is not stated.
-- **medium** R4 — H1 / Key findings: The Mindfulness arm's mean_arm (0.696) equals its control-adjacent value, yet the estimate is -0.039 with control mean 0.693; the arm means in the summary table don't match the estimates (e.g. Guide mean 0.699 vs +0.047). Adjusted and raw quantities are mixed and unexplained.
-- **medium** R5 — H5: The exploratory H5 prose reports pooled p<0.001 and gains in specific arms, but H1 total accuracy is flat. The AI-detection gain is likely offset by a drop in authentic-content accuracy, suggesting a response bias (more 'AI' answers) rather than better discernment. The report does not say so.
-- **medium** R6 — Abstract / H2: The pooled attitude effect (-0.11, p=0.026) is described as a finding while the arm effects are inconsistent and the only significant arm is Breathing Exercise. SEs vary oddly across arms (0.116 to 0.280), and Nudge with n=331 has SE 0.276.
-- **low** R7 — H1 text: The claim 'other eight arms within about ±2 points' is false: Nudge is +2.0 and Flagging -1.0, which is fine, but Infographic 2 and others are within range; Provenance/Breathing at 1.5 OK. Pooled CI also uses an approximate SE with a shared control.
-- **low** R8 — H6: The H6 section is truncated, with an empty 'Details' block and no table.
+#### Details: open items before fielding (boundary)
+
+- Actual image and guide media files must be supplied by the research team
+- Full 12-post set and IRB number to be supplied
+- Compensation amount to be set
+
+### Alternative explanation: Feedback-based practice versus the AI Literacy Guide for spotting AI media
+
+In the source study, passive pre-feed materials mostly did not help: the pooled accuracy effect was +1.0 point (95% CI [-0.3, +2.4]), and the AI Literacy Guide's +4.7 points had a CI that barely excluded zero. Automated flagging (+4.4) worked but needs external infrastructure. Active practice with immediate correctness feedback could teach detection without labels on each post.
+
+**Hypothesis.** Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.
+
+**Design.** Control vs. Passive guide vs. Practice with feedback; primary outcome: Share of 8 test posts correctly classified as AI-generated or authentic.
+
+#### Details: open items before fielding (alternative)
+
+- The actual image and video files for the practice and test items must be supplied by the research team
+- Compensation and IRB approval details
+
 
 ## Technical appendix
 
@@ -392,10 +343,6 @@ ipw = 1 / pr
 ai_scale = (chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7
 ```
 
-### Reviewer pass
-
-A single automated reviewer pass flagged 8 issue(s); see `review.md`.
-
 ### Reproduction
 
 From the study folder:
@@ -410,6 +357,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 
 ### Files
 
+- `.filedrawer/builds/mechanism.json`
 - `.filedrawer-manifest.json`
 - `.git/COMMIT_EDITMSG`
 - `.git/FETCH_HEAD`
@@ -438,6 +386,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/00/319b8980e9e7e44832d846553a10adc43ce3ab`
 - `.git/objects/00/401fba63e04fb483e2325a29c74c497bced142`
 - `.git/objects/02/174767cd67ffeafa36c97b3903d44032c45eab`
+- `.git/objects/02/dc0c169e4091956867a7de749979d7acc12619`
 - `.git/objects/03/4fabdea8c248d515920457a0345a940f3fd8e8`
 - `.git/objects/03/decc535340f4c029b7b53696c1f2303eb7e221`
 - `.git/objects/04/bcb8d17bbd0f9eb712354a1e7b9774aaa0f8f5`
@@ -456,9 +405,12 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/0a/184ef5924aed5c86c796a8de71a8cdfb304b51`
 - `.git/objects/0a/e2ae1d8d74d86e7537e98e3bc77825852d5785`
 - `.git/objects/0b/17c07fca5afa2a98891b7711a3d5c25e8ac70a`
+- `.git/objects/0d/093ceffa320faf85de37265963db34b5464876`
 - `.git/objects/0e/752d731cc3f879ef49d746f8ab3fb0498cdb21`
 - `.git/objects/0f/c1ada236d08e3b709d7ca3de6dc00edeb02066`
 - `.git/objects/10/01587959b3ef8ae165cca7cabdd30f489245ef`
+- `.git/objects/11/02e6c499e513395458160abdb3f4da18a5be34`
+- `.git/objects/12/f77fc7914cdfbb38270164637e30f643c83d6a`
 - `.git/objects/13/0009db159f2a30ff4f4c95bea5f0177041aab3`
 - `.git/objects/13/62700d73973d6acff08750d734cc243490eb50`
 - `.git/objects/14/1a3fe85b3830e28c8a83357a8511ffb45bc6f5`
@@ -472,8 +424,10 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/1b/154085a4fcbbca8e8012b0231a33991bcaf4fc`
 - `.git/objects/1d/121ec3a66e0203a8715d18d394528dfc79cbe7`
 - `.git/objects/1e/3d22fadbbc190039edd8b115a9e2c9f2f276ad`
+- `.git/objects/1e/eb4d679dc7a5a2669a52b6a94d75ea43a2093a`
 - `.git/objects/1f/55344d8b378da8bf66e857100b9cb83ba3a163`
 - `.git/objects/1f/b945cd4c58df41a58fb3e1f7ac81b103cc7447`
+- `.git/objects/20/dfe36b90ec5195716735e65a58b200929d9307`
 - `.git/objects/21/3ac3e8fd693182e4f2e6fe3cc9b1c391e6c62c`
 - `.git/objects/23/505b39970323e9ac59058a5c59e295bd89a964`
 - `.git/objects/24/1f3ffca3ee650ef2b1b79419fd004c5b6f1e5a`
@@ -481,6 +435,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/25/018848676264f5ae428ceea9c59a9b5e2afb00`
 - `.git/objects/25/3b367526b11644e26db7b5f1d42198ee85b31a`
 - `.git/objects/26/56ef760837bf2feb9ac163e3a5dbafcdf74f6e`
+- `.git/objects/27/0a6bc3ada3f062cd08e15430fb577ab6810d0e`
 - `.git/objects/27/18d7df2a00c0de11489faad955d28fbe739456`
 - `.git/objects/27/255711fcdac493925fa465d15c022bcbc6fa94`
 - `.git/objects/27/4b41d1f4e514579e2c39e4d0236e209b977841`
@@ -493,6 +448,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/2b/fa1b81518a24b631cef5a5544468faff5c287c`
 - `.git/objects/2e/6303d94df56d6822abc0cba5cc48787ee84dce`
 - `.git/objects/2e/d04dd670d4c8976bad021579df1eba83cf4628`
+- `.git/objects/30/1f5ed10943913b8d3bbde4765a12f1f336ec33`
 - `.git/objects/31/757e72c94d49aad7bff6d226a0284a0b36bacb`
 - `.git/objects/33/0344c53edcb8ba91099430c8c27d3e0d1c5653`
 - `.git/objects/33/1fc31fd20d51bb256956a647a503a3228ff8a9`
@@ -510,6 +466,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/39/b974ce513f56d64cced698dfe68f7974911dfe`
 - `.git/objects/3a/fe489bfa1ae1a32e03a95b1736f4eb8104adfe`
 - `.git/objects/3b/3cce70b8abbac3ff9f1edfde8bea4407deb355`
+- `.git/objects/3e/c8f95ebad053e05bb980e580cfccf1c08240d8`
 - `.git/objects/3f/2007e0a5ec7c1d60d6def6250e8c99f5725402`
 - `.git/objects/3f/60b8d2c06e6d49889dc19e99346df6f0f2b0e5`
 - `.git/objects/40/fb00bc8f1e366239d9c4b5b2fa73882315ed60`
@@ -521,12 +478,14 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/45/633f82bf755ece723b023c20dcd7a1972597e3`
 - `.git/objects/45/c72b951b9799dad5f67e56497aba096275e434`
 - `.git/objects/45/d53afbc216f9595adacda9c0ecb1e877c0b7e8`
+- `.git/objects/46/b0a808bbe296229ed4883e06ac261128ca342c`
 - `.git/objects/48/bf542c3078c75d48f740eae956564ca5ff6f24`
 - `.git/objects/48/bfedb45b26a2a1aebf05295d6bd2c2ee69b4a9`
 - `.git/objects/49/b1d2c7cc27780cbbd166480aa59c0ed454e97e`
 - `.git/objects/4a/bb947522a6857e51feb4ef3e009fa9668bff5c`
 - `.git/objects/4b/854f41d289ea30eedefa037f3f525c0d5494cb`
 - `.git/objects/4d/03172a390b3c799b11e3ecd3f61e1fe814847d`
+- `.git/objects/4d/040adeedae275107cef2913362cb605ff2114f`
 - `.git/objects/4d/843afd76af1f09bd27a1c60d7b67680ee59296`
 - `.git/objects/4e/2b401f2e022d75ad618d16e564b90ac0f86dcf`
 - `.git/objects/4e/4e1beb8bbd9ab5751f64015258d631e8fe02a3`
@@ -547,6 +506,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/5a/db40540055f7eadc6dd28380a9c5808bda150c`
 - `.git/objects/5c/5bdd1fc27bc207e9b42fa7872b666b27e56f68`
 - `.git/objects/5c/9b52bc3332dd6482c01fbf6ec23821b62a356e`
+- `.git/objects/5c/e2799e4f7f3dd990b1f586b08a03d5e138081b`
 - `.git/objects/5d/1e452c207a1e3266710790beca9fb759b056e3`
 - `.git/objects/5d/3123576571e08a3e4caf06d560f5a4210a95a1`
 - `.git/objects/5d/9321dae54a7995f157b2b65a0a15781d809759`
@@ -555,6 +515,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/5e/e8edbcc523ca6ce532670945428a476b6e7f9d`
 - `.git/objects/5f/4d91d0ec7ce51c69de3c35037d4165c661f28d`
 - `.git/objects/5f/c8f721b901c5642824b5460d9557360384e106`
+- `.git/objects/5f/fe4788f4841c253af8b34b4106e1c9689a5aec`
 - `.git/objects/60/b27a632ab357b7b5cc722551190ab6ab5adfe3`
 - `.git/objects/61/2f989f4bbe94b439efd1465dba0fc548636f35`
 - `.git/objects/61/9539f22e0adea8f8b5ca4657a36533faa646fe`
@@ -562,6 +523,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/64/63e7125677f2c6139551c15b6427fb1071b365`
 - `.git/objects/64/b34b5e772df1432a0475344355fb054d63e0a1`
 - `.git/objects/65/20fe30f85a971e975ca4c5555f17c7b97cce9c`
+- `.git/objects/65/4e3ad9c148dc6cd5b79b63211f77c064db1a57`
 - `.git/objects/66/22d1d6f1d81e9b30c9582d984db1beaf97b9ba`
 - `.git/objects/66/4d370034a6fc0ae12a8c813886dcb8f37cf0d4`
 - `.git/objects/67/dcd292b96f296a5d9d9b66009eccb39fe4c3e5`
@@ -572,6 +534,8 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/6b/ec6f73bfa145c7169778aa4d4bacc6fea83c5c`
 - `.git/objects/6c/e5dc305b9085d9fc4e394e88d70bf35df7631e`
 - `.git/objects/6d/f62d579b72e6f53badd04838361b1bc5df0c96`
+- `.git/objects/6e/274c165021c9b5310cf31081f45a17cdc450b9`
+- `.git/objects/70/0c57d697be1112a0534e8308f6b147395f3fd3`
 - `.git/objects/70/1540fa6306ca23f37cebca343d3c8f772584bc`
 - `.git/objects/70/78e4b64fd6194e728a54e6fb269dccf0f9c017`
 - `.git/objects/70/e51920704cdf848a3283a97b1303b852398623`
@@ -596,6 +560,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/7f/0709361e7fa91f7bf1487717821cccd45e3b34`
 - `.git/objects/7f/1cad57d5f8ef6776718500cdef13c95e832cd6`
 - `.git/objects/80/84a4b645829084d0995f235b9ac6bac0b5d8f9`
+- `.git/objects/80/87a3e0d072e656661f948c7bb50434c6d6f2eb`
 - `.git/objects/80/9bf7d4e9a4a7736f7eb1093e2747ba5b1be3a2`
 - `.git/objects/81/1330fe0eb137e26c5af916a918cc23cdf76c96`
 - `.git/objects/81/2d86462434f29e9f2212cf9ae3c91910aead14`
@@ -610,9 +575,11 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/89/736601a84978d97935604f8c0ec40b194e0d00`
 - `.git/objects/8a/6815aa03fcc3498b23caf1659f12a2d583a6ff`
 - `.git/objects/8a/f3b0dd5ac666ed7ba46dc6b3008523e7a2ab09`
+- `.git/objects/8b/95ca643014cfa3effb8d7d016cc4c2fc570fec`
 - `.git/objects/8d/5f61a5d6e562dd8de7112e9326a22e03d1b3a4`
 - `.git/objects/8d/cd84d7a803b3ff14abf66586b78c0b8828c39b`
 - `.git/objects/8e/6d122b4a5bdca53af8efa15c052e46d6716507`
+- `.git/objects/8e/e49acf53c542232d262d5d1a517c48fb46e2e3`
 - `.git/objects/8e/ea9a09dc222976a8db2c830b5a15ca3f82a87b`
 - `.git/objects/8f/24406bc651e5e9a714a814feef60fafeaf5796`
 - `.git/objects/8f/2f711a02dcad0eeb1f3cc66f7ba36ff67d3771`
@@ -631,10 +598,12 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/98/614e5201a3d065b41f2313078dba58057114d9`
 - `.git/objects/98/63190d1b1821781b6fe9003be17a6882639dff`
 - `.git/objects/98/ad291c8b4839716369dab3221a654cdf15613c`
+- `.git/objects/98/ce372cd8d2b3b5c46d6cf0f423da08c4468fa2`
 - `.git/objects/9a/71f905a0adb8e8eb913e4548b69d867a7e23e1`
 - `.git/objects/9a/d867e8787188dd248d7f9933354aa180c77df9`
 - `.git/objects/9b/8a39298596b6ab5ddf6fb14e3bfdb5397ec6bd`
 - `.git/objects/9b/fc0af649d1eac059905d8d27b2b033dad6012f`
+- `.git/objects/9c/bea4a93f6d67e9c327813e54b7239fa437cb15`
 - `.git/objects/9d/0017bee09caa1e5ba0a04508ab50930f611db3`
 - `.git/objects/9d/25064c9f2404df5be8a503d1b2bef23094881a`
 - `.git/objects/9d/815ab3195e8642d988dd6db3688cc45a2f8c9c`
@@ -642,6 +611,8 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/9e/da7da1e10420a7718b2da2a6884352cd8cc710`
 - `.git/objects/a3/042fa56ef6cde690b72594465363c2efe7acb4`
 - `.git/objects/a4/4768633163f28e4eec1ea9a1082fb35f2e071c`
+- `.git/objects/a4/96edf0a17fbc0f3f7e8d53cc3f1f256af6d975`
+- `.git/objects/a4/e2ee989294fd58a2dd1d2e0cfe770796b57b94`
 - `.git/objects/a7/a96d31d78381834db9f60eaa57f131f53af33e`
 - `.git/objects/a7/f6f3dac40c53127c06add7c4eec10a8b6ce385`
 - `.git/objects/a8/2e6785a9bdd2a28064a17965a0bcaff8549593`
@@ -650,6 +621,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/a9/a04ad798577794db11cf1114e25fa15c610b22`
 - `.git/objects/aa/13ccd15acfede5e84d2acaf03873e1baa42e62`
 - `.git/objects/aa/e637f786c62af959a7cc61097966ddc8ace176`
+- `.git/objects/aa/f53f82c2093c5218bcf3dcadb3e5964622f3cc`
 - `.git/objects/ae/d75af6a54b7f6aa61b95b05a871d7febfb2a13`
 - `.git/objects/af/ad37ff08e042895e595e6ce84a7a8f932059a0`
 - `.git/objects/b1/ff5fb00a98239fe0e426e590a5ace1d873f692`
@@ -666,6 +638,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/b9/cbf4c9400004053522f846734a72e67bcb30e9`
 - `.git/objects/ba/8617f035bc08d2d844ae3fd921e2c94eaca0cb`
 - `.git/objects/bb/0b11ac96165f3db525cf37273e22514b5860c7`
+- `.git/objects/bb/e6d63ddef5ce6bac8394347dabcbf5c08f3cb5`
 - `.git/objects/be/839ec41d534977727031bf16c79712a05e4da3`
 - `.git/objects/bf/11658b7c8b3aace0ba39e986be2645f04f6e24`
 - `.git/objects/bf/72383baddeb9031e7550ed3a9521aafa35a0e4`
@@ -689,14 +662,20 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/cd/3d6363e87021053eb6337974e6a8c408eabf30`
 - `.git/objects/cd/d6cd3a01b272e3a2f8a6f11bb36686383aa44d`
 - `.git/objects/ce/bc94822dbeae158769089d5d8e4bb0165df81b`
+- `.git/objects/cf/1a9317213b46511a91181c9479490f2c0198c0`
+- `.git/objects/cf/c4fa0dfdd141ea17dcf7235b64841fb173b809`
 - `.git/objects/d0/2750439f68d82b861b309d446e8159ae49c5c5`
+- `.git/objects/d1/acff3dd174c7ffbb300f9a09c628992e509e32`
 - `.git/objects/d2/50fdae70f3a9a2cb28e95badff8191de137f73`
 - `.git/objects/d2/522411ec268358d1fe2dba5e8fe6c4851d8e7e`
 - `.git/objects/d2/e920de474d12a6ad9bc0a388e66a4309efb351`
 - `.git/objects/d4/c21fce65106e818b2257684bcc15702bdd003e`
+- `.git/objects/d5/7afee02a71b0e362d7493bf3cfcc6842d96639`
 - `.git/objects/d6/ae8697572d1438a921b667d328d1c5e10b9473`
+- `.git/objects/d8/fc3d7cd79a18f5ac3f715c14b84294744fcbe1`
 - `.git/objects/d9/595fdd76575028f8ea23c1ff1b77cbd8c13253`
 - `.git/objects/da/04366ef1d58bdeefd8c7372b7b08bea5713bd9`
+- `.git/objects/da/d3c8fda9acd4ac471685994278b39d91d63d77`
 - `.git/objects/db/cbe65a182f699fd925eb4786e29771bafa577a`
 - `.git/objects/dc/83958f5a1ac3ea87a68aae50471ba7481ef431`
 - `.git/objects/dd/68c8d28a31454b065bb7598bc594c5ce71f63d`
@@ -713,7 +692,9 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/e4/e3c839ff86ce3f400cc840dd89f3e6448444b1`
 - `.git/objects/e5/2356acbe2dc94050275fe699cc29f6cc0e3ebc`
 - `.git/objects/e8/01f00f57d8e72072225e095789fbb4a681befa`
+- `.git/objects/e8/14a099b1d59a2d7956e5c24378a22ac4d520a3`
 - `.git/objects/e8/5211ed4d5ea4a01f7a00bd2de62c6d2247e801`
+- `.git/objects/e9/7194bdaa900e5a7155afd56d4063af22241b72`
 - `.git/objects/eb/6a1b9b850145c35d8fa7251fe3c535631ce6c1`
 - `.git/objects/eb/c63afe7f5c8763984b6b0059a176974dd5ee52`
 - `.git/objects/ec/bcc79edbbba611184131fd9c8a11859779f406`
@@ -726,6 +707,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/f2/dd7d894f844bbef0c0481e7e9daf65031329ac`
 - `.git/objects/f4/07eff62d53c9816df178e92a0aced5dbc9fb91`
 - `.git/objects/f4/52eb277591ebe4a9742e099d488a8c98812392`
+- `.git/objects/f4/c6b72e90fc20cc2395680a8331d1b1ea89cfb3`
 - `.git/objects/f6/59ee1c186f17b56c90cd7f7dd8b71a230fbd9b`
 - `.git/objects/f7/124109f0733789a6ec201f292b5ff83a0e6e0d`
 - `.git/objects/f8/a938240fdc143c7144332fc3ef331114c0311a`
@@ -738,7 +720,10 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/fd/392781f3bdb5da52fc8a81972b6fbf5693bca1`
 - `.git/objects/fd/df2ff01f46779aa789de490a78f2e4fe1b7a4b`
 - `.git/objects/fd/f03290d86c0da0b07250507d0fc88f63499ee0`
+- `.git/objects/fe/1568649c6f89f1be68e43fb9c2f821e23aa9e8`
+- `.git/objects/fe/6b55d3e1751499f7d6367d3e25cd9722d73816`
 - `.git/objects/fe/7c9af71e33d3fd551cc7ddfa139e5587d25941`
+- `.git/objects/ff/0b12cf7d0a7f3f35b199f3ff998195c30c9bb1`
 - `.git/objects/ff/a793cec0409b13da0d11508a78a1d15941343b`
 - `.git/refs/heads/main`
 - `.git/refs/remotes/origin/main`
@@ -752,6 +737,10 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `codebook.md`
 - `data/clean.csv`
 - `data/raw_tidy.csv`
+- `extensions/alternative.json`
+- `extensions/boundary.json`
+- `extensions/index.json`
+- `extensions/mechanism.json`
 - `figures/E1_chatgpt_moderator.png`
 - `figures/E2_real_item_effects.png`
 - `figures/H1_arms.png`

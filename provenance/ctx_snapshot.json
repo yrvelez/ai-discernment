@@ -388,5 +388,80 @@
   },
   "exploratory": {},
   "limitations": "The study tested eleven arms across four registered outcomes, plus exploratory ones, without correcting for multiple comparisons, so some significant arm effects are likely chance. Several arms are small (78 to 181 respondents, including the control), giving wide intervals. The AI Literacy Guide and Mindfulness accuracy results vanish without weights, and the Guide's interval barely excludes zero. Some data were collected before registration. Pooling treats arms as independent despite the shared control, so pooled intervals are approximate. The panel is online and U.S.-based, and the experiment measures immediate effects in a single session."
- }
+ },
+ "extensions": [
+  {
+   "id": "mechanism",
+   "kind": "mechanism",
+   "title": "Why does automated flagging help? Sensitivity versus suspicion shift",
+   "hypothesis": "Accurate detector labels raise accuracy relative to control and random labels; random labels increase AI-judgments without increasing accuracy.",
+   "primary_outcome": "Share of posts judged correctly",
+   "comparison": "Accurate labels vs random labels vs control; secondary: share of posts judged AI (bias), accuracy on real and AI posts separately",
+   "conditions": [
+    "No labels",
+    "Accurate detector labels",
+    "Uninformative labels"
+   ],
+   "rationale": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while the pooled effect was only +1.0 point and generic Flagging showed -1.0. This leaves open whether detector labels add information (better discrimination) or simply make people more suspicious of everything; the source reported fake and real accuracy separately but did not test the mechanism.",
+   "contribution": "Separates informative-label (sensitivity) from label-presence (response bias) accounts of the automated flagging gain.",
+   "unresolved": [
+    "Image files and label overlays must be supplied by the research team",
+    "IRB number and compensation to be set by the research team"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "built",
+   "built_at": "2026-10-02",
+   "survey_id": "SV_beDOpg80wRqfwLY",
+   "survey_url": "https://columbiauniversity.yul1.qualtrics.com/survey-builder/SV_beDOpg80wRqfwLY/edit"
+  },
+  {
+   "id": "boundary",
+   "kind": "boundary",
+   "title": "Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?",
+   "hypothesis": "Both the Guide and automated flagging raise accuracy relative to control among adults 55+, with the Guide effect smaller than in the source study.",
+   "primary_outcome": "Share of 12 posts correctly classified as AI-generated or real.",
+   "comparison": "Each treatment arm vs control on accuracy.",
+   "conditions": [
+    "Control",
+    "AI Literacy Guide",
+    "Automated Flagging"
+   ],
+   "rationale": "In the source study the AI Literacy Guide raised accuracy by 4.7 points (95% CI [0.2, 9.2]) and Automated Flagging by 4.4 points (95% CI [1.4, 7.3]), but the Guide result vanished without weights and the panel was online and U.S.-based. Effects may depend on age and digital familiarity, which the source did not stratify. This tests the Guide and automated flagging among respondents aged 55+, a group likely to have less experience with AI media.",
+   "contribution": "Shows whether AI-discernment interventions generalise to older, less digitally experienced adults.",
+   "unresolved": [
+    "Actual image and guide media files must be supplied by the research team",
+    "Full 12-post set and IRB number to be supplied",
+    "Compensation amount to be set"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "proposed",
+   "built_at": null,
+   "survey_id": null,
+   "survey_url": null
+  },
+  {
+   "id": "alternative",
+   "kind": "alternative",
+   "title": "Feedback-based practice versus the AI Literacy Guide for spotting AI media",
+   "hypothesis": "Practice with feedback raises accuracy more than the passive guide, which in turn does not differ from control.",
+   "primary_outcome": "Share of 8 test posts correctly classified as AI-generated or authentic.",
+   "comparison": "Practice-with-feedback vs guide vs control on test accuracy.",
+   "conditions": [
+    "Control",
+    "Passive guide",
+    "Practice with feedback"
+   ],
+   "rationale": "In the source study, passive pre-feed materials mostly did not help: the pooled accuracy effect was +1.0 point (95% CI [-0.3, +2.4]), and the AI Literacy Guide's +4.7 points had a CI that barely excluded zero. Automated flagging (+4.4) worked but needs external infrastructure. Active practice with immediate correctness feedback could teach detection without labels on each post.",
+   "contribution": "Tests whether learning by practice with feedback beats passive literacy materials for AI-media discernment.",
+   "unresolved": [
+    "The actual image and video files for the practice and test items must be supplied by the research team",
+    "Compensation and IRB approval details"
+   ],
+   "validated_by": "autoexperiment",
+   "status": "proposed",
+   "built_at": null,
+   "survey_id": null,
+   "survey_url": null
+  }
+ ]
 }
