@@ -308,7 +308,7 @@ The study tested eleven arms across four registered outcomes, plus exploratory o
 
 ## Proposed extensions
 
-*3 follow-up experiments proposed by the pipeline from these results. Each is a complete survey instrument (`extensions/<id>.json`, autoexperiment schema) that the authors can build as an unpublished Qualtrics draft with `filedrawer build-extension . <id>`. They are proposals, not findings.*
+*3 follow-up experiments proposed by the pipeline from these results. Each ships as an importable Qualtrics file (`extensions/<id>.qsf`: in Qualtrics, Create project, Survey, How do you want to start: Import a QSF file). Advanced: with a Qualtrics API token and the local Qualtrics MCP server, `filedrawer build-extension . <id>` creates the draft directly. They are proposals, not findings.*
 
 ### Mechanism: Why does automated flagging help? Sensitivity versus suspicion shift
 
@@ -318,10 +318,14 @@ Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]) while
 
 **Design.** No labels vs. Accurate detector labels vs. Uninformative labels; primary outcome: Share of posts judged correctly. Status: built as an unpublished Qualtrics draft on 2026-10-02.
 
+Survey file: [`extensions/mechanism.qsf`](extensions/mechanism.qsf); 2 media stimuli to supply after import.
+
 #### Details: open items before fielding (mechanism)
 
 - Image files and label overlays must be supplied by the research team
 - IRB number and compensation to be set by the research team
+- Supply media: post1: image stimulus to supply (social media post with a photo, shown with the condition's label if any)
+- Supply media: post2: image stimulus to supply (second social media post with a photo, shown with the condition's label if any)
 
 ### Boundary condition: Does the AI Literacy Guide effect hold for older adults and for audio-visual vs. still-image posts?
 
@@ -331,11 +335,16 @@ In the source study the AI Literacy Guide raised accuracy by 4.7 points (95% CI 
 
 **Design.** Control vs. AI Literacy Guide vs. Automated Flagging; primary outcome: Share of 12 posts correctly classified as AI-generated or real.
 
+Survey file: [`extensions/boundary.qsf`](extensions/boundary.qsf); 3 media stimuli to supply after import.
+
 #### Details: open items before fielding (boundary)
 
 - Actual image and guide media files must be supplied by the research team
 - Full 12-post set and IRB number to be supplied
 - Compensation amount to be set
+- Supply media: guide: image stimulus to supply (Illustrated guide showing common artifacts in AI images and videos such as disto)
+- Supply media: post1: image stimulus to supply (A photorealistic street scene post, with an automated label if the respondent is)
+- Supply media: post2: image stimulus to supply (A photograph of a crowd at an outdoor event posted to a social feed)
 
 ### Alternative explanation: Feedback-based practice versus the AI Literacy Guide for spotting AI media
 
@@ -345,10 +354,15 @@ In the source study, passive pre-feed materials mostly did not help: the pooled 
 
 **Design.** Control vs. Passive guide vs. Practice with feedback; primary outcome: Share of 8 test posts correctly classified as AI-generated or authentic.
 
+Survey file: [`extensions/alternative.qsf`](extensions/alternative.qsf); 3 media stimuli to supply after import.
+
 #### Details: open items before fielding (alternative)
 
 - The actual image and video files for the practice and test items must be supplied by the research team
 - Compensation and IRB approval details
+- Supply media: guide_img: image stimulus to supply (infographic with side-by-side examples of AI artifacts such as distorted hands a)
+- Supply media: prac1: image stimulus to supply (photorealistic portrait of a person that is AI-generated)
+- Supply media: test1: image stimulus to supply (photograph of a street scene)
 
 
 ## Reviewer responses
@@ -462,9 +476,12 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `data/clean.csv`
 - `data/raw_tidy.csv`
 - `extensions/alternative.json`
+- `extensions/alternative.qsf`
 - `extensions/boundary.json`
+- `extensions/boundary.qsf`
 - `extensions/index.json`
 - `extensions/mechanism.json`
+- `extensions/mechanism.qsf`
 - `figures/E1_chatgpt_moderator.png`
 - `figures/E2_real_item_effects.png`
 - `figures/H1_arms.png`

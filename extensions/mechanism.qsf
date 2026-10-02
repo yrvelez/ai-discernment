@@ -1,0 +1,910 @@
+{
+ "SurveyEntry": {
+  "SurveyID": "SV_filedrawer00000",
+  "SurveyName": "Label informativeness and AI-detection accuracy (extension of: Improving AI Discernment: do misinfor",
+  "SurveyDescription": null,
+  "SurveyOwnerID": "UR_filedrawer00000",
+  "SurveyBrandID": "",
+  "DivisionID": null,
+  "SurveyLanguage": "EN",
+  "SurveyActiveResponseSet": "RS_filedrawer00000",
+  "SurveyStatus": "Inactive",
+  "SurveyStartDate": "0000-00-00 00:00:00",
+  "SurveyExpirationDate": "0000-00-00 00:00:00",
+  "SurveyCreationDate": "2026-10-02 14:10:04",
+  "CreatorID": "UR_filedrawer00000",
+  "LastModified": "2026-10-02 14:10:04",
+  "LastAccessed": "0000-00-00 00:00:00",
+  "LastActivated": "0000-00-00 00:00:00",
+  "Deleted": null
+ },
+ "SurveyElements": [
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "BL",
+   "PrimaryAttribute": "Survey Blocks",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": [
+    {
+     "Type": "Default",
+     "Description": "Consent",
+     "ID": "BL_b_consent",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID1"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Control feed",
+     "ID": "BL_b_control",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID2"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Accurate label feed",
+     "ID": "BL_b_accurate",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID3"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Random label feed",
+     "ID": "BL_b_random",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID4"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Judgments",
+     "ID": "BL_b_judge",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID5"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID6"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID7"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID8"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Follow-up",
+     "ID": "BL_b_after",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID9"
+      },
+      {
+       "Type": "Page Break"
+      },
+      {
+       "Type": "Question",
+       "QuestionID": "QID10"
+      }
+     ]
+    },
+    {
+     "Type": "Standard",
+     "Description": "Debrief",
+     "ID": "BL_b_debrief",
+     "BlockElements": [
+      {
+       "Type": "Question",
+       "QuestionID": "QID11"
+      }
+     ]
+    },
+    {
+     "Type": "Trash",
+     "Description": "Trash / Unused Questions",
+     "ID": "BL_trash"
+    }
+   ]
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "FL",
+   "PrimaryAttribute": "Survey Flow",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "Type": "Root",
+    "FlowID": "FL_1",
+    "Flow": [
+     {
+      "Type": "Block",
+      "ID": "BL_b_consent",
+      "FlowID": "FL_2",
+      "Autofill": []
+     },
+     {
+      "Type": "Branch",
+      "FlowID": "FL_3",
+      "Description": "No consent",
+      "BranchLogic": {
+       "0": {
+        "0": {
+         "LogicType": "Question",
+         "QuestionID": "QID1",
+         "QuestionIsInLoop": "no",
+         "ChoiceLocator": "q://QID1/SelectableChoice/2",
+         "Operator": "Selected",
+         "QuestionIDFromLocator": "QID1",
+         "LeftOperand": "q://QID1/SelectableChoice/2",
+         "Type": "Expression",
+         "Description": "If QID1 choice 2 is selected"
+        },
+        "Type": "If"
+       },
+       "Type": "BooleanExpression"
+      },
+      "Flow": [
+       {
+        "Type": "EndSurvey",
+        "FlowID": "FL_4"
+       }
+      ]
+     },
+     {
+      "Type": "BlockRandomizer",
+      "FlowID": "FL_5",
+      "SubSet": 1,
+      "EvenPresentation": true,
+      "Flow": [
+       {
+        "Type": "Group",
+        "FlowID": "FL_6",
+        "Description": "Control",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_7",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "control"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_control",
+          "FlowID": "FL_8",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_9",
+        "Description": "Accurate",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_10",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "accurate"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_accurate",
+          "FlowID": "FL_11",
+          "Autofill": []
+         }
+        ]
+       },
+       {
+        "Type": "Group",
+        "FlowID": "FL_12",
+        "Description": "Random",
+        "Flow": [
+         {
+          "Type": "EmbeddedData",
+          "FlowID": "FL_13",
+          "EmbeddedData": [
+           {
+            "Description": "condition",
+            "Type": "Custom",
+            "Field": "condition",
+            "VariableType": "String",
+            "DataVisibility": [],
+            "AnalyzeText": false,
+            "Value": "random"
+           }
+          ]
+         },
+         {
+          "Type": "Standard",
+          "ID": "BL_b_random",
+          "FlowID": "FL_14",
+          "Autofill": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Type": "EmbeddedData",
+      "FlowID": "FL_15",
+      "EmbeddedData": [
+       {
+        "Description": "post1",
+        "Type": "Custom",
+        "Field": "post1",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false,
+        "Value": "[IMAGE TO SUPPLY: social media post with a photo, shown with the condition's label if any]"
+       }
+      ]
+     },
+     {
+      "Type": "EmbeddedData",
+      "FlowID": "FL_16",
+      "EmbeddedData": [
+       {
+        "Description": "post2",
+        "Type": "Custom",
+        "Field": "post2",
+        "VariableType": "String",
+        "DataVisibility": [],
+        "AnalyzeText": false,
+        "Value": "[IMAGE TO SUPPLY: second social media post with a photo, shown with the condition's label if any]"
+       }
+      ]
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_b_judge",
+      "FlowID": "FL_17",
+      "Autofill": []
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_b_after",
+      "FlowID": "FL_18",
+      "Autofill": []
+     },
+     {
+      "Type": "Standard",
+      "ID": "BL_b_debrief",
+      "FlowID": "FL_19",
+      "Autofill": []
+     }
+    ],
+    "Properties": {
+     "Count": 19,
+     "RemovedFieldsets": []
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "PL",
+   "PrimaryAttribute": "Preview Link",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "PreviewType": "Brand",
+    "PreviewID": "f9a80ada-fd04-4e04-892a-840a0f44b88f"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "PROJ",
+   "PrimaryAttribute": "CORE",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": "1.1.0",
+   "Payload": {
+    "ProjectCategory": "CORE",
+    "SchemaVersion": "1.1.0"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "QC",
+   "PrimaryAttribute": "Survey Question Count",
+   "SecondaryAttribute": "11",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "RS",
+   "PrimaryAttribute": "RS_filedrawer00000",
+   "SecondaryAttribute": "Default Response Set",
+   "TertiaryAttribute": null,
+   "Payload": null
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SCO",
+   "PrimaryAttribute": "Scoring",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "ScoringCategories": [],
+    "ScoringCategoryGroups": [],
+    "ScoringSummaryCategory": null,
+    "ScoringSummaryAfterQuestions": 0,
+    "ScoringSummaryAfterSurvey": 0,
+    "DefaultScoringCategory": null,
+    "AutoScoringCategory": null
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SO",
+   "PrimaryAttribute": "Survey Options",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "BackButton": "false",
+    "SaveAndContinue": "true",
+    "SurveyProtection": "PublicSurvey",
+    "BallotBoxStuffingPrevention": "false",
+    "NoIndex": "Yes",
+    "SecureResponseFiles": "true",
+    "SurveyExpiration": "None",
+    "SurveyTermination": "DefaultMessage",
+    "Header": "",
+    "Footer": "",
+    "ProgressBarDisplay": "None",
+    "PartialData": "+1 week",
+    "ValidationMessage": null,
+    "PreviousButton": "",
+    "NextButton": "",
+    "SurveyTitle": "Label informativeness and AI-detection accuracy (extension of: Improving AI Discernment: do misinfor",
+    "SkinLibrary": "Qualtrics",
+    "SkinType": "templated",
+    "Skin": {
+     "brandingId": null,
+     "templateId": "*base",
+     "overrides": null
+    },
+    "NewScoring": 1,
+    "SurveyMetaDescription": "Respondents judge posts (half AI, half real) in a feed under one of three label conditions: no la..."
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "STAT",
+   "PrimaryAttribute": "Survey Statistics",
+   "SecondaryAttribute": null,
+   "TertiaryAttribute": null,
+   "Payload": {
+    "MobileCompatible": true,
+    "ID": "Survey Statistics"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID1",
+   "SecondaryAttribute": "You are invited to a research study about judging online posts. It takes about 1",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "You are invited to a research study about judging online posts. It takes about 10 minutes and is voluntary. Do you consent to participate?",
+    "DataExportTag": "consent",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "You are invited to a research study about judging online posts. It takes about 10 minutes and is...",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID1",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Yes, I consent"
+     },
+     "2": {
+      "Display": "No"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID2",
+   "SecondaryAttribute": "You will now see several posts. For each, decide whether it is AI-generated.",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "You will now see several posts. For each, decide whether it is AI-generated.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "You will now see several posts. For each, decide whether it is AI-generated.",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID2",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_ctrl_intro"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID3",
+   "SecondaryAttribute": "You will now see several posts. Each carries an automated detector label. The de",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "You will now see several posts. Each carries an automated detector label. The detector is correct most of the time but not always. For each post, decide whether it is AI-generated.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "You will now see several posts. Each carries an automated detector label. The detector is correct...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID3",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_acc_intro"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID4",
+   "SecondaryAttribute": "You will now see several posts. Each carries an automated detector label. The de",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "You will now see several posts. Each carries an automated detector label. The detector is correct most of the time but not always. For each post, decide whether it is AI-generated.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "You will now see several posts. Each carries an automated detector label. The detector is correct...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID4",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_rand_intro"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID5",
+   "SecondaryAttribute": "{{ed:post1}}",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "${e://Field/post1}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "${e://Field/post1}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID5",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_post1"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID6",
+   "SecondaryAttribute": "Is this post AI-generated?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Is this post AI-generated?",
+    "DataExportTag": "post1_judge",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Is this post AI-generated?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID6",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "AI-generated"
+     },
+     "2": {
+      "Display": "Not AI-generated"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID7",
+   "SecondaryAttribute": "{{ed:post2}}",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "${e://Field/post2}",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "${e://Field/post2}",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID7",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_post2"
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID8",
+   "SecondaryAttribute": "Is this post AI-generated?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Is this post AI-generated?",
+    "DataExportTag": "post2_judge",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Is this post AI-generated?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID8",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "AI-generated"
+     },
+     "2": {
+      "Display": "Not AI-generated"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2"
+    ],
+    "NextChoiceId": 3,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "0"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID9",
+   "SecondaryAttribute": "How much did you rely on the labels, if any, when judging posts?",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "How much did you rely on the labels, if any, when judging posts?",
+    "DataExportTag": "label_reliance",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "How much did you rely on the labels, if any, when judging posts?",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID9",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Not at all"
+     },
+     "2": {
+      "Display": "A little"
+     },
+     "3": {
+      "Display": "Somewhat"
+     },
+     "4": {
+      "Display": "A lot"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "NextChoiceId": 5,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID10",
+   "SecondaryAttribute": "I feel confident in my ability to detect artificial intelligence.",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "I feel confident in my ability to detect artificial intelligence.",
+    "DataExportTag": "ai_confidence",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "I feel confident in my ability to detect artificial intelligence.",
+    "Validation": {
+     "Settings": {
+      "ForceResponse": "ON",
+      "ForceResponseType": "ON",
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID10",
+    "QuestionType": "MC",
+    "Selector": "SAVR",
+    "SubSelector": "TX",
+    "Choices": {
+     "1": {
+      "Display": "Strongly disagree"
+     },
+     "2": {
+      "Display": "Disagree"
+     },
+     "3": {
+      "Display": "Somewhat disagree"
+     },
+     "4": {
+      "Display": "Neither agree nor disagree"
+     },
+     "5": {
+      "Display": "Somewhat agree"
+     },
+     "6": {
+      "Display": "Agree"
+     },
+     "7": {
+      "Display": "Strongly agree"
+     }
+    },
+    "ChoiceOrder": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "NextChoiceId": 8,
+    "NextAnswerId": 1,
+    "RecodeValues": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4",
+     "5": "5",
+     "6": "6",
+     "7": "7"
+    }
+   }
+  },
+  {
+   "SurveyID": "SV_filedrawer00000",
+   "Element": "SQ",
+   "PrimaryAttribute": "QID11",
+   "SecondaryAttribute": "Thank you. Some labels you saw may have been inaccurate or random, and this was ",
+   "TertiaryAttribute": null,
+   "Payload": {
+    "QuestionText": "Thank you. Some labels you saw may have been inaccurate or random, and this was part of the study. Please do not rely on them as real detector output.",
+    "DataVisibility": {
+     "Private": false,
+     "Hidden": false
+    },
+    "Configuration": {
+     "QuestionDescriptionOption": "UseText"
+    },
+    "QuestionDescription": "Thank you. Some labels you saw may have been inaccurate or random, and this was part of the study...",
+    "Validation": {
+     "Settings": {
+      "Type": "None"
+     }
+    },
+    "Language": [],
+    "QuestionID": "QID11",
+    "QuestionType": "DB",
+    "Selector": "TB",
+    "DefaultChoices": false,
+    "ChoiceOrder": [],
+    "GradingData": [],
+    "NextChoiceId": 1,
+    "NextAnswerId": 1,
+    "DataExportTag": "q_debrief"
+   }
+  }
+ ]
+}

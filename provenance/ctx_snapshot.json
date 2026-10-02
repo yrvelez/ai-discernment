@@ -412,7 +412,13 @@
    "status": "built",
    "built_at": "2026-10-02",
    "survey_id": "SV_beDOpg80wRqfwLY",
-   "survey_url": "https://columbiauniversity.yul1.qualtrics.com/survey-builder/SV_beDOpg80wRqfwLY/edit"
+   "survey_url": "https://columbiauniversity.yul1.qualtrics.com/survey-builder/SV_beDOpg80wRqfwLY/edit",
+   "qsf": "extensions/mechanism.qsf",
+   "qsf_errors": [],
+   "media": [
+    "post1: image stimulus to supply (social media post with a photo, shown with the condition's label if any)",
+    "post2: image stimulus to supply (second social media post with a photo, shown with the condition's label if any)"
+   ]
   },
   {
    "id": "boundary",
@@ -437,7 +443,14 @@
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
-   "survey_url": null
+   "survey_url": null,
+   "qsf": "extensions/boundary.qsf",
+   "qsf_errors": [],
+   "media": [
+    "guide: image stimulus to supply (Illustrated guide showing common artifacts in AI images and videos such as disto)",
+    "post1: image stimulus to supply (A photorealistic street scene post, with an automated label if the respondent is)",
+    "post2: image stimulus to supply (A photograph of a crowd at an outdoor event posted to a social feed)"
+   ]
   },
   {
    "id": "alternative",
@@ -461,7 +474,14 @@
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
-   "survey_url": null
+   "survey_url": null,
+   "qsf": "extensions/alternative.qsf",
+   "qsf_errors": [],
+   "media": [
+    "guide_img: image stimulus to supply (infographic with side-by-side examples of AI artifacts such as distorted hands a)",
+    "prac1: image stimulus to supply (photorealistic portrait of a person that is AI-generated)",
+    "test1: image stimulus to supply (photograph of a street scene)"
+   ]
   }
  ]
 }

@@ -1499,7 +1499,8 @@
     "Uninformative labels"
    ],
    "status": "built",
-   "built_at": "2026-10-02"
+   "built_at": "2026-10-02",
+   "qsf": "extensions/mechanism.qsf"
   },
   {
    "id": "boundary",
@@ -1513,7 +1514,8 @@
     "Automated Flagging"
    ],
    "status": "proposed",
-   "built_at": null
+   "built_at": null,
+   "qsf": "extensions/boundary.qsf"
   },
   {
    "id": "alternative",
@@ -1527,7 +1529,8 @@
     "Practice with feedback"
    ],
    "status": "proposed",
-   "built_at": null
+   "built_at": null,
+   "qsf": "extensions/alternative.qsf"
   }
  ],
  "review": "review.json"
