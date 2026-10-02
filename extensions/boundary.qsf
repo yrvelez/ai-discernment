@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-02 14:10:04",
+  "SurveyCreationDate": "2026-10-02 15:45:30",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-02 14:10:04",
+  "LastModified": "2026-10-02 15:45:30",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -359,7 +359,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "fa933c06-407c-474c-b8ec-a04abc205b32"
+    "PreviewID": "159cbbb7-b391-4b7a-80d3-60d240777700"
    }
   },
   {

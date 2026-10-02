@@ -11,9 +11,9 @@
   "SurveyStatus": "Inactive",
   "SurveyStartDate": "0000-00-00 00:00:00",
   "SurveyExpirationDate": "0000-00-00 00:00:00",
-  "SurveyCreationDate": "2026-10-02 14:10:04",
+  "SurveyCreationDate": "2026-10-02 15:45:30",
   "CreatorID": "UR_filedrawer00000",
-  "LastModified": "2026-10-02 14:10:04",
+  "LastModified": "2026-10-02 15:45:30",
   "LastAccessed": "0000-00-00 00:00:00",
   "LastActivated": "0000-00-00 00:00:00",
   "Deleted": null
@@ -343,7 +343,7 @@
    "TertiaryAttribute": null,
    "Payload": {
     "PreviewType": "Brand",
-    "PreviewID": "705a939a-8f6a-4075-83f5-a0fee02f733c"
+    "PreviewID": "e77058ca-a371-4ad7-96d9-120a9a37916e"
    }
   },
   {
@@ -732,14 +732,7 @@
      "ChoiceColumnWidth": 25,
      "RepeatHeaders": "none",
      "WhiteSpace": "OFF",
-     "MobileFirst": true,
-     "Autoscale": {
-      "XScale": {
-       "Name": "agreement",
-       "Type": "likert",
-       "Reverse": false
-      }
-     }
+     "MobileFirst": true
     },
     "QuestionDescription": "Please answer the following question about artificial intelligence.",
     "Validation": {
@@ -798,16 +791,7 @@
      "7"
     ],
     "NextChoiceId": 2,
-    "NextAnswerId": 8,
-    "RecodeValues": {
-     "1": "1",
-     "2": "2",
-     "3": "3",
-     "4": "4",
-     "5": "5",
-     "6": "6",
-     "7": "7"
-    }
+    "NextAnswerId": 8
    }
   },
   {
