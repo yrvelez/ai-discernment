@@ -216,6 +216,67 @@ Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2025 | tw
 | AI Literacy Guide | 0.021 | 0.025 | 0.4015 | [-0.028, 0.069] | 162 | no |
 | AI Text Video | 0.023 | 0.018 | 0.1905 | [-0.012, 0.058] | 292 | no |
 
+### H2a. AI attitudes (opportunity vs threat, 6 items)
+
+*Each intervention changes attitudes toward AI relative to control (robustness: collapse all treated arms vs control in one model)*  
+*Robustness check added in response to the automated reviewer; responds to reviewer issue R4: collapse all treated arms vs control in one model.*
+
+Effect on AI attitudes (opportunity vs threat, 6 items): -0.118 (SE 0.107, p = 0.269); control mean 4.19, treated mean 4.15. Significant at alpha = 0.05: no.
+
+Collapsing all treated arms against control in one model, which handles the shared control group directly, was run as a robustness check on attitudes toward AI. The pooled estimate sits in the pooled-arm row of the tables (−0.11 points, 95% CI [−0.21, −0.01]) and the registered conclusion is unchanged.
+
+#### Details: model and coefficients (H2a)
+
+```
+ai_attitudes ~ treat * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c)
+Lin (2013) covariate adjustment | weights = ipw | HC2 robust SEs | N = 2010 | two-sided test, alpha = 0.05
+```
+
+| analysis_id | term | estimate | std_error | statistic | p_value | conf_low | conf_high |
+|---|---|---|---|---|---|---|---|
+| H2a | Intercept | 4.215 | 0.092 | 45.908 | 0.000 | 4.035 | 4.395 |
+| H2a | treat | -0.118 | 0.107 | -1.106 | 0.269 | -0.328 | 0.091 |
+| H2a | media_trust_c | -0.469 | 0.130 | -3.616 | 0.000299 | -0.724 | -0.215 |
+| H2a | pk_score_c | 0.148 | 0.421 | 0.351 | 0.726 | -0.677 | 0.972 |
+| H2a | ai_scale_c | 1.221 | 0.543 | 2.249 | 0.025 | 0.157 | 2.286 |
+| H2a | political_interest_c | 0.048 | 0.099 | 0.481 | 0.631 | -0.147 | 0.242 |
+| H2a | treat:media_trust_c | 0.170 | 0.150 | 1.132 | 0.258 | -0.124 | 0.464 |
+| H2a | treat:pk_score_c | -0.347 | 0.483 | -0.719 | 0.472 | -1.293 | 0.599 |
+| H2a | treat:ai_scale_c | 0.583 | 0.721 | 0.809 | 0.419 | -0.830 | 1.996 |
+| H2a | treat:political_interest_c | 0.027 | 0.117 | 0.229 | 0.819 | -0.203 | 0.257 |
+
+### H1a. Accuracy (share of 24 posts judged correctly)
+
+*Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights)*  
+*Robustness check added in response to the automated reviewer; responds to reviewer issue R5: re-fit without inverse probability weights.*
+
+![H1a: effect by arm](figures/H1a_arms.png)
+
+Re-fitting accuracy without inverse probability weights changed the estimates little. Automated Flagging remained 3.7 points higher (95% CI [0.8, 6.5], p=0.011). The AI Literacy Guide (+0.4 points, 95% CI [−2.3, +3.1]) and Mindfulness (+0.2 points, 95% CI [−2.4, +2.8]) were no longer distinguishable from control, so those two registered findings depend on the weighting.
+
+Pooling the 11 arm effects with a random-effects model gives 0.012 (SE 0.004, p = 0.004; tau² 0.0000, I² 0.00). The arms share one control group, so this pooled standard error is approximate.
+
+#### Details: model and estimates by arm (H1a)
+
+```
+total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c)
+Lin (2013) covariate adjustment | HC2 robust SEs | N = 2030 | two-sided test, alpha = 0.05
+```
+
+| Arm | Estimate | SE | p | 95% CI | n (arm) | Supported |
+|---|---|---|---|---|---|---|
+| Flagging | 0.008 | 0.012 | 0.4919 | [-0.016, 0.032] | 215 | no |
+| Provenance | 0.009 | 0.014 | 0.4975 | [-0.018, 0.037] | 145 | no |
+| Automated Flagging | 0.037 | 0.014 | 0.0113 | [0.008, 0.065] | 127 | yes |
+| AI Accuracy Nudge | 0.019 | 0.011 | 0.0972 | [-0.003, 0.041] | 333 | no |
+| Breathing Exercise | 0.001 | 0.014 | 0.9599 | [-0.028, 0.029] | 134 | no |
+| Mindfulness | 0.002 | 0.013 | 0.8771 | [-0.024, 0.028] | 180 | no |
+| Inoculation | 0.002 | 0.020 | 0.9007 | [-0.037, 0.042] | 78 | no |
+| AI Literacy Infographic | 0.015 | 0.016 | 0.3494 | [-0.016, 0.045] | 102 | no |
+| AI Literacy Infographic 2 | -0.003 | 0.020 | 0.8984 | [-0.041, 0.036] | 80 | no |
+| AI Literacy Guide | 0.004 | 0.014 | 0.7783 | [-0.023, 0.031] | 162 | no |
+| AI Text Video | 0.023 | 0.012 | 0.0585 | [-0.001, 0.046] | 293 | no |
+
 ![Planned treatment effects](figures/registered_effects.png)
 
 ## Exploratory analyses
@@ -289,6 +350,40 @@ In the source study, passive pre-feed materials mostly did not help: the pooled 
 - The actual image and video files for the practice and test items must be supplied by the research team
 - Compensation and IRB approval details
 
+
+## Reviewer responses
+
+*Robustness addenda added in reply to the automated reviewer; the registered analyses above are unchanged. Full memo in `responses.md`.*
+
+
+Round 1 raised 7 issue(s); 2 analytical issue(s) were answered with robustness addenda, approved by unattended (--yes) on 2026-10-01. Registered analyses were not changed.
+
+#### R4: The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.
+
+**Response.** Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly. Added H2a, a robustness re-estimation of H2: collapse all treated arms vs control in one model (`{"collapse_arms": true, "pooled": false}`).
+
+**Result.** H2: -0.111 (SE 0.050, p = 0.026, N = 2010). H2a: -0.118 (SE 0.107, p = 0.269, N = 2010).
+
+#### R5: The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.
+
+**Response.** The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting. Added H1a, a robustness re-estimation of H1: re-fit without inverse probability weights (`{"estimator": {"kind": "lin", "robust": "HC2", "cluster": null, "weights": null, "covariates": ["media_trust", "pk_score", "ai_scale", "political_interest"], "continuous": ["media_trust", "pk_score", "ai_scale", "political_interest"]}}`).
+
+**Result.** H1: +0.010 (SE 0.007, p = 0.132, N = 2030). H1a: +0.012 (SE 0.004, p = 0.004, N = 2030).
+
+#### Second reviewer pass
+
+Mostly consistent reporting of arm estimates, but the report leans on uncorrected borderline findings, contains a pooled-vs-arm inconsistency, hides a large robustness sensitivity, and is truncated.
+
+Remaining issues:
+
+- **high** R1 — H1 / Abstract / Key findings: Headline arm effects (Automated Flagging, Guide, Mindfulness) are presented as findings across 11 arms x 4 outcomes with no multiplicity correction; the Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction. The abstract states them without hedging in the sentence itself.
+- **high** R2 — H1a robustness: The unweighted refit (H1a) shows different estimates (e.g. Flagging +0.008 vs -0.010, Guide +0.004 vs +0.047), implying results are sensitive to IPW, yet the report never discusses it.
+- **high** R3 — Design and data: Registration came after some data were collected, which is a deviation. It is mentioned only in passing and the tags list no differences. How many responses preceded registration, and whether arms/outcomes were chosen after seeing the data, is not stated.
+- **medium** R4 — H1 / Key findings: The Mindfulness arm's mean_arm (0.696) equals its control-adjacent value, yet the estimate is -0.039 with control mean 0.693; the arm means in the summary table don't match the estimates (e.g. Guide mean 0.699 vs +0.047). Adjusted and raw quantities are mixed and unexplained.
+- **medium** R5 — H5: The exploratory H5 prose reports pooled p<0.001 and gains in specific arms, but H1 total accuracy is flat. The AI-detection gain is likely offset by a drop in authentic-content accuracy, suggesting a response bias (more 'AI' answers) rather than better discernment. The report does not say so.
+- **medium** R6 — Abstract / H2: The pooled attitude effect (-0.11, p=0.026) is described as a finding while the arm effects are inconsistent and the only significant arm is Breathing Exercise. SEs vary oddly across arms (0.116 to 0.280), and Nudge with n=331 has SE 0.276.
+- **low** R7 — H1 text: The claim 'other eight arms within about ±2 points' is false: Nudge is +2.0 and Flagging -1.0, which is fine, but Infographic 2 and others are within range; Provenance/Breathing at 1.5 OK. Pooled CI also uses an approximate SE with a shared control.
+- **low** R8 — H6: The H6 section is truncated, with an empty 'Details' block and no table.
 
 ## Technical appendix
 
@@ -393,6 +488,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/04/f6719fb44d32712e1ec454cebc525f0fe6f226`
 - `.git/objects/05/4a9a9e6d538105171f292e9ca12110aa9961d8`
 - `.git/objects/05/4accc23272769acdb2f004ff6ad525f449590a`
+- `.git/objects/05/64d649c10a508bd464360081356af74e736af8`
 - `.git/objects/05/cfaccf226960e4464a755338116f794814a210`
 - `.git/objects/07/0f5c9ab4615be3831bce268894fd0b53900433`
 - `.git/objects/07/32a28cb8cb145882caca4743fcebb5a7a687d4`
@@ -453,6 +549,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/33/0344c53edcb8ba91099430c8c27d3e0d1c5653`
 - `.git/objects/33/1fc31fd20d51bb256956a647a503a3228ff8a9`
 - `.git/objects/33/a11ee768b5df60eb21ba4769da224bd55893af`
+- `.git/objects/35/3df6e086badbb0e8d6abafa12a2143fcda618b`
 - `.git/objects/36/1f48d3a56295c900d9ceba3565ba14af15f712`
 - `.git/objects/36/317f27df40bdad2bc5d77b345d936d033d92d5`
 - `.git/objects/36/97eae91a5cbb5c5c579fc84dd07345e92c8d97`
@@ -481,6 +578,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/46/b0a808bbe296229ed4883e06ac261128ca342c`
 - `.git/objects/48/bf542c3078c75d48f740eae956564ca5ff6f24`
 - `.git/objects/48/bfedb45b26a2a1aebf05295d6bd2c2ee69b4a9`
+- `.git/objects/49/3ba4be598a9c836e2f0f10cb7971ca432e90e3`
 - `.git/objects/49/b1d2c7cc27780cbbd166480aa59c0ed454e97e`
 - `.git/objects/4a/bb947522a6857e51feb4ef3e009fa9668bff5c`
 - `.git/objects/4b/854f41d289ea30eedefa037f3f525c0d5494cb`
@@ -488,7 +586,9 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/4d/040adeedae275107cef2913362cb605ff2114f`
 - `.git/objects/4d/843afd76af1f09bd27a1c60d7b67680ee59296`
 - `.git/objects/4e/2b401f2e022d75ad618d16e564b90ac0f86dcf`
+- `.git/objects/4e/30b5ea1a605cc0e8b11f2d6620d8688ba9661a`
 - `.git/objects/4e/4e1beb8bbd9ab5751f64015258d631e8fe02a3`
+- `.git/objects/4e/a081466e12f1b375709653a07fdb3418d9b217`
 - `.git/objects/4e/fb12cd18e8fa9a3d7ef22b855b97c67099eb14`
 - `.git/objects/4f/ebcdbcdfe8a9ce33ae3018fa26dfae1c5fbf51`
 - `.git/objects/50/660b41646405013ab5ac7c7fabf3c0306c17ca`
@@ -540,8 +640,11 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/70/78e4b64fd6194e728a54e6fb269dccf0f9c017`
 - `.git/objects/70/e51920704cdf848a3283a97b1303b852398623`
 - `.git/objects/71/1e1869306aafe6bdcc478a5c4a8f147defd2f0`
+- `.git/objects/71/e0069e2dcf432ab9eb900a213ea9d3a2b85357`
 - `.git/objects/72/d1aa15270c9fbbe7867a8d6a7137e7bbf17b70`
 - `.git/objects/73/0572dda606dce6386cd55eca60925943c1e80c`
+- `.git/objects/75/f582584e01f648f8221b2ed49dde3b80bb900f`
+- `.git/objects/76/1428cc47947adeca56c3ff210c4912d68ee3ef`
 - `.git/objects/77/c0537aa06ae0dcacbf478dc17713e65684c052`
 - `.git/objects/79/35dda421db09094d7954df3f5bacc6011643ea`
 - `.git/objects/79/b11246595dcad4a7e44b0d728fa841f407857a`
@@ -584,6 +687,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/8f/24406bc651e5e9a714a814feef60fafeaf5796`
 - `.git/objects/8f/2f711a02dcad0eeb1f3cc66f7ba36ff67d3771`
 - `.git/objects/8f/d8a5ac9c0a04586ebf9f13b25aee06b8f5c1c8`
+- `.git/objects/90/0fcdd8c5c90de5b9dc2919a3f8566cb95fd333`
 - `.git/objects/90/7a1569e4e621ccb37718e539269ffdd47e1b4f`
 - `.git/objects/90/84eb02bad99f2076df11d6c8b3e31c565c7c66`
 - `.git/objects/90/edcf51c61fc775c629b7faf4a4220495cb352e`
@@ -602,6 +706,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/9a/71f905a0adb8e8eb913e4548b69d867a7e23e1`
 - `.git/objects/9a/d867e8787188dd248d7f9933354aa180c77df9`
 - `.git/objects/9b/8a39298596b6ab5ddf6fb14e3bfdb5397ec6bd`
+- `.git/objects/9b/9cc57a15bff1a962a705e33d722f820bd9fcc9`
 - `.git/objects/9b/fc0af649d1eac059905d8d27b2b033dad6012f`
 - `.git/objects/9c/bea4a93f6d67e9c327813e54b7239fa437cb15`
 - `.git/objects/9d/0017bee09caa1e5ba0a04508ab50930f611db3`
@@ -613,6 +718,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/a4/4768633163f28e4eec1ea9a1082fb35f2e071c`
 - `.git/objects/a4/96edf0a17fbc0f3f7e8d53cc3f1f256af6d975`
 - `.git/objects/a4/e2ee989294fd58a2dd1d2e0cfe770796b57b94`
+- `.git/objects/a6/9fa52b41fa1b4f6041bdfc94e89493d4a4032d`
 - `.git/objects/a7/a96d31d78381834db9f60eaa57f131f53af33e`
 - `.git/objects/a7/f6f3dac40c53127c06add7c4eec10a8b6ce385`
 - `.git/objects/a8/2e6785a9bdd2a28064a17965a0bcaff8549593`
@@ -643,6 +749,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/bf/11658b7c8b3aace0ba39e986be2645f04f6e24`
 - `.git/objects/bf/72383baddeb9031e7550ed3a9521aafa35a0e4`
 - `.git/objects/c0/12848efb489bf9f90c03717d93ba4409886c1f`
+- `.git/objects/c1/17ae2db9bee79634ae3bfaff3342c8eaf6d0e3`
 - `.git/objects/c1/541a953c23b7924b236d59195663c405e2f128`
 - `.git/objects/c1/7112985716f1b35252a42df7dd61ef853f2fd0`
 - `.git/objects/c1/d03126397137d69747628e414ee6db612ab1d9`
@@ -672,6 +779,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/d4/c21fce65106e818b2257684bcc15702bdd003e`
 - `.git/objects/d5/7afee02a71b0e362d7493bf3cfcc6842d96639`
 - `.git/objects/d6/ae8697572d1438a921b667d328d1c5e10b9473`
+- `.git/objects/d7/927f5c5da19aefb7ae3b96bd06def0ac451de8`
 - `.git/objects/d8/fc3d7cd79a18f5ac3f715c14b84294744fcbe1`
 - `.git/objects/d9/595fdd76575028f8ea23c1ff1b77cbd8c13253`
 - `.git/objects/da/04366ef1d58bdeefd8c7372b7b08bea5713bd9`
@@ -712,8 +820,10 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `.git/objects/f7/124109f0733789a6ec201f292b5ff83a0e6e0d`
 - `.git/objects/f8/a938240fdc143c7144332fc3ef331114c0311a`
 - `.git/objects/f9/0c863ab7b796c9743dcd27da771b952c579129`
+- `.git/objects/f9/65d1173bd8f073a466c287a2c537365e0a4d48`
 - `.git/objects/fb/2602c35b69e52bf2271c515300cac3e8909388`
 - `.git/objects/fb/48374622975718da85c7598631ed0204272a5c`
+- `.git/objects/fb/8d734d0fdf632112cb4555ce55855602e680e4`
 - `.git/objects/fc/b07091e64703289b12469ca8a517a07e696581`
 - `.git/objects/fc/e9cb97807829db4162da190dc972620bf41d40`
 - `.git/objects/fc/fb8ddf2c454b74c8b2feb73157d136218a891c`
