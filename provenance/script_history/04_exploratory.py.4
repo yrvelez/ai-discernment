@@ -1,0 +1,20 @@
+import importlib.util, pathlib
+import pandas as pd
+import numpy as np
+
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
+
+# Print all hypotheses
+for h in reg.HYPOTHESES:
+    print(f"ID: {h['id']}")
+    print(f"  outcome: {h['outcome']}")
+    print(f"  estimator: {h['estimator']}")
+    print(f"  keys: {list(h.keys())}")
+    print()
+
+# Check build_formula signature
+import inspect
+print("build_formula signature:", inspect.signature(reg.build_formula))
+print("fit signature:", inspect.signature(reg.fit))

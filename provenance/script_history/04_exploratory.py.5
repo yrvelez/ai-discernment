@@ -1,0 +1,13 @@
+import importlib.util, pathlib
+import pandas as pd
+import numpy as np
+import inspect
+
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
+
+# Print the source of build_formula
+print(inspect.getsource(reg.build_formula))
+print("="*60)
+print(inspect.getsource(reg.fit))

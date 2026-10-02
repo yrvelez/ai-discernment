@@ -1,20 +1,22 @@
 # Reviewer pass (automated, single pass)
 
-Model: `anthropic/claude-sonnet-5.5`. The report is mostly consistent with its tables, but it overstates a few pooled and exploratory claims, understates multiplicity and registration caveats, and omits information needed to interpret the results.
+Model: `anthropic/claude-sonnet-5.5`. Mostly consistent reporting of arm estimates, but the report leans on uncorrected borderline findings, contains a pooled-vs-arm inconsistency, hides a large robustness sensitivity, and is truncated.
 
-- **high** — Key findings / Abstract (exploratory pooled claim): The key findings say pooled accuracy on AI-generated posts rose 3.8 points with CI [1.7, 5.8], but the H5 text shows only a random-effects estimate (0.038, SE 0.011). The CI is not shown in the visible tables, and the prose for H5 and H6 is just the pooling sentence. The claim that authentic-post accuracy is 'not distinguishable from zero' rests on a truncated H6 section.
-  - Suggested fix: Report the H5 and H6 pooled CIs in the tables, complete the H6 section, and label the pooled estimate as an average of arm effects, not a single treatment effect.
-- **high** — H1 / Key findings (multiplicity): The three H1 'supported' arms have p=0.004, 0.032 and 0.043 among 11 arm tests. Only Automated Flagging is plausibly robust. The Key findings list the other two as 'Registered' wins, and the caveat does not say which results would survive correction. The text says '33 arm tests', which does not match 4 outcomes × 11 arms = 44 registered tests.
-  - Suggested fix: Reconcile the test count. Report Holm or BH-adjusted p-values and state which findings survive. Flag the Literacy Guide (CI lower bound 0.002) and Mindfulness as fragile.
-- **high** — Design and data (registration deviations): Some data were collected before registration, and the report asserts that 'later batches followed the plan' without evidence. All analysis tags show empty differences and deviations. Yet 227 of 2,257 responses were excluded, the exclusion rule is not given, and the Lin-adjusted, IPW, HC2 specification is not compared with the registered plan.
-  - Suggested fix: State the exclusion criteria and the number excluded per rule. Document how the registered analysis and the actual analysis differ, if at all, and how much data predated registration.
-- **medium** — H3 / Key findings: The Key findings say 'several arms lowered confidence', but only two arms did, and Inoculation raised it. The Mindfulness bullet mixes in the confidence claim. The AI Literacy Guide confidence estimate (-0.47) is notable but not significant.
-  - Suggested fix: State the confidence results accurately: two decreases, one increase, and the rest null. Move this claim out of the Mindfulness bullet.
-- **medium** — H2 / H5 text: The pooled attitude effect (-0.11, p=0.026) is called 'a small shift' with no scale context. The single significant H2 arm, Breathing Exercise (-0.54), has an SE of 0.23 and sits oddly beside near-zero effects in the other arms. H5 shows Breathing Exercise improving AI detection but H1 shows no total-accuracy gain, and the report does not discuss this.
-  - Suggested fix: Give the scale range and SD. Discuss the H5/H1 tension and the possibility that Breathing Exercise merely shifted response bias toward answering 'AI'.
-- **medium** — H5/H6 interpretation: The pooled gain on AI posts alongside a null on authentic posts is consistent with a shift toward labelling more posts as AI, not better discernment. The report does not discuss this, yet the title and framing are about discernment.
-  - Suggested fix: Report signal-detection measures (d′ and criterion) or discuss the response-bias interpretation explicitly.
-- **medium** — Design / arm sizes: The control group has 181 respondents against arms of 76–333, and the report gives no randomization check, no covariate balance, and no explanation of the weights or of how the unequal arm sizes arose. The 'some data already collected' note suggests arms may have been assigned at different times.
-  - Suggested fix: Report arm allocation by batch, balance checks, and a description of the IPW construction.
-- **low** — H1 text / pooled estimate: The text reports the pooled effect as inconclusive, but the I² and tau² values are given without interpretation. Labelling 'within about ±2 points' for the other eight arms is loose: AI Accuracy Nudge is +2.0 and Infographic 2 is -0.8, so the wording is approximately right but not exact.
-  - Suggested fix: Quote the ranges exactly and briefly explain the heterogeneity statistics.
+- **high** R1 (analytical) — H1 / Abstract / Key findings: Headline arm effects (Automated Flagging, Guide, Mindfulness) are presented as findings across 11 arms x 4 outcomes with no multiplicity correction; the Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction. The abstract states them without hedging in the sentence itself.
+  - Suggested fix: Report adjusted p-values (Holm/BH) per outcome family and temper language for borderline arms.
+- **high** R2 (presentational) — H1a robustness: The unweighted refit (H1a) shows different estimates (e.g. Flagging +0.008 vs -0.010, Guide +0.004 vs +0.047), implying results are sensitive to IPW, yet the report never discusses it.
+  - Suggested fix: Present H1a beside H1, explain the weights, and state that the Guide effect depends on weighting.
+- **high** R3 (analytical) — Design and data: Registration came after some data were collected, which is a deviation. It is mentioned only in passing and the tags list no differences. How many responses preceded registration, and whether arms/outcomes were chosen after seeing the data, is not stated.
+  - Suggested fix: Flag the timing as a deviation and report the pre-registration batch size and a sensitivity check excluding early data.
+- **medium** R4 (presentational) — H1 / Key findings: The Mindfulness arm's mean_arm (0.696) equals its control-adjacent value, yet the estimate is -0.039 with control mean 0.693; the arm means in the summary table don't match the estimates (e.g. Guide mean 0.699 vs +0.047). Adjusted and raw quantities are mixed and unexplained.
+  - Suggested fix: Explain that the estimates are covariate-adjusted and weighted while the means are raw, or correct the table.
+- **medium** R5 (analytical) — H5: The exploratory H5 prose reports pooled p<0.001 and gains in specific arms, but H1 total accuracy is flat. The AI-detection gain is likely offset by a drop in authentic-content accuracy, suggesting a response bias (more 'AI' answers) rather than better discernment. The report does not say so.
+  - Suggested fix: Add a discernment measure (d' or the difference of H5 and H6) and interpret H5 and H6 together.
+- **medium** R6 (analytical) — Abstract / H2: The pooled attitude effect (-0.11, p=0.026) is described as a finding while the arm effects are inconsistent and the only significant arm is Breathing Exercise. SEs vary oddly across arms (0.116 to 0.280), and Nudge with n=331 has SE 0.276.
+  - Suggested fix: Check for outliers or leverage in the Lin-interacted model, and report the distribution of the outcome.
+- **low** R7 (presentational) — H1 text: The claim 'other eight arms within about ±2 points' is false: Nudge is +2.0 and Flagging -1.0, which is fine, but Infographic 2 and others are within range; Provenance/Breathing at 1.5 OK. Pooled CI also uses an approximate SE with a shared control.
+  - Suggested fix: Verify the range claim and use a pooled treated-vs-control model for the pooled estimate.
+- **low** R8 (presentational) — H6: The H6 section is truncated, with an empty 'Details' block and no table.
+  - Suggested fix: Include the H6 model and arm table.
+
+Analytical issues can be answered with robustness addenda: `filedrawer address <study>` proposes one per issue for approval.

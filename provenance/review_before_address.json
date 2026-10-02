@@ -1,0 +1,78 @@
+{
+ "model": "anthropic/claude-sonnet-5.5",
+ "overall": "The report is mostly consistent with its tables, but it overstates the arm-level findings given 11 uncorrected tests, its framing of the H1 pooled effect, and missing detail on weights, covariates and the amended registration.",
+ "issues": [
+  {
+   "severity": "high",
+   "location": "Abstract / H1 / Key findings",
+   "issue": "The Automated Flagging, AI Literacy Guide and Mindfulness effects are headlined as findings, but with 11 uncorrected arm tests only Automated Flagging (p=0.004) is near a plausible correction threshold. AI Literacy Guide (p=0.043) and Mindfulness (p=0.032) would not survive Bonferroni or Holm. The Mindfulness 'lowered accuracy' claim also sits oddly with the table: its mean_arm of 0.696 is above the control mean of 0.693.",
+   "fix": "Report multiplicity-adjusted p-values (Holm or FDR) alongside the raw ones. Describe the Literacy Guide and Mindfulness effects as tentative, and explain why the covariate-adjusted estimate differs in sign from the raw means.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "robustness"
+   },
+   "id": "R1"
+  },
+  {
+   "severity": "medium",
+   "location": "Key findings / H3",
+   "issue": "The first key finding says 'none clearly improved' accuracy, then the next bullet says Automated Flagging raised it. The H3 prose says confidence fell in Flagging and Infographic 2, yet the key finding implies several arms shifted it and cites only Flagging. The sign of the Inoculation effect (+0.51, n=77) is not flagged as likely noise.",
+   "fix": "Reword the key findings to be consistent with each other. State that one arm showed a nominal improvement that was uncorrected, and caveat the small-arm results.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R2"
+  },
+  {
+   "severity": "medium",
+   "location": "Design and data / registration",
+   "issue": "Some data existed at registration, and the registration amended an earlier entry. The analysis tags list no deviations and the justification fields are empty. How the amendment and the partial data prior affect the confirmatory status is not explained.",
+   "fix": "Add a visible deviations section. State which analyses and details differ from the plan (covariates, IPW, pooling), and what the timing of the registration means for H1 to H4.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R3"
+  },
+  {
+   "severity": "medium",
+   "location": "Pooled estimates",
+   "issue": "The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.",
+   "fix": "Replace the pooled estimate with a single model that compares all treated respondents against control, with robust SEs. Alternatively, cluster-adjust the pooled SE.",
+   "kind": "analytical",
+   "change": {
+    "target": "H2",
+    "type": "estimator"
+   },
+   "id": "R4"
+  },
+  {
+   "severity": "medium",
+   "location": "Design and data / weights",
+   "issue": "The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.",
+   "fix": "Describe the weight construction and the exclusion criteria. Show the attrition and exclusion counts by arm, and a sensitivity analysis without weights.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "weights"
+   },
+   "id": "R5"
+  },
+  {
+   "severity": "low",
+   "location": "H5",
+   "issue": "H5 has no prose interpretation. The exploratory pooled p is shown as 'p = 0.000', and two arms (AI Accuracy Nudge, Breathing Exercise) are nominally significant. This may suggest the H1 gains came through AI-detection at the cost of authentic-content recognition, which is not discussed.",
+   "fix": "Report p<0.001. Add a short exploratory interpretation of H5 and H6 together, covering the detection and authentic-content trade-off, and label it exploratory.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R6"
+  },
+  {
+   "severity": "low",
+   "location": "H2 / H3 / Key findings",
+   "issue": "The H2 text says Breathing Exercise lowered AI attitudes by 0.54, yet the abstract only mentions 'slightly lower overall'. The scale ranges for the outcomes are not given, so effect sizes are hard to judge. The report is also truncated at H6.",
+   "fix": "State the scale ranges and report effect sizes in SD units. Complete the H6 section.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R7"
+  }
+ ]
+}

@@ -1,0 +1,392 @@
+{
+ "tool_version": "0.1.0",
+ "meta": {
+  "slug": "ai-discernment",
+  "title": "Improving AI Discernment: do misinformation interventions help people spot AI-generated media?",
+  "authors": [
+   "Yamil Velez"
+  ],
+  "synthetic": false,
+  "release_status": "draft",
+  "repo_url": "https://github.com/yrvelez/ai-discernment",
+  "branch": "main",
+  "package_at_root": true,
+  "n_raw": 2257,
+  "n_analysis": 2030
+ },
+ "pap_source": "author-supplied pap.json",
+ "data_columns": [
+  "row_id",
+  "batch",
+  "political_interest",
+  "pk_1",
+  "pk_2",
+  "pk_score",
+  "chatgpt",
+  "bing",
+  "claude",
+  "character",
+  "dalle",
+  "midjourney",
+  "stable_diff",
+  "media_trust",
+  "biden2_real_news_005.png",
+  "biden_real_005.png",
+  "biden_real_news_001.png",
+  "election_real_news_006.png",
+  "google_real_news_003.png",
+  "hot_weather_real_news_008.png",
+  "jim_jordan_real_news_007.png",
+  "johnson_real_003.mp4",
+  "poland_real_news_002.png",
+  "protest_real_news_004.png",
+  "putin_real_002.webp",
+  "unhorse_real_004.png",
+  "untrump_real_001.webp",
+  "real_score",
+  "andersoncooper_fake_001.mp4",
+  "biden_draft_fake_009.mp4",
+  "biden_fake_003.mp4",
+  "biden_fake_006.png",
+  "desantis_fake_002.mp4",
+  "trump_arrest_fake_008.png",
+  "trump_epstein_fake_010.png",
+  "trump_fake_004.png",
+  "trump_fire_fake_007.png",
+  "trump_voice_fake_011.mp4",
+  "warren_fake_012.mp4",
+  "fake_score",
+  "total_score",
+  "ai_outcome_1",
+  "ai_outcome_2",
+  "ai_outcome_3",
+  "ai_outcome_4",
+  "ai_outcome_5",
+  "ai_outcome_6",
+  "ai_outcome_7",
+  "trust_online_1",
+  "trust_online_2",
+  "trust_online_3",
+  "trust_online_4",
+  "trust_online_5",
+  "trust_online_6",
+  "trust_online_7",
+  "treatment",
+  "age",
+  "hisp",
+  "white",
+  "afam_black",
+  "asian",
+  "gender_m",
+  "pr"
+ ],
+ "categorical": [
+  "political_interest",
+  "pk_1",
+  "pk_2",
+  "ai_outcome_1",
+  "ai_outcome_2",
+  "ai_outcome_3",
+  "ai_outcome_4",
+  "ai_outcome_5",
+  "ai_outcome_6",
+  "ai_outcome_7",
+  "trust_online_1",
+  "trust_online_2",
+  "trust_online_3",
+  "trust_online_4",
+  "trust_online_5",
+  "trust_online_6",
+  "trust_online_7"
+ ],
+ "exploratory": [],
+ "lit": {
+  "text": "The retrieved works are largely off-topic for the present study's hypotheses on intervention effects on AI-detection accuracy, attitudes, confidence, and trust. The closest match is a scoping review by Park and Nan (2025), which synthesizes empirical findings on the generation, detection, and mitigation of AI-generated misinformation, confirming that detection remains a significant open challenge but without reporting specific intervention effects comparable to the present study's design. Dwivedi et al. (2023) similarly note the difficulty of distinguishing AI-generated text from human-written text as a central challenge, though their contribution is an opinion paper rather than an empirical test of interventions. No retrieved work reports findings directly analogous to the present study's hypotheses on how targeted interventions shift detection accuracy, confidence, or trust relative to a control condition.",
+  "works": [
+   {
+    "id": "https://openalex.org/W2969625533",
+    "title": "Artificial Intelligence (AI): Multidisciplinary perspectives on emerging challenges, opportunities, and agenda for research, practice and policy",
+    "authors": [
+     "Yogesh Kumar Dwivedi",
+     "Laurie Hughes",
+     "Elvira Ismagilova",
+     "Gert Aarts"
+    ],
+    "year": 2019,
+    "doi": "10.1016/j.ijinfomgt.2019.08.002",
+    "venue": "International Journal of Information Management",
+    "cited_by": 4523,
+    "abstract": "As far back as the industrial revolution, significant development in technical innovation has succeeded in transforming numerous manual tasks and processes that had been in existence for decades where humans had reached the limits of physical capacity. Artificial Intelligence (AI) offers this same transformative potential for the augmentation and potential replacement of human tasks and activities"
+   },
+   {
+    "id": "https://openalex.org/W4360620450",
+    "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
+    "authors": [
+     "Yogesh Kumar Dwivedi",
+     "Nir Kshetri",
+     "Laurie Hughes",
+     "Emma Louise Slade"
+    ],
+    "year": 2023,
+    "doi": "10.1016/j.ijinfomgt.2023.102642",
+    "venue": "International Journal of Information Management",
+    "cited_by": 4418,
+    "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
+   },
+   {
+    "id": "https://openalex.org/W4226278401",
+    "title": "Discernment and Social Learning as a Companion Training Layer",
+    "authors": [
+     "Long Ouyang",
+     "Jeff Wu",
+     "Xu Jiang",
+     "Diogo Almeida"
+    ],
+    "year": 2022,
+    "doi": "10.48550/arxiv.2203.02155",
+    "venue": "arXiv (Cornell University)",
+    "cited_by": 4291,
+    "abstract": "I propose a companion curriculum for language model training that explicitly practices how a model responds to error. A failed attempt pauses advancement in the affected skill, followed by observation of verified peer successes, judgments committed before outcome disclosure, diagnosis, and a fresh-task retry. Task performance and discernment remain separately assessed, with bounded interaction thr"
+   },
+   {
+    "id": "https://openalex.org/W4399518864",
+    "title": "The impact of generative artificial intelligence on socioeconomic inequalities and policy making",
+    "authors": [
+     "Valerio Capraro",
+     "Austin Lentsch",
+     "Daron Acemoğlu",
+     "Selin Akgün"
+    ],
+    "year": 2024,
+    "doi": "10.1093/pnasnexus/pgae191",
+    "venue": "PNAS Nexus",
+    "cited_by": 355,
+    "abstract": "Abstract Generative artificial intelligence (AI) has the potential to both exacerbate and ameliorate existing socioeconomic inequalities. In this article, we provide a state-of-the-art interdisciplinary overview of the potential impacts of generative AI on (mis)information and three information-intensive domains: work, education, and healthcare. Our goal is to highlight how generative AI could wor"
+   },
+   {
+    "id": "https://openalex.org/W3194432496",
+    "title": "Visual Mis- and Disinformation, Social Media, and Democracy",
+    "authors": [
+     "Viorela Dan",
+     "Britt S. Paris",
+     "Joan Donovan",
+     "Michael Hameleers"
+    ],
+    "year": 2021,
+    "doi": "10.1177/10776990211035395",
+    "venue": "Journalism & Mass Communication Quarterly",
+    "cited_by": 142,
+    "abstract": ""
+   },
+   {
+    "id": "https://openalex.org/W4414644854",
+    "title": "Generative AI and misinformation: a scoping review of the role of generative AI in the generation, detection, mitigation, and impact of misinformation",
+    "authors": [
+     "Seyeon Park",
+     "Xiaoli Nan"
+    ],
+    "year": 2025,
+    "doi": "10.1007/s00146-025-02620-3",
+    "venue": "AI & Society",
+    "cited_by": 47,
+    "abstract": "Abstract The rapid advancement of generative artificial intelligence (AI) has introduced both opportunities and challenges in the fight against misinformation. This scoping review synthesizes recent empirical studies to explore the dual role of generative AI—particularly large language models (LLMs)—in the generation, detection, mitigation, and impact of misinformation. Analyzing 24 empirical stud"
+   },
+   {
+    "id": "https://openalex.org/W4242918116",
+    "title": "Data Feminism",
+    "authors": [
+     "Catherine D’Ignazio",
+     "Lauren Frederica Klein"
+    ],
+    "year": 2020,
+    "doi": "10.7551/mitpress/11805.001.0001",
+    "venue": "The MIT Press eBooks",
+    "cited_by": 1709,
+    "abstract": "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional feminism. Today, data science is a form of power. It has been used to expose injustice, improve health outcomes, and topple governments. But it has also been used to discriminate, police, and surveil. This potential for good, on the one hand, and harm, on the other, makes it essential to ask: D"
+   },
+   {
+    "id": "https://openalex.org/W3046539507",
+    "title": "Impact of COVID-19 pandemic on information management research and practice: Transforming education, work and life",
+    "authors": [
+     "Yogesh Kumar Dwivedi",
+     "D. Laurie Hughes",
+     "Crispin R. Coombs",
+     "Ioanna Constantiou"
+    ],
+    "year": 2020,
+    "doi": "10.1016/j.ijinfomgt.2020.102211",
+    "venue": "International Journal of Information Management",
+    "cited_by": 1245,
+    "abstract": ""
+   },
+   {
+    "id": "https://openalex.org/W2111619626",
+    "title": "Internet of Things (IoT): A vision, architectural elements, and future directions",
+    "authors": [
+     "Jayavardhana Gubbi",
+     "Rajkumar Buyya",
+     "Slaven Marusic",
+     "Marimuthu Swami Palaniswami"
+    ],
+    "year": 2013,
+    "doi": "10.1016/j.future.2013.01.010",
+    "venue": "Future Generation Computer Systems",
+    "cited_by": 12301,
+    "abstract": ""
+   },
+   {
+    "id": "https://openalex.org/W2981863007",
+    "title": "Systematic review of research on artificial intelligence applications in higher education – where are the educators?",
+    "authors": [
+     "Olaf Zawacki‐Richter",
+     "Victoria I. Marín",
+     "Melissa Bond",
+     "Franziska Gouverneur"
+    ],
+    "year": 2019,
+    "doi": "10.1186/s41239-019-0171-0",
+    "venue": "International Journal of Educational Technology in Higher Education",
+    "cited_by": 6814,
+    "abstract": "Abstract According to various international reports, Artificial Intelligence in Education (AIEd) is one of the currently emerging fields in educational technology. Whilst it has been around for about 30 years, it is still unclear for educators how to make pedagogical advantage of it on a broader scale, and how it can actually impact meaningfully on teaching and learning in higher education. This p"
+   }
+  ],
+  "queries": [
+   "misinformation intervention AI-generated content detection accuracy",
+   "inoculation prebunking deepfake synthetic media discernment",
+   "accuracy nudge AI literacy media trust detection",
+   "human detection AI-generated media experimental intervention"
+  ],
+  "degraded": null
+ },
+ "tags": [
+  {
+   "analysis_id": "H1",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H2",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H3",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H4",
+   "kind": "hypothesis",
+   "tag": "registered",
+   "differences": [],
+   "interpretations": [],
+   "justification": ""
+  },
+  {
+   "analysis_id": "H5",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "H6",
+   "kind": "hypothesis",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "H2a",
+   "kind": "hypothesis",
+   "tag": "robustness",
+   "differences": [
+    {
+     "field": "treatment.contrast",
+     "registered": null,
+     "implemented": [
+      "__treated__",
+      "0"
+     ]
+    },
+    {
+     "field": "treatment.arms",
+     "registered": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+     ],
+     "implemented": null
+    },
+    {
+     "field": "treatment.control",
+     "registered": "0",
+     "implemented": null
+    },
+    {
+     "field": "pooled",
+     "registered": true,
+     "implemented": false
+    }
+   ],
+   "justification": "responds to reviewer issue R4: collapse all treated arms vs control in one model",
+   "responds_to": "R4",
+   "base": "H2"
+  },
+  {
+   "analysis_id": "H1a",
+   "kind": "hypothesis",
+   "tag": "robustness",
+   "differences": [
+    {
+     "field": "estimator.weights",
+     "registered": "ipw",
+     "implemented": null
+    }
+   ],
+   "justification": "responds to reviewer issue R5: re-fit without inverse probability weights",
+   "responds_to": "R5",
+   "base": "H1"
+  }
+ ],
+ "sections": {
+  "takeaways": [
+   "Across 11 interventions, few clearly helped people tell AI-generated from authentic media; the pooled effect on total accuracy was +1.0 point (95% CI [−0.3, +2.4]), not distinguishable from zero.",
+   "Registered: Automated Flagging raised total accuracy by 4.4 points (95% CI [+1.4, +7.3], p=0.004); the AI Literacy Guide showed +4.7 points, with a CI reaching just above zero.",
+   "Registered: Mindfulness lowered total accuracy by 3.9 points (95% CI [−7.4, −0.3]), while Flagging and AI Literacy Infographic 2 lowered confidence in AI detection.",
+   "Pooled across arms, attitudes toward AI were 0.11 scale points lower (95% CI [−0.21, −0.01]); trust in online information was not distinguishable from unchanged.",
+   "Caveat: many uncorrected tests, several small arms (78 to 333 respondents) and borderline p-values mean isolated arm findings should be treated cautiously."
+  ],
+  "abstract": "Can misinformation-style interventions help people spot AI-generated media? We ran a registered online survey experiment with U.S. panel respondents (2,257 recruited, 2,030 analysed), randomising them to a control or one of 11 interventions: flagging, provenance labels, automated flagging, an accuracy nudge, breathing and mindfulness exercises, inoculation, and several AI-literacy materials. Respondents then judged posts in a feed. Automated Flagging raised total accuracy by 4.4 percentage points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The pooled accuracy effect was small and inconclusive (+1.0 point, 95% CI [−0.3, +2.4]). Pooled attitudes toward AI were slightly lower, and some arms reduced confidence in detection. Because the study tested many arms and outcomes without multiplicity correction, and some arms were small, individual findings are tentative.",
+  "design_notes": "The plan was registered on AsPredicted (#151,281) on 2023-11-15, after some data had been collected; later batches followed the plan. Fielding ran 2023-10-30 to 2023-11-21 on a U.S. online panel. Of 2,257 raw responses, 2,030 were analysed; the control group had 181 respondents, and arms ranged from 78 to 333. Attitude, confidence and trust models lost a few rows to missing values (for example 2,010 of 2,030 for attitudes). Models used inverse probability weights and robust standard errors. All tests are two-sided and uncorrected for multiplicity.",
+  "results": {
+   "H1": "Three of the eleven arms differed from control on total accuracy. Automated Flagging was 4.4 points higher (95% CI [1.4, 7.3], p=0.004, two-sided) and the AI Literacy Guide 4.7 points higher (95% CI [0.2, 9.2], p=0.043). Mindfulness was 3.9 points lower (95% CI [−7.4, −0.3], p=0.032). The other eight arms were within about ±2 points of control and not distinguishable from it. The pooled effect was +1.0 point (95% CI [−0.3, +2.4]).",
+   "H2": "Breathing Exercise lowered attitudes toward AI by 0.54 scale points (95% CI [−0.99, −0.09], p=0.018). The other ten arms were not distinguishable from control, with intervals spanning zero. Pooled across arms, attitudes were 0.11 points lower (95% CI [−0.21, −0.01], p=0.026). Given the number of tests, the single-arm result deserves a hedge.",
+   "H3": "Three arms moved confidence in detecting AI. Flagging lowered it by 0.53 points (95% CI [−0.94, −0.12], p=0.012) and AI Literacy Infographic 2 by 0.69 points (95% CI [−1.20, −0.17], p=0.010). Inoculation raised it by 0.51 points (95% CI [0.14, 0.88], p=0.007). The remaining arms were inconclusive, and the pooled estimate was −0.13 (95% CI [−0.32, +0.06]).",
+   "H4": "Trust in online information was largely unchanged in the data we can distinguish. Only the AI Literacy Infographic differed from control, at 0.15 points lower (95% CI [−0.27, −0.02], p=0.023). The other ten arms had intervals spanning zero. The pooled estimate was −0.04 (95% CI [−0.08, +0.00], p=0.060), which is borderline and inconclusive.",
+   "H5": "This analysis was not registered. Detection of AI-generated posts was higher in several arms: Breathing Exercise by 9.1 points (95% CI [3.2, 15.0]), AI Accuracy Nudge by 6.6 points (95% CI [1.4, 11.9]) and AI Literacy Guide by 7.9 points (95% CI [0.0, 15.7]). Pooled, the gain was 3.8 points (95% CI [1.7, 5.8], p<0.001).",
+   "H6": "This analysis was not registered. Recognition of authentic posts was lower only for AI Literacy Infographic 2, by 6.1 points (95% CI [−11.1, −1.0], p=0.019). Other arms were inconclusive, and the pooled estimate was −0.7 points (95% CI [−2.6, +1.3]).",
+   "H2a": "Collapsing all treated arms against control in one model, which handles the shared control group directly, was run as a robustness check on attitudes toward AI. The pooled estimate sits in the pooled-arm row of the tables (−0.11 points, 95% CI [−0.21, −0.01]) and the registered conclusion is unchanged.",
+   "H1a": "Re-fitting accuracy without inverse probability weights changed the estimates little. Automated Flagging remained 3.7 points higher (95% CI [0.8, 6.5], p=0.011). The AI Literacy Guide (+0.4 points, 95% CI [−2.3, +3.1]) and Mindfulness (+0.2 points, 95% CI [−2.4, +2.8]) were no longer distinguishable from control, so those two registered findings depend on the weighting."
+  },
+  "exploratory": {},
+  "limitations": "The study tested eleven arms across four registered outcomes, plus exploratory ones, without correcting for multiple comparisons, so some significant arm effects are likely chance. Several arms are small (78 to 181 respondents, including the control), giving wide intervals. The AI Literacy Guide and Mindfulness accuracy results vanish without weights, and the Guide's interval barely excludes zero. Some data were collected before registration. Pooling treats arms as independent despite the shared control, so pooled intervals are approximate. The panel is online and U.S.-based, and the experiment measures immediate effects in a single session."
+ }
+}

@@ -5,6 +5,5 @@ H3,hypothesis,registered,0,[],
 H4,hypothesis,registered,0,[],
 H5,hypothesis,exploratory,0,[],no registered counterpart
 H6,hypothesis,exploratory,0,[],no registered counterpart
-E1,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
-E2,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
-E3,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+H2a,hypothesis,robustness,4,"[{""field"": ""treatment.contrast"", ""registered"": null, ""implemented"": [""__treated__"", ""0""]}, {""field"": ""treatment.arms"", ""registered"": [""1"", ""2"", ""3"", ""4"", ""5"", ""6"", ""7"", ""8"", ""9"", ""10"", ""11""], ""implemented"": null}, {""field"": ""treatment.control"", ""registered"": ""0"", ""implemented"": null}, {""field"": ""pooled"", ""registered"": true, ""implemented"": false}]",responds to reviewer issue R4: collapse all treated arms vs control in one model
+H1a,hypothesis,robustness,1,"[{""field"": ""estimator.weights"", ""registered"": ""ipw"", ""implemented"": null}]",responds to reviewer issue R5: re-fit without inverse probability weights

@@ -757,5 +757,55 @@
       "alternatives": [],
       "reason": "The registration lists the covariates without coding; the authors' script enters them linearly"
     }
+  ],
+  "addenda": [
+    {
+      "base": "H2",
+      "label": "collapse all treated arms vs control in one model",
+      "rationale": "Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly.",
+      "delta": {
+        "collapse_arms": true,
+        "pooled": false
+      },
+      "expected": "If the pooled treated-vs-control effect stays significant with a similar size (p near 0.026), the finding does not depend on the shared-control approximation. A clearly larger p-value would be a concern.",
+      "id": "H2a",
+      "responds_to": "R4",
+      "issue": "The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.",
+      "status": "run",
+      "proposed_at": "2026-10-02T03:22:48Z",
+      "approved_by": "unattended (--yes)"
+    },
+    {
+      "base": "H1",
+      "label": "re-fit without inverse probability weights",
+      "rationale": "The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting.",
+      "delta": {
+        "estimator": {
+          "kind": "lin",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": null,
+          "covariates": [
+            "media_trust",
+            "pk_score",
+            "ai_scale",
+            "political_interest"
+          ],
+          "continuous": [
+            "media_trust",
+            "pk_score",
+            "ai_scale",
+            "political_interest"
+          ]
+        }
+      },
+      "expected": "Similar arm effects and significance without weights would reassure readers; large shifts would suggest the results depend on the weight construction.",
+      "id": "H1a",
+      "responds_to": "R5",
+      "issue": "The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.",
+      "status": "run",
+      "proposed_at": "2026-10-02T03:22:51Z",
+      "approved_by": "unattended (--yes)"
+    }
   ]
 }

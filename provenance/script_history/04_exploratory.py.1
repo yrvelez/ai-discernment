@@ -1,23 +1,29 @@
-"""
-Exploratory analyses for the AI Discernment survey experiment.
-Three analyses:
-  E1: Component decomposition (fake_score vs real_score)
-  E2: Heterogeneity by political interest (pooled effect)
-  E3: Placebo test on political knowledge (pk_score)
-"""
+import importlib.util, pathlib
 import pandas as pd
 import numpy as np
-import statsmodels.formula.api as smf
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import os
+import statsmodels.formula.api as smf
 
-os.makedirs('results', exist_ok=True)
-os.makedirs('figures', exist_ok=True)
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
 
+# ── Load data ──────────────────────────────────────────────────────────────────
 df = pd.read_csv('data/clean.csv')
 
+# Ensure numeric
+for col in ['total_score', 'pk_score', 'pk_1', 'political_interest', 'ipw']:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# ── Get H1 hypothesis spec ─────────────────────────────────────────────────────
+h1 = [h for h in reg.HYPOTHESES if h['id'].startswith('H1')][0]
+est = h1['estimator']          # e.g. 'arm_code'
+covariates = h1.get('covariates', [])
+outcome = h1['outcome']        # 'total_score'
+
+# Arm labels for readability
 arm_labels = {
     0: 'Control', 1: 'Flagging', 2: 'Provenance', 3: 'Automated Flagging',
     4: 'AI Accuracy Nudge', 5: 'Breathing Exercise', 6: 'Mindfulness',
@@ -25,180 +31,165 @@ arm_labels = {
     10: 'AI Literacy Guide', 11: 'AI Text Video'
 }
 
-ACCENT = '#2171b5'
-INK = '#1a1a1a'
+def extract_arm_estimates(res, est_col):
+    """Pull treatment-arm coefficients from a fitted model."""
+    rows = []
+    for name in res.params.index:
+        # Match patterns like C(arm_code, Treatment(reference='0'))[T.3]
+        if f"T." in name and est_col in name:
+            try:
+                arm_num = int(name.split('T.')[1].split(']')[0])
+            except (ValueError, IndexError):
+                continue
+            ci = res.conf_int().loc[name]
+            rows.append({
+                'arm': arm_num,
+                'arm_label': arm_labels.get(arm_num, str(arm_num)),
+                'estimate': res.params[name],
+                'std_error': res.bse[name],
+                'p_value': res.pvalues[name],
+                'conf_low': ci.iloc[0],
+                'conf_high': ci.iloc[1],
+            })
+    return pd.DataFrame(rows)
 
-# ============================================================
-# E1: Component decomposition (fake_score vs real_score)
-# Rationale: Clarifies whether significant total_score effects are driven by
-# better detection of AI-generated (fake) posts or fewer false alarms on real posts.
-# ============================================================
 
-results_e1 = []
-for outcome in ['fake_score', 'real_score']:
-    d = df.dropna(subset=[outcome])
-    model = smf.wls(f'{outcome} ~ C(arm_code, Treatment(reference=0))',
-                    data=d, weights='ipw').fit(cov_type='HC2')
-    for arm in range(1, 12):
-        term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
-        ci = model.conf_int().loc[term]
-        results_e1.append({
-            'arm_code': arm,
-            'arm_label': arm_labels[arm],
-            'outcome': outcome,
-            'estimate': round(model.params[term], 4),
-            'std_error': round(model.bse[term], 4),
-            'p_value': round(model.pvalues[term], 4),
-            'conf_low': round(ci[0], 4),
-            'conf_high': round(ci[1], 4),
-            'n': int(model.nobs)
-        })
+# ═══════════════════════════════════════════════════════════════════════════════
+# E1: Robustness — exclude attention-check failures (pk_score == 0)
+# Rationale: Excluding respondents who failed both attention checks tests whether
+# the registered H1 results are driven by inattentive respondents.
+# ═══════════════════════════════════════════════════════════════════════════════
+df_pass = df[df['pk_score'] > 0].copy()
+n_full, n_pass = len(df), len(df_pass)
+pct_excl = 100 * (1 - n_pass / n_full)
 
-e1_df = pd.DataFrame(results_e1)
-e1_df.to_csv('results/E1_component_decomposition.csv', index=False)
+# Original (full sample)
+formula_orig, d2_orig = reg.build_formula(outcome, est, covariates, df)
+res_orig = reg.fit(d2_orig, formula_orig, est)
+arms_orig = extract_arm_estimates(res_orig, est)
 
-# Figure: forest plot
-fig, ax = plt.subplots(figsize=(9, 7))
-arms = list(range(1, 12))
-y_positions = list(range(11))
+# Re-estimated (attention-check passers only)
+formula_pass, d2_pass = reg.build_formula(outcome, est, covariates, df_pass)
+res_pass = reg.fit(d2_pass, formula_pass, est)
+arms_pass = extract_arm_estimates(res_pass, est)
 
-for outcome, marker, color in [('fake_score', 'o', ACCENT), ('real_score', 's', INK)]:
-    subset = e1_df[e1_df['outcome'] == outcome]
-    for _, row in subset.iterrows():
-        y = y_positions[row['arm_code'] - 1]
-        offset = 0.25 if outcome == 'fake_score' else -0.25
-        ax.errorbar(row['estimate'], y + offset,
-                    xerr=[[row['estimate'] - row['conf_low']],
-                          [row['conf_high'] - row['estimate']]],
-                    fmt=marker, color=color, capsize=3, markersize=5, linewidth=1.5)
+e1 = arms_orig.merge(arms_pass, on=['arm', 'arm_label'], suffixes=('_orig', '_pass'))
+e1['delta_est'] = e1['estimate_pass'] - e1['estimate_orig']
+e1['se_ratio'] = e1['std_error_pass'] / e1['std_error_orig']
+e1.to_csv('results/E1_robustness_attention.csv', index=False)
 
-ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
-ax.set_yticks(y_positions)
-ax.set_yticklabels([arm_labels[i] for i in arms], fontsize=9)
-ax.set_xlabel('Treatment effect on proportion correct (95% CI)', fontsize=10)
-ax.set_title('E1: Effects on Fake vs. Real Post Detection', fontsize=12, color=INK)
+max_se_ratio = e1['se_ratio'].max()
+max_delta = e1['delta_est'].abs().max()
+print(f"E1: Robustness (excl. attention-check failures): n {n_full}→{n_pass} "
+      f"({pct_excl:.1f}% excluded). Max|Δest|={max_delta:.4f}, max SE ratio={max_se_ratio:.2f}. "
+      f"{'OK' if max_se_ratio < 2 else 'WARNING: SE ratio > 2'}")
 
-# Direct labels (no legend)
-ax.text(0.13, 10.55, 'fake_score', color=ACCENT, fontsize=9, fontweight='bold')
-ax.plot([], [], 'o', color=ACCENT, markersize=5)
-ax.text(0.13, 10.25, 'real_score', color=INK, fontsize=9, fontweight='bold')
-ax.plot([], [], 's', color=INK, markersize=5)
 
-for spine in ['top', 'right', 'left']:
-    ax.spines[spine].set_visible(False)
-ax.tick_params(left=False)
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2: Heterogeneity by political interest (median split)
+# Rationale: Political interest may moderate treatment effects on detection
+# accuracy, as more politically engaged respondents may respond differently to
+# content-level cues such as flagging or provenance labels.
+# ═══════════════════════════════════════════════════════════════════════════════
+median_pi = df['political_interest'].median()
+df_low  = df[df['political_interest'] <= median_pi].copy()
+df_high = df[df['political_interest'] >  median_pi].copy()
 
+formula_low, d2_low = reg.build_formula(outcome, est, covariates, df_low)
+res_low = reg.fit(d2_low, formula_low, est)
+arms_low = extract_arm_estimates(res_low, est)
+
+formula_high, d2_high = reg.build_formula(outcome, est, covariates, df_high)
+res_high = reg.fit(d2_high, formula_high, est)
+arms_high = extract_arm_estimates(res_high, est)
+
+e2 = arms_low.merge(arms_high, on=['arm', 'arm_label'], suffixes=('_low', '_high'))
+e2['diff_high_minus_low'] = e2['estimate_high'] - e2['estimate_low']
+e2.to_csv('results/E2_heterogeneity_polint.csv', index=False)
+
+max_diff = e2['diff_high_minus_low'].abs().max()
+print(f"E2: Heterogeneity by political interest (median={median_pi:.0f}): "
+      f"n_low={len(df_low)}, n_high={len(df_high)}. "
+      f"Max|diff| across arms = {max_diff:.4f}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Placebo — effect on general political knowledge (pk_1)
+# Rationale: The interventions target AI-media discernment, so they should not
+# affect a pre-existing general-knowledge item (Senate term length), providing a
+# placebo check that any observed effects are not due to demand characteristics.
+# ═══════════════════════════════════════════════════════════════════════════════
+formula_pl = 'pk_1 ~ C(arm_code, Treatment(reference="0"))'
+res_pl = smf.wls(formula_pl, data=df, weights=df['ipw']).fit(cov_type='HC2')
+arms_pl = extract_arm_estimates(res_pl, 'arm_code')
+arms_pl['n'] = len(df)
+arms_pl.to_csv('results/E3_placebo_pk1.csv', index=False)
+
+min_p = arms_pl['p_value'].min()
+n_sig = int((arms_pl['p_value'] < 0.05).sum())
+print(f"E3: Placebo (pk_1, Senate term): min p={min_p:.3f}, "
+      f"arms significant at p<.05: {n_sig}/11. "
+      f"{'Clean placebo' if n_sig == 0 else 'CAUTION: some arms significant'}")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Figures (max 2)
+# ═══════════════════════════════════════════════════════════════════════════════
+INK    = '#2C3E50'
+ACCENT = '#C0392B'
+GREY   = '#95A5A6'
+
+# ── Figure 1: E1 forest plot ──────────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(8, 5.5))
+y = np.arange(len(e1))
+
+ax.hlines(y, e1['conf_low_orig'], e1['conf_high_orig'],
+          color=INK, alpha=0.35, lw=1.2)
+ax.scatter(e1['estimate_orig'], y, color=INK, s=28, zorder=3, label='Full sample (N=2030)')
+
+ax.hlines(y, e1['conf_low_pass'], e1['conf_high_pass'],
+          color=ACCENT, alpha=0.35, lw=1.2, linestyle='--')
+ax.scatter(e1['estimate_pass'], y, color=ACCENT, s=28, zorder=3,
+           marker='D', label=f'Excl. attention failures (N={n_pass})')
+
+ax.axvline(0, color=GREY, lw=0.7)
+ax.set_yticks(y)
+ax.set_yticklabels([f"{r.arm_label}" for _, r in e1.iterrows()], fontsize=9)
+ax.set_xlabel('Effect on total_score (95% CI)', fontsize=10)
+ax.set_title('E1 · H1 Robustness: Full Sample vs. Excluding Attention-Check Failures',
+             fontsize=11, pad=10)
+for s in ['top', 'right', 'left']:
+    ax.spines[s].set_visible(False)
+ax.legend(frameon=False, loc='lower right', fontsize=9)
 plt.tight_layout()
-plt.savefig('figures/E1_component_decomposition.png', dpi=200, bbox_inches='tight')
+plt.savefig('figures/E1_robustness_forest.png', dpi=200)
 plt.close()
 
-# Summary
-fake_3 = e1_df[(e1_df.arm_code == 3) & (e1_df.outcome == 'fake_score')].iloc[0]
-real_6 = e1_df[(e1_df.arm_code == 6) & (e1_df.outcome == 'real_score')].iloc[0]
-fake_10 = e1_df[(e1_df.arm_code == 10) & (e1_df.outcome == 'fake_score')].iloc[0]
-print(f"E1: Component decomposition — Automated Flagging on fake_score = {fake_3['estimate']:.3f} (p={fake_3['p_value']:.3f}); "
-      f"AI Literacy Guide on fake_score = {fake_10['estimate']:.3f} (p={fake_10['p_value']:.3f}); "
-      f"Mindfulness on real_score = {real_6['estimate']:.3f} (p={real_6['p_value']:.3f})")
+# ── Figure 2: E2 forest plot ──────────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(8, 5.5))
+y = np.arange(len(e2))
 
-# ============================================================
-# E2: Heterogeneity by political interest (pooled effect)
-# Rationale: Tests whether the average intervention effect on AI detection
-# accuracy is moderated by political interest, a plausible pre-existing difference
-# in media engagement that could affect responsiveness to literacy interventions.
-# ============================================================
+ax.hlines(y, e2['conf_low_low'], e2['conf_high_low'],
+          color=INK, alpha=0.35, lw=1.2)
+ax.scatter(e2['estimate_low'], y, color=INK, s=28, zorder=3,
+           label=f'Low political interest (N={len(df_low)})')
 
-d2 = df.dropna(subset=['total_score', 'political_interest']).copy()
-d2['pi_c'] = d2['political_interest'] - d2['political_interest'].mean()
-d2['treat'] = (d2['arm_code'] > 0).astype(int)
+ax.hlines(y, e2['conf_low_high'], e2['conf_high_high'],
+          color=ACCENT, alpha=0.35, lw=1.2, linestyle='--')
+ax.scatter(e2['estimate_high'], y, color=ACCENT, s=28, zorder=3,
+           marker='D', label=f'High political interest (N={len(df_high)})')
 
-model_e2 = smf.wls('total_score ~ treat * pi_c + C(batch)',
-                   data=d2, weights='ipw').fit(cov_type='HC2')
-
-e2_rows = []
-for term in ['treat', 'pi_c', 'treat:pi_c']:
-    ci = model_e2.conf_int().loc[term]
-    e2_rows.append({
-        'term': term,
-        'estimate': round(model_e2.params[term], 5),
-        'std_error': round(model_e2.bse[term], 5),
-        'p_value': round(model_e2.pvalues[term], 4),
-        'conf_low': round(ci[0], 5),
-        'conf_high': round(ci[1], 5),
-        'n': int(model_e2.nobs)
-    })
-e2_df = pd.DataFrame(e2_rows)
-e2_df.to_csv('results/E2_heterogeneity_political_interest.csv', index=False)
-
-# Figure: interaction plot with direct labels
-pi_vals = np.array([1, 2, 3, 4, 5])
-pi_mean = d2['political_interest'].mean()
-
-# Predictions for batch=1 (reference category)
-intercept = model_e2.params['Intercept']
-pi_coef = model_e2.params['pi_c']
-treat_coef = model_e2.params['treat']
-interact_coef = model_e2.params['treat:pi_c']
-
-pred_c = intercept + pi_coef * (pi_vals - pi_mean)
-pred_t = pred_c + treat_coef + interact_coef * (pi_vals - pi_mean)
-
-fig, ax = plt.subplots(figsize=(6, 4))
-ax.plot(pi_vals, pred_c, 'o-', color=INK, markersize=6, linewidth=1.5)
-ax.plot(pi_vals, pred_t, 's-', color=ACCENT, markersize=6, linewidth=1.5)
-ax.set_xlabel('Political Interest', fontsize=10)
-ax.set_ylabel('Predicted Total Score', fontsize=10)
-ax.set_title('E2: Pooled Intervention Effect by Political Interest', fontsize=11, color=INK)
-
-# Direct labels
-ax.text(4.7, pred_c[-1] - 0.012, 'Control', color=INK, fontsize=9, ha='right')
-ax.text(4.7, pred_t[-1] + 0.008, 'Treated (pooled)', color=ACCENT, fontsize=9, ha='right')
-
-for spine in ['top', 'right']:
-    ax.spines[spine].set_visible(False)
-
+ax.axvline(0, color=GREY, lw=0.7)
+ax.set_yticks(y)
+ax.set_yticklabels([f"{r.arm_label}" for _, r in e2.iterrows()], fontsize=9)
+ax.set_xlabel('Effect on total_score (95% CI)', fontsize=10)
+ax.set_title(f'E2 · H1 by Political Interest (median split = {median_pi:.0f})',
+             fontsize=11, pad=10)
+for s in ['top', 'right', 'left']:
+    ax.spines[s].set_visible(False)
+ax.legend(frameon=False, loc='lower right', fontsize=9)
 plt.tight_layout()
-plt.savefig('figures/E2_heterogeneity_political_interest.png', dpi=200, bbox_inches='tight')
+plt.savefig('figures/E2_heterogeneity_polint.png', dpi=200)
 plt.close()
 
-interact_est = model_e2.params['treat:pi_c']
-interact_se = model_e2.bse['treat:pi_c']
-interact_p = model_e2.pvalues['treat:pi_c']
-treat_est = model_e2.params['treat']
-treat_p = model_e2.pvalues['treat']
-print(f"E2: Heterogeneity by political interest — pooled treatment effect = {treat_est:.4f} (p={treat_p:.3f}); "
-      f"interaction with political interest = {interact_est:.4f} (SE={interact_se:.4f}, p={interact_p:.3f})")
-
-# ============================================================
-# E3: Placebo test on political knowledge (pk_score)
-# Rationale: Interventions targeting AI media discernment should not affect
-# general political knowledge (Senate term length, presidential term limits),
-# providing a falsification test for demand effects or differential attention.
-# ============================================================
-
-d3 = df.dropna(subset=['pk_score'])
-model_e3 = smf.wls('pk_score ~ C(arm_code, Treatment(reference=0))',
-                   data=d3, weights='ipw').fit(cov_type='HC2')
-
-results_e3 = []
-for arm in range(1, 12):
-    term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
-    ci = model_e3.conf_int().loc[term]
-    results_e3.append({
-        'arm_code': arm,
-        'arm_label': arm_labels[arm],
-        'estimate': round(model_e3.params[term], 4),
-        'std_error': round(model_e3.bse[term], 4),
-        'p_value': round(model_e3.pvalues[term], 4),
-        'conf_low': round(ci[0], 4),
-        'conf_high': round(ci[1], 4),
-        'n': int(model_e3.nobs)
-    })
-
-e3_df = pd.DataFrame(results_e3)
-e3_df.to_csv('results/E3_placebo_pk_score.csv', index=False)
-
-min_p = e3_df['p_value'].min()
-max_abs_est = e3_df['estimate'].abs().max()
-n_sig = int((e3_df['p_value'] < 0.05).sum())
-print(f"E3: Placebo on pk_score — no significant effects ({n_sig}/11 arms at α=0.05); "
-      f"min p = {min_p:.3f}, max |estimate| = {max_abs_est:.3f}")
+print("Figures saved: figures/E1_robustness_forest.png, figures/E2_heterogeneity_polint.png")
