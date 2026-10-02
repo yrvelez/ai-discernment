@@ -7,10 +7,10 @@ AI-literacy materials and an AI-text video) on a simulated social feed ("FutureF
 CloudResearch, fielded 30 October to 21 November 2023; N = 2,030 analyzed. Columbia University IRB AAAU9484.
 
 This repository is a study package in the [filedrawer](https://github.com/yrvelez/filedrawer) layout.
-**It is not pre-registered**: the analysis plan in `inputs/pap.md` was reconstructed after the fact from
-the original analysis script, so the pipeline labels every test *planned, not pre-registered* or
-*exploratory*. The package at the root of the repository (report, tidy data, scripts, results,
-provenance) is produced by `./run.sh`; nothing in it is hand-edited.
+**Pre-registered**: AsPredicted #151,281 (https://aspredicted.org/q2eh95.pdf, 2023-11-15). `inputs/pap.md` transcribes the
+registration verbatim and maps it to the data; `inputs/pap.json` is the same plan structured for the pipeline. The package at
+the root of the repository (report, tidy data, scripts, results, provenance) is produced by `./run.sh`; nothing in it is
+hand-edited. Reviewer comments answered with robustness addenda are in `responses.md`.
 
 ## Layout
 
@@ -18,25 +18,26 @@ provenance) is produced by `./run.sh`; nothing in it is hand-edited.
 |---|---|
 | `inputs/replication_data.csv` | De-identified analysis data, one row per respondent (2,257 rows; 2,030 with an assignment) |
 | `inputs/survey.qsf` | Qualtrics survey instrument (schema only, no responses) |
-| `inputs/pap.md` | Analysis plan, reconstructed post hoc (read this first) |
+| `inputs/pap.md` | The pre-registration, transcribed, with the column mapping (read this first) |
 | `inputs/pap.json` | The same plan, structured for the pipeline (arms, outcomes, estimator, deviations) |
 | `original/code/` | The original R analysis (`replication_script.R`, Lin estimator with IPW) and the de-identification script |
 | `original/site/` | The original standalone HTML write-up |
 | `run.sh` | Runs the pipeline with your own OpenRouter key |
-| `report.md`, `study.json`, `data/`, `scripts/`, `results/`, `figures/`, `silicon/`, `provenance/` | Generated package (appear after `./run.sh`) |
+| `report.md`, `study.json`, `review.json`, `responses.md`, `data/`, `scripts/`, `results/`, `figures/`, `provenance/` | Generated package (appear after `./run.sh`) |
 
 ## Reproduce
 
 ```bash
 pip install "filedrawer @ git+https://github.com/yrvelez/filedrawer"
 export OPENROUTER_API_KEY=sk-or-...
-./run.sh                 # writes the package at the repo root; add --no-silicon or --no-lit to skip extensions
+./run.sh                 # writes the package at the repo root
+filedrawer address .     # answer the automated reviewer's analytical issues with approved robustness addenda
 filedrawer reproduce .   # re-runs the generated scripts and checks every results table is byte-identical
 ```
 
 The original R analysis: `Rscript original/code/replication_script.R` (needs tidyverse, estimatr, broom,
 metafor). Note that it clusters standard errors by `participant_id`, a column the de-identified data
-does not contain; the pipeline uses HC2 robust standard errors instead and records that as a deviation.
+does not contain; the registration specifies no clustering, so the pipeline uses HC2 robust standard errors.
 
 ## Data and privacy
 
