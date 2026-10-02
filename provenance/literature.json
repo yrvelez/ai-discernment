@@ -1,5 +1,5 @@
 {
- "text": "Prior research on human detection of AI-generated content provides some baseline evidence relevant to H1, H3, and H5. Köbis et al. (2021) found that participants in a pre-registered experiment could not reliably detect deepfake audio-visual content, yet significantly overestimated their own detection ability, suggesting a gap between actual accuracy and confidence that interventions might target. On the broader question of trust in online information (H4), Dan et al. (2021) reviewed how visual mis- and disinformation on social media erodes public trust in democratic institutions, and Capraro et al. (2024) noted that generative AI has the potential to both exacerbate and ameliorate existing information-integrity challenges. Regarding attitudes toward AI (H2), Dwivedi et al. (2023) offered a multidisciplinary overview of how generative conversational AI is perceived across research, practice, and policy contexts, though they did not report experimental findings on attitude change. The retrieved list is otherwise thin on direct experimental evidence for the specific intervention effects hypothesized here.",
+ "text": "Prior work on the psychological drivers of misinformation belief indicates that individuals' resistance to correcting false beliefs is shaped by motivated reasoning and prior attitudes, which is relevant to H2 (attitudes toward AI) and H4 (trust in online information) (Ecker et al., 2022). A review of disinformation in social media highlights the growing difficulty of distinguishing authentic from fabricated content online, providing context for H1, H5, and H6 [citation removed: not in retrieved set]. In the educational domain, the rapid adoption of generative AI has prompted concern about its effects on assessment integrity and student attitudes, offering a partial analogue for H2 (Rudolph et al., 2023). However, none of the retrieved works directly examines whether specific interventions shift AI-detection accuracy, confidence in detection, or recognition of authentic posts, leaving H1, H3, H5, and H6 largely unaddressed in this set.",
  "works": [
   {
    "id": "https://openalex.org/W3039360174",
@@ -32,19 +32,107 @@
    "abstract": "This paper develops a transport-validity theory for agentic AI interventions that are first screened on small systems and later considered for frontier-scale deployment. Rather than predicting absolute frontier performance, it asks when a comparative gain observed at small scale can be carried forward without overclaiming. The analysis targets an explicitly delimited class of operationally isolata"
   },
   {
-   "id": "https://openalex.org/W2553095014",
-   "title": "Critical review on biofilm methods",
+   "id": "https://openalex.org/W2321872593",
+   "title": "How many biological replicates are needed in an RNA-seq experiment and which differential expression tool should you use?",
    "authors": [
-    "Joana Azeredo",
-    "Nuno F. Azevedo",
-    "Romain Briandet",
-    "Nuno Cerca"
+    "Nick Schurch",
+    "Pietá Schofield",
+    "Marek Gierliński",
+    "Christian Cole"
    ],
    "year": 2016,
-   "doi": "10.1080/1040841x.2016.1208146",
-   "venue": "Critical Reviews in Microbiology",
-   "cited_by": 1055,
-   "abstract": "Biofilms are widespread in nature and constitute an important strategy implemented by microorganisms to survive in sometimes harsh environmental conditions. They can be beneficial or have a negative impact particularly when formed in industrial settings or on medical devices. As such, research into the formation and elimination of biofilms is important for many disciplines. Several new methodologi"
+   "doi": "10.1261/rna.053959.115",
+   "venue": "RNA",
+   "cited_by": 1059,
+   "abstract": "RNA-seq is now the technology of choice for genome-wide differential gene expression experiments, but it is not clear how many biological replicates are needed to ensure valid biological interpretation of the results or which statistical tools are best for analyzing the data. An RNA-seq experiment with 48 biological replicates in each of two conditions was performed to answer these questions and p"
+  },
+  {
+   "id": "https://openalex.org/W4206236567",
+   "title": "The psychological drivers of misinformation belief and its resistance to correction",
+   "authors": [
+    "Ullrich K. H. Ecker",
+    "Stephan Lewandowsky",
+    "John Cook",
+    "Philipp Schmid"
+   ],
+   "year": 2022,
+   "doi": "10.1038/s44159-021-00006-y",
+   "venue": "Nature Reviews Psychology",
+   "cited_by": 1391,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W4319983294",
+   "title": "Fake news, disinformation and misinformation in social media: a review",
+   "authors": [
+    "Esma Aı̈meur",
+    "Sabrine Amri",
+    "Gilles Brassard"
+   ],
+   "year": 2023,
+   "doi": "10.1007/s13278-023-01028-5",
+   "venue": "Social Network Analysis and Mining",
+   "cited_by": 773,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W2787887017",
+   "title": "The malicious use of artificial intelligence: Forecasting, prevention, and mitigation",
+   "authors": [
+    "Miles Brundage",
+    "Shahar Avin",
+    "Jack Clark",
+    "Toner, Helen"
+   ],
+   "year": 2018,
+   "doi": "10.17863/cam.22520",
+   "venue": "Apollo (University of Cambridge)",
+   "cited_by": 519,
+   "abstract": "This report surveys the landscape of potential security threats from malicious uses of AI, and proposes ways to better forecast, prevent, and mitigate these threats. After analyzing the ways in which AI may influence the threat landscape in the digital, physical, and political domains, we make four high-level recommendations for AI researchers and other stakeholders. We also suggest several promis"
+  },
+  {
+   "id": "https://openalex.org/W4327810158",
+   "title": "GPT-4 Technical Report",
+   "authors": [
+    "OpenAI",
+    "Achiam, Josh",
+    "Adler, Steven",
+    "Agarwal, Sandhini"
+   ],
+   "year": 2023,
+   "doi": "10.4230/lipics.cosit.2024.11",
+   "venue": "arXiv (Cornell University)",
+   "cited_by": 2428,
+   "abstract": "Abstract—Large Language Models (LLMs) suffer from inherent stochasticity, limiting their utility in high-stakes enterprise environments where determinism and auditability are required. This paper introduces the MFOUR Vibe Framework (MVF), a platform-agnostic architectural standard that transforms probabilistic natural language intent into deterministic software artifacts. We define a five-layer to"
+  },
+  {
+   "id": "https://openalex.org/W4387835442",
+   "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+   "authors": [
+    "Joon Sung Park",
+    "Joseph O'Brien",
+    "Carrie Jun Cai",
+    "Meredith Ringel Morris"
+   ],
+   "year": 2023,
+   "doi": "10.1145/3586183.3606763",
+   "venue": "",
+   "cited_by": 1873,
+   "abstract": "Believable proxies of human behavior can empower interactive applications ranging from immersive environments to rehearsal spaces for interpersonal communication to prototyping tools. In this paper, we introduce generative agents: computational software agents that simulate believable human behavior. Generative agents wake up, cook breakfast, and head to work; artists paint, while authors write; t"
+  },
+  {
+   "id": "https://openalex.org/W4317910584",
+   "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
+   "authors": [
+    "Jürgen Rudolph",
+    "Samson Tan",
+    "Shannon Tan"
+   ],
+   "year": 2023,
+   "doi": "10.37074/jalt.2023.6.1.9",
+   "venue": "Journal of Applied Learning & Teaching",
+   "cited_by": 1782,
+   "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to "
   },
   {
    "id": "https://openalex.org/W4399518864",
@@ -60,100 +148,13 @@
    "venue": "PNAS Nexus",
    "cited_by": 355,
    "abstract": "Abstract Generative artificial intelligence (AI) has the potential to both exacerbate and ameliorate existing socioeconomic inequalities. In this article, we provide a state-of-the-art interdisciplinary overview of the potential impacts of generative AI on (mis)information and three information-intensive domains: work, education, and healthcare. Our goal is to highlight how generative AI could wor"
-  },
-  {
-   "id": "https://openalex.org/W3208526032",
-   "title": "Fooled twice: People cannot detect deepfakes but think they can",
-   "authors": [
-    "Nils Köbis",
-    "Barbora Doležalová",
-    "Ivan Soraperra"
-   ],
-   "year": 2021,
-   "doi": "10.1016/j.isci.2021.103364",
-   "venue": "iScience",
-   "cited_by": 162,
-   "abstract": "Hyper-realistic manipulations of audio-visual content, i.e., deepfakes, present new challenges for establishing the veracity of online content. Research on the human impact of deepfakes remains sparse. In a pre-registered behavioral experiment ( N = 210), we show that (1) people cannot reliably detect deepfakes and (2) neither raising awareness nor introducing financial incentives improves their d"
-  },
-  {
-   "id": "https://openalex.org/W3194432496",
-   "title": "Visual Mis- and Disinformation, Social Media, and Democracy",
-   "authors": [
-    "Viorela Dan",
-    "Britt S. Paris",
-    "Joan Donovan",
-    "Michael Hameleers"
-   ],
-   "year": 2021,
-   "doi": "10.1177/10776990211035395",
-   "venue": "Journalism & Mass Communication Quarterly",
-   "cited_by": 142,
-   "abstract": ""
-  },
-  {
-   "id": "https://openalex.org/W4360620450",
-   "title": "Opinion Paper: “So what if ChatGPT wrote it?” Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy",
-   "authors": [
-    "Yogesh Kumar Dwivedi",
-    "Nir Kshetri",
-    "Laurie Hughes",
-    "Emma Louise Slade"
-   ],
-   "year": 2023,
-   "doi": "10.1016/j.ijinfomgt.2023.102642",
-   "venue": "International Journal of Information Management",
-   "cited_by": 4418,
-   "abstract": "Transformative artificially intelligent tools, such as ChatGPT, designed to generate sophisticated text indistinguishable from that produced by a human, are applicable across a wide range of contexts. The technology presents opportunities as well as, often ethical and legal, challenges, and has the potential for both positive and negative impacts for organisations, society, and individuals. Offeri"
-  },
-  {
-   "id": "https://openalex.org/W4242918116",
-   "title": "Data Feminism",
-   "authors": [
-    "Catherine D’Ignazio",
-    "Lauren Frederica Klein"
-   ],
-   "year": 2020,
-   "doi": "10.7551/mitpress/11805.001.0001",
-   "venue": "The MIT Press eBooks",
-   "cited_by": 1709,
-   "abstract": "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional feminism. Today, data science is a form of power. It has been used to expose injustice, improve health outcomes, and topple governments. But it has also been used to discriminate, police, and surveil. This potential for good, on the one hand, and harm, on the other, makes it essential to ask: D"
-  },
-  {
-   "id": "https://openalex.org/W3046539507",
-   "title": "Impact of COVID-19 pandemic on information management research and practice: Transforming education, work and life",
-   "authors": [
-    "Yogesh Kumar Dwivedi",
-    "D. Laurie Hughes",
-    "Crispin R. Coombs",
-    "Ioanna Constantiou"
-   ],
-   "year": 2020,
-   "doi": "10.1016/j.ijinfomgt.2020.102211",
-   "venue": "International Journal of Information Management",
-   "cited_by": 1245,
-   "abstract": ""
-  },
-  {
-   "id": "https://openalex.org/W2111619626",
-   "title": "Internet of Things (IoT): A vision, architectural elements, and future directions",
-   "authors": [
-    "Jayavardhana Gubbi",
-    "Rajkumar Buyya",
-    "Slaven Marusic",
-    "Marimuthu Swami Palaniswami"
-   ],
-   "year": 2013,
-   "doi": "10.1016/j.future.2013.01.010",
-   "venue": "Future Generation Computer Systems",
-   "cited_by": 12301,
-   "abstract": ""
   }
  ],
  "queries": [
-  "inoculation intervention AI-generated content detection accuracy",
-  "misinformation intervention deepfake synthetic media discernment",
-  "AI literacy accuracy nudge trust online information detection",
-  "human detection AI-generated media experimental intervention"
+  "inoculation AI-generated content detection accuracy",
+  "deepfake detection human intervention nudge",
+  "misinformation intervention synthetic media trust",
+  "AI literacy discernment synthetic media survey"
  ],
  "degraded": null
 }
