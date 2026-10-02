@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use these results, data or code, please cite them as below."
+title: "Improving AI Discernment: do misinformation interventions help people spot AI-generated media?"
+type: dataset
+authors:
+  - family-names: "Velez"
+    given-names: "Yamil"
+date-released: "2026-10-02"
+repository-code: "https://github.com/yrvelez/ai-discernment"
+abstract: "Unpublished study package (report, de-identified data, scripts and provenance) generated with filedrawer 0.1.0 and filed in The File Drawer."

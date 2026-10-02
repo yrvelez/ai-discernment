@@ -8,8 +8,6 @@ Three analyses:
 import pandas as pd
 import numpy as np
 import statsmodels.formula.api as smf
-import statsmodels.api as sm
-import patsy
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -19,7 +17,7 @@ os.makedirs('results', exist_ok=True)
 os.makedirs('figures', exist_ok=True)
 
 df = pd.read_csv('data/clean.csv')
-df['ipw'] = df['ipw'].astype(np.float64)
+df['ipw'] = df['ipw'].astype(float)
 
 arm_labels = {
     0: 'Control', 1: 'Flagging', 2: 'Provenance', 3: 'Automated Flagging',
@@ -31,15 +29,6 @@ arm_labels = {
 ACCENT = '#2171b5'
 INK = '#1a1a1a'
 
-
-def fit_wls(formula, data, weights_col='ipw'):
-    """Fit WLS with HC2 robust SEs, passing weights as explicit array."""
-    y, X = patsy.dmatrices(formula, data=data, return_type='dataframe')
-    w = data[weights_col].values.astype(np.float64)
-    model = sm.WLS(y, X, weights=w)
-    return model.fit(cov_type='HC2')
-
-
 # ============================================================
 # E1: Component decomposition (fake_score vs real_score)
 # Rationale: Clarifies whether significant total_score effects are driven by
@@ -48,8 +37,9 @@ def fit_wls(formula, data, weights_col='ipw'):
 
 results_e1 = []
 for outcome in ['fake_score', 'real_score']:
-    d = df.dropna(subset=[outcome]).reset_index(drop=True)
-    model = fit_wls(f'{outcome} ~ C(arm_code, Treatment(reference=0))', d)
+    d = df.dropna(subset=[outcome])
+    model = smf.wls(f'{outcome} ~ C(arm_code, Treatment(reference=0))',
+                    data=d, weights='ipw').fit(cov_type='HC2')
     for arm in range(1, 12):
         term = f'C(arm_code, Treatment(reference=0))[T.{arm}]'
         ci = model.conf_int().loc[term]
@@ -118,11 +108,12 @@ print(f"E1: Component decomposition — Automated Flagging on fake_score = {fake
 # in media engagement that could affect responsiveness to literacy interventions.
 # ============================================================
 
-d2 = df.dropna(subset=['total_score', 'political_interest']).reset_index(drop=True).copy()
+d2 = df.dropna(subset=['total_score', 'political_interest']).copy()
 d2['pi_c'] = d2['political_interest'] - d2['political_interest'].mean()
 d2['treat'] = (d2['arm_code'] > 0).astype(int)
 
-model_e2 = fit_wls('total_score ~ treat * pi_c + C(batch)', d2)
+model_e2 = smf.wls('total_score ~ treat * pi_c + C(batch)',
+                   data=d2, weights='ipw').fit(cov_type='HC2')
 
 e2_rows = []
 for term in ['treat', 'pi_c', 'treat:pi_c']:
@@ -184,8 +175,9 @@ print(f"E2: Heterogeneity by political interest — pooled treatment effect = {t
 # providing a falsification test for demand effects or differential attention.
 # ============================================================
 
-d3 = df.dropna(subset=['pk_score']).reset_index(drop=True)
-model_e3 = fit_wls('pk_score ~ C(arm_code, Treatment(reference=0))', d3)
+d3 = df.dropna(subset=['pk_score'])
+model_e3 = smf.wls('pk_score ~ C(arm_code, Treatment(reference=0))',
+                   data=d3, weights='ipw').fit(cov_type='HC2')
 
 results_e3 = []
 for arm in range(1, 12):
