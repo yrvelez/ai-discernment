@@ -1510,7 +1510,10 @@
    ],
    "status": "proposed",
    "built_at": null,
-   "qsf": "extensions/mechanism.qsf"
+   "qsf": "extensions/mechanism.qsf",
+   "addresses": [
+    "U1"
+   ]
   },
   {
    "id": "boundary",
@@ -1525,7 +1528,10 @@
    ],
    "status": "proposed",
    "built_at": null,
-   "qsf": "extensions/boundary.qsf"
+   "qsf": "extensions/boundary.qsf",
+   "addresses": [
+    "U1"
+   ]
   },
   {
    "id": "alternative",
@@ -1540,7 +1546,10 @@
    ],
    "status": "proposed",
    "built_at": null,
-   "qsf": "extensions/alternative.qsf"
+   "qsf": "extensions/alternative.qsf",
+   "addresses": [
+    "U2"
+   ]
   }
  ],
  "review": "review.json"
