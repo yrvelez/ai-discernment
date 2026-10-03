@@ -1,0 +1,1 @@
+Does label benefit depend on stimulus difficulty and AI familiarity?. 2 conditions: Control, Automated label. Primary outcome: Discernment d' (z(hit rate) minus z(false-alarm rate)) across the 8 posts, with condition by difficulty and condition by ai_scale interaction tests.. Population: US online panel adults, with high AI-familiarity respondents oversampled.

@@ -1,0 +1,12 @@
+arm_code,arm_label,estimate,std_error,p_value,n
+1,Flagging,0.0285,0.0432,0.5089,215
+2,Provenance,-0.0215,0.0352,0.5411,145
+3,Automated Flagging,-0.0209,0.0342,0.5399,127
+4,AI Accuracy Nudge,0.0541,0.0344,0.116,333
+5,Breathing Exercise,0.0258,0.0431,0.5495,134
+6,Mindfulness,-0.0089,0.0384,0.8158,180
+7,Inoculation,0.0319,0.0404,0.4291,78
+8,AI Literacy Infographic,0.0335,0.0342,0.3277,102
+9,AI Literacy Infographic 2,-0.0276,0.0586,0.638,80
+10,AI Literacy Guide,0.0441,0.0397,0.2677,162
+11,AI Text Video,0.0299,0.0273,0.2722,293

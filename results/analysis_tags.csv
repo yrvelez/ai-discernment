@@ -5,5 +5,8 @@ H3,hypothesis,registered,0,[],
 H4,hypothesis,registered,0,[],
 H5,hypothesis,exploratory,0,[],no registered counterpart
 H6,hypothesis,exploratory,0,[],no registered counterpart
-H2a,hypothesis,robustness,4,"[{""field"": ""treatment.contrast"", ""registered"": null, ""implemented"": [""__treated__"", ""0""]}, {""field"": ""treatment.arms"", ""registered"": [""1"", ""2"", ""3"", ""4"", ""5"", ""6"", ""7"", ""8"", ""9"", ""10"", ""11""], ""implemented"": null}, {""field"": ""treatment.control"", ""registered"": ""0"", ""implemented"": null}, {""field"": ""pooled"", ""registered"": true, ""implemented"": false}]",responds to reviewer issue R4: collapse all treated arms vs control in one model
-H1a,hypothesis,robustness,1,"[{""field"": ""estimator.weights"", ""registered"": ""ipw"", ""implemented"": null}]",responds to reviewer issue R5: re-fit without inverse probability weights
+H1a,hypothesis,robustness,1,"[{""field"": ""exclusions"", ""registered"": [], ""implemented"": [""pk_score >= 1""]}]","responds to reviewer issue R1: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs"
+H2a,hypothesis,robustness,4,"[{""field"": ""estimator.kind"", ""registered"": ""lin"", ""implemented"": ""diff_means""}, {""field"": ""estimator.continuous"", ""registered"": [""media_trust"", ""pk_score"", ""ai_scale"", ""political_interest""], ""implemented"": []}, {""field"": ""estimator.categorical"", ""registered"": null, ""implemented"": []}, {""field"": ""estimator.covariates"", ""registered"": [""media_trust"", ""pk_score"", ""ai_scale"", ""political_interest""], ""implemented"": []}]","responds to reviewer issue R4: unadjusted difference in means, no covariates, same weights"
+E1,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E2,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered
+E3,exploratory,exploratory,0,[],proposed by the exploratory agent; not pre-registered

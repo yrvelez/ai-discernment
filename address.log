@@ -1,17 +1,17 @@
 [filedrawer] responder: proposing an addendum for R1 on H1
-[filedrawer] responder: no runnable addendum for R1
+
+  H1a  responds to R1 [high] E1
+      issue : The E1 table has empty est/se/p columns for every arm, yet the text claims that Automated Flagging (p=0.004) and AI Literacy Guide (p=0.043) became nonsignificant. Nothing displayed supports this. The 'attention-check failure' label is also misleading: pk_score<1 is a knowledge-question failure, not an attention check, and may be post-treatment-correlated or confounded with ability. Dropping 30% of the sample is not a clean robustness test.
+      change: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs  {"exclusions": ["pk_score >= 1"]}
+      why   : The reviewer notes the exclusion is a low-knowledge screen, not an attention check, so it should be labelled that way and reported with estimates, SEs and CIs. This re-runs H1 excluding pk_score<1, so readers can see whether effects shrink or just get noisier.
+[filedrawer] responder: proposing an addendum for R2 on H1
+[filedrawer] responder: no runnable addendum for R2
 [filedrawer] responder: proposing an addendum for R4 on H2
 
-  H2a  responds to R4 [medium] Pooled estimates
-      issue : The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.
-      change: collapse all treated arms vs control in one model  {"collapse_arms": true, "pooled": false}
-      why   : Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly.
-[filedrawer] responder: proposing an addendum for R5 on H1
-
-  H1a  responds to R5 [medium] Design and data / weights
-      issue : The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.
-      change: re-fit without inverse probability weights  {"estimator": {"kind": "lin", "robust": "HC2", "cluster": null, "weights": null, "covariates": ["media_trust", "pk_score", "ai_scale", "political_interest"], "continuous": ["media_trust", "pk_score", "ai_scale", "political_interest"]}}
-      why   : The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting.
+  H2a  responds to R4 [medium] H2
+      issue : The text says the other ten arms had estimates 'between −0.16 and 0.00', but the pooled random-effects result (−0.11, p=0.026) is reported as significant and tied to nothing in the narrative. The Breathing Exercise result (−0.54) has an SE of 0.23 that is much larger than the other arms' SEs, and arm-level SEs vary oddly (0.116 to 0.280), which suggests the Lin interaction model or outliers are driving them.
+      change: unadjusted difference in means, no covariates, same weights  {"estimator": {"kind": "diff_means", "robust": "HC2", "cluster": null, "weights": "ipw", "covariates": [], "continuous": [], "categorical": []}}
+      why   : Reviewer suspects the Lin interaction model and covariate leverage drive the heterogeneous arm SEs (e.g., Breathing Exercise). Re-fitting without covariates shows whether arm estimates, SEs and the pooled effect hold up without covariate adjustment.
 [filedrawer] stage registered (with addenda)
 [filedrawer] H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)
 [filedrawer] H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value
@@ -24,17 +24,19 @@
 [filedrawer] H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)
 [filedrawer] H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value
 [filedrawer] H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)
+[filedrawer] H1a: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=1417, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=0.009 (SE 0.006, p=0.1352, tau2=0.0000, I2=0.00)
 [filedrawer] H2a: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value
-[filedrawer] H2a: ai_attitudes ~ treat * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | ATE=-0.118 (SE 0.107, p=0.2687, N=2010)
-[filedrawer] H1a: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs; 1 arm(s) supported; pooled=0.012 (SE 0.004, p=0.0042, tau2=0.0000, I2=0.00)
-[filedrawer] wrote results/registered_summary.csv (85 rows)
+[filedrawer] H2a: ai_attitudes ~ C(arm_code, Treatment(reference='0')) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.134 (SE 0.054, p=0.0126, tau2=0.0000, I2=0.00)
+[filedrawer] wrote results/registered_summary.csv (96 rows)
 [filedrawer] stage write (with addenda)
-[filedrawer] stage review (second pass)
-[filedrawer] address done: H2a, H1a
+[filedrawer] stage review (round 2, light,advanced)
+[filedrawer] stage revise (round 2 decision letter)
+[filedrawer] sign-off: major_revision
+[filedrawer] address done: H1a, H2a
 {
  "ran": true,
  "addenda": [
-  "H2a",
-  "H1a"
+  "H1a",
+  "H2a"
  ]
 }

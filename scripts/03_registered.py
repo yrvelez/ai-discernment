@@ -40,11 +40,15 @@ def tufte(ax, zero=True):
 def fmt_est(e, lo, hi, d=3):
     return f"{e:+.{d}f}  [{lo:+.{d}f}, {hi:+.{d}f}]"
 
-HYPOTHESES = json.loads("[{\"id\": \"H1\", \"text\": \"Each intervention changes AI-detection accuracy relative to control.\", \"outcome\": \"total_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H2\", \"text\": \"Each intervention changes attitudes toward AI relative to control.\", \"outcome\": \"ai_attitudes\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H3\", \"text\": \"Each intervention changes confidence in detecting AI relative to control.\", \"outcome\": \"ai_confidence\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H4\", \"text\": \"Each intervention changes trust in online information relative to control.\", \"outcome\": \"trust_online\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H5\", \"text\": \"Not registered: each intervention changes detection of AI-generated posts relative to control.\", \"outcome\": \"fake_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H6\", \"text\": \"Not registered: each intervention changes recognition of authentic posts relative to control.\", \"outcome\": \"real_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H2a\", \"text\": \"Each intervention changes attitudes toward AI relative to control (robustness: collapse all treated arms vs control in one model)\", \"outcome\": \"ai_attitudes\", \"treatment\": {\"column\": \"treatment\", \"contrast\": [\"__treated__\", \"0\"], \"collapse_from\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"]}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": false, \"subgroup\": null, \"exclusions\": [], \"base\": \"H2\", \"responds_to\": \"R4\"}, {\"id\": \"H1a\", \"text\": \"Each intervention changes AI-detection accuracy relative to control (robustness: re-fit without inverse probability weights)\", \"outcome\": \"total_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": null, \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [], \"base\": \"H1\", \"responds_to\": \"R5\"}]")
+HYPOTHESES = json.loads("[{\"id\": \"H1\", \"text\": \"Each intervention changes AI-detection accuracy relative to control.\", \"outcome\": \"total_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H2\", \"text\": \"Each intervention changes attitudes toward AI relative to control.\", \"outcome\": \"ai_attitudes\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H3\", \"text\": \"Each intervention changes confidence in detecting AI relative to control.\", \"outcome\": \"ai_confidence\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H4\", \"text\": \"Each intervention changes trust in online information relative to control.\", \"outcome\": \"trust_online\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H5\", \"text\": \"Not registered: each intervention changes detection of AI-generated posts relative to control.\", \"outcome\": \"fake_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H6\", \"text\": \"Not registered: each intervention changes recognition of authentic posts relative to control.\", \"outcome\": \"real_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": []}, {\"id\": \"H1a\", \"text\": \"Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs)\", \"outcome\": \"total_score\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"lin\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"], \"continuous\": [\"media_trust\", \"pk_score\", \"ai_scale\", \"political_interest\"]}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [\"pk_score >= 1\"], \"base\": \"H1\", \"responds_to\": \"R1\"}, {\"id\": \"H2a\", \"text\": \"Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights)\", \"outcome\": \"ai_attitudes\", \"treatment\": {\"column\": \"treatment\", \"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\"}, \"direction\": \"two_sided\", \"estimator\": {\"kind\": \"diff_means\", \"robust\": \"HC2\", \"cluster\": null, \"weights\": \"ipw\", \"covariates\": [], \"continuous\": [], \"categorical\": []}, \"pooled\": true, \"subgroup\": null, \"exclusions\": [], \"base\": \"H2\", \"responds_to\": \"R4\"}]")
 SUBGROUPS = json.loads("[]")
-MULTIARM = json.loads("{\"H1\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H2\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H3\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H4\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H5\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H6\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H1a\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}}")     # hypothesis id -> {arms, control, labels, pooled}
+MULTIARM = json.loads("{\"H1\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H2\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H3\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H4\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H5\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H6\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H1a\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}, \"H2a\": {\"arms\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\"], \"control\": \"0\", \"labels\": {\"1\": \"Flagging\", \"2\": \"Provenance\", \"3\": \"Automated Flagging\", \"4\": \"AI Accuracy Nudge\", \"5\": \"Breathing Exercise\", \"6\": \"Mindfulness\", \"7\": \"Inoculation\", \"8\": \"AI Literacy Infographic\", \"9\": \"AI Literacy Infographic 2\", \"10\": \"AI Literacy Guide\", \"11\": \"AI Text Video\", \"0\": \"Control\"}, \"pooled\": true}}")     # hypothesis id -> {arms, control, labels, pooled}
+OUTCOME_LABELS = json.loads("{\"total_score\": \"Accuracy (share of 24 posts judged correctly)\", \"ai_attitudes\": \"AI attitudes (opportunity vs threat, 6 items)\", \"ai_confidence\": \"Confidence in AI detection (single 7-point item)\", \"trust_online\": \"Trust in online information (7 items)\", \"fake_score\": \"AI-content detection accuracy (share of 12 AI-generated posts identified)\", \"real_score\": \"Authentic-content accuracy (share of 12 real posts identified)\"}")
 CATEGORICAL = set(["ai_outcome_1", "ai_outcome_2", "ai_outcome_3", "ai_outcome_4", "ai_outcome_5", "ai_outcome_6", "ai_outcome_7", "pk_1", "pk_2", "political_interest", "trust_online_1", "trust_online_2", "trust_online_3", "trust_online_4", "trust_online_5", "trust_online_6", "trust_online_7"])
+ARM_COL = "treatment"
+FEATURES = json.loads("[]")   # conjoint profile features
 ALPHA = 0.05
+WORDS = json.loads("{\"phrase\": \"survey experiment\", \"unit\": \"arm\", \"units\": \"arms\", \"reference\": \"control group\", \"relation\": \"effect\", \"relations\": \"effects\", \"estimate\": \"treatment effect\", \"estimates\": \"treatment effects\", \"verb\": \"changed\", \"type\": \"survey_experiment\", \"causal\": true, \"sample_kind\": \"human\"}")     # design vocabulary: unit, reference, relation, estimate (pap.words)
 RES = ROOT / "results"; FIG = ROOT / "figures"
 RES.mkdir(exist_ok=True); FIG.mkdir(exist_ok=True)
 
@@ -95,13 +99,17 @@ def centered(d, covs, cats=CATEGORICAL):
 
 def build_formula(y, est, covs, d, arm_term="treat"):
     kind = est.get("kind", "ols")
-    if kind == "diff_means" or not covs:
-        return f"{y} ~ {arm_term}", d
+    fe = "".join(f" + C({c})" for c in (est.get("absorb") or []))      # fixed effects
     cats = cat_set(est)
+    if kind == "did":
+        # difference in differences: the treat x post interaction is the estimate
+        return f"{y} ~ {arm_term} * post" + "".join(f" + {term(c, cats)}" for c in covs) + fe, d
+    if kind == "diff_means" or not covs:
+        return f"{y} ~ {arm_term}" + fe, d
     if kind == "lin":
         d, cc = centered(d, covs, cats)
-        return f"{y} ~ {arm_term} * ({' + '.join(cc)})", d
-    return f"{y} ~ {arm_term}" + "".join(f" + {term(c, cats)}" for c in covs), d
+        return f"{y} ~ {arm_term} * ({' + '.join(cc)})" + fe, d
+    return f"{y} ~ {arm_term}" + "".join(f" + {term(c, cats)}" for c in covs) + fe, d
 
 def tidy(res, analysis_id):
     ci = res.conf_int()
@@ -150,9 +158,10 @@ def forest(hid, arms_df, pooled, outcome):
     extra = 1 if pooled is not None else 0
     fig, ax = plt.subplots(figsize=(7.4, 1.3 + 0.36 * (k + extra)))
     ys = np.arange(k) + (1.6 if pooled is not None else 0.5)
-    for y, (e, lo, hi, sup) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"], a["supported"])):
+    # filled = two-sided p < ALPHA, so a filled dot always has a 95% CI that excludes zero
+    for y, (e, lo, hi, p) in zip(ys, zip(a["estimate"], a["conf_low"], a["conf_high"], a["p_value"])):
         ax.plot([lo, hi], [y, y], color=INK, lw=1.0, solid_capstyle="butt", zorder=2)
-        ax.plot(e, y, "o", ms=5, color=INK if sup else "white", markeredgecolor=INK, markeredgewidth=1.0, zorder=3)
+        ax.plot(e, y, "o", ms=5, color=INK if p < ALPHA else "white", markeredgecolor=INK, markeredgewidth=1.0, zorder=3)
     labels = [f"{l}  (n = {int(n)})" for l, n in zip(a["arm_label"], a["n_arm"])]
     ticks = list(ys)
     xmin = min(a["conf_low"].min(), pooled["conf_low"] if pooled is not None else 0, 0)
@@ -171,10 +180,11 @@ def forest(hid, arms_df, pooled, outcome):
     ax.set_yticks(ticks); ax.set_yticklabels(labels)
     ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
     ax.set_ylim(-0.2, ys[-1] + 0.8)
-    ax.set_xlabel(f"Difference from control in {outcome} (95% CI). Filled dots: p < {ALPHA}.")
-    ax.set_title(f"{hid}. Effect of each arm on {outcome}")
+    label = OUTCOME_LABELS.get(outcome, outcome)
+    ax.set_xlabel(f"{WORDS['relation'].capitalize()} on {label.lower()}, relative to the {WORDS['reference']} (95% CI).\nFilled dots: two-sided p < {ALPHA}.")
+    ax.set_title(f"{hid}. {WORDS['relation'].capitalize()} of each {WORDS['unit']} on {label.lower()}")
     tufte(ax)
-    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / f"{hid}_arms.png", bbox_inches="tight", pad_inches=0.15); plt.close(fig)
 
 def run_multiarm(h, d, est, covs):
     spec = MULTIARM[h["id"]]
@@ -235,6 +245,164 @@ def run_multiarm(h, d, est, covs):
           + (f"; pooled={pooled['estimate']:.3f} (SE {pooled['std_error']:.3f}, p={pooled['p_value']:.4f}, tau2={pooled['tau2']:.4f}, I2={pooled['i2']:.2f})" if pooled else ""))
     return summary
 
+def prep_treatment(h, d):
+    """Set the treatment for one hypothesis. A hypothesis may name its own treatment column (a conjoint
+    feature, or any categorical column), which then replaces the design arms; with treatment.continuous the
+    column enters as a numeric slope. Two-arm contrasts restrict the data to the two contrasted values."""
+    t = h.get("treatment") or {}
+    col = t.get("column")
+    if col and col in d.columns:
+        if t.get("continuous"):
+            d = d.copy()
+            d["treat"] = pd.to_numeric(d[col], errors="coerce")
+            return d
+        if col != ARM_COL:
+            d = d.copy()
+            d["arm_code"] = d[col].map(arm_str)
+    contrast = [arm_str(x) for x in (t.get("contrast") or [])]
+    collapse = [arm_str(x) for x in (t.get("collapse_from") or [])]
+    if collapse and len(contrast) == 2 and "arm_code" in d.columns:
+        # robustness addendum: every treated arm pooled into one indicator against the control arm
+        codes = d["arm_code"].map(arm_str)
+        d = d[codes.isin(collapse + [contrast[1]])].copy()
+        d["treat"] = d["arm_code"].map(arm_str).isin(collapse).astype(int)
+    elif len(contrast) == 2 and "arm_code" in d.columns:
+        # restrict to the two contrasted arms (a no-op in a two-arm design)
+        codes = d["arm_code"].map(arm_str)
+        d = d[codes.isin(contrast)].copy()
+        d["treat"] = (d["arm_code"].map(arm_str) == contrast[0]).astype(int)
+    est = h.get("estimator") or {}
+    if est.get("kind") == "did":                     # the post-period indicator for a difference in differences
+        d = d.copy()
+        d["post"] = pd.to_numeric(d[est["period"]], errors="coerce")
+    return d
+
+def subgroup_multiarm(s, h, d, est, covs):
+    """Heterogeneity for a multi-arm (or conjoint-feature) hypothesis. estimand "mm_diff": marginal means of
+    every level in the two moderator groups and their difference (second level minus first), from a cell-means
+    model with the hypothesis's standard errors (covariates do not enter marginal means). Otherwise
+    ("effect_by"): the hypothesis's arm effects within each moderator level, plus arm x moderator interactions."""
+    spec = MULTIARM[h["id"]]
+    arms, control = spec["arms"], spec["control"]
+    y = h["outcome"]
+    extra = [c for c in (est.get("weights"), est.get("cluster")) if c]
+    levels = s.get("levels") or {}
+    lab = lambda a: spec["labels"].get(a, a)
+    rows, out = [], []
+    if s.get("estimand") == "mm_diff":
+        # every level of every listed feature (default: the hypothesis's own treatment column); each feature's
+        # marginal means use the rows where that feature, the outcome and the moderator are observed (as cregg does)
+        feats = s.get("features") or [(h.get("treatment") or {}).get("column")]
+        d = d.dropna(subset=[y, "_mod"] + extra).copy()
+        order = [v for v in dict.fromkeys(levels.values()) if v in set(d["_mod"])] if levels else sorted(d["_mod"].unique())
+        if len(order) != 2:
+            raise SystemExit(f"{s['id']}: mm_diff needs exactly two moderator levels, found {order}")
+        lo, hi = order
+        for f in feats:
+            df_ = d.dropna(subset=[f]).copy()
+            codes = df_[f].map(arm_str)
+            df_["_cell"] = codes + " @ " + df_["_mod"]
+            res = fit(df_, f"{y} ~ 0 + C(_cell)", est)
+            names = list(res.params.index)
+            for a in sorted(codes.dropna().unique()):
+                tl, th = f"C(_cell)[{a} @ {lo}]", f"C(_cell)[{a} @ {hi}]"
+                if tl not in names or th not in names:
+                    continue
+                c = np.zeros(len(names)); c[names.index(th)] = 1.0; c[names.index(tl)] = -1.0
+                tt = res.t_test(c)
+                e, se, p = float(np.squeeze(tt.effect)), float(np.squeeze(tt.sd)), float(np.squeeze(tt.pvalue))
+                rows.append({"analysis_id": s["id"], "feature": f, "level": lab(a), f"mm_{lo}": float(res.params[tl]),
+                             f"mm_{hi}": float(res.params[th]), "difference": e, "std_error": se, "p_value": p,
+                             "n_" + str(lo): int(((codes == a) & (df_["_mod"] == lo)).sum()),
+                             "n_" + str(hi): int(((codes == a) & (df_["_mod"] == hi)).sum())})
+                out.append({"analysis_id": f"{s['id']}:{f}={a}", "outcome": y, "formula": f"{y} ~ 0 + {f} x {s['moderator']} cells",
+                            "cov_type": res.cov_type, "estimate": e, "std_error": se, "p_value": p, "n": int(res.nobs),
+                            "mean_control": np.nan, "mean_treated": np.nan, "direction": "two_sided",
+                            "supported": bool(p < ALPHA), "term": f"MM difference {hi} - {lo}: {lab(a)}", "arm": ""})
+                print(f"{s['id']}: {f}={lab(a)} MM {hi} - {lo} = {e:+.3f} (SE {se:.3f}, p={p:.4f})")
+        pd.DataFrame(rows).to_csv(RES / f"{s['id']}_by_level.csv", index=False)
+        return out
+    d = d.copy()
+    d["arm_code"] = d["arm_code"].map(arm_str)
+    d = d[d["arm_code"].isin(arms + [control])]
+    d = d.dropna(subset=[y, "arm_code", "_mod"] + covs + extra)
+    order = [v for v in dict.fromkeys(levels.values()) if v in set(d["_mod"])] if levels else sorted(d["_mod"].unique())
+    arm_term = f"C(arm_code, Treatment(reference={control!r}))"
+    cats = cat_set(est)
+    cov_terms = "".join(f" + {term(c, cats)}" for c in covs)
+    res = fit(d, f"{y} ~ {arm_term} * C(_mod){cov_terms}", est)
+    for lvl in order:
+        sub = d[d["_mod"] == lvl]
+        r = fit(sub, f"{y} ~ {arm_term}{cov_terms}", est)
+        ci = r.conf_int()
+        for a in arms:
+            t = f"{arm_term}[T.{a}]"
+            if t in r.params.index:
+                rows.append({"analysis_id": s["id"], "level": lvl, "arm": lab(a), "estimate": float(r.params[t]),
+                             "std_error": float(r.bse[t]), "p_value": float(r.pvalues[t]),
+                             "conf_low": float(ci.loc[t, 0]), "conf_high": float(ci.loc[t, 1]), "n": int(r.nobs)})
+    for t in res.params.index:
+        if ":C(_mod)" not in t or "arm_code" not in t:
+            continue
+        a = t.split("[T.", 1)[1].split("]", 1)[0]
+        m = t.rsplit("[T.", 1)[1].rstrip("]")
+        out.append({"analysis_id": s["id"], "outcome": y, "formula": f"{y} ~ arms x {s['moderator']}" + cov_terms,
+                    "cov_type": res.cov_type, "estimate": float(res.params[t]), "std_error": float(res.bse[t]),
+                    "p_value": float(res.pvalues[t]), "n": int(res.nobs), "mean_control": np.nan, "mean_treated": np.nan,
+                    "direction": "two_sided", "supported": bool(res.pvalues[t] < ALPHA),
+                    "term": f"{lab(a)} x {m} (vs {order[0]})", "arm": ""})
+        print(f"{s['id']}: interaction {lab(a)} x {m} = {res.params[t]:.3f} (SE {res.bse[t]:.3f}, p={res.pvalues[t]:.4f})")
+    pd.DataFrame(rows).to_csv(RES / f"{s['id']}_by_level.csv", index=False)
+    return out
+
+def amce_figures(summary):
+    """Conjoint: one figure per outcome with every feature's levels (reference level at zero, hollow), grouped by
+    feature in design order, from the unweighted per-feature hypotheses."""
+    by_col = {f["column"]: f for f in FEATURES}
+    rows = {r["analysis_id"]: r for r in summary if r.get("arm") not in (None, "", "pooled")}
+    for outcome in dict.fromkeys(h["outcome"] for h in HYPOTHESES):
+        hs = [h for h in HYPOTHESES if h["outcome"] == outcome and h["id"] in MULTIARM and not h.get("estimator", {}).get("weights")
+              and (h.get("treatment") or {}).get("column") in by_col]
+        if len(hs) < 2:
+            continue
+        hs.sort(key=lambda h: list(by_col).index(h["treatment"]["column"]))
+        items = []                                   # (label, estimate, lo, hi, is_reference, is_header)
+        for h in hs:
+            f = by_col[h["treatment"]["column"]]
+            spec = MULTIARM[h["id"]]
+            items.append((f.get("label", f["column"]), None, None, None, False, True))
+            for lvl in [spec["control"]] + spec["arms"]:
+                if lvl == spec["control"]:
+                    items.append((spec["labels"].get(lvl, lvl), 0.0, 0.0, 0.0, True, False))
+                    continue
+                r = rows.get(f"{h['id']}:{lvl}")
+                if r:
+                    e, se = float(r["estimate"]), float(r["std_error"])
+                    items.append((spec["labels"].get(lvl, lvl), e, e - 1.96 * se, e + 1.96 * se, False, False))
+        fig, ax = plt.subplots(figsize=(7.4, 0.8 + 0.26 * len(items)))
+        ys = list(range(len(items)))[::-1]
+        lo_all = min([i[2] for i in items if i[2] is not None] + [0]); hi_all = max([i[3] for i in items if i[3] is not None] + [0])
+        for y, (lab, e, lo, hi, ref, head) in zip(ys, items):
+            if head:
+                continue
+            if ref:
+                ax.plot(0, y, "o", ms=4.5, color="white", markeredgecolor=MUTED, zorder=3)
+                continue
+            sig = lo > 0 or hi < 0
+            ax.plot([lo, hi], [y, y], color=ACCENT if sig else INK, lw=1.0, zorder=2)
+            ax.plot(e, y, "o", ms=5, color=ACCENT if sig else INK, zorder=3)
+        ax.set_yticks(ys)
+        ax.set_yticklabels([("" if head else "   ") + lab for (lab, *_rest, head) in items])
+        for tick, it in zip(ax.get_yticklabels(), items):
+            if it[5]:
+                tick.set_fontweight("bold")
+        span = (hi_all - lo_all) or 1.0
+        ax.set_xlim(lo_all - 0.06 * span, hi_all + 0.06 * span)
+        ax.set_xlabel(f"Change in Pr(chosen) relative to the reference level (hollow), 95% CI. Red: CI excludes 0.")
+        ax.set_title(f"AMCEs on {outcome}")
+        tufte(ax)
+        fig.tight_layout(); fig.savefig(FIG / f"amce_{outcome}.png"); plt.close(fig)
+
 def main():
     df = pd.read_csv(ROOT / "data" / "clean.csv")
     summary = []
@@ -247,22 +415,16 @@ def main():
                 print(f"WARNING: {h['id']} exclusion {expr!r} skipped: {e}")
         est = h.get("estimator", {})
         covs = est.get("covariates") or []
+        d = prep_treatment(h, d)
         if h["id"] in MULTIARM:
             summary += run_multiarm(h, d, est, covs)
             continue
-        contrast = [arm_str(x) for x in ((h.get("treatment") or {}).get("contrast") or [])]
-        collapse = [arm_str(x) for x in ((h.get("treatment") or {}).get("collapse_from") or [])]
-        if collapse and len(contrast) == 2 and "arm_code" in d.columns:
-            # robustness addendum: every treated arm pooled into one indicator against the control arm
-            codes = d["arm_code"].map(arm_str)
-            d = d[codes.isin(collapse + [contrast[1]])].copy()
-            d["treat"] = d["arm_code"].map(arm_str).isin(collapse).astype(int)
-        elif len(contrast) == 2 and "arm_code" in d.columns:
-            # restrict to the two contrasted arms (a no-op in a two-arm design)
-            codes = d["arm_code"].map(arm_str)
-            d = d[codes.isin(contrast)].copy()
-            d["treat"] = (d["arm_code"].map(arm_str) == contrast[0]).astype(int)
-        extra = [c for c in (est.get("weights"), est.get("cluster")) if c]
+        continuous = bool((h.get("treatment") or {}).get("continuous"))
+        if "treat" not in d.columns:
+            raise SystemExit(f"{h['id']}: no treatment indicator could be built. Set design.arms (a column with treated "
+                             f"and control values), or give the hypothesis a treatment.column with a two-value contrast, "
+                             f"arms + control, or continuous: true.")
+        extra = [c for c in (est.get("weights"), est.get("cluster")) if c] + (["post"] if est.get("kind") == "did" else [])
         n_eligible = int(len(d))
         d = d.dropna(subset=[h["outcome"], "treat"] + covs + extra)
         if n_eligible - len(d):
@@ -270,16 +432,19 @@ def main():
         formula, d = build_formula(h["outcome"], est, covs, d)
         res = fit(d, formula, est)
         tidy(res, h["id"]).to_csv(RES / f"{h['id']}.csv", index=False)
-        e, se, p = res.params["treat"], res.bse["treat"], res.pvalues["treat"]
+        coef = "treat:post" if est.get("kind") == "did" else "treat"
+        e, se, p = res.params[coef], res.bse[coef], res.pvalues[coef]
         g = d.groupby("treat")[h["outcome"]].agg(["mean", "std", "count"])
         row = {"analysis_id": h["id"], "outcome": h["outcome"], "formula": formula, "cov_type": res.cov_type,
                "estimate": e, "std_error": se, "p_value": p, "n": int(res.nobs),
-               "mean_control": g.loc[0, "mean"] if 0 in g.index else np.nan,
-               "mean_treated": g.loc[1, "mean"] if 1 in g.index else np.nan,
+               "mean_control": g.loc[0, "mean"] if 0 in g.index and not continuous else np.nan,
+               "mean_treated": g.loc[1, "mean"] if 1 in g.index and not continuous else np.nan,
                "direction": h.get("direction", "two_sided"), "p_directional": directional_p(e, p, h.get("direction", "two_sided")),
                "n_eligible": n_eligible, "supported": supported(e, p, h.get("direction", "two_sided"))}
         if est.get("weights"):
             row["weights"] = est["weights"]
+        if continuous:
+            row["continuous"] = True
         summary.append(row)
         print(f"{h['id']}: {formula} | ATE={e:.3f} (SE {se:.3f}, p={p:.4f}, N={int(res.nobs)})")
     hyps = {h["id"]: h for h in HYPOTHESES}
@@ -295,27 +460,38 @@ def main():
                 pass
         levels = s.get("levels") or {}
         mod = s["moderator"]
+        d = prep_treatment(h, d)
         if levels:
-            d = d[d[mod].astype(str).isin([str(k) for k in levels])]
+            d = d[d[mod].map(arm_str).isin([arm_str(k) for k in levels])]
         _est = h.get("estimator", {})
-        d = d.dropna(subset=[h["outcome"], "treat", mod] + [c for c in (_est.get("weights"), _est.get("cluster")) if c])
-        d["_mod"] = d[mod].astype(str).map({str(k): v for k, v in levels.items()}) if levels else d[mod].astype(str)
-        res = fit(d, f"{h['outcome']} ~ treat * C(_mod)", h.get("estimator", {}))
+        scovs = [c for c in (_est.get("covariates") or []) if c != mod] if s.get("covariates") else []
+        d["_mod"] = d[mod].map(arm_str).map({arm_str(k): v for k, v in levels.items()}) if levels else d[mod].map(arm_str)
+        if h["id"] in MULTIARM:
+            summary += subgroup_multiarm(s, h, d, _est, scovs)
+            continue
+        d = d.dropna(subset=[h["outcome"], "treat", "_mod"] + scovs + [c for c in (_est.get("weights"), _est.get("cluster")) if c])
+        sterms = "".join(f" + {term(c, cat_set(_est))}" for c in scovs)
+        res = fit(d, f"{h['outcome']} ~ treat * C(_mod){sterms}", h.get("estimator", {}))
         tidy(res, s["id"]).to_csv(RES / f"{s['id']}.csv", index=False)
         inter = [t for t in res.params.index if t.startswith("treat:")]
         rows = []
         for lvl, sub in d.groupby("_mod"):
-            r = fit(sub, f"{h['outcome']} ~ treat", h.get("estimator", {}))
+            r = fit(sub, f"{h['outcome']} ~ treat{sterms}", h.get("estimator", {}))
             rows.append({"analysis_id": s["id"], "level": lvl, "estimate": r.params["treat"], "std_error": r.bse["treat"],
                          "p_value": r.pvalues["treat"], "n": int(r.nobs)})
         pd.DataFrame(rows).to_csv(RES / f"{s['id']}_by_level.csv", index=False)
+        ref = sorted(d["_mod"].unique())[0]
+        tname = (h.get("treatment") or {}).get("column") or "treatment"
         for t in inter:
+            lvl = t.rsplit("[T.", 1)[1].rstrip("]") if "[T." in t else t
             summary.append({"analysis_id": s["id"], "outcome": h["outcome"], "formula": f"{h['outcome']} ~ treat * C({mod})",
                             "cov_type": res.cov_type, "estimate": res.params[t], "std_error": res.bse[t], "p_value": res.pvalues[t],
                             "n": int(res.nobs), "mean_control": np.nan, "mean_treated": np.nan, "direction": "two_sided",
-                            "supported": bool(res.pvalues[t] < ALPHA), "term": t})
-            print(f"{s['id']}: interaction {t} = {res.params[t]:.3f} (SE {res.bse[t]:.3f}, p={res.pvalues[t]:.4f})")
+                            "supported": bool(res.pvalues[t] < ALPHA), "term": f"{tname} x {lvl} (vs {ref})"})
+            print(f"{s['id']}: interaction {tname} x {lvl} (vs {ref}) = {res.params[t]:.3f} (SE {res.bse[t]:.3f}, p={res.pvalues[t]:.4f})")
     pd.DataFrame(summary).to_csv(RES / "registered_summary.csv", index=False)
+    if FEATURES:
+        amce_figures(summary)
     # coefficient plot: one row per two-arm hypothesis and per pooled multi-arm estimate
     main_rows = [r for r in summary if "term" not in r]
     if main_rows:
@@ -326,14 +502,14 @@ def main():
         xmin, xmax = min(los + [0]), max(his + [0]); span = (xmax - xmin) or 1.0
         for y, r, e, lo, hi in zip(ys, main_rows, ests, los, his):
             ax.plot([lo, hi], [y, y], color=INK, lw=1.0, zorder=2)
-            ax.plot(e, y, "o", ms=5, color=INK if r.get("supported") else "white", markeredgecolor=INK, zorder=3)
+            ax.plot(e, y, "o", ms=5, color=INK if float(r["p_value"]) < ALPHA else "white", markeredgecolor=INK, zorder=3)
             ax.text(xmax + 0.06 * span, y, fmt_est(e, lo, hi), va="center", ha="left", fontsize=8, color=MUTED, family="monospace")
-        ax.set_yticks(ys); ax.set_yticklabels([f"{r['analysis_id']}: {r['outcome']}" for r in main_rows])
+        ax.set_yticks(ys); ax.set_yticklabels([f"{r['analysis_id']}: {OUTCOME_LABELS.get(r['outcome'], r['outcome'])}" for r in main_rows])
         ax.set_xlim(xmin - 0.04 * span, xmax + 0.42 * span)
-        ax.set_xlabel(f"Treatment effect (95% CI). Filled dots: p < {ALPHA}.")
-        ax.set_title("Planned treatment effects")
+        ax.set_xlabel(f"{WORDS['estimate'].capitalize()} (95% CI). Filled dots: two-sided p < {ALPHA}.")
+        ax.set_title(f"Planned {WORDS['estimates']}")
         tufte(ax)
-        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png"); plt.close(fig)
+        fig.tight_layout(); fig.savefig(FIG / "registered_effects.png", bbox_inches="tight", pad_inches=0.15); plt.close(fig)
     print(f"wrote results/registered_summary.csv ({len(summary)} rows)")
 
 if __name__ == "__main__":

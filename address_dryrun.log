@@ -1,0 +1,28 @@
+[filedrawer] responder: proposing an addendum for R1 on H1
+
+  H1a  responds to R1 [high] E1
+      issue : The E1 table has empty est/se/p columns for every arm, yet the text claims that Automated Flagging (p=0.004) and AI Literacy Guide (p=0.043) became nonsignificant. Nothing displayed supports this. The 'attention-check failure' label is also misleading: pk_score<1 is a knowledge-question failure, not an attention check, and may be post-treatment-correlated or confounded with ability. Dropping 30% of the sample is not a clean robustness test.
+      change: exclude low-knowledge respondents (pk_score<1), report full estimates and CIs  {"exclusions": ["pk_score >= 1"]}
+      why   : The reviewer says the pk_score<1 exclusion is a low-knowledge exclusion, not an attention check, and that the table needs estimates, SEs and CIs. Re-running H1 with that exclusion, labelled correctly, gives a table that can be read directly. Any change in significance can then be compared with the wider CIs from the smaller sample.
+[filedrawer] responder: proposing an addendum for R2 on H1
+
+  H1b  responds to R2 [high] E2
+      issue : The E2 table is empty, so the 'no arm reached p<0.05' claim cannot be checked. Concluding that the effects 'likely reflect sampling variability' from underpowered subgroups (n=25 to 219) is overreach. No interaction test is reported.
+      change: collapse all 11 arms into one treated-vs-control comparison  {"collapse_arms": true}
+      why   : The formal arm×familiarity interaction test cannot be expressed in this delta format, so it is not run here. The closest legitimate check is to pool all treated respondents against the shared control. This tests whether the 'no effect' reading holds with more power than the per-arm tests.
+[filedrawer] responder: proposing an addendum for R4 on H2
+
+  H2a  responds to R4 [medium] H2
+      issue : The text says the other ten arms had estimates 'between −0.16 and 0.00', but the pooled random-effects result (−0.11, p=0.026) is reported as significant and tied to nothing in the narrative. The Breathing Exercise result (−0.54) has an SE of 0.23 that is much larger than the other arms' SEs, and arm-level SEs vary oddly (0.116 to 0.280), which suggests the Lin interaction model or outliers are driving them.
+      change: unadjusted difference in means per arm, no covariates  {"estimator": {"kind": "diff_means", "robust": "HC2", "cluster": null, "weights": "ipw", "covariates": [], "continuous": [], "categorical": []}}
+      why   : Reviewer asks for unadjusted estimates to check whether the Lin interaction model and covariate leverage drive the heterogeneous arm SEs and the pooled significant effect. Re-fitting without covariates removes the interaction terms and leverage.
+
+3 proposal(s) written to provenance/addenda_proposed.json; nothing was run.
+{
+ "ran": false,
+ "addenda": [
+  "H1a",
+  "H1b",
+  "H2a"
+ ]
+}

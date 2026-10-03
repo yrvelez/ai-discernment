@@ -760,51 +760,43 @@
   ],
   "addenda": [
     {
-      "base": "H2",
-      "label": "collapse all treated arms vs control in one model",
-      "rationale": "Random-effects pooling treats arms as independent despite the shared control group. A single two-arm model comparing all treated respondents with control, using robust SEs, accounts for the shared control directly.",
+      "base": "H1",
+      "label": "exclude low political-knowledge respondents (pk_score<1), full estimates and CIs",
+      "rationale": "The reviewer notes the exclusion is a low-knowledge screen, not an attention check, so it should be labelled that way and reported with estimates, SEs and CIs. This re-runs H1 excluding pk_score<1, so readers can see whether effects shrink or just get noisier.",
       "delta": {
-        "collapse_arms": true,
-        "pooled": false
+        "exclusions": [
+          "pk_score >= 1"
+        ]
       },
-      "expected": "If the pooled treated-vs-control effect stays significant with a similar size (p near 0.026), the finding does not depend on the shared-control approximation. A clearly larger p-value would be a concern.",
-      "id": "H2a",
-      "responds_to": "R4",
-      "issue": "The random-effects pooling treats arms as independent although they share one control group. The report concedes the SE is approximate. H2's pooled effect (p=0.026), which is highlighted as a registered finding, rests on this approximation, and its I² is 0.",
+      "expected": "Point estimates similar to the registered analysis with wider CIs would suggest lost precision, not a vanished effect. Sign changes or large shifts in estimates would worry a reader.",
+      "id": "H1a",
+      "responds_to": "R1",
+      "issue": "The E1 table has empty est/se/p columns for every arm, yet the text claims that Automated Flagging (p=0.004) and AI Literacy Guide (p=0.043) became nonsignificant. Nothing displayed supports this. The 'attention-check failure' label is also misleading: pk_score<1 is a knowledge-question failure, not an attention check, and may be post-treatment-correlated or confounded with ability. Dropping 30% of the sample is not a clean robustness test.",
       "status": "run",
-      "proposed_at": "2026-10-02T03:22:48Z",
+      "proposed_at": "2026-10-03T12:31:05Z",
       "approved_by": "unattended (--yes)"
     },
     {
-      "base": "H1",
-      "label": "re-fit without inverse probability weights",
-      "rationale": "The reviewer asks for a sensitivity analysis without weights, since the weights' purpose (assignment vs attrition) is unclear. Re-running H1 unweighted shows whether the arm estimates depend on the weighting.",
+      "base": "H2",
+      "label": "unadjusted difference in means, no covariates, same weights",
+      "rationale": "Reviewer suspects the Lin interaction model and covariate leverage drive the heterogeneous arm SEs (e.g., Breathing Exercise). Re-fitting without covariates shows whether arm estimates, SEs and the pooled effect hold up without covariate adjustment.",
       "delta": {
         "estimator": {
-          "kind": "lin",
+          "kind": "diff_means",
           "robust": "HC2",
           "cluster": null,
-          "weights": null,
-          "covariates": [
-            "media_trust",
-            "pk_score",
-            "ai_scale",
-            "political_interest"
-          ],
-          "continuous": [
-            "media_trust",
-            "pk_score",
-            "ai_scale",
-            "political_interest"
-          ]
+          "weights": "ipw",
+          "covariates": [],
+          "continuous": [],
+          "categorical": []
         }
       },
-      "expected": "Similar arm effects and significance without weights would reassure readers; large shifts would suggest the results depend on the weight construction.",
-      "id": "H1a",
-      "responds_to": "R5",
-      "issue": "The weights are labelled 'inverse probability' without saying what they correct for, such as assignment or attrition. Unequal arm sizes (78 to 333) and the 227 exclusions are not explained. There is no check that exclusions or missingness were balanced across arms.",
+      "expected": "Similar arm estimates and more uniform SEs, with a pooled effect near -0.11, would reassure; large shifts in SEs or estimates would point to covariate leverage or outliers in the Lin model.",
+      "id": "H2a",
+      "responds_to": "R4",
+      "issue": "The text says the other ten arms had estimates 'between −0.16 and 0.00', but the pooled random-effects result (−0.11, p=0.026) is reported as significant and tied to nothing in the narrative. The Breathing Exercise result (−0.54) has an SE of 0.23 that is much larger than the other arms' SEs, and arm-level SEs vary oddly (0.116 to 0.280), which suggests the Lin interaction model or outliers are driving them.",
       "status": "run",
-      "proposed_at": "2026-10-02T03:22:51Z",
+      "proposed_at": "2026-10-03T12:31:12Z",
       "approved_by": "unattended (--yes)"
     }
   ]

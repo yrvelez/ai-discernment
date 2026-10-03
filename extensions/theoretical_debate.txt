@@ -1,0 +1,1 @@
+Discernment vs response bias: manipulating base rates. 6 conditions: Control, 20% AI, Control, 80% AI, Breathing, 20% AI, Breathing, 80% AI, Guide, 20% AI, Guide, 80% AI. Primary outcome: Signal-detection sensitivity d' per respondent, with criterion c as co-primary, computed from 20 item-level AI/authentic judgments.. Population: US online panel adults, as in the source study.

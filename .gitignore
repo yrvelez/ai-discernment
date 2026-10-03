@@ -21,3 +21,4 @@ run.log
 
 # local build records for Qualtrics drafts (survey ids, operation log)
 .filedrawer/
+results.prev/
