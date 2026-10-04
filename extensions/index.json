@@ -3,43 +3,41 @@
   "qsf": "extensions/advance_design.qsf",
   "qsf_errors": [],
   "media": [
-   "item1: image stimulus to supply (one of 40 photos, half AI-generated and half authentic, with a detector label sh)"
+   "post1: image stimulus to supply (a social media post image, AI-generated or real, shown with its label in flaggin)"
   ],
   "id": "advance_design",
   "kind": "mechanism",
-  "title": "Signal-detection replication of labels and literacy guide",
+  "title": "Discernment vs response bias in AI labels",
   "brief_id": "advance_design",
   "mode": "survey_experiment",
   "debate": "D1",
-  "why": "Fixes the measurement failure: collects item-level real/AI judgments plus a confidence rating so d' and criterion can be estimated (U1), and gives a clean replication of the two nominal effects (U2).",
+  "why": "Fixes measurement: computes sensitivity and criterion from AI and real post responses, and adds confidence ratings.",
   "power_target": {
-   "n_per_arm": 420,
+   "n_per_arm": 400,
    "mde": 0.03,
-   "basis": "H1 observed 0.044 (Automated Flagging) shrunk toward the 0.03 MDE of the largest arm (0.0318 at n=333); a 3-point gain at 80% power needs roughly 420 per arm."
+   "basis": "Observed Automated Flagging effect 0.032 to 0.044 on total accuracy; H1 MDE at n=127/181 was 0.042; n=400/arm gives about 0.028 for SD 0.13."
   },
-  "rationale": "The source study found Automated Flagging raised accuracy 4.4 points (CI 1.4 to 7.3) and the AI Literacy Guide 4.7 points (CI 0.2 to 9.2), but pooled accuracy was only 1 point (CI -0.3 to 2.4) across 44 uncorrected tests. Only share-correct scores were stored, so sensitivity and response bias could not be separated, and Breathing and Nudge arms raised AI detection without raising authentic recognition.",
-  "contribution": "Estimates d' and criterion separately for the two nominally effective interventions in a powered, preregistered replication with item-level data.",
+  "rationale": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3]), and some arms raised the share of AI posts identified, but the source reports only share-correct scores. Without per-post responses to both AI and real posts, we cannot tell better discernment from a greater tendency to answer 'AI'. This design computes d' and criterion and adds confidence ratings and a label-accuracy arm.",
+  "contribution": "Separates true sensitivity from response bias for automated AI labels, and tests whether a stated label error rate changes either.",
   "addresses": [
-   "U1",
-   "U2"
+   "U1"
   ],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "Automated labels and the literacy guide raise d' relative to control; if the effects are only criterion shifts, d' will not differ and c will move toward more AI responses.",
-  "primary_outcome": "Sensitivity d' and criterion c from a multilevel signal-detection model (probit mixed model of AI judgment on true item status, arm, and their interaction, with random effects for respondent and item).",
-  "comparison": "Each treatment arm versus control on d' and c; Holm correction across the two primary d' contrasts; criterion contrasts secondary; within-arm flagged versus unflagged items exploratory.",
+  "hypothesis": "Automated Flagging raises d' relative to control; any increase in AI responses (a more liberal criterion) is separate from sensitivity, and the stated error rate reduces reliance on labels.",
+  "primary_outcome": "d' computed from AI and real post responses (log-linear corrected), with criterion c as co-primary.",
+  "comparison": "Each flagging arm vs control on d' and criterion; flagging vs flagging with error rate.",
   "conditions": [
    "Control",
-   "Automated detector label",
-   "AI Literacy Guide"
+   "Automated Flagging",
+   "Automated Flagging with error rate"
   ],
   "unresolved": [
-   "The 40 image files, their ground-truth labels and the detector label assets must be supplied by the research team.",
-   "IRB approval number and participant compensation must be supplied.",
-   "The treatment block for the control arm is intentionally empty; the label arm's flags are shown inside the item stimuli."
+   "The 24 image and video files and their labels must be supplied by the research team.",
+   "IRB approval number and compensation amount must be supplied by the research team."
   ],
   "label": "Design advance",
   "text": "extensions/advance_design.txt",
@@ -49,44 +47,43 @@
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
   "media": [
-   "ctrl_post1: image stimulus to supply (an AI-generated image from an older generator, shown as a social media post with)",
-   "ctrl_post2: image stimulus to supply (a screenshot of a social media text post written by a recent language model, wit)",
-   "lab_post1: image stimulus to supply (an AI-generated image from a recent generator, shown as a social media post with)",
-   "lab_post2: image stimulus to supply (a screenshot of an authentic social media text post with a banner reading 'Autom)"
+   "post1: image stimulus to supply (a photorealistic scene, AI-generated, with a label per condition)",
+   "post2: video stimulus to supply (a 10-second authentic news-style clip, with a label per condition)",
+   "post3: image stimulus to supply (an authentic photograph, with a label per condition)",
+   "post4: video stimulus to supply (a 10-second AI-generated clip, with a label per condition)"
   ],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Does label benefit depend on stimulus difficulty and AI familiarity?",
+  "title": "Label effect by label reliability and prior AI skill",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Addresses the missing moderator: E2 was empty and underpowered, and the high-familiarity halves have n=38 or fewer in some arms.",
+  "why": "Fixes the sample and missing-moderator causes by testing where the one robust effect holds.",
   "power_target": {
-   "n_per_arm": 500,
-   "mde": 0.035,
-   "basis": "H1 Automated Flagging 0.044, with a halved interaction detectable only with several hundred per cell."
+   "n_per_arm": 350,
+   "mde": 0.03,
+   "basis": "Observed Automated Flagging +0.032 raw; n=350/arm gives MDE about 0.03 at SD 0.13."
   },
-  "rationale": "Automated Flagging raised accuracy by 4.4 points (p=0.004) in the source study, but the familiarity heterogeneity table (E2) was empty and some high-familiarity arm halves had n=38 or fewer. This follow-up tests whether the gain holds across easy vs hard stimuli and across prior AI familiarity, with enough power for an interaction test.",
-  "contribution": "Tests whether the automated-label gain is conditional on stimulus difficulty and prior AI familiarity, using a preregistered moderator and an adequately powered sample.",
-  "addresses": [
-   "U2"
-  ],
+  "rationale": "Automated Flagging was the one robust gain (+4.4 points, 95% CI [1.4, 7.3], p=0.004; control n=181 of 2,030 analysed), but the labels' accuracy was not varied and no moderator such as AI familiarity was tested. This design tests whether the benefit holds when labels are 95% versus 70% accurate, across AI familiarity levels, and for images versus videos.",
+  "contribution": "Maps the conditions (label reliability, AI familiarity, media type) under which automated AI labels improve discernment on both AI and real posts.",
+  "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "H1: automated labels raise d' relative to control (0.035 minimum effect). H2: the label gain is smaller for hard (recent-generator) stimuli. H3: the label gain differs by ai_scale (high vs low familiarity).",
-  "primary_outcome": "Discernment d' (z(hit rate) minus z(false-alarm rate)) across the 8 posts, with condition by difficulty and condition by ai_scale interaction tests.",
-  "comparison": "Control vs automated label, crossed within person with stimulus difficulty (older vs recent generator), and moderated by ai_scale (pre-treatment).",
+  "hypothesis": "Labels at 95% accuracy raise accuracy over control; labels at 70% accuracy raise it less or not at all, and may lower accuracy on posts the labels mislabel. The benefit is larger for low-familiarity respondents.",
+  "primary_outcome": "Share of posts judged correctly, reported separately for AI posts and real posts, and by image versus video.",
+  "comparison": "Each label arm versus control; 95% versus 70% accuracy; interaction with ai_scale tercile and with media type.",
   "conditions": [
-   "Control",
-   "Automated label"
+   "No labels",
+   "95% accurate labels",
+   "70% accurate labels"
   ],
   "unresolved": [
-   "The actual image and text stimuli, including older vs recent generator outputs, must be supplied by the research team.",
-   "The automated label accuracy rate and wording must be fixed by the research team.",
-   "Compensation and IRB approval number must be supplied by the research team."
+   "The research team must supply the image and video files and the label overlays.",
+   "IRB approval number and participant compensation must be supplied.",
+   "The panel's ability to stratify on ai_scale before randomisation must be confirmed."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
@@ -96,35 +93,27 @@
   "qsf": "extensions/theoretical_debate.qsf",
   "qsf_errors": [],
   "media": [
-   "item1: image stimulus to supply (feed item 1 from the 20% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 20% AI-share pool)",
-   "item1: image stimulus to supply (feed item 1 from the 80% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 80% AI-share pool)",
-   "item1: image stimulus to supply (feed item 1 from the 20% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 20% AI-share pool)",
-   "item1: image stimulus to supply (feed item 1 from the 80% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 80% AI-share pool)",
-   "guide_img: image stimulus to supply (annotated examples of AI artifacts in images and video frames)",
-   "item1: image stimulus to supply (feed item 1 from the 20% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 20% AI-share pool)",
-   "guide_img: image stimulus to supply (annotated examples of AI artifacts in images and video frames)",
-   "item1: image stimulus to supply (feed item 1 from the 80% AI-share pool)",
-   "item2: image stimulus to supply (feed item 2 from the 80% AI-share pool)"
+   "feed_plain: image stimulus to supply (simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no la)",
+   "feed_label: image stimulus to supply (simulated feed of 24 posts, each carrying an automated AI-detection label such a)",
+   "guide_stim: image stimulus to supply (AI Literacy Guide with annotated examples of AI artifacts in images and videos)",
+   "feed_plain: image stimulus to supply (simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no la)",
+   "guide_stim: image stimulus to supply (AI Literacy Guide with annotated examples of AI artifacts in images and videos)",
+   "feed_label: image stimulus to supply (simulated feed of 24 posts, each carrying an automated AI-detection label such a)"
   ],
   "id": "theoretical_debate",
   "kind": "alternative",
-  "title": "Discernment vs response bias: manipulating base rates",
+  "title": "Platform labels vs user training head to head",
   "brief_id": "theoretical_debate",
   "mode": "survey_experiment",
   "debate": "D1",
-  "why": "Discriminates the two positions of D1 by separating bias from sensitivity. If interventions work, d' rises under any base rate. If the effects are bias, they vanish or flip when the share of AI items changes.",
+  "why": "Fixes design and power: contrasts only the best-supported system arm with the best user-side arm in a focused comparison.",
   "power_target": {
-   "n_per_arm": 300,
-   "mde": 0.04,
-   "basis": "H5 observed 0.066-0.091 with SE about 0.03; 300 per cell detects 0.04-0.05 at 80% power."
+   "n_per_arm": 450,
+   "mde": 0.027,
+   "basis": "Observed Guide-vs-control raw difference 0.006 and adjusted 0.047; size to detect a 0.03 label-vs-guide gap (H1 SD about 0.13)."
   },
-  "rationale": "The source found Breathing and Nudge raised detection of AI posts without raising recognition of authentic posts (H5 gains 0.066-0.091, SE about 0.03), which fits a bias toward answering AI. Pooled accuracy was only about 1 point (CI -0.3 to 2.4), so it is unclear whether individual interventions help. Changing the share of AI items separates a real sensitivity gain from a shifted answering criterion.",
-  "contribution": "Tests whether intervention gains persist as d' under both 20% and 80% AI base rates, or vanish or flip as a criterion shift.",
+  "rationale": "In the source study only Automated Flagging moved accuracy (+4.4 points, 95% CI [1.4, 7.3]), while the AI Literacy Guide was borderline and model-dependent (adjusted +4.7, raw difference about 0.006). Arms were heterogeneous and some had only 78-102 respondents, so the i-frame vs s-frame debate was not settled. This design compares only the best system arm with the best user arm, plus their combination, with per-post responses and a 1-week follow-up.",
+  "contribution": "A focused, adequately powered test of whether system-supplied labels outperform user training, and whether the two add up, using per-post responses so discernment can be separated from response bias.",
   "addresses": [
    "U1"
   ],
@@ -133,21 +122,19 @@
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "If the interventions improve discernment, d' rises relative to control at both base rates and the intervention by base-rate interaction on d' is near zero. If they only bias responses toward answering AI, d' does not differ and c shifts toward AI responses, and this shift shrinks or reverses when 80% of items are AI.",
-  "primary_outcome": "Signal-detection sensitivity d' per respondent, with criterion c as co-primary, computed from 20 item-level AI/authentic judgments.",
-  "comparison": "Breathing and Guide vs control on d' and c, within each base rate. Interaction test of intervention by base rate. Optional accuracy-payoff robustness check.",
+  "hypothesis": "H1 (s-frame): Automated Flagging yields higher total accuracy than the AI Literacy Guide. H2: the combined arm exceeds either single arm (additive effects). Rival (i-frame): the Guide matches labels, particularly at 1 week.",
+  "primary_outcome": "Total accuracy (share of 24 posts judged correctly) at wave 1, contrast labels vs guide.",
+  "comparison": "Pre-registered: Labels vs Guide. Then Both vs each single arm, and each arm vs control. Secondary: accuracy on AI posts and real posts, and wave 2 (1 week) accuracy.",
   "conditions": [
-   "Control, 20% AI",
-   "Control, 80% AI",
-   "Breathing, 20% AI",
-   "Breathing, 80% AI",
-   "Guide, 20% AI",
-   "Guide, 80% AI"
+   "Control",
+   "Automated Flagging",
+   "AI Literacy Guide",
+   "Labels plus Guide"
   ],
   "unresolved": [
-   "The actual image and video files, the guide graphic and the item pools must be supplied by the research team.",
-   "IRB approval number and compensation need to be set by the research team.",
-   "The remaining 18 item/response pairs must be built from the same template."
+   "The actual media files, labels and guide must be supplied by the research team.",
+   "IRB approval number and compensation need to be set.",
+   "The wave 2 invitation and recontact procedure must be built."
   ],
   "label": "Theoretical debate",
   "text": "extensions/theoretical_debate.txt",

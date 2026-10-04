@@ -1,58 +1,46 @@
 {
  "id": "theoretical_debate",
  "kind": "alternative",
- "title": "Discernment vs response bias: manipulating base rates",
- "rationale": "The source found Breathing and Nudge raised detection of AI posts without raising recognition of authentic posts (H5 gains 0.066-0.091, SE about 0.03), which fits a bias toward answering AI. Pooled accuracy was only about 1 point (CI -0.3 to 2.4), so it is unclear whether individual interventions help. Changing the share of AI items separates a real sensitivity gain from a shifted answering criterion.",
- "contribution": "Tests whether intervention gains persist as d' under both 20% and 80% AI base rates, or vanish or flip as a criterion shift.",
+ "title": "Platform labels vs user training head to head",
+ "rationale": "In the source study only Automated Flagging moved accuracy (+4.4 points, 95% CI [1.4, 7.3]), while the AI Literacy Guide was borderline and model-dependent (adjusted +4.7, raw difference about 0.006). Arms were heterogeneous and some had only 78-102 respondents, so the i-frame vs s-frame debate was not settled. This design compares only the best system arm with the best user arm, plus their combination, with per-post responses and a 1-week follow-up.",
+ "contribution": "A focused, adequately powered test of whether system-supplied labels outperform user training, and whether the two add up, using per-post responses so discernment can be separated from response bias.",
  "limitations": [
-  "Base-rate manipulation may change participants' expectations and strategy, not just the criterion.",
-  "Feed items differ from the source's 24-item mix, so effects may not carry over directly.",
-  "Control, Breathing and Guide only; Nudge and Automated Flagging are not tested.",
-  "Online US panel; short exposure to each intervention."
+  "Online sample; the follow-up loses respondents to attrition.",
+  "The Guide's source effect was tentative, so it may be a weak representative of user-side fixes.",
+  "Labels are simulated and shown only in the feed; real platform exposure differs.",
+  "The follow-up posts must be new items, which limits direct comparability with the first wave."
  ],
  "design": {
-  "title": "Discernment vs response bias: manipulating base rates",
-  "overview": "Respondents are randomised to a feed with 20% or 80% AI items and, independently, to control, Breathing Exercise or AI Literacy Guide. They judge each of 20 items as AI-generated or authentic. Item-level responses give d' and criterion c per person.",
-  "hypothesis": "If the interventions improve discernment, d' rises relative to control at both base rates and the intervention by base-rate interaction on d' is near zero. If they only bias responses toward answering AI, d' does not differ and c shifts toward AI responses, and this shift shrinks or reverses when 80% of items are AI.",
-  "primaryOutcome": "Signal-detection sensitivity d' per respondent, with criterion c as co-primary, computed from 20 item-level AI/authentic judgments.",
-  "comparison": "Breathing and Guide vs control on d' and c, within each base rate. Interaction test of intervention by base rate. Optional accuracy-payoff robustness check.",
-  "population": "US online panel adults, as in the source study.",
+  "title": "Platform labels vs user training head to head",
+  "overview": "Respondents are randomised to control, Automated Flagging labels, an AI Literacy Guide, or both. They judge 24 posts (12 AI, 12 real) immediately and a new set of 24 after one week. Per-post responses allow accuracy on AI and real posts and a response-bias check.",
+  "hypothesis": "H1 (s-frame): Automated Flagging yields higher total accuracy than the AI Literacy Guide. H2: the combined arm exceeds either single arm (additive effects). Rival (i-frame): the Guide matches labels, particularly at 1 week.",
+  "primaryOutcome": "Total accuracy (share of 24 posts judged correctly) at wave 1, contrast labels vs guide.",
+  "comparison": "Pre-registered: Labels vs Guide. Then Both vs each single arm, and each arm vs control. Secondary: accuracy on AI posts and real posts, and wave 2 (1 week) accuracy.",
+  "population": "US adults from an online panel, about 450 per arm (1,800 total) at wave 1.",
   "conditions": [
    {
-    "id": "c_ctrl_low",
-    "title": "Control, 20% AI",
-    "description": "No intervention, feed with 20% AI items.",
-    "nodeId": "arm_ctrl_low"
+    "id": "c_control",
+    "title": "Control",
+    "description": "No intervention before the feed.",
+    "nodeId": "arm_control"
    },
    {
-    "id": "c_ctrl_high",
-    "title": "Control, 80% AI",
-    "description": "No intervention, feed with 80% AI items.",
-    "nodeId": "arm_ctrl_high"
+    "id": "c_labels",
+    "title": "Automated Flagging",
+    "description": "Posts carry machine-learning AI-detection labels.",
+    "nodeId": "arm_labels"
    },
    {
-    "id": "c_breath_low",
-    "title": "Breathing, 20% AI",
-    "description": "Breathing exercise, then feed with 20% AI items.",
-    "nodeId": "arm_breath_low"
+    "id": "c_guide",
+    "title": "AI Literacy Guide",
+    "description": "A guide with examples of AI artifacts is shown before the feed.",
+    "nodeId": "arm_guide"
    },
    {
-    "id": "c_breath_high",
-    "title": "Breathing, 80% AI",
-    "description": "Breathing exercise, then feed with 80% AI items.",
-    "nodeId": "arm_breath_high"
-   },
-   {
-    "id": "c_guide_low",
-    "title": "Guide, 20% AI",
-    "description": "AI Literacy Guide, then feed with 20% AI items.",
-    "nodeId": "arm_guide_low"
-   },
-   {
-    "id": "c_guide_high",
-    "title": "Guide, 80% AI",
-    "description": "AI Literacy Guide, then feed with 80% AI items.",
-    "nodeId": "arm_guide_high"
+    "id": "c_both",
+    "title": "Labels plus Guide",
+    "description": "Both the guide and the labels.",
+    "nodeId": "arm_both"
    }
   ],
   "blocks": [
@@ -63,19 +51,19 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "This is a research study about judging online media. Participation is voluntary and anonymous, and you may stop at any time. Do you agree to participate?",
+      "text": "This is a Columbia University research study on how people judge online media. Participation is voluntary and you may stop at any time. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
         "id": "yes",
-        "text": "I agree",
+        "text": "I consent",
         "recode": "1"
        },
        {
         "id": "no",
-        "text": "I do not agree",
+        "text": "I do not consent",
         "recode": "0"
        }
       ],
@@ -89,53 +77,36 @@
     "title": "Pre-treatment",
     "questions": [
      {
-      "id": "q_pre_ai",
+      "id": "q_conf_pre",
       "type": "MC",
-      "text": "Have you ever interacted with any of the following tools?",
-      "tag": "pre_tools",
-      "multiple": true,
+      "text": "In general, how much trust and confidence do you have in the news media when it comes to reporting the news fully, accurately and fairly?",
+      "tag": "media_confidence",
+      "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "t1",
-        "text": "ChatGPT",
-        "recode": "1"
+        "id": "a",
+        "text": "A great deal",
+        "recode": "4"
        },
        {
-        "id": "t2",
-        "text": "Dall-E",
-        "recode": "2"
-       },
-       {
-        "id": "t3",
-        "text": "Midjourney",
+        "id": "b",
+        "text": "A fair amount",
         "recode": "3"
        },
        {
-        "id": "t4",
-        "text": "None of these",
-        "recode": "0"
+        "id": "c",
+        "text": "Not very much",
+        "recode": "2"
+       },
+       {
+        "id": "d",
+        "text": "None at all",
+        "recode": "1"
        }
       ],
       "rows": [],
-      "sourceQuestionId": "QID16"
-     }
-    ]
-   },
-   {
-    "id": "b_breath",
-    "title": "Breathing",
-    "questions": [
-     {
-      "id": "q_breath",
-      "type": "DB",
-      "text": "Please do this box-breathing exercise for one minute: breathe in for 4 seconds, hold for 4, breathe out for 4, hold for 4. Repeat calmly.",
-      "tag": "breath_text",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
+      "sourceQuestionId": "QID7"
      }
     ]
    },
@@ -146,8 +117,8 @@
      {
       "id": "q_guide",
       "type": "DB",
-      "text": "Guide: How to spot AI-generated media. Look for odd hands and teeth, warped text, inconsistent lighting and shadows, overly smooth skin, and unnatural motion or audio sync in videos. Examples of each artifact are shown. {{ed:guide_img}}",
-      "tag": "guide_text",
+      "text": "{{ed:guide_stim}}",
+      "tag": "guide_view",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -157,25 +128,31 @@
     ]
    },
    {
-    "id": "b_task",
-    "title": "Feed task",
+    "id": "b_nolabel_intro",
+    "title": "Task intro",
     "questions": [
      {
-      "id": "q_task_intro",
+      "id": "q_intro",
       "type": "DB",
-      "text": "You will see 20 posts. For each, mark whether it is AI-generated or authentic. Go with your gut if unsure.",
+      "text": "Now we would like to see if you can detect content generated by artificial intelligence. For each post, mark whether it is AI-generated or real. If unsure, go with your gut.",
       "tag": "task_intro",
       "multiple": false,
       "required": false,
       "choices": [],
       "rows": [],
       "sourceQuestionId": ""
-     },
+     }
+    ]
+   },
+   {
+    "id": "b_feed_plain",
+    "title": "Feed without labels",
+    "questions": [
      {
-      "id": "q_item1",
+      "id": "q_feed_plain",
       "type": "DB",
-      "text": "{{ed:item1}}",
-      "tag": "item1_stim",
+      "text": "{{ed:feed_plain}}",
+      "tag": "feed_plain_view",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -183,10 +160,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_item1r",
+      "id": "q_judge_plain",
       "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "item1_resp",
+      "text": "Was the last post AI-generated or real?",
+      "tag": "judge_plain",
       "multiple": false,
       "required": true,
       "choices": [
@@ -197,40 +174,7 @@
        },
        {
         "id": "real",
-        "text": "Authentic",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_item2",
-      "type": "DB",
-      "text": "{{ed:item2}}",
-      "tag": "item2_stim",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_item2r",
-      "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "item2_resp",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ai",
-        "text": "AI-generated",
-        "recode": "1"
-       },
-       {
-        "id": "real",
-        "text": "Authentic",
+        "text": "Real",
         "recode": "0"
        }
       ],
@@ -240,54 +184,94 @@
     ]
    },
    {
-    "id": "b_post",
-    "title": "Post-task",
+    "id": "b_feed_label",
+    "title": "Feed with labels",
     "questions": [
      {
-      "id": "q_conf",
-      "type": "Matrix",
-      "text": "Please indicate your agreement.",
-      "tag": "post_conf",
+      "id": "q_feed_label",
+      "type": "DB",
+      "text": "{{ed:feed_label}}",
+      "tag": "feed_label_view",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_judge_label",
+      "type": "MC",
+      "text": "Was the last post AI-generated or real?",
+      "tag": "judge_label",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "s1",
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Real",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_out",
+    "title": "Outcomes",
+    "questions": [
+     {
+      "id": "q_confid",
+      "type": "MC",
+      "text": "I feel confident in my ability to detect artificial intelligence.",
+      "tag": "ai_confidence",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "c1",
         "text": "Strongly disagree",
         "recode": "1"
        },
        {
-        "id": "s2",
-        "text": "Somewhat disagree",
+        "id": "c2",
+        "text": "Disagree",
         "recode": "2"
        },
        {
-        "id": "s3",
-        "text": "Neither",
+        "id": "c3",
+        "text": "Somewhat disagree",
         "recode": "3"
        },
        {
-        "id": "s4",
-        "text": "Somewhat agree",
+        "id": "c4",
+        "text": "Neither agree nor disagree",
         "recode": "4"
        },
        {
-        "id": "s5",
-        "text": "Strongly agree",
+        "id": "c5",
+        "text": "Somewhat agree",
         "recode": "5"
-       }
-      ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "I feel confident in my ability to detect artificial intelligence."
        },
        {
-        "id": "r2",
-        "text": "I guessed AI more often than I guessed authentic."
+        "id": "c6",
+        "text": "Agree",
+        "recode": "6"
+       },
+       {
+        "id": "c7",
+        "text": "Strongly agree",
+        "recode": "7"
        }
       ],
-      "sourceQuestionId": ""
+      "rows": [],
+      "sourceQuestionId": "QID3"
      }
     ]
    },
@@ -298,7 +282,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some posts were AI-generated and some authentic, and the share of each varied between participants. Your score does not affect your payment. The study examines whether tips and exercises improve real detection or just make people say AI more often.",
+      "text": "Thank you. Some labels and guidance in this study were part of an experiment and labels may not have been accurate. We will invite you back in one week for a short follow-up with new posts.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -323,9 +307,21 @@
     "operator": "equals"
    },
    {
-    "id": "n_br",
+    "id": "n_end",
+    "type": "end",
+    "label": "End non-consent",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_branch",
     "type": "branch",
-    "label": "No consent",
+    "label": "Non-consent",
     "children": [
      "n_end"
     ],
@@ -335,18 +331,6 @@
     "questionId": "q_consent",
     "choiceId": "no",
     "operator": "selected"
-   },
-   {
-    "id": "n_end",
-    "type": "end",
-    "label": "End",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
    },
    {
     "id": "n_pre",
@@ -363,14 +347,12 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Arms",
+    "label": "Arm",
     "children": [
-     "arm_ctrl_low",
-     "arm_ctrl_high",
-     "arm_breath_low",
-     "arm_breath_high",
-     "arm_guide_low",
-     "arm_guide_high"
+     "arm_control",
+     "arm_labels",
+     "arm_guide",
+     "arm_both"
     ],
     "blockId": "",
     "field": "",
@@ -380,14 +362,14 @@
     "operator": "equals"
    },
    {
-    "id": "arm_ctrl_low",
+    "id": "arm_control",
     "type": "group",
-    "label": "Control 20",
+    "label": "Control",
     "children": [
-     "e_cl",
-     "e_i1l",
-     "e_i2l",
-     "t_task_cl"
+     "set_control",
+     "set_cfeed",
+     "n_intro_c",
+     "n_feed_plain_c"
     ],
     "blockId": "",
     "field": "",
@@ -397,47 +379,35 @@
     "operator": "equals"
    },
    {
-    "id": "e_cl",
+    "id": "set_control",
     "type": "embedded",
     "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "ctrl_low",
+    "value": "control",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i1l",
+    "id": "set_cfeed",
     "type": "embedded",
-    "label": "item1",
+    "label": "feed",
     "children": [],
     "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 20% AI-share pool]",
+    "field": "feed_plain",
+    "value": "[IMAGE: simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no labels]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i2l",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 20% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_cl",
+    "id": "n_intro_c",
     "type": "block",
-    "label": "Task",
+    "label": "Intro",
     "children": [],
-    "blockId": "b_task",
+    "blockId": "b_nolabel_intro",
     "field": "",
     "value": "",
     "questionId": "",
@@ -445,14 +415,26 @@
     "operator": "equals"
    },
    {
-    "id": "arm_ctrl_high",
+    "id": "n_feed_plain_c",
+    "type": "block",
+    "label": "Feed",
+    "children": [],
+    "blockId": "b_feed_plain",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_labels",
     "type": "group",
-    "label": "Control 80",
+    "label": "Labels",
     "children": [
-     "e_ch",
-     "e_i1h",
-     "e_i2h",
-     "t_task_ch"
+     "set_labels",
+     "set_lfeed",
+     "n_intro_l",
+     "n_feed_label_l"
     ],
     "blockId": "",
     "field": "",
@@ -462,47 +444,35 @@
     "operator": "equals"
    },
    {
-    "id": "e_ch",
+    "id": "set_labels",
     "type": "embedded",
     "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "ctrl_high",
+    "value": "labels",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i1h",
+    "id": "set_lfeed",
     "type": "embedded",
-    "label": "item1",
+    "label": "feed",
     "children": [],
     "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 80% AI-share pool]",
+    "field": "feed_label",
+    "value": "[IMAGE: simulated feed of 24 posts, each carrying an automated AI-detection label such as 'Likely AI-generated' or 'Likely real']",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i2h",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 80% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_ch",
+    "id": "n_intro_l",
     "type": "block",
-    "label": "Task",
+    "label": "Intro",
     "children": [],
-    "blockId": "b_task",
+    "blockId": "b_nolabel_intro",
     "field": "",
     "value": "",
     "questionId": "",
@@ -510,15 +480,28 @@
     "operator": "equals"
    },
    {
-    "id": "arm_breath_low",
+    "id": "n_feed_label_l",
+    "type": "block",
+    "label": "Feed",
+    "children": [],
+    "blockId": "b_feed_label",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_guide",
     "type": "group",
-    "label": "Breath 20",
+    "label": "Guide",
     "children": [
-     "e_bl",
-     "t_br_bl",
-     "e_i1bl",
-     "e_i2bl",
-     "t_task_bl"
+     "set_guide",
+     "set_gstim",
+     "n_guide_g",
+     "set_gfeed",
+     "n_intro_g",
+     "n_feed_plain_g"
     ],
     "blockId": "",
     "field": "",
@@ -528,188 +511,31 @@
     "operator": "equals"
    },
    {
-    "id": "e_bl",
+    "id": "set_guide",
     "type": "embedded",
     "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "breath_low",
+    "value": "guide",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_br_bl",
-    "type": "block",
-    "label": "Breathing",
-    "children": [],
-    "blockId": "b_breath",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_i1bl",
-    "type": "embedded",
-    "label": "item1",
-    "children": [],
-    "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 20% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_i2bl",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 20% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_bl",
-    "type": "block",
-    "label": "Task",
-    "children": [],
-    "blockId": "b_task",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "arm_breath_high",
-    "type": "group",
-    "label": "Breath 80",
-    "children": [
-     "e_bh",
-     "t_br_bh",
-     "e_i1bh",
-     "e_i2bh",
-     "t_task_bh"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_bh",
-    "type": "embedded",
-    "label": "cond",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "breath_high",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_br_bh",
-    "type": "block",
-    "label": "Breathing",
-    "children": [],
-    "blockId": "b_breath",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_i1bh",
-    "type": "embedded",
-    "label": "item1",
-    "children": [],
-    "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 80% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_i2bh",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 80% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_bh",
-    "type": "block",
-    "label": "Task",
-    "children": [],
-    "blockId": "b_task",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "arm_guide_low",
-    "type": "group",
-    "label": "Guide 20",
-    "children": [
-     "e_gl",
-     "e_gimgl",
-     "t_gd_gl",
-     "e_i1gl",
-     "e_i2gl",
-     "t_task_gl"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_gl",
-    "type": "embedded",
-    "label": "cond",
-    "children": [],
-    "blockId": "",
-    "field": "condition",
-    "value": "guide_low",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_gimgl",
+    "id": "set_gstim",
     "type": "embedded",
     "label": "guide",
     "children": [],
     "blockId": "",
-    "field": "guide_img",
-    "value": "[IMAGE: annotated examples of AI artifacts in images and video frames]",
+    "field": "guide_stim",
+    "value": "[IMAGE: AI Literacy Guide with annotated examples of AI artifacts in images and videos]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_gd_gl",
+    "id": "n_guide_g",
     "type": "block",
     "label": "Guide",
     "children": [],
@@ -721,35 +547,23 @@
     "operator": "equals"
    },
    {
-    "id": "e_i1gl",
+    "id": "set_gfeed",
     "type": "embedded",
-    "label": "item1",
+    "label": "feed",
     "children": [],
     "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 20% AI-share pool]",
+    "field": "feed_plain",
+    "value": "[IMAGE: simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no labels]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i2gl",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 20% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_gl",
+    "id": "n_intro_g",
     "type": "block",
-    "label": "Task",
+    "label": "Intro",
     "children": [],
-    "blockId": "b_task",
+    "blockId": "b_nolabel_intro",
     "field": "",
     "value": "",
     "questionId": "",
@@ -757,16 +571,28 @@
     "operator": "equals"
    },
    {
-    "id": "arm_guide_high",
+    "id": "n_feed_plain_g",
+    "type": "block",
+    "label": "Feed",
+    "children": [],
+    "blockId": "b_feed_plain",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_both",
     "type": "group",
-    "label": "Guide 80",
+    "label": "Both",
     "children": [
-     "e_gh",
-     "e_gimgh",
-     "t_gd_gh",
-     "e_i1gh",
-     "e_i2gh",
-     "t_task_gh"
+     "set_both",
+     "set_bstim",
+     "n_guide_b",
+     "set_bfeed",
+     "n_intro_b",
+     "n_feed_label_b"
     ],
     "blockId": "",
     "field": "",
@@ -776,31 +602,31 @@
     "operator": "equals"
    },
    {
-    "id": "e_gh",
+    "id": "set_both",
     "type": "embedded",
     "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "guide_high",
+    "value": "both",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_gimgh",
+    "id": "set_bstim",
     "type": "embedded",
     "label": "guide",
     "children": [],
     "blockId": "",
-    "field": "guide_img",
-    "value": "[IMAGE: annotated examples of AI artifacts in images and video frames]",
+    "field": "guide_stim",
+    "value": "[IMAGE: AI Literacy Guide with annotated examples of AI artifacts in images and videos]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_gd_gh",
+    "id": "n_guide_b",
     "type": "block",
     "label": "Guide",
     "children": [],
@@ -812,35 +638,23 @@
     "operator": "equals"
    },
    {
-    "id": "e_i1gh",
+    "id": "set_bfeed",
     "type": "embedded",
-    "label": "item1",
+    "label": "feed",
     "children": [],
     "blockId": "",
-    "field": "item1",
-    "value": "[IMAGE: feed item 1 from the 80% AI-share pool]",
+    "field": "feed_label",
+    "value": "[IMAGE: simulated feed of 24 posts, each carrying an automated AI-detection label such as 'Likely AI-generated' or 'Likely real']",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_i2gh",
-    "type": "embedded",
-    "label": "item2",
-    "children": [],
-    "blockId": "",
-    "field": "item2",
-    "value": "[IMAGE: feed item 2 from the 80% AI-share pool]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_task_gh",
+    "id": "n_intro_b",
     "type": "block",
-    "label": "Task",
+    "label": "Intro",
     "children": [],
-    "blockId": "b_task",
+    "blockId": "b_nolabel_intro",
     "field": "",
     "value": "",
     "questionId": "",
@@ -848,11 +662,23 @@
     "operator": "equals"
    },
    {
-    "id": "n_post",
+    "id": "n_feed_label_b",
     "type": "block",
-    "label": "Post",
+    "label": "Feed",
     "children": [],
-    "blockId": "b_post",
+    "blockId": "b_feed_label",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_out",
+    "type": "block",
+    "label": "Outcomes",
+    "children": [],
+    "blockId": "b_out",
     "field": "",
     "value": "",
     "questionId": "",
@@ -874,49 +700,40 @@
   ],
   "roots": [
    "n_consent",
-   "n_br",
+   "n_branch",
    "n_pre",
    "r1",
-   "n_post",
+   "n_out",
    "n_debrief"
   ],
   "assumptions": [
-   "About 300 per cell (6 cells, N about 1,800) to detect 0.04 at 80% power; H5 observed 0.066-0.091 with SE about 0.03; 300 per cell detects 0.04-0.05 at 80% power.",
-   "Only two of the 20 items are shown in the schema as examples; the full instrument repeats the item/response pair for 20 items, drawn from pools with 4 or 16 AI items.",
-   "Item order is randomised and the same authentic items are used across base rates where possible.",
-   "A payoff-for-accuracy variant (bonus per correct answer) can be added as a robustness check.",
-   "Platform: US online panel, about 10 minutes; d' uses a log-linear correction for extreme rates.",
-   "Participants are not told the base rate."
+   "Power: about 450 per arm to detect 0.027 at 80% power; sized to detect a 0.03 label-vs-guide gap (H1 SD about 0.13). Observed Guide-vs-control raw difference 0.006, adjusted 0.047.",
+   "Recruit about 600 per arm to allow for attrition at the 1-week follow-up.",
+   "Per-post responses are recorded in the feed platform (24 posts, one judgment each) so d' and criterion can be computed; the single judgment question stands in for each post.",
+   "Wave 2 uses a new set of 24 posts with the same arm and, for labelled arms, labels; the guide is not re-shown.",
+   "Platform: online panel; about 10 minutes at wave 1, 5 minutes at wave 2."
   ],
   "unresolved": [
-   "The actual image and video files, the guide graphic and the item pools must be supplied by the research team.",
-   "IRB approval number and compensation need to be set by the research team.",
-   "The remaining 18 item/response pairs must be built from the same template."
+   "The actual media files, labels and guide must be supplied by the research team.",
+   "IRB approval number and compensation need to be set.",
+   "The wave 2 invitation and recontact procedure must be built."
   ],
   "evidence": [
    {
     "id": "e1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "Breathing and Nudge raised AI detection without a rise in authentic recognition.",
+    "claim": "Automated Flagging +4.4; Guide borderline",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    },
    {
     "id": "e2",
-    "title": "Pre-registration of the source study",
-    "url": "https://aspredicted.org/q2eh95.pdf",
-    "claim": "The registered design and outcomes",
-    "excerpt": "",
-    "origin": "supplied"
-   },
-   {
-    "id": "e3",
     "title": "The i-frame and the s-frame",
     "url": "https://doi.org/10.1017/s0140525x22002023",
-    "claim": "Debate over whether individual-level fixes are enough.",
+    "claim": "The debate between individual-level and system-level solutions",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    }
   ]
  }

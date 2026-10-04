@@ -11,115 +11,120 @@
   "orchestrator": "anthropic/claude-sonnet-5.5"
  },
  "model": "anthropic/claude-sonnet-5.5",
- "overall": "The tables support a null pooled effect on accuracy (1.0 point, CI [-0.3, 2.4]) and three nominal arm-level H1 effects with p between 0.004 and 0.043. They do not support treating those effects as robust. With 44 uncorrected tests, the exclusion rerun (H1a) removes two of the three effects, and the Guide's interval barely clears zero. The most important caveat is that only Automated Flagging survives the low-knowledge exclusion, and then only at p=0.044. The E1 and E2 findings are unsupported because their tables are empty.",
+ "overall": "The registered data support one reasonably clear result: Automated Flagging raised total accuracy by about 4.4 points. The AI Literacy Guide (p=0.043) and Mindfulness (p=0.032) results are borderline and uncorrected across 44 registered tests. The pooled accuracy effect is null, and the confidence, attitude and trust findings are isolated arm-level results. The most important caveat is that several significant arm effects do not match the raw arm-versus-control mean differences, so they depend on the weighted, covariate-interacted model, and the report does not reconcile the two. The H5 and H6 results are exploratory and cannot separate discernment from a shift toward answering 'AI'.",
  "issues": [
   {
    "severity": "high",
-   "location": "E1 / E2",
-   "issue": "The tables have empty estimate columns, yet the Finding lines claim effects were eliminated (E1) and that effects are not concentrated in either familiarity group and 'likely reflect sampling variability' (E2). The review flagged these claims as unsupported but the text still carries them. E1 is also still labelled 'attention-check failures', although pk_score<1 is a knowledge screen.",
-   "fix": "Populate the tables with estimates, SEs and an arm-by-familiarity interaction test, or delete the conclusions. Relabel E1 as a low-knowledge exclusion.",
-   "kind": "analytical",
-   "change": {
-    "target": "E2",
-    "type": "robustness"
-   },
-   "id": "R1",
-   "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "The E1 and E2 tables are empty, so the conclusions must be deleted or the tables populated, and E1 needs relabelling as a low-knowledge exclusion."
-  },
-  {
-   "severity": "high",
-   "location": "H1 / H1a / Abstract",
-   "issue": "H1a (dropping 613 low-knowledge respondents) shows Mindfulness becoming non-significant (p=0.12) and the Guide shrinking to 0.023 (p=0.39). Only Automated Flagging survives, at p=0.044. The H1a section has no prose, and the abstract and Key findings present all three H1 effects without this caveat. Excluding on pk_score could also be post-treatment if it was measured after treatment.",
-   "fix": "Add H1a prose and report that two of the three effects are not robust to the exclusion. Clarify when pk_score was measured.",
-   "kind": "presentational",
-   "change": null,
-   "id": "R2",
-   "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "The H1a estimates already exist, so the fix is prose that reports the non-robustness and when pk_score was measured."
-  },
-  {
-   "severity": "high",
-   "location": "H1 / Key findings",
-   "issue": "The three H1 effects are labelled 'Registered' and described as raising or lowering accuracy, but there are 44 uncorrected tests and p-values of 0.032 to 0.043. The Guide's CI lower bound is 0.2 points. The wording is too strong.",
-   "fix": "Report Holm/BH-adjusted p-values beside the registered ones as a supplementary robustness check, and describe the effects as nominal.",
+   "location": "Abstract / H1 / Key findings",
+   "issue": "The headline says Automated Flagging and the Guide 'raised' accuracy, and the abstract notes the uncorrected tests only in passing. With 44 uncorrected registered tests and 3 significant H1 arms, only Automated Flagging (p=.004) is plausibly robust; the Guide (p=.043) and Mindfulness (p=.032) would not survive any correction. The Key findings list them as plain findings.",
+   "fix": "Report multiplicity-adjusted p-values (Holm/BH) per outcome family, and word the Guide and Mindfulness results as tentative.",
    "kind": "analytical",
    "change": {
     "target": "H1",
     "type": "robustness"
    },
-   "id": "R3",
+   "id": "R1",
    "source": "light",
    "disposition": "declined",
-   "disposition_reason": "The plan specifies no multiple-testing correction, so adjusted p-values would change the registered analysis. The wording can be softened to 'nominal' without it."
+   "disposition_reason": "The registered plan specifies no multiple-testing correction, so adjusted p-values are not added; the wording is softened instead (editorial)."
   },
   {
    "severity": "medium",
    "location": "H2",
-   "issue": "The prose calls the pooled -0.11 a result and says 'one arm out of eleven could arise by chance'. The Breathing SE (0.23) is far larger than most other arms' SEs, which the review flagged. Pooled I² is 0 even though SEs vary widely. The unadjusted H2a Breathing estimate (-0.63) is also not discussed.",
-   "fix": "Report H2a in the text, run leverage and outlier diagnostics for the Lin interaction model, and soften the interpretation.",
+   "issue": "The pooled estimate of -0.11 (p=.026) is called 'a small shift', yet no individual arm besides Breathing Exercise differs from zero. The Breathing Exercise estimate (-0.54) is larger than its own arm mean difference (4.146 vs 4.187 = -0.04), which suggests covariate adjustment or weighting drives it. The raw means and the adjusted estimates are not reconciled anywhere.",
+   "fix": "Show unadjusted and adjusted estimates, check sensitivity to the Lin interaction model and the IPW weights, and explain the discrepancy.",
    "kind": "analytical",
    "change": {
     "target": "H2",
+    "type": "covariates"
+   },
+   "id": "R2",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "Unadjusted and unweighted estimates can be fitted on the same data to show where the Breathing Exercise estimate comes from.",
+   "answered_by": "H2a"
+  },
+  {
+   "severity": "medium",
+   "location": "H1 tables",
+   "issue": "The mean_arm values in the CSVs do not match the estimates. Mindfulness is -3.9 points adjusted but its raw arm mean is higher than control (0.696 vs 0.693), and the Guide's raw difference is only 0.6 points against an adjusted +4.7. The significant H1 results therefore depend on the weighted, covariate-interacted model.",
+   "fix": "Report unadjusted, unweighted differences alongside the adjusted results, and state that the IPW weights are model-dependent (what they correct for). Also check whether the IPW weights are influential.",
+   "kind": "analytical",
+   "change": {
+    "target": "H1",
+    "type": "weights"
+   },
+   "id": "R3",
+   "source": "light",
+   "disposition": "address",
+   "disposition_reason": "A robustness re-fit with raw differences, no weights and no interactions, plus a check of weight influence, answers this directly.",
+   "answered_by": "H1a"
+  },
+  {
+   "severity": "medium",
+   "location": "H5",
+   "issue": "The pooled H5 effect is reported with p = 0.000, and the text emphasises the Breathing Exercise and Nudge as raising detection of AI posts. This is exploratory, and H6 shows no matching gain for authentic posts. The AI Literacy Guide result (CI [0.000, 0.157], p=.049) is borderline. Higher AI-detection scores could reflect a shift toward answering 'AI' more often (response bias) rather than better discernment, which would make this an accuracy gain only in name.",
+   "fix": "Report p<0.001 rather than 0.000, and analyse sensitivity/specificity or d' to separate discernment from response bias. Qualify the Key finding.",
+   "kind": "analytical",
+   "change": {
+    "target": "H5",
     "type": "robustness"
    },
    "id": "R4",
    "source": "light",
-   "disposition": "address",
-   "disposition_reason": "Leverage and outlier diagnostics on the Lin model can be run on the same data, and H2a can be discussed in the text."
+   "disposition": "unresolved",
+   "disposition_reason": "Sensitivity and d' need per-post responses and truth labels that the tables do not provide, so response bias cannot be separated from discernment here; only the p-value formatting is editorial."
   },
   {
    "severity": "medium",
    "location": "Design",
-   "issue": "IPW construction, exclusion rules and attrition by arm are not reported (227 respondents dropped). Control n=181 is much smaller than most treatment arms. Part of the data pre-dated registration, but it is not stated which arms or batches.",
-   "fix": "Document the weights, exclusions and attrition by arm, and state which batches pre-dated registration.",
+   "issue": "The control group has n=181 but this is not stated in the report ('whose size is not given in the tables'). The arms are very unbalanced (78 to 333), and the report does not explain the allocation or whether the 227 exclusions differed by arm.",
+   "fix": "State the control n, give the exclusion criteria, and show attrition/exclusion by arm.",
    "kind": "presentational",
    "change": null,
    "id": "R5",
    "source": "light",
    "disposition": "editorial",
-   "disposition_reason": "The weights, exclusions, attrition by arm and pre-registration batches need documenting in the text."
-  },
-  {
-   "severity": "medium",
-   "location": "H5/H6 and Potential",
-   "issue": "H6 interprets the pattern as a response-bias shift ('hints that some arms shift how people classify posts'), and the pooled H5 effect is reported as p=0.000. No discernment measure supports the bias reading. Breathing Exercise on real posts is -4.8 and not significant.",
-   "fix": "Present the bias reading as speculative, write p<0.001, and avoid the interpretation until item-level data are available.",
-   "kind": "presentational",
-   "change": null,
-   "id": "R6",
-   "source": "light",
-   "disposition": "editorial",
-   "disposition_reason": "The bias reading should be labelled speculative and the pooled p written as p<0.001."
+   "disposition_reason": "The control n of 181 is in the tables, so the report only needs to state it and describe the exclusions; exclusion counts by arm cannot be shown from these tables."
   },
   {
    "severity": "low",
-   "location": "E3",
-   "issue": "The Finding line says 'max p = 0.816', which is garbled alongside 'all p > 0.116'. 'Confirming the randomisation' is also too strong for 11 null tests, and no joint test is given.",
-   "fix": "Say 'min p = 0.116' and 'consistent with balance', and add a joint F-test.",
+   "location": "Design / Registration",
+   "issue": "Data existed at registration, and the registered date (2023-11-15) falls after fielding (Oct–Nov 2023). The claim that 'later batches followed the plan' is unverified, and no analysis separates pre- and post-registration batches.",
+   "fix": "Report which share of the data predates registration, and run a sensitivity analysis on post-registration data only.",
    "kind": "analytical",
    "change": {
-    "target": "E3",
-    "type": "robustness"
+    "target": "H1",
+    "type": "exclusion"
    },
-   "id": "R7",
+   "id": "R6",
    "source": "light",
    "disposition": "address",
-   "disposition_reason": "A joint F-test of arm dummies on pk_score is a straightforward additional estimate, and the wording needs fixing too."
+   "disposition_reason": "A post-registration-batch-only re-fit is possible if a batch indicator exists in the data."
   },
   {
    "severity": "low",
    "location": "Related work",
-   "issue": "The retrieved list includes irrelevant items (kidney disease, PRISMA-P, mortality risk), and the Capraro et al. characterisation is dubious (the paper concerns socioeconomic inequalities).",
-   "fix": "Remove the irrelevant references and correct the Capraro description.",
+   "issue": "The related-work section lists irrelevant retrieved items (additive manufacturing, drug development, publication-bias tests) and draws only weak links to the study. It also describes the null results as 'anticipated' by the i-frame critique.",
+   "fix": "Remove irrelevant citations and drop the claim that nulls were anticipated.",
+   "kind": "presentational",
+   "change": null,
+   "id": "R7",
+   "source": "light",
+   "disposition": "editorial",
+   "disposition_reason": "Irrelevant citations and the claim that nulls were anticipated should be removed."
+  },
+  {
+   "severity": "low",
+   "location": "H4",
+   "issue": "The pooled p=.060 and the single arm at p=.023 are described as 'unchanged in the data's resolution', which is vague. The CIs also exclude effects that could matter, but the report does not discuss this.",
+   "fix": "Rephrase in terms of the CI bounds (effects larger than about 0.27 are ruled out).",
    "kind": "presentational",
    "change": null,
    "id": "R8",
    "source": "light",
    "disposition": "editorial",
-   "disposition_reason": "The irrelevant references should be removed and the Capraro description corrected."
+   "disposition_reason": "The H4 prose can be rewritten in terms of the CI bounds."
   },
   {
    "id": "K1",
@@ -128,10 +133,10 @@
    "kind": "presentational",
    "change": null,
    "location": "Abstract",
-   "issue": "Overstated claim: \"Two arms raised accuracy: Automated Flagging by 4.4 points ... AI Literacy Guide by 4.7 points\". H1_arms: Automated Flagging 0.044, CI [0.014, 0.073], p=0.004. Guide 0.047, CI [0.002, 0.092], p=0.043. H1a: Guide 0.023, p=0.39. Automated Flagging 0.036, p=0.044.",
-   "fix": "Say the arms had nominally higher accuracy in uncorrected tests. Only Automated Flagging held up when low-knowledge respondents were excluded.",
+   "issue": "Overstated claim: \"the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])\". H1 row 10: 0.047, p=0.043. The raw arm mean is 0.699 vs 0.693 for control, a gap of only 0.6 points, so the result depends on the adjusted model.",
+   "fix": "Call it tentative, borderline and model-dependent, and report the unadjusted difference beside it.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   },
   {
    "id": "K2",
@@ -140,10 +145,10 @@
    "kind": "presentational",
    "change": null,
    "location": "Abstract",
-   "issue": "Overstated claim: \"Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])\". H1_arms: -0.039, p=0.032. H1a: -0.037, CI [-0.083, 0.010], p=0.122.",
-   "fix": "Describe it as a nominal decrease that was not robust to the exclusion.",
+   "issue": "Overstated claim: \"Mindfulness lowered it by 3.9 points (95% CI [-7.4, -0.3])\". H1 row 6: -0.039, p=0.032. The raw arm mean is 0.696 vs 0.693 for control, which is higher, not lower.",
+   "fix": "Describe it as a borderline adjusted estimate that the raw means do not reproduce.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   },
   {
    "id": "K3",
@@ -151,11 +156,11 @@
    "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "Key findings",
-   "issue": "Overstated claim: \"Registered: Automated Flagging raised total accuracy by 4.4 points (p=0.004)\". H1_arms row 3 matches the numbers. There are 44 uncorrected tests, and H1a gives p=0.044.",
-   "fix": "Add 'nominal, uncorrected' and mention the H1a result.",
+   "location": "H2",
+   "issue": "Overstated claim: \"Breathing Exercise lowered attitudes by 0.54 scale points\". H2 row 5: -0.543, p=0.018. The raw means are 4.146 vs 4.187, a gap of about 0.04, so the estimate comes from the adjusted model.",
+   "fix": "Flag it as an isolated adjusted estimate that the raw means do not support, and give the unadjusted difference.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   },
   {
    "id": "K4",
@@ -164,701 +169,260 @@
    "kind": "presentational",
    "change": null,
    "location": "H2",
-   "issue": "Overstated claim: \"Attitudes toward AI were lower in the Breathing Exercise arm by 0.54 scale points (p=0.018)\". H2 table: -0.543, CI [-0.994, -0.092], p=0.018. This is the only significant arm among 11. H2a gives -0.633, p=0.011.",
-   "fix": "Report H2a and describe the result as isolated and exploratory in character.",
+   "issue": "Overstated claim: \"The pooled estimate was -0.11 (95% CI [-0.21, -0.01]), a small shift\". H2 pooled: -0.111, p=0.026. Ten of the 11 arms have intervals spanning zero, and the result is uncorrected.",
+   "fix": "Describe it as a marginal pooled estimate that is not robust.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   },
   {
    "id": "K5",
    "source": "claims",
-   "severity": "high",
+   "severity": "medium",
    "kind": "presentational",
    "change": null,
-   "location": "E1",
-   "issue": "Unsupported claim: \"Excluding 613 attention-check failures eliminated the two nominally significant registered effects (Automated Flagging p=0.004→ns)\". E1 table estimate columns are empty. H1a shows Automated Flagging still significant (p=0.044). The Guide p=0.39. The respondents are low-knowledge, not attention failures.",
-   "fix": "Delete the claim, or fill the table. Say Automated Flagging remains at p=0.044 and the Guide is not robust.",
+   "location": "Key findings",
+   "issue": "Overstated claim: \"Exploratory splits suggest the Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts\". H5 rows 5 and 4: 0.091 (p=0.003) and 0.066 (p=0.014). H6 shows no matching gain for authentic posts, and response bias is not excluded.",
+   "fix": "Say these arms raised the share of AI posts identified, and that this may reflect a greater tendency to answer 'AI' rather than better discernment.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   },
   {
    "id": "K6",
-   "source": "claims",
-   "severity": "high",
-   "kind": "presentational",
-   "change": null,
-   "location": "E2",
-   "issue": "Unsupported claim: \"No arm reached p<0.05 in either subsample ... not concentrated ... likely reflect sampling variability\". E2 table has only n columns. The estimates and p-values are empty.",
-   "fix": "Delete the conclusion or populate the table with an interaction test.",
-   "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
-  },
-  {
-   "id": "K7",
-   "source": "claims",
-   "severity": "medium",
-   "kind": "presentational",
-   "change": null,
-   "location": "E3",
-   "issue": "Overstated claim: \"No intervention significantly affected pre-treatment knowledge (max p = 0.816), confirming the randomisation\". E3: min p=0.116, max p=0.816. No joint test is given.",
-   "fix": "Say 'min p=0.116; consistent with balance' and add a joint F-test.",
-   "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
-  },
-  {
-   "id": "K8",
-   "source": "claims",
-   "severity": "medium",
-   "kind": "presentational",
-   "change": null,
-   "location": "H6",
-   "issue": "Overstated claim: \"Taken with H5, this hints that some arms shift how people classify posts rather than raising accuracy overall\". H6: only Infographic 2 is significant (-0.061). H5 has three arms with higher detection. No discernment or bias measure exists.",
-   "fix": "Present it as speculation.",
-   "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
-  },
-  {
-   "id": "K9",
    "source": "claims",
    "severity": "medium",
    "kind": "presentational",
    "change": null,
    "location": "H5",
-   "issue": "Overstated claim: \"Pooling the 11 arm effects ... 0.038 (SE 0.011, p = 0.000)\". The p-value is shown as 0.000. The pooled SE is approximate because the arms share a control group.",
-   "fix": "Write p<0.001 and note the approximation.",
+   "issue": "Overstated claim: \"The pooled H5 effect, p = 0.000\". The pooled estimate is 0.038, SE 0.011; a p-value of exactly zero is a rounding artefact.",
+   "fix": "Report p<0.001 and label the result exploratory.",
    "disposition": "editorial",
-   "disposition_reason": "claim checked against the tables by the orchestrator"
+   "disposition_reason": "claim checked against the tables by the checking agent"
   }
  ],
  "pending": [],
  "synthesis": {
   "model": "anthropic/claude-sonnet-5.5",
-  "assessment": "The tables support a null pooled effect on accuracy (1.0 point, CI [-0.3, 2.4]) and three nominal arm-level H1 effects with p between 0.004 and 0.043. They do not support treating those effects as robust. With 44 uncorrected tests, the exclusion rerun (H1a) removes two of the three effects, and the Guide's interval barely clears zero. The most important caveat is that only Automated Flagging survives the low-knowledge exclusion, and then only at p=0.044. The E1 and E2 findings are unsupported because their tables are empty.",
+  "assessment": "The registered data support one reasonably clear result: Automated Flagging raised total accuracy by about 4.4 points. The AI Literacy Guide (p=0.043) and Mindfulness (p=0.032) results are borderline and uncorrected across 44 registered tests. The pooled accuracy effect is null, and the confidence, attitude and trust findings are isolated arm-level results. The most important caveat is that several significant arm effects do not match the raw arm-versus-control mean differences, so they depend on the weighted, covariate-interacted model, and the report does not reconcile the two. The H5 and H6 results are exploratory and cannot separate discernment from a shift toward answering 'AI'.",
   "claims": [
    {
-    "claim": "Pooled across arms, total accuracy was 1.0 point higher than control (95% CI [−0.3, 2.4])",
+    "claim": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "registered_summary H1:pooled: estimate 0.010, SE 0.007, p=0.132. The CI follows from the estimate and SE.",
+    "evidence": "H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004; raw means 0.726 vs 0.693 point the same way.",
     "fix": ""
    },
    {
-    "claim": "Two arms raised accuracy: Automated Flagging by 4.4 points ... AI Literacy Guide by 4.7 points",
+    "claim": "the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])",
     "location": "Abstract",
     "verdict": "overstated",
-    "evidence": "H1_arms: Automated Flagging 0.044, CI [0.014, 0.073], p=0.004. Guide 0.047, CI [0.002, 0.092], p=0.043. H1a: Guide 0.023, p=0.39. Automated Flagging 0.036, p=0.044.",
-    "fix": "Say the arms had nominally higher accuracy in uncorrected tests. Only Automated Flagging held up when low-knowledge respondents were excluded."
+    "evidence": "H1 row 10: 0.047, p=0.043. The raw arm mean is 0.699 vs 0.693 for control, a gap of only 0.6 points, so the result depends on the adjusted model.",
+    "fix": "Call it tentative, borderline and model-dependent, and report the unadjusted difference beside it."
    },
    {
-    "claim": "Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])",
+    "claim": "Mindfulness lowered it by 3.9 points (95% CI [-7.4, -0.3])",
     "location": "Abstract",
     "verdict": "overstated",
-    "evidence": "H1_arms: -0.039, p=0.032. H1a: -0.037, CI [-0.083, 0.010], p=0.122.",
-    "fix": "Describe it as a nominal decrease that was not robust to the exclusion."
+    "evidence": "H1 row 6: -0.039, p=0.032. The raw arm mean is 0.696 vs 0.693 for control, which is higher, not lower.",
+    "fix": "Describe it as a borderline adjusted estimate that the raw means do not reproduce."
    },
    {
-    "claim": "Registered: Automated Flagging raised total accuracy by 4.4 points (p=0.004)",
-    "location": "Key findings",
-    "verdict": "overstated",
-    "evidence": "H1_arms row 3 matches the numbers. There are 44 uncorrected tests, and H1a gives p=0.044.",
-    "fix": "Add 'nominal, uncorrected' and mention the H1a result."
-   },
-   {
-    "claim": "Pooled across arms, attitudes toward AI were lower by 0.11 scale points (95% CI [−0.21, −0.01])",
-    "location": "Key findings",
+    "claim": "Pooled across arms, accuracy was not distinguishable from control (+1.0 point)",
+    "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H2 pooled: -0.111, SE 0.050, p=0.026. The unadjusted H2a pooled estimate is -0.134, p=0.013.",
+    "evidence": "H1 pooled: 0.010, SE 0.007, p=0.132.",
     "fix": ""
    },
    {
-    "claim": "Attitudes toward AI were lower in the Breathing Exercise arm by 0.54 scale points (p=0.018)",
+    "claim": "Breathing Exercise lowered attitudes by 0.54 scale points",
     "location": "H2",
     "verdict": "overstated",
-    "evidence": "H2 table: -0.543, CI [-0.994, -0.092], p=0.018. This is the only significant arm among 11. H2a gives -0.633, p=0.011.",
-    "fix": "Report H2a and describe the result as isolated and exploratory in character."
+    "evidence": "H2 row 5: -0.543, p=0.018. The raw means are 4.146 vs 4.187, a gap of about 0.04, so the estimate comes from the adjusted model.",
+    "fix": "Flag it as an isolated adjusted estimate that the raw means do not support, and give the unadjusted difference."
    },
    {
-    "claim": "Confidence fell in AI Literacy Infographic 2 by 0.69 and Flagging by 0.53; Inoculation raised it by 0.51",
+    "claim": "The pooled estimate was -0.11 (95% CI [-0.21, -0.01]), a small shift",
+    "location": "H2",
+    "verdict": "overstated",
+    "evidence": "H2 pooled: -0.111, p=0.026. Ten of the 11 arms have intervals spanning zero, and the result is uncorrected.",
+    "fix": "Describe it as a marginal pooled estimate that is not robust."
+   },
+   {
+    "claim": "Inoculation raised confidence by 0.51; Flagging lowered it by 0.53; AI Literacy Infographic 2 lowered it by 0.69",
     "location": "H3",
     "verdict": "supported",
-    "evidence": "H3 table: -0.686 (p=0.0095), -0.525 (p=0.012), +0.509 (p=0.007). The text is hedged elsewhere.",
+    "evidence": "H3 rows 7, 1 and 9: 0.509 (p=0.007), -0.525 (p=0.012), -0.686 (p=0.010). The tests are uncorrected and the Inoculation arm has only n=77.",
+    "fix": "Add a note that these three are uncorrected and rest on small arms."
+   },
+   {
+    "claim": "Only the AI Literacy Infographic differed on trust, at 0.15 points lower",
+    "location": "H4",
+    "verdict": "supported",
+    "evidence": "H4 row 8: -0.146, p=0.0235. The pooled estimate is -0.038, p=0.060.",
     "fix": ""
    },
    {
-    "claim": "Excluding 613 attention-check failures eliminated the two nominally significant registered effects (Automated Flagging p=0.004→ns)",
-    "location": "E1",
-    "verdict": "unsupported",
-    "evidence": "E1 table estimate columns are empty. H1a shows Automated Flagging still significant (p=0.044). The Guide p=0.39. The respondents are low-knowledge, not attention failures.",
-    "fix": "Delete the claim, or fill the table. Say Automated Flagging remains at p=0.044 and the Guide is not robust."
-   },
-   {
-    "claim": "No arm reached p<0.05 in either subsample ... not concentrated ... likely reflect sampling variability",
-    "location": "E2",
-    "verdict": "unsupported",
-    "evidence": "E2 table has only n columns. The estimates and p-values are empty.",
-    "fix": "Delete the conclusion or populate the table with an interaction test."
-   },
-   {
-    "claim": "No intervention significantly affected pre-treatment knowledge (max p = 0.816), confirming the randomisation",
-    "location": "E3",
+    "claim": "Exploratory splits suggest the Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts",
+    "location": "Key findings",
     "verdict": "overstated",
-    "evidence": "E3: min p=0.116, max p=0.816. No joint test is given.",
-    "fix": "Say 'min p=0.116; consistent with balance' and add a joint F-test."
+    "evidence": "H5 rows 5 and 4: 0.091 (p=0.003) and 0.066 (p=0.014). H6 shows no matching gain for authentic posts, and response bias is not excluded.",
+    "fix": "Say these arms raised the share of AI posts identified, and that this may reflect a greater tendency to answer 'AI' rather than better discernment."
    },
    {
-    "claim": "Taken with H5, this hints that some arms shift how people classify posts rather than raising accuracy overall",
-    "location": "H6",
-    "verdict": "overstated",
-    "evidence": "H6: only Infographic 2 is significant (-0.061). H5 has three arms with higher detection. No discernment or bias measure exists.",
-    "fix": "Present it as speculation."
-   },
-   {
-    "claim": "Pooling the 11 arm effects ... 0.038 (SE 0.011, p = 0.000)",
+    "claim": "The pooled H5 effect, p = 0.000",
     "location": "H5",
     "verdict": "overstated",
-    "evidence": "The p-value is shown as 0.000. The pooled SE is approximate because the arms share a control group.",
-    "fix": "Write p<0.001 and note the approximation."
+    "evidence": "The pooled estimate is 0.038, SE 0.011; a p-value of exactly zero is a rounding artefact.",
+    "fix": "Report p<0.001 and label the result exploratory."
    }
   ],
   "editorial": [
-   "Delete or populate the E1 and E2 findings, and relabel E1 as a low-knowledge exclusion.",
-   "Add H1a prose to the abstract and Key findings: only Automated Flagging survives, at p=0.044, and the Mindfulness and Guide effects do not.",
-   "Describe the three H1 effects as nominal, since 44 tests were run uncorrected and the plan has no correction.",
-   "State when pk_score was measured relative to treatment, and document the IPW weights, exclusions, attrition by arm and which batches pre-dated registration.",
-   "Change E3 to 'min p=0.116, consistent with balance', and write the H5 pooled p as <0.001.",
-   "Remove the irrelevant references and correct the Capraro description."
+   "Soften the Guide, Mindfulness and Breathing Exercise results to tentative, and note that the raw means do not reproduce them.",
+   "State the control n=181 and the exclusion counts (2,257 collected, 2,030 analysed).",
+   "Replace 'p = 0.000' with 'p<0.001' throughout.",
+   "Remove the irrelevant citations (additive manufacturing, drug development, publication-bias tests) and the statement that nulls were 'anticipated'.",
+   "In H4, rewrite 'unchanged in the data's resolution' using the CI bounds (effects beyond about 0.27 ruled out for the most precise arms)."
   ],
   "unresolved": [
    {
-    "question": "Do the interventions change response bias (willingness to label posts as AI) rather than true discernment?",
-    "why": "Only share-correct scores exist, so there is no signal-detection measure to separate sensitivity from bias.",
+    "question": "Do the exploratory gains in AI-post detection reflect better discernment or a greater tendency to answer 'AI'?",
+    "why": "Only share-correct scores are reported, with no per-post responses to compute sensitivity, specificity or d'.",
     "from": [
-     "R6"
+     "R4"
     ],
     "id": "U1"
-   },
-   {
-    "question": "Do the Automated Flagging and AI Literacy Guide effects on accuracy replicate in a larger, independent sample with a pre-specified correction?",
-    "why": "The effects are marginal with 44 uncorrected tests and small arms, so this single study cannot distinguish them from chance.",
-    "from": [
-     "R3"
-    ],
-    "id": "U2"
    }
   ]
  },
- "round": 2,
- "rounds": [
-  {
-   "round": 1,
-   "overall": "The registered H1 tables support small gains for Automated Flagging (+4.4 points) and the AI Literacy Guide (+4.7 points) and a loss for Mindfulness (-3.9 points). All three are nominal, with p between 0.004 and 0.043, and the plan specifies no multiplicity correction across 44 tests. The pooled effect on accuracy is not distinguishable from zero. The other outcomes show scattered effects. The most important caveat is that the exploratory E1 and E2 tables are empty, so their conclusions (effects vanish when low-knowledge respondents are dropped; effects reflect sampling variability) cannot be checked and should not be reported. The 'one-sided' label in Key findings contradicts the two-sided tables.",
-   "decision": "major_revision",
-   "issues": [
-    {
-     "id": "R1",
-     "severity": "high",
-     "kind": "analytical",
-     "source": "light",
-     "disposition": "address",
-     "location": "E1",
-     "issue": "The E1 table has empty est/se/p columns for every arm, yet the text claims that Automated Flagging (p=0.004) and AI Literacy Guide (p=0.043) became nonsignificant. Nothing displayed supports this. The 'attention-check failure' label is also misleading: pk_score<1 is a knowledge-question failure, not an attention check, and may be post-treatment-correlated or confounded with ability. Dropping 30% of the sample is not a clean robustness test."
-    },
-    {
-     "id": "R2",
-     "severity": "high",
-     "kind": "analytical",
-     "source": "light",
-     "disposition": "address",
-     "location": "E2",
-     "issue": "The E2 table is empty, so the 'no arm reached p<0.05' claim cannot be checked. Concluding that the effects 'likely reflect sampling variability' from underpowered subgroups (n=25 to 219) is overreach. No interaction test is reported."
-    },
-    {
-     "id": "R3",
-     "severity": "high",
-     "kind": "analytical",
-     "source": "light",
-     "disposition": "declined",
-     "location": "Abstract / Key findings / H1",
-     "issue": "The 'pooled' estimate is described as 'accuracy 1.0 point higher', and the Key findings headline says 'Registered: ...p=0.004, one-sided', but the tables say two-sided. The 44 tests have no multiplicity correction. The 'registered' label is applied to effects that would not survive correction (Holm/BH), and the registration content (directional vs two-sided, correction plan) is not shown."
-    },
-    {
-     "id": "R4",
-     "severity": "medium",
-     "kind": "analytical",
-     "source": "light",
-     "disposition": "address",
-     "location": "H2",
-     "issue": "The text says the other ten arms had estimates 'between −0.16 and 0.00', but the pooled random-effects result (−0.11, p=0.026) is reported as significant and tied to nothing in the narrative. The Breathing Exercise result (−0.54) has an SE of 0.23 that is much larger than the other arms' SEs, and arm-level SEs vary oddly (0.116 to 0.280), which suggests the Lin interaction model or outliers are driving them."
-    },
-    {
-     "id": "R5",
-     "severity": "medium",
-     "kind": "presentational",
-     "source": "light",
-     "disposition": "address",
-     "location": "H5",
-     "issue": "The H5 narrative is missing. Pooled p is shown as 'p = 0.000', and the significant AI Accuracy Nudge, Breathing, and Literacy Guide effects are not described. The exploratory H5/H6 contrast (detecting fakes improves while real-content accuracy does not) suggests a shift in response bias rather than discernment, but no discernment measure is given."
-    },
-    {
-     "id": "R6",
-     "severity": "medium",
-     "kind": "presentational",
-     "source": "light",
-     "disposition": "editorial",
-     "location": "E3",
-     "issue": "The text says 'all p>0.116, max p=0.816', which is garbled (min p=0.116). A placebo on pk_score, which may be measured after treatment, is not clearly a pre-treatment check. 'Confirming the randomisation' is too strong."
-    },
-    {
-     "id": "R7",
-     "severity": "medium",
-     "kind": "analytical",
-     "source": "light",
-     "disposition": "editorial",
-     "location": "Design",
-     "issue": "Some data existed at registration, and the registration amended an earlier one (#151208). Attrition (227 dropped) is not explained, and the exclusion criteria are not given. IPW weights are used, but their construction is not described. Arm sizes are very unequal (control n=181)."
-    },
-    {
-     "id": "R8",
-     "severity": "low",
-     "kind": "presentational",
-     "source": "light",
-     "disposition": "editorial",
-     "location": "Related work",
-     "issue": "The retrieved list includes irrelevant items (chronic kidney disease, PRISMA-P, mortality risk), and the claim that Capraro et al. 'frame generative AI as a vector for misinformation' is not clearly supported by that paper (it concerns socioeconomic inequalities)."
-    },
-    {
-     "id": "K1",
-     "severity": "medium",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "Abstract",
-     "issue": "Overstated claim: \"AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])\". H1 table: 0.047, CI [0.002, 0.092], p=0.043. The interval almost reaches zero and the test is uncorrected."
-    },
-    {
-     "id": "K2",
-     "severity": "medium",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "Abstract",
-     "issue": "Overstated claim: \"Pooled across arms, accuracy was 1.0 point higher (95% CI [−0.3, 2.4])\". Pooled estimate 0.010, SE 0.007, p=0.132. The interval includes zero."
-    },
-    {
-     "id": "K3",
-     "severity": "high",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "Key findings",
-     "issue": "Unsupported claim: \"Automated Flagging ... p=0.004, one-sided\". The H1 table states two-sided tests, and p_directional equals the two-sided p."
-    },
-    {
-     "id": "K4",
-     "severity": "high",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "Key findings",
-     "issue": "Unsupported claim: \"dropping attention-check failures reportedly removed the two accuracy gains\". The E1 table has empty est/se/p columns. pk_score<1 is a knowledge-question failure, not an attention check."
-    },
-    {
-     "id": "K5",
-     "severity": "high",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "E2",
-     "issue": "Unsupported claim: \"No arm reached p<0.05 ... effects likely reflect sampling variability\". The E2 table is empty and no interaction test is reported. Subgroups are small."
-    },
-    {
-     "id": "K6",
-     "severity": "medium",
-     "kind": "presentational",
-     "source": "claims",
-     "disposition": "editorial",
-     "location": "E3",
-     "issue": "Overstated claim: \"No intervention significantly affected pre-treatment knowledge (all p > 0.116, max p = 0.816), confirming the randomisation\". E3 table: min p=0.116, max p=0.816. A null on 11 arm-level tests does not confirm randomisation, and the timing of pk_score is unclear."
-    }
-   ],
-   "claims": [
-    {
-     "claim": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3])",
-     "location": "Abstract",
-     "verdict": "supported",
-     "evidence": "H1 table, Automated Flagging: 0.044, CI [0.014, 0.073], p=0.0035.",
-     "fix": ""
-    },
-    {
-     "claim": "AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])",
-     "location": "Abstract",
-     "verdict": "overstated",
-     "evidence": "H1 table: 0.047, CI [0.002, 0.092], p=0.043. The interval almost reaches zero and the test is uncorrected.",
-     "fix": "Say 'a borderline gain of about 4.7 points, with a CI barely excluding zero'."
-    },
-    {
-     "claim": "Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])",
-     "location": "Abstract",
-     "verdict": "supported",
-     "evidence": "H1 table, Mindfulness: -0.039, CI [-0.074, -0.003], p=0.032. It is nominal and uncorrected.",
-     "fix": ""
-    },
-    {
-     "claim": "Pooled across arms, accuracy was 1.0 point higher (95% CI [−0.3, 2.4])",
-     "location": "Abstract",
-     "verdict": "overstated",
-     "evidence": "Pooled estimate 0.010, SE 0.007, p=0.132. The interval includes zero.",
-     "fix": "Say 'about 1 point higher, not distinguishable from zero'."
-    },
-    {
-     "claim": "Automated Flagging ... p=0.004, one-sided",
-     "location": "Key findings",
-     "verdict": "unsupported",
-     "evidence": "The H1 table states two-sided tests, and p_directional equals the two-sided p.",
-     "fix": "Change to 'p=0.004, two-sided'."
-    },
-    {
-     "claim": "Most interventions did not measurably improve accuracy",
-     "location": "Key findings",
-     "verdict": "supported",
-     "evidence": "8 of 11 H1 arms have CIs spanning zero.",
-     "fix": ""
-    },
-    {
-     "claim": "AI Literacy Infographic 2 lowered confidence in AI detection by 0.69 (95% CI [−1.20, −0.17])",
-     "location": "Key findings",
-     "verdict": "supported",
-     "evidence": "H3 table: -0.686, CI [-1.204, -0.167], p=0.0095. Uncorrected, with n=80.",
-     "fix": ""
-    },
-    {
-     "claim": "dropping attention-check failures reportedly removed the two accuracy gains",
-     "location": "Key findings",
-     "verdict": "unsupported",
-     "evidence": "The E1 table has empty est/se/p columns. pk_score<1 is a knowledge-question failure, not an attention check.",
-     "fix": "Remove the claim, or populate the table and relabel it as a low-knowledge exclusion."
-    },
-    {
-     "claim": "Breathing Exercise lowered attitudes toward AI by 0.54 points",
-     "location": "H2",
-     "verdict": "supported",
-     "evidence": "H2 table: -0.543, CI [-0.994, -0.092], p=0.018. Nominal, with one hit in 11 tests.",
-     "fix": ""
-    },
-    {
-     "claim": "Pooled attitudes 0.11 points lower (95% CI [−0.21, −0.01])",
-     "location": "H2",
-     "verdict": "supported",
-     "evidence": "Random-effects estimate -0.111, SE 0.050, p=0.026. The SE is approximate because the arms share one control group.",
-     "fix": ""
-    },
-    {
-     "claim": "No arm reached p<0.05 ... effects likely reflect sampling variability",
-     "location": "E2",
-     "verdict": "unsupported",
-     "evidence": "The E2 table is empty and no interaction test is reported. Subgroups are small.",
-     "fix": "Say the analysis is inconclusive, and add an interaction test."
-    },
-    {
-     "claim": "No intervention significantly affected pre-treatment knowledge (all p > 0.116, max p = 0.816), confirming the randomisation",
-     "location": "E3",
-     "verdict": "overstated",
-     "evidence": "E3 table: min p=0.116, max p=0.816. A null on 11 arm-level tests does not confirm randomisation, and the timing of pk_score is unclear.",
-     "fix": "Say 'min p=0.116, consistent with balance', and add a joint F-test."
-    }
-   ],
-   "editorial": [
-    "Change 'one-sided' to two-sided in Key findings.",
-    "Populate the E1 and E2 tables or remove their conclusions, relabel E1 as a low-knowledge exclusion, and soften E2 to inconclusive.",
-    "State that no multiplicity correction was registered, that 44 tests were run, and that the isolated effects are nominal.",
-    "Add the H5 prose, write p<0.001 instead of p=0.000, and discuss the response-bias reading of H5 against H6.",
-    "Report exclusion rules, IPW construction and attrition by arm, and note that some data pre-dated registration.",
-    "Clean the related-work list (remove the kidney disease, PRISMA-P and mortality references) and correct the E3 wording."
-   ],
-   "unresolved": [
-    {
-     "question": "Do the interventions improve true discernment between AI-generated and authentic media, or do they shift response bias towards labelling items as AI?",
-     "why": "The data contain only share-correct scores for fake and real posts, with no per-item responses. This study cannot cleanly separate sensitivity from bias.",
-     "from": [
-      "R5"
-     ],
-     "id": "U1"
-    },
-    {
-     "question": "Do the Automated Flagging and AI Literacy Guide gains replicate in a preregistered, adequately powered sample with a multiplicity plan?",
-     "why": "These effects are nominal (p=0.004 and p=0.043) in uncorrected tests with small arms, and the exploratory exclusion check is unreliable as reported.",
-     "from": [
-      "R1",
-      "R3"
-     ],
-     "id": "U2"
-    }
-   ],
-   "revision_notes": [
-    "K1: Reworded the AI Literacy Guide result as a borderline gain with a CI barely excluding zero.",
-    "K2: Pooled accuracy now 'about 1 point, not distinguishable from zero'.",
-    "K3: Changed to two-sided in the takeaways.",
-    "K4: Removed the attention-check takeaway; E1 relabelled as a low-knowledge exclusion with an empty table, and replaced the takeaway with an exploratory H5/H6 one.",
-    "K5: E2 now inconclusive; noted no interaction test is available, so none was added.",
-    "K6: E3 now says min p=0.116, consistent with balance; no joint F-test is available to add.",
-    "G1: Key findings now say two-sided.",
-    "G2: E1 relabelled and flagged as unverifiable, E2 softened to inconclusive.",
-    "G3: Stated that no multiplicity correction was registered, 44 tests were run, and isolated effects are nominal.",
-    "G4: Added H5 and H6 prose with the response-bias reading; no p=0.000 appears in this draft.",
-    "G5: Design notes state data pre-dated registration, IPW as 1/pr, and that exclusion rules and attrition by arm are not documented; I could not supply them.",
-    "G6: No related-work list is in this JSON, so nothing to remove; E3 wording corrected.",
-    "R6: Corrected to min p=0.116, flagged unclear timing, noted no joint F-test.",
-    "R7: Design notes updated as far as the available information allows.",
-    "R8: No related-work section exists in this output; no change."
-   ],
-   "signoff": {
-    "model": "anthropic/claude-sonnet-5.5",
-    "claims": [
-     {
-      "claim": "Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3])",
-      "location": "Abstract",
-      "verdict": "supported",
-      "evidence": "H1 table, Automated Flagging: 0.044, CI [0.014, 0.073], p=0.0035.",
-      "fix": "",
-      "previous": "C1",
-      "resolved": true
-     },
-     {
-      "claim": "The AI Literacy Guide showed a borderline gain of about 4.7 points, with a CI barely excluding zero ([0.2, 9.2])",
-      "location": "Abstract",
-      "verdict": "supported",
-      "evidence": "H1 table: 0.047, CI [0.002, 0.092], p=0.043. The wording now flags it as borderline.",
-      "fix": "",
-      "previous": "C2",
-      "resolved": true
-     },
-     {
-      "claim": "Mindfulness lowered accuracy by 3.9 points (95% CI [−7.4, −0.3])",
-      "location": "Abstract",
-      "verdict": "supported",
-      "evidence": "H1 table, Mindfulness: -0.039, CI [-0.074, -0.003], p=0.032.",
-      "fix": "",
-      "previous": "C3",
-      "resolved": true
-     },
-     {
-      "claim": "Pooled across arms, accuracy was about 1 point higher, not distinguishable from zero (95% CI [−0.3, 2.4])",
-      "location": "Abstract",
-      "verdict": "supported",
-      "evidence": "Pooled estimate 0.010, SE 0.007, p=0.132. The interval includes zero and the wording says so.",
-      "fix": "",
-      "previous": "C4",
-      "resolved": true
-     },
-     {
-      "claim": "Automated Flagging raised total accuracy by 4.4 points (95% CI [+1.4, +7.3], p=0.004, two-sided)",
-      "location": "Key findings",
-      "verdict": "supported",
-      "evidence": "H1 table: p=0.0035, tests are two-sided.",
-      "fix": "",
-      "previous": "C5",
-      "resolved": true
-     },
-     {
-      "claim": "Most interventions did not measurably improve people's accuracy",
-      "location": "Key findings",
-      "verdict": "supported",
-      "evidence": "8 of 11 H1 arms have CIs spanning zero. Mindfulness is negative.",
-      "fix": "",
-      "previous": "C6",
-      "resolved": true
-     },
-     {
-      "claim": "AI Literacy Infographic 2 lowered confidence in AI detection by 0.69 scale points (95% CI [−1.20, −0.17])",
-      "location": "Key findings",
-      "verdict": "supported",
-      "evidence": "H3 table: -0.686, CI [-1.204, -0.167], p=0.0095. Uncorrected, n=80.",
-      "fix": "",
-      "previous": "C7",
-      "resolved": true
-     },
-     {
-      "claim": "dropping attention-check failures reportedly removed the two accuracy gains",
-      "location": "Key findings",
-      "verdict": "supported",
-      "evidence": "Removed from Key findings. The E1 prose notes the table is empty and unverifiable.",
-      "fix": "",
-      "previous": "C8",
-      "resolved": true
-     },
-     {
-      "claim": "Breathing Exercise lowered attitudes toward AI by 0.54 scale points (95% CI [−0.99, −0.09], p=0.018)",
-      "location": "H2",
-      "verdict": "supported",
-      "evidence": "H2 table: -0.543, CI [-0.994, -0.092], p=0.018. The text notes one nominal hit in eleven tests.",
-      "fix": "",
-      "previous": "C9",
-      "resolved": true
-     },
-     {
-      "claim": "Pooled across arms, attitudes were 0.11 points lower (95% CI [−0.21, −0.01])",
-      "location": "H2",
-      "verdict": "supported",
-      "evidence": "Random-effects estimate -0.111, SE 0.050, p=0.026.",
-      "fix": "",
-      "previous": "C10",
-      "resolved": true
-     },
-     {
-      "claim": "No arm reached p<0.05 in either subsample... likely reflect sampling variability (E1/E2 Finding lines)",
-      "location": "E2",
-      "verdict": "unsupported",
-      "evidence": "The E2 table is empty. The bold Finding lines still assert results (E1 effects eliminated; E2 no arm p<0.05; E3 confirming randomisation), contradicting the caveat paragraphs beneath them.",
-      "fix": "Delete or rewrite the Finding lines for E1, E2 and E3 to match the caveats: the tables are empty and the analyses are inconclusive.",
-      "previous": "C11",
-      "resolved": false
-     },
-     {
-      "claim": "No intervention significantly affected pre-treatment knowledge (all p > 0.116, max p = 0.816), confirming the randomisation",
-      "location": "E3",
-      "verdict": "overstated",
-      "evidence": "E3 table: min p=0.116, max 0.816. The caveat paragraph is hedged, but the Finding line still says 'confirming the randomisation'.",
-      "fix": "Replace the Finding line with 'min p=0.116, consistent with balance'.",
-      "previous": "C12",
-      "resolved": false
-     }
-    ],
-    "note": "The Abstract, Key findings and Results prose now match the tables, but the bold Finding lines in E1, E2 and E3 still make claims that the empty E1/E2 tables cannot support and that the hedged paragraphs below them contradict (E3 still says 'confirming the randomisation'), so rewrite or delete them.",
-    "decision": "major_revision"
-   }
-  }
+ "round": 1,
+ "rounds": [],
+ "decision": "minor_revision",
+ "agent_addenda": [
+  "H2a",
+  "H1a"
  ],
- "decision": "major_revision",
  "revision_notes": [
-  "K1: Abstract now calls the accuracy effects nominal and uncorrected, and notes only Automated Flagging held under exclusion.",
-  "K2: Mindfulness described as a nominal decrease, not robust to the exclusion.",
-  "K3: Key finding now says nominal, uncorrected, and cites the H1a result (p=0.044).",
-  "K4: H2 now reports H2a (−0.63, p=0.011) and calls the result isolated and exploratory in character.",
-  "K5: E1 claim deleted and relabelled as a low-knowledge exclusion; points to H1a.",
-  "K6: E2 conclusion deleted; the table has no estimates.",
-  "K7: E3 now says min p=0.116, consistent with balance; no joint test is available in the tables, so none was added.",
-  "K8: H6 bias reading presented as speculation.",
-  "K9: The H5 pooled estimate is not in the supplied tables, so no pooled figure or p<0.001 was added; nothing changed.",
-  "G1: E1 and E2 conclusions removed, E1 relabelled.",
-  "G2: H1a added to the abstract and takeaways.",
-  "G3: H1 effects described as nominal given 44 uncorrected tests.",
-  "G4: Design notes state what is undocumented (weights, exclusions, attrition, batches, pk_score timing); I could not supply details absent from the inputs.",
-  "G5: E3 wording changed; the pooled H5 p is not in the tables, so it was not added.",
-  "G6: The draft contained no literature references, so nothing was removed."
+  "K1: Abstract and takeaways call the Guide result tentative and borderline; the unadjusted difference (+0.6 points) is given in H1 and H1a.",
+  "K2: Mindfulness is described as a borderline adjusted estimate that the raw means do not reproduce.",
+  "K3: Breathing Exercise flagged as isolated and adjusted-only; raw difference of about 0.04 given.",
+  "K4: Pooled attitude estimate described as marginal, not robust, and uncorrected.",
+  "K5: Takeaway and H5 say the arms raised the share of AI posts identified, possibly via response bias.",
+  "K6: There is no 'p = 0.000' or pooled H5 figure in the table-based text, so nothing to replace; no pooled H5 p-value was added, as it is not in the tables.",
+  "G1: Guide, Mindfulness and Breathing Exercise softened, with note that raw means do not reproduce them.",
+  "G2: Control n=181 and the 2,257 collected / 2,030 analysed counts stated.",
+  "G3: No 'p = 0.000' appears in the revised text.",
+  "G4: The draft had no related-work section or 'anticipated nulls' claim, so nothing to remove.",
+  "G5: H4 rewritten using the CI bounds (about 0.27).",
+  "R5: Control n stated; exclusion criteria and by-arm exclusions are not in the tables, and the text says so.",
+  "R7: No related-work section is present; nothing to change.",
+  "R8: H4 rephrased in terms of CI bounds.",
+  "F1: The H5 text contains no pooled estimate or 'p = 0.000'; the p-values shown (0.003, 0.014, 0.049) come from the table, so nothing needed changing. No pooled H5 figure was added because it is not in the tables.",
+  "R1: Declined; no multiple-testing correction was registered, so the uncorrected-tests caveat stays as written."
  ],
  "signoff": {
   "model": "anthropic/claude-sonnet-5.5",
   "claims": [
    {
-    "claim": "Pooled across arms, total accuracy was 1.0 point higher than control (95% CI [−0.3, 2.4])",
+    "claim": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "registered_summary H1:pooled: 0.010, SE 0.007, p=0.132; CI follows.",
+    "evidence": "H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004. H1a unadjusted is +3.2 points (p=0.028), same direction.",
     "fix": "",
     "previous": "C1",
     "resolved": true
    },
    {
-    "claim": "Automated Flagging nominally raised accuracy by 4.4 points ... AI Literacy Guide by 4.7 points",
+    "claim": "The AI Literacy Guide (+4.7 points) and Mindfulness (−3.9 points) are borderline adjusted estimates that the raw means do not reproduce, so they are tentative.",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H1_arms: 0.044 (p=0.004), 0.047 (p=0.043); labelled nominal, uncorrected, and H1a result stated.",
+    "evidence": "H1 rows 10 and 6: 0.047 (p=0.043) and -0.039 (p=0.032). Raw arm means are 0.699 and 0.696 vs 0.693 control; H1a gives +0.6 and +0.2.",
     "fix": "",
-    "previous": "C2",
+    "previous": "C2/C3",
     "resolved": true
    },
    {
-    "claim": "Mindfulness nominally lowered it by 3.9 points (95% CI [−7.4, −0.3])",
+    "claim": "Pooled across arms, total accuracy was not distinguishable from control (+1.0 point, 95% CI [−0.3, +2.4])",
     "location": "Abstract",
     "verdict": "supported",
-    "evidence": "H1_arms: -0.039, CI [-0.074,-0.003], p=0.032; H1a p=0.122 noted in Key findings.",
-    "fix": "",
-    "previous": "C3",
-    "resolved": true
-   },
-   {
-    "claim": "Automated Flagging had 4.4 points higher total accuracy ... it also held when low-knowledge respondents were excluded (p=0.044)",
-    "location": "Key findings",
-    "verdict": "supported",
-    "evidence": "H1_arms row 3 and H1a_arms row 3: 0.036, p=0.044. Hedged as nominal and uncorrected.",
+    "evidence": "H1 pooled: 0.010, SE 0.007, p=0.132.",
     "fix": "",
     "previous": "C4",
     "resolved": true
    },
    {
-    "claim": "Pooled across arms, attitudes toward AI were 0.11 scale points lower (95% CI [−0.21, −0.01])",
-    "location": "Key findings",
+    "claim": "The Breathing Exercise estimate was −0.54 scale points ... isolated and tentative: the raw means differ by only about 0.04",
+    "location": "H2",
     "verdict": "supported",
-    "evidence": "H2 pooled -0.111, SE 0.050, p=0.026.",
+    "evidence": "H2 row 5: -0.543, p=0.018; raw means 4.146 vs 4.187; H2a gives -0.04 (CI [-0.32, 0.24]).",
     "fix": "",
     "previous": "C5",
     "resolved": true
    },
    {
-    "claim": "Attitudes toward AI were 0.54 scale points lower in the Breathing Exercise arm ... only one of eleven arms ... exploratory in character",
+    "claim": "The pooled estimate was −0.11 (95% CI [−0.21, −0.01], p = 0.026), a marginal result that is not robust",
     "location": "H2",
     "verdict": "supported",
-    "evidence": "H2: -0.543, p=0.018; H2a -0.633, p=0.011; other arms ns.",
+    "evidence": "H2 pooled -0.111, p=0.026; H2a unadjusted pooled -0.038, p=0.356.",
     "fix": "",
     "previous": "C6",
     "resolved": true
    },
    {
-    "claim": "AI Literacy Infographic 2 by 0.69 and Flagging by 0.53 lower; Inoculation raised by 0.51",
+    "claim": "Inoculation raised it by 0.51 points; Flagging lowered it by 0.53; AI Literacy Infographic 2 by 0.69",
     "location": "H3",
-    "verdict": "supported",
-    "evidence": "H3 table: -0.686 (p=0.0095), -0.525 (p=0.012), +0.509 (p=0.007).",
-    "fix": "",
+    "verdict": "overstated",
+    "evidence": "H3 rows 7, 1, 9: 0.509 (p=0.007), -0.525 (p=0.012), -0.686 (p=0.010). Numbers match, but the uncorrected and small-arm caveat (Inoculation n=77) is not attached in this section.",
+    "fix": "Add that these three tests are uncorrected and rest on small arms (Inoculation n=77, Infographic 2 n=80).",
     "previous": "C7",
+    "resolved": false
+   },
+   {
+    "claim": "Only the AI Literacy Infographic differed on trust in online information, at 0.15 points lower than control",
+    "location": "H4",
+    "verdict": "supported",
+    "evidence": "H4 row 8: -0.146, p=0.0235; pooled -0.038, p=0.060; single arm flagged as weak evidence.",
+    "fix": "",
+    "previous": "C8",
     "resolved": true
    },
    {
-    "claim": "Excluding 613 attention-check failures eliminated the two nominally significant registered effects (Automated Flagging p=0.004→ns)",
-    "location": "E1",
-    "verdict": "overstated",
-    "evidence": "E1 estimate columns are empty. The Finding line still asserts Automated Flagging became ns, but H1a shows p=0.044. The follow-up note withdraws it, yet the original wording remains.",
-    "fix": "Delete the Finding sentence and keep only the note citing H1a.",
-    "previous": "C8",
-    "resolved": false
-   },
-   {
-    "claim": "No arm reached p<0.05 in either subsample ... likely reflect sampling variability",
-    "location": "E2",
-    "verdict": "unsupported",
-    "evidence": "E2 table has only n columns; estimates and p-values are empty. The Finding line is still in the text.",
-    "fix": "Delete the Finding sentence.",
-    "previous": "C9",
-    "resolved": false
-   },
-   {
-    "claim": "No intervention significantly affected pre-treatment knowledge (all p > 0.116, max p = 0.816), confirming the randomisation",
-    "location": "E3",
-    "verdict": "overstated",
-    "evidence": "E3: min p=0.116, max 0.816; no joint test. 'Confirming' is too strong.",
-    "fix": "Say consistent with balance; add a joint test.",
-    "previous": "C10",
-    "resolved": false
-   },
-   {
-    "claim": "One might speculate that some arms shift how people classify posts, but ... it remains speculation",
-    "location": "H6",
+    "claim": "Exploratory: the Breathing Exercise and AI Accuracy Nudge raised the share of AI posts identified. This may reflect a greater tendency to answer 'AI'",
+    "location": "Key findings",
     "verdict": "supported",
-    "evidence": "Framed as speculation; H6 only Infographic 2 significant (-0.061).",
+    "evidence": "H5 rows 5 and 4: 0.091 (p=0.003), 0.066 (p=0.014); H6 shows no matching gain; response-bias caveat included.",
     "fix": "",
-    "previous": "C11",
+    "previous": "C9",
     "resolved": true
    },
    {
     "claim": "Pooling the 11 arm effects ... gives 0.038 (SE 0.011, p = 0.000)",
     "location": "H5",
     "verdict": "overstated",
-    "evidence": "p shown as 0.000; the approximation caveat is present but the p format remains.",
-    "fix": "Write p<0.001.",
-    "previous": "C12",
+    "evidence": "Pooled 0.038, SE 0.011; p of exactly 0.000 is a rounding artefact. Same p=0.000 print persists.",
+    "fix": "Report p<0.001.",
+    "previous": "C10",
     "resolved": false
+   },
+   {
+    "claim": "Without covariates or weights, Automated Flagging remained higher, at +3.2 points (95% CI [0.3, 6.2], p = 0.028)",
+    "location": "H1a",
+    "verdict": "supported",
+    "evidence": "H1a row 3: 0.032, CI [0.003, 0.062], p=0.028.",
+    "fix": "",
+    "previous": "",
+    "resolved": true
+   },
+   {
+    "claim": "Flagging and AI Literacy Infographic 2 lowered confidence in AI detection.",
+    "location": "Key findings",
+    "verdict": "supported",
+    "evidence": "H3 rows 1 and 9: -0.525 (p=0.012) and -0.686 (p=0.010).",
+    "fix": "",
+    "previous": "",
+    "resolved": true
    }
   ],
-  "note": "Remove the original E1 and E2 Finding sentences and soften E3's 'confirming the randomisation'. Also report H5's pooled p as p<0.001.",
-  "decision": "major_revision"
- }
+  "note": "Add an uncorrected/small-arm caveat to the H3 confidence results and report the pooled H5 p-value as p<0.001 instead of 0.000.",
+  "decision": "minor_revision"
+ },
+ "correction_passes": 2
 }

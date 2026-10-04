@@ -1,0 +1,159 @@
+import importlib.util, pathlib
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
+
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as smf
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+
+os.makedirs('results', exist_ok=True)
+os.makedirs('figures', exist_ok=True)
+
+df = pd.read_csv('data/clean.csv')
+
+num_cols = ['total_score', 'pk_score', 'political_interest', 'fake_score', 'real_score',
+            'ai_attitudes', 'ai_confidence', 'trust_online', 'media_trust', 'age',
+            'gender_m', 'white', 'hisp', 'afam_black', 'asian', 'ipw', 'treat', 'ai_scale']
+for c in num_cols:
+    if c in df.columns:
+        df[c] = pd.to_numeric(df[c], errors='coerce')
+
+h1 = [h for h in reg.HYPOTHESES if h.get('outcome') == 'total_score'][0]
+est = h1['estimator']
+covariates = est['covariates']
+
+# ============================================================
+# E1: Robustness to attention-check failures (pk_score == 0)
+# Rationale: Verify that the H1 treatment effect is not driven by
+# inattentive respondents who failed both attention checks.
+# ============================================================
+df_full = df.dropna(subset=['total_score']).copy()
+df_att = df_full[df_full['pk_score'] > 0].copy()
+
+f_orig, d_orig = reg.build_formula('total_score', est, covariates, df_full)
+res_orig = reg.fit(d_orig, f_orig, est)
+
+f_att, d_att = reg.build_formula('total_score', est, covariates, df_att)
+res_att = reg.fit(d_att, f_att, est)
+
+est_orig = res_orig.params['treat']
+se_orig = res_orig.bse['treat']
+p_orig = res_orig.pvalues['treat']
+est_rob = res_att.params['treat']
+se_rob = res_att.bse['treat']
+p_rob = res_att.pvalues['treat']
+
+e1_df = pd.DataFrame([
+    {'sample': 'full', 'n': len(df_full), 'estimate': est_orig, 'std_error': se_orig, 'p_value': p_orig},
+    {'sample': 'excl_pk_score_0', 'n': len(df_att), 'estimate': est_rob, 'std_error': se_rob, 'p_value': p_rob},
+])
+e1_df.to_csv('results/E1_attention_check_robustness.csv', index=False)
+
+se_ratio = se_rob / se_orig
+print(f"E1: Full sample: treat={est_orig:.3f} (SE={se_orig:.3f}, p={p_orig:.3f}), n={len(df_full)}")
+print(f"E1: Excl pk=0: treat={est_rob:.3f} (SE={se_rob:.3f}, p={p_rob:.3f}), n={len(df_att)}")
+print(f"E1: SE ratio = {se_ratio:.2f} (sample change = {100*(1-len(df_att)/len(df_full)):.1f}%)")
+
+# Figure 1: Side-by-side comparison
+fig, ax = plt.subplots(figsize=(6, 3))
+y_pos = [1, 0]
+labels = [f"Full sample (n={len(df_full)})", f"Excl. pk_score=0 (n={len(df_att)})"]
+ests = [est_orig, est_rob]
+ses = [se_orig, se_rob]
+colors = ['#2171b5', '#d6604d']
+
+for i in range(2):
+    ax.errorbar(ests[i], y_pos[i], xerr=1.96*ses[i], fmt='o', color=colors[i],
+                capsize=5, markersize=6, linestyle='none')
+    ax.text(ests[i] + 1.96*ses[i] + 0.005, y_pos[i], f"{ests[i]:+.3f}",
+            va='center', fontsize=9, color=colors[i])
+
+ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
+ax.set_yticks(y_pos)
+ax.set_yticklabels(labels)
+ax.set_xlabel("Treatment effect on total_score (95% CI)")
+ax.set_title("E1: H1 robustness to attention-check failures")
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.tick_params(left=False)
+plt.tight_layout()
+plt.savefig('figures/E1_attention_check.png', dpi=200)
+plt.close()
+
+# ============================================================
+# E2: Heterogeneity by age
+# Rationale: Older respondents may have different baseline exposure to
+# AI-generated media, potentially moderating intervention effectiveness.
+# ============================================================
+cov_e2 = ['media_trust', 'political_interest', 'gender_m', 'white', 'hisp', 'afam_black']
+df_e2 = df.dropna(subset=['total_score', 'age'] + cov_e2).copy()
+df_e2['age_c'] = df_e2['age'] - df_e2['age'].mean()
+
+formula_e2 = "total_score ~ treat * age_c + " + " + ".join(cov_e2)
+res_e2 = smf.wls(formula_e2, data=df_e2, weights=df_e2['ipw']).fit(cov_type='HC2')
+
+treat_coef = res_e2.params.get('treat', np.nan)
+treat_se = res_e2.bse.get('treat', np.nan)
+treat_p = res_e2.pvalues.get('treat', np.nan)
+interact_coef = res_e2.params.get('treat:age_c', np.nan)
+interact_se = res_e2.bse.get('treat:age_c', np.nan)
+interact_p = res_e2.pvalues.get('treat:age_c', np.nan)
+
+e2_df = pd.DataFrame([
+    {'term': 'treat (ATE at mean age)', 'estimate': treat_coef,
+     'std_error': treat_se, 'p_value': treat_p},
+    {'term': 'treat:age_c (moderation per yr)', 'estimate': interact_coef,
+     'std_error': interact_se, 'p_value': interact_p},
+])
+e2_df.to_csv('results/E2_age_heterogeneity.csv', index=False)
+
+print(f"E2: ATE at mean age = {treat_coef:.3f} (SE={treat_se:.3f}, p={treat_p:.3f}), "
+      f"moderation by age = {interact_coef:.4f} (SE={interact_se:.4f}, p={interact_p:.3f}), "
+      f"n={len(df_e2)}")
+
+# ============================================================
+# E3: Placebo on attention-check score (pk_score)
+# Rationale: If interventions shift attention-check performance, it
+# suggests they alter general engagement rather than AI discernment.
+# ============================================================
+df_e3 = df.dropna(subset=['pk_score']).copy()
+f_e3, d_e3 = reg.build_formula('pk_score', est, covariates, df_e3)
+res_e3 = reg.fit(d_e3, f_e3, est)
+
+est_e3 = res_e3.params['treat']
+se_e3 = res_e3.bse['treat']
+p_e3 = res_e3.pvalues['treat']
+
+e3_df = pd.DataFrame([
+    {'outcome': 'pk_score (placebo)', 'estimate': est_e3, 'std_error': se_e3, 'p_value': p_e3, 'n': len(df_e3)},
+])
+e3_df.to_csv('results/E3_placebo_pk_score.csv', index=False)
+
+print(f"E3: Placebo on pk_score: treat={est_e3:.3f} (SE={se_e3:.3f}, p={p_e3:.3f}), n={len(df_e3)}")
+
+# Figure 2: Placebo forest plot
+fig, ax = plt.subplots(figsize=(6, 2.5))
+ax.errorbar(est_e3, 0, xerr=1.96*se_e3, fmt='o', color='#2171b5',
+            capsize=5, markersize=6, linestyle='none')
+ax.text(est_e3 + 1.96*se_e3 + 0.005, 0, f"{est_e3:+.3f} (p={p_e3:.3f})",
+        va='center', fontsize=9, color='#2171b5')
+ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
+ax.set_yticks([0])
+ax.set_yticklabels(['pk_score (placebo)'])
+ax.set_xlabel("Treatment effect (95% CI)")
+ax.set_title("E3: Placebo — effect on attention-check score")
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.tick_params(left=False)
+plt.tight_layout()
+plt.savefig('figures/E3_placebo_pk_score.png', dpi=200)
+plt.close()
+
+print("Done.")

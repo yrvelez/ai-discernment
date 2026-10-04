@@ -5,8 +5,8 @@
  "authors": [
   "Yamil Velez"
  ],
- "summary": "Can common misinformation interventions help people tell AI-generated media from authentic media? We ran a registered online survey experiment with a US panel (fielded October to November 2023; 2,257 respondents, 2,030 analysed), randomising respondents to a control or one of 11 interventions, including flagging, provenance labels, an accuracy nudge, calming exercises, inoculation and AI literacy materials. Pooled across arms, total accuracy was 1.0 point higher than control (95% CI [−0.3, 2.4]). In uncorrected tests, Automated Flagging nominally raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]); Mindfulness nominally lowered it by 3.9 points (95% CI [−7.4, −0.3]). When low-knowledge respondents were excluded, only Automated Flagg",
- "created": "2026-10-03",
+ "summary": "Can brief misinformation interventions help people tell AI-generated media from authentic media? We ran a registered online survey experiment in the United States (fielded October to November 2023). Of 2,257 respondents collected, 2,030 were analysed; they were randomised to a control (n=181) or one of 11 interventions, then judged posts in a simulated feed. Pooled across arms, total accuracy was not distinguishable from control (+1.0 point, 95% CI [−0.3, +2.4]). Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]). The AI Literacy Guide (+4.7 points) and Mindfulness (−3.9 points) are borderline adjusted estimates that the raw means do not reproduce, so they are tentative. Several arms shifted confidence or attitudes. With about 44 uncorrected arm-level tests and some small",
+ "created": "2026-10-04",
  "synthetic": false,
  "design": {
   "type": "survey_experiment",
@@ -1094,372 +1094,342 @@
    "supported": false
   },
   {
-   "id": "H1a:1",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Flagging",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "1",
-   "arm_label": "Flagging",
-   "estimate": -0.00569890626959357,
-   "se": 0.015450265655981333,
-   "p": 0.7122358774752122,
-   "n": 1417,
-   "n_arm": 155,
-   "supported": false
-  },
-  {
-   "id": "H1a:2",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Provenance",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "2",
-   "arm_label": "Provenance",
-   "estimate": -0.00017470074350653397,
-   "se": 0.017663185925436902,
-   "p": 0.9921085157590667,
-   "n": 1417,
-   "n_arm": 98,
-   "supported": false
-  },
-  {
-   "id": "H1a:3",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Automated Flagging",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "3",
-   "arm_label": "Automated Flagging",
-   "estimate": 0.03633303375124598,
-   "se": 0.018019021839570323,
-   "p": 0.04376119177194175,
-   "n": 1417,
-   "n_arm": 82,
-   "supported": true
-  },
-  {
-   "id": "H1a:4",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — AI Accuracy Nudge",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "4",
-   "arm_label": "AI Accuracy Nudge",
-   "estimate": 0.021095146513761126,
-   "se": 0.017075083257878716,
-   "p": 0.2166688489889098,
-   "n": 1417,
-   "n_arm": 235,
-   "supported": false
-  },
-  {
-   "id": "H1a:5",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Breathing Exercise",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "5",
-   "arm_label": "Breathing Exercise",
-   "estimate": 0.013957165932644691,
-   "se": 0.023146969572051857,
-   "p": 0.5465218154768314,
-   "n": 1417,
-   "n_arm": 89,
-   "supported": false
-  },
-  {
-   "id": "H1a:6",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Mindfulness",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "6",
-   "arm_label": "Mindfulness",
-   "estimate": -0.036563706178316446,
-   "se": 0.02363370094734581,
-   "p": 0.12183905802698325,
-   "n": 1417,
-   "n_arm": 124,
-   "supported": false
-  },
-  {
-   "id": "H1a:7",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — Inoculation",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "7",
-   "arm_label": "Inoculation",
-   "estimate": 0.0041229408527501815,
-   "se": 0.021737319217283675,
-   "p": 0.8495668827596943,
-   "n": 1417,
-   "n_arm": 57,
-   "supported": false
-  },
-  {
-   "id": "H1a:8",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — AI Literacy Infographic",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "8",
-   "arm_label": "AI Literacy Infographic",
-   "estimate": 0.01701932728885617,
-   "se": 0.018575187038040307,
-   "p": 0.3595410887385866,
-   "n": 1417,
-   "n_arm": 75,
-   "supported": false
-  },
-  {
-   "id": "H1a:9",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — AI Literacy Infographic 2",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "9",
-   "arm_label": "AI Literacy Infographic 2",
-   "estimate": 0.004152974578800227,
-   "se": 0.025457952234087464,
-   "p": 0.8704154972032266,
-   "n": 1417,
-   "n_arm": 58,
-   "supported": false
-  },
-  {
-   "id": "H1a:10",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — AI Literacy Guide",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "10",
-   "arm_label": "AI Literacy Guide",
-   "estimate": 0.023380434316912543,
-   "se": 0.02732839922284425,
-   "p": 0.3922543830500965,
-   "n": 1417,
-   "n_arm": 113,
-   "supported": false
-  },
-  {
-   "id": "H1a:11",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — AI Text Video",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "11",
-   "arm_label": "AI Text Video",
-   "estimate": 0.009415097131671088,
-   "se": 0.014899999360660048,
-   "p": 0.5274615416405497,
-   "n": 1417,
-   "n_arm": 211,
-   "supported": false
-  },
-  {
-   "id": "H1a:pooled",
-   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: exclude low political-knowledge respondents (pk_score<1), full estimates and CIs) — pooled across 11 arms (random effects; arms share the control group)",
-   "outcome": "total_score",
-   "tag": "robustness",
-   "arm": "pooled",
-   "estimate": 0.008630462686747588,
-   "se": 0.005777185629811008,
-   "p": 0.13520514879781959,
-   "n": 1417,
-   "tau2": 0.0,
-   "i2": 0.0,
-   "k_arms": 11,
-   "supported": false
-  },
-  {
    "id": "H2a:1",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Flagging",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Flagging",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "1",
    "arm_label": "Flagging",
-   "estimate": -0.014655555005843701,
-   "se": 0.1872190579786683,
-   "p": 0.9376051260093928,
+   "estimate": 0.02747180352060946,
+   "se": 0.12449662643780098,
+   "p": 0.8253548152356398,
    "n": 2010,
    "n_arm": 212,
    "supported": false
   },
   {
    "id": "H2a:2",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Provenance",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Provenance",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "2",
    "arm_label": "Provenance",
-   "estimate": -0.0875657706811829,
-   "se": 0.1368718397346303,
-   "p": 0.5223255890293801,
+   "estimate": -0.0702526898406785,
+   "se": 0.13475280019766847,
+   "p": 0.6021265036379665,
    "n": 2010,
    "n_arm": 144,
    "supported": false
   },
   {
    "id": "H2a:3",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Automated Flagging",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Automated Flagging",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "3",
    "arm_label": "Automated Flagging",
-   "estimate": -0.21300975088886842,
-   "se": 0.16173425335076916,
-   "p": 0.1878267301853137,
+   "estimate": -0.1254710479625798,
+   "se": 0.15006603310559447,
+   "p": 0.4030955083368051,
    "n": 2010,
    "n_arm": 127,
    "supported": false
   },
   {
    "id": "H2a:4",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — AI Accuracy Nudge",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — AI Accuracy Nudge",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "4",
    "arm_label": "AI Accuracy Nudge",
-   "estimate": -0.08842059389005974,
-   "se": 0.2368051567136243,
-   "p": 0.7088584637037079,
+   "estimate": 0.032385919312282685,
+   "se": 0.11275847920955101,
+   "p": 0.7739477511550628,
    "n": 2010,
    "n_arm": 331,
    "supported": false
   },
   {
    "id": "H2a:5",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Breathing Exercise",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Breathing Exercise",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "5",
    "arm_label": "Breathing Exercise",
-   "estimate": -0.6329608464993246,
-   "se": 0.2490955295739009,
-   "p": 0.011052436308142993,
+   "estimate": -0.041156005947485697,
+   "se": 0.14438831241397093,
+   "p": 0.7756158242373264,
    "n": 2010,
    "n_arm": 129,
-   "supported": true
+   "supported": false
   },
   {
    "id": "H2a:6",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Mindfulness",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Mindfulness",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "6",
    "arm_label": "Mindfulness",
-   "estimate": 0.003922981625608057,
-   "se": 0.16935750894454635,
-   "p": 0.9815195287367102,
+   "estimate": -0.07133162894928213,
+   "se": 0.12954700137554132,
+   "p": 0.5818917660980112,
    "n": 2010,
    "n_arm": 177,
    "supported": false
   },
   {
    "id": "H2a:7",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — Inoculation",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — Inoculation",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "7",
    "arm_label": "Inoculation",
-   "estimate": -0.29490537733774286,
-   "se": 0.2994255690333339,
-   "p": 0.3246713322564616,
+   "estimate": 0.044450893612904004,
+   "se": 0.18801351093827856,
+   "p": 0.813103727083659,
    "n": 2010,
    "n_arm": 77,
    "supported": false
   },
   {
    "id": "H2a:8",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — AI Literacy Infographic",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — AI Literacy Infographic",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "8",
    "arm_label": "AI Literacy Infographic",
-   "estimate": -0.10390979164166103,
-   "se": 0.15583681501456723,
-   "p": 0.5049088975958541,
+   "estimate": -0.005778288969219114,
+   "se": 0.15070614087186068,
+   "p": 0.969415458595276,
    "n": 2010,
    "n_arm": 102,
    "supported": false
   },
   {
    "id": "H2a:9",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — AI Literacy Infographic 2",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — AI Literacy Infographic 2",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "9",
    "arm_label": "AI Literacy Infographic 2",
-   "estimate": 0.0007535650925962756,
-   "se": 0.2504310534604501,
-   "p": 0.9975991114628726,
+   "estimate": 0.07951582867783846,
+   "se": 0.15740236670508256,
+   "p": 0.6134355347672109,
    "n": 2010,
    "n_arm": 80,
    "supported": false
   },
   {
    "id": "H2a:10",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — AI Literacy Guide",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — AI Literacy Guide",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "10",
    "arm_label": "AI Literacy Guide",
-   "estimate": -0.1167064401596053,
-   "se": 0.203255027677279,
-   "p": 0.5658411136911692,
+   "estimate": -0.08984234937599017,
+   "se": 0.13143583383316293,
+   "p": 0.4942623217095212,
    "n": 2010,
    "n_arm": 161,
    "supported": false
   },
   {
    "id": "H2a:11",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — AI Text Video",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — AI Text Video",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "11",
    "arm_label": "AI Text Video",
-   "estimate": -0.169303978831445,
-   "se": 0.1225231908105321,
-   "p": 0.1670295250206284,
+   "estimate": -0.1327407578055534,
+   "se": 0.11374372891396699,
+   "p": 0.24320388592150188,
    "n": 2010,
    "n_arm": 291,
    "supported": false
   },
   {
    "id": "H2a:pooled",
-   "text": "Each intervention changes attitudes toward AI relative to control (robustness: unadjusted difference in means, no covariates, same weights) — pooled across 11 arms (random effects; arms share the control group)",
+   "text": "Each intervention changes attitudes toward AI relative to control (robustness: Unadjusted, unweighted difference in means, pooled and per arm) — pooled across 11 arms (random effects; arms share the control group)",
    "outcome": "ai_attitudes",
    "tag": "robustness",
    "arm": "pooled",
-   "estimate": -0.1337042933913745,
-   "se": 0.053601918064408234,
-   "p": 0.012617246783474029,
+   "estimate": -0.03777803513821697,
+   "se": 0.04089104394980669,
+   "p": 0.35555366849472514,
    "n": 2010,
    "tau2": 0.0,
    "i2": 0.0,
    "k_arms": 11,
+   "supported": false
+  },
+  {
+   "id": "H1a:1",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Flagging",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "1",
+   "arm_label": "Flagging",
+   "estimate": 0.004716303764870061,
+   "se": 0.012526616336622528,
+   "p": 0.7065432743293731,
+   "n": 2030,
+   "n_arm": 215,
+   "supported": false
+  },
+  {
+   "id": "H1a:2",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Provenance",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "2",
+   "arm_label": "Provenance",
+   "estimate": 0.01149064910610427,
+   "se": 0.014000583971309358,
+   "p": 0.41180212051739673,
+   "n": 2030,
+   "n_arm": 145,
+   "supported": false
+  },
+  {
+   "id": "H1a:3",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Automated Flagging",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "3",
+   "arm_label": "Automated Flagging",
+   "estimate": 0.03247765487314569,
+   "se": 0.014818757280682812,
+   "p": 0.028404176772530085,
+   "n": 2030,
+   "n_arm": 127,
    "supported": true
   },
   {
-   "id": "E1",
-   "text": "H1 robustness: excluding attention-check failures",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
+   "id": "H1a:4",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — AI Accuracy Nudge",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "4",
+   "arm_label": "AI Accuracy Nudge",
+   "estimate": 0.019021508109249494,
+   "se": 0.011595544056912413,
+   "p": 0.10091884220635897,
+   "n": 2030,
+   "n_arm": 333,
+   "supported": false
   },
   {
-   "id": "E2",
-   "text": "H1 heterogeneity by prior AI familiarity",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
+   "id": "H1a:5",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Breathing Exercise",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "5",
+   "arm_label": "Breathing Exercise",
+   "estimate": 0.0024029847273250027,
+   "se": 0.01503869019365179,
+   "p": 0.8730489939965905,
+   "n": 2030,
+   "n_arm": 134,
+   "supported": false
   },
   {
-   "id": "E3",
-   "text": "Placebo: effect of interventions on pre-treatment knowledge (pk_score)",
-   "tag": "exploratory",
-   "estimate": null,
-   "se": null,
-   "p": null,
-   "n": null,
-   "supported": null
+   "id": "H1a:6",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Mindfulness",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "6",
+   "arm_label": "Mindfulness",
+   "estimate": 0.0021346966244103344,
+   "se": 0.013618160975214235,
+   "p": 0.8754389923713666,
+   "n": 2030,
+   "n_arm": 180,
+   "supported": false
+  },
+  {
+   "id": "H1a:7",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — Inoculation",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "7",
+   "arm_label": "Inoculation",
+   "estimate": 0.0023855225595557717,
+   "se": 0.019769811320631714,
+   "p": 0.9039564513858589,
+   "n": 2030,
+   "n_arm": 78,
+   "supported": false
+  },
+  {
+   "id": "H1a:8",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — AI Literacy Infographic",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "8",
+   "arm_label": "AI Literacy Infographic",
+   "estimate": 0.016792835273321538,
+   "se": 0.01608476166936362,
+   "p": 0.29647549233324466,
+   "n": 2030,
+   "n_arm": 102,
+   "supported": false
+  },
+  {
+   "id": "H1a:9",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — AI Literacy Infographic 2",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "9",
+   "arm_label": "AI Literacy Infographic 2",
+   "estimate": -0.004236306402785911,
+   "se": 0.019443564482645132,
+   "p": 0.8275249117753267,
+   "n": 2030,
+   "n_arm": 80,
+   "supported": false
+  },
+  {
+   "id": "H1a:10",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — AI Literacy Guide",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "10",
+   "arm_label": "AI Literacy Guide",
+   "estimate": 0.005902061653820942,
+   "se": 0.013889050101392676,
+   "p": 0.6708778579841166,
+   "n": 2030,
+   "n_arm": 162,
+   "supported": false
+  },
+  {
+   "id": "H1a:11",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — AI Text Video",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "11",
+   "arm_label": "AI Text Video",
+   "estimate": 0.022976748946766656,
+   "se": 0.012158513371888377,
+   "p": 0.058789221228233414,
+   "n": 2030,
+   "n_arm": 293,
+   "supported": false
+  },
+  {
+   "id": "H1a:pooled",
+   "text": "Each intervention changes AI-detection accuracy relative to control (robustness: unadjusted, unweighted difference in means for all arms vs control) — pooled across 11 arms (random effects; arms share the control group)",
+   "outcome": "total_score",
+   "tag": "robustness",
+   "arm": "pooled",
+   "estimate": 0.011897743134546312,
+   "se": 0.004291541239865765,
+   "p": 0.005564962504195378,
+   "n": 2030,
+   "tau2": 0.0,
+   "i2": 0.0,
+   "k_arms": 11,
+   "supported": true
   }
  ],
  "release_status": "draft",
@@ -1469,18 +1439,7 @@
  },
  "provenance": {
   "mode": "fully_agentic",
-  "human_steps": [
-   {
-    "step": "approved robustness addendum H1a responding to reviewer issue R1",
-    "by": "unattended (--yes)",
-    "date": "2026-10-03"
-   },
-   {
-    "step": "approved robustness addendum H2a responding to reviewer issue R4",
-    "by": "unattended (--yes)",
-    "date": "2026-10-03"
-   }
-  ],
+  "human_steps": [],
   "reviewer_pass": true,
   "models": {
    "strong": "anthropic/claude-sonnet-5.5",
@@ -1488,13 +1447,13 @@
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 1.319154,
+  "cost_usd": 1.320705,
   "tokens": {
-   "in": 494932,
-   "out": 94468
+   "in": 605205,
+   "out": 110157
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-03T11:18:38Z",
+  "created": "2026-10-04T13:47:55Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [],
@@ -1503,7 +1462,10 @@
    "flagged": {},
    "scan": "header + first data row only, local regex"
   },
-  "degraded": [],
+  "degraded": [
+   "exploratory agent produced no analyses; its draft script/tables were removed: scripts/04_exploratory.py, results/E1_attention_check_robustness.csv, results/E2_age_heterogeneity.csv, results/E3_placebo_pk_score.csv",
+   "advanced: statistics returned no parsable JSON array (Agent 'advanced_statistics' got an empty response from qwen/qwen3.8-27b twice (last budget 12000 tokens): it used the whole output budget (finish_reason=length), most likely on hidden reasoning. Fix: raise budgets.advanced_statistics.max_tokens, set openrouter.reasoning: {effort: low}, or switch that tier to another model in config.yaml.)"
+  ],
   "inputs": {
    "raw_csv_sha256": "b8e0c6230d58dcecf3c133690e7eda4d962cac7a684ffeb44ed13779e7407459",
    "pap_sha256": "14139bde61926dfa86b476ed6218fce79e3fb33c470501414372b2cfae4e3537",
@@ -1514,122 +1476,120 @@
   "review_rounds": [
    {
     "round": 1,
-    "decision": "major_revision",
+    "decision": "minor_revision",
     "k_issues": 6,
-    "revised": true
-   },
-   {
-    "round": 2,
-    "decision": "major_revision",
-    "k_issues": 9,
-    "revised": true
+    "revised": true,
+    "agent_addenda": [
+     "H2a",
+     "H1a"
+    ]
    }
   ],
   "usage_by_agent": {
    "exploratory": {
-    "calls": 3,
-    "in": 67647,
-    "out": 4394,
-    "cost": 0.020411345592000002,
+    "calls": 10,
+    "in": 274173,
+    "out": 23699,
+    "cost": 0.10752295157999998,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "litreview": {
     "calls": 2,
-    "in": 1998,
-    "out": 1979,
-    "cost": 0.004464721404,
+    "in": 1746,
+    "out": 1698,
+    "cost": 0.0035458416180000002,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "writer": {
-    "calls": 2,
-    "in": 26228,
-    "out": 7123,
-    "cost": 0.12244913999999998,
+    "calls": 1,
+    "in": 9925,
+    "out": 2069,
+    "cost": 0.0401346,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "reviewer": {
-    "calls": 2,
-    "in": 56604,
-    "out": 3328,
-    "cost": 0.14502312,
+    "calls": 1,
+    "in": 19825,
+    "out": 1669,
+    "cost": 0.0557766,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "advanced_methodology": {
-    "calls": 2,
-    "in": 37816,
-    "out": 10923,
-    "cost": 0.044424378504,
+    "calls": 1,
+    "in": 17373,
+    "out": 6000,
+    "cost": 0.014067932175,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "advanced_statistics": {
-    "calls": 3,
-    "in": 74534,
-    "out": 24000,
-    "cost": 0.103836280284,
+    "calls": 2,
+    "in": 34956,
+    "out": 18000,
+    "cost": 0.04566901878,
     "models": [
      "qwen/qwen3.8-27b"
     ]
    },
    "review_orchestrator": {
+    "calls": 1,
+    "in": 21667,
+    "out": 2427,
+    "cost": 0.06692796,
+    "models": [
+     "anthropic/claude-sonnet-5.5"
+    ]
+   },
+   "responder": {
     "calls": 2,
-    "in": 50023,
-    "out": 5420,
-    "cost": 0.15270354,
+    "in": 8557,
+    "out": 731,
+    "cost": 0.02417976,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "writer_revise": {
     "calls": 2,
-    "in": 35386,
-    "out": 6340,
-    "cost": 0.13283028,
+    "in": 33125,
+    "out": 5660,
+    "cost": 0.12162150000000001,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "review_signoff": {
     "calls": 2,
-    "in": 50128,
-    "out": 3320,
-    "cost": 0.13212143999999998,
+    "in": 46670,
+    "out": 3238,
+    "cost": 0.1244628,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "potential": {
-    "calls": 1,
-    "in": 24851,
-    "out": 2545,
-    "cost": 0.07440048,
+    "calls": 2,
+    "in": 47585,
+    "out": 5389,
+    "cost": 0.1475694,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "extensions": {
-    "calls": 4,
-    "in": 56880,
-    "out": 24182,
-    "cost": 0.3520242,
-    "models": [
-     "anthropic/claude-sonnet-5.5"
-    ]
-   },
-   "responder": {
-    "calls": 3,
-    "in": 12837,
-    "out": 914,
-    "cost": 0.03446586,
+    "calls": 7,
+    "in": 89603,
+    "out": 39577,
+    "cost": 0.5692262399999999,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
@@ -1637,95 +1597,85 @@
   },
   "stage_seconds": {
    "ingest": 0.0,
-   "pii": 0.06,
+   "pii": 0.07,
    "tidy": 0.06,
-   "pap": 0.02,
+   "pap": 0.01,
    "clean": 0.33,
-   "registered": 12.87,
+   "registered": 2.39,
    "tag": 0.0,
-   "exploratory": 81.38,
-   "litreview": 35.9,
-   "write": 16.52,
-   "review": 297.5,
-   "revise": 19.75,
-   "signoff": 10.91,
-   "extensions": 160.13,
+   "exploratory": 285.87,
+   "litreview": 40.51,
+   "write": 15.92,
+   "review": 604.62,
+   "robustness": 11.3,
+   "revise": 55.43,
+   "extensions": 162.95,
    "package": 0.0
   },
-  "total_seconds": 635.4,
+  "total_seconds": 1179.5,
   "log": [
-   "2026-10-03T11:18:38Z stage ingest",
-   "2026-10-03T11:18:38Z stage pii",
-   "2026-10-03T11:18:38Z PII scan: no identifier or free-text columns flagged.",
-   "2026-10-03T11:18:38Z stage tidy",
-   "2026-10-03T11:18:38Z stage pap",
-   "2026-10-03T11:18:38Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
-   "2026-10-03T11:18:38Z cleared 54 file(s) from the previous run",
-   "2026-10-03T11:18:38Z stage clean",
-   "2026-10-03T11:18:38Z wrote data/clean.csv: 2030 rows, 72 columns",
-   "2026-10-03T11:18:39Z stage registered",
-   "2026-10-03T11:18:51Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
-   "2026-10-03T11:18:51Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T11:18:51Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
-   "2026-10-03T11:18:51Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T11:18:51Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
-   "2026-10-03T11:18:51Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T11:18:51Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
-   "2026-10-03T11:18:51Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T11:18:51Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
-   "2026-10-03T11:18:51Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T11:18:51Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
-   "2026-10-03T11:18:51Z wrote results/registered_summary.csv (72 rows)",
-   "2026-10-03T11:18:51Z stage tag",
-   "2026-10-03T11:18:51Z stage exploratory",
-   "2026-10-03T11:20:13Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory, E1=exploratory, E2=exploratory, E3=exploratory",
-   "2026-10-03T11:20:13Z stage litreview",
-   "2026-10-03T11:20:49Z stage write",
-   "2026-10-03T11:20:49Z diagram: template (figures/design.svg)",
-   "2026-10-03T11:21:05Z stage review",
-   "2026-10-03T11:26:03Z review (light,advanced): 14 issue(s); provisional decision: major_revision",
-   "2026-10-03T11:26:03Z stage revise",
-   "2026-10-03T11:26:22Z revise: 15 change note(s) from the decision letter",
-   "2026-10-03T11:26:22Z stage signoff",
-   "2026-10-03T11:26:33Z sign-off: major_revision (10/12 claims supported on the revised text)",
-   "2026-10-03T11:26:33Z stage extensions",
-   "2026-10-03T11:26:54Z research potential: 4 cause(s), 1 debate(s), 3 brief(s)",
-   "2026-10-03T11:29:13Z extensions: 3 proposal(s) validated by autoexperiment",
-   "2026-10-03T11:29:13Z stage package",
-   "2026-10-03T12:31:01Z responder: proposing an addendum for R1 on H1",
-   "2026-10-03T12:31:05Z responder: proposing an addendum for R2 on H1",
-   "2026-10-03T12:31:08Z responder: no runnable addendum for R2",
-   "2026-10-03T12:31:08Z responder: proposing an addendum for R4 on H2",
-   "2026-10-03T12:31:12Z stage registered (with addenda)",
-   "2026-10-03T12:31:25Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
-   "2026-10-03T12:31:25Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
-   "2026-10-03T12:31:25Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
-   "2026-10-03T12:31:25Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
-   "2026-10-03T12:31:25Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
-   "2026-10-03T12:31:25Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
-   "2026-10-03T12:31:25Z H1a: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=1417, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=0.009 (SE 0.006, p=0.1352, tau2=0.0000, I2=0.00)",
-   "2026-10-03T12:31:25Z H2a: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-03T12:31:25Z H2a: ai_attitudes ~ C(arm_code, Treatment(reference='0')) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.134 (SE 0.054, p=0.0126, tau2=0.0000, I2=0.00)",
-   "2026-10-03T12:31:25Z wrote results/registered_summary.csv (96 rows)",
-   "2026-10-03T12:31:25Z stage write (with addenda)",
-   "2026-10-03T12:31:57Z stage review (round 2, light,advanced)",
-   "2026-10-03T12:40:13Z stage revise (round 2 decision letter)",
-   "2026-10-03T12:40:43Z sign-off: major_revision"
-  ],
-  "address_rounds": [
-   {
-    "date": "2026-10-03",
-    "addenda": [
-     "H1a",
-     "H2a"
-    ],
-    "seconds": 571.8
-   }
+   "2026-10-04T13:47:55Z stage ingest",
+   "2026-10-04T13:47:55Z stage pii",
+   "2026-10-04T13:47:55Z PII scan: no identifier or free-text columns flagged.",
+   "2026-10-04T13:47:55Z stage tidy",
+   "2026-10-04T13:47:55Z stage pap",
+   "2026-10-04T13:47:55Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+   "2026-10-04T13:47:55Z cleared 26 file(s) from the previous run",
+   "2026-10-04T13:47:55Z stage clean",
+   "2026-10-04T13:47:55Z wrote data/clean.csv: 2030 rows, 72 columns",
+   "2026-10-04T13:47:55Z stage registered",
+   "2026-10-04T13:47:58Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+   "2026-10-04T13:47:58Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T13:47:58Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
+   "2026-10-04T13:47:58Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T13:47:58Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
+   "2026-10-04T13:47:58Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T13:47:58Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
+   "2026-10-04T13:47:58Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T13:47:58Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+   "2026-10-04T13:47:58Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T13:47:58Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+   "2026-10-04T13:47:58Z wrote results/registered_summary.csv (72 rows)",
+   "2026-10-04T13:47:58Z stage tag",
+   "2026-10-04T13:47:58Z stage exploratory",
+   "2026-10-04T13:52:44Z exploratory: no analyses recorded; removed scripts/04_exploratory.py, results/E1_attention_check_robustness.csv, results/E2_age_heterogeneity.csv, results/E3_placebo_pk_score.csv",
+   "2026-10-04T13:52:44Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory",
+   "2026-10-04T13:52:44Z stage litreview",
+   "2026-10-04T13:53:24Z stage write",
+   "2026-10-04T13:53:24Z diagram: template (figures/design.svg)",
+   "2026-10-04T13:53:40Z stage review",
+   "2026-10-04T14:03:45Z review (light,advanced): 14 issue(s); provisional decision: minor_revision",
+   "2026-10-04T14:03:45Z stage robustness",
+   "2026-10-04T14:03:45Z responder: proposing an addendum for R2 on H2",
+   "2026-10-04T14:03:49Z responder: proposing an addendum for R3 on H1",
+   "2026-10-04T14:03:53Z stage registered (with addenda: H2a, H1a)",
+   "2026-10-04T14:03:56Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+   "2026-10-04T14:03:56Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
+   "2026-10-04T14:03:56Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
+   "2026-10-04T14:03:56Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
+   "2026-10-04T14:03:56Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+   "2026-10-04T14:03:56Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+   "2026-10-04T14:03:56Z H2a: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-04T14:03:56Z H2a: ai_attitudes ~ C(arm_code, Treatment(reference='0')) | 11 arms vs Control, N=2010, HC2 SEs; 0 arm(s) supported; pooled=-0.038 (SE 0.041, p=0.3556, tau2=0.0000, I2=0.00)",
+   "2026-10-04T14:03:56Z H1a: total_score ~ C(arm_code, Treatment(reference='0')) | 11 arms vs Control, N=2030, HC2 SEs; 1 arm(s) supported; pooled=0.012 (SE 0.004, p=0.0056, tau2=0.0000, I2=0.00)",
+   "2026-10-04T14:03:56Z wrote results/registered_summary.csv (96 rows)",
+   "2026-10-04T14:03:56Z agent robustness checks: H2a for R2, H1a for R3",
+   "2026-10-04T14:03:56Z stage revise",
+   "2026-10-04T14:04:16Z correction pass 1: 14 note(s) from the writing agent",
+   "2026-10-04T14:04:26Z claim re-check: 11/12 claims supported on the corrected text",
+   "2026-10-04T14:04:40Z correction pass 2: 2 note(s) from the writing agent",
+   "2026-10-04T14:04:51Z claim re-check: 9/11 claims supported on the corrected text",
+   "2026-10-04T14:04:51Z stage extensions",
+   "2026-10-04T14:05:15Z research potential: 5 cause(s), 1 debate(s), 3 brief(s)",
+   "2026-10-04T14:07:34Z extensions: 3 proposal(s) validated by autoexperiment",
+   "2026-10-04T14:07:34Z stage package",
+   "2026-10-04T14:16:32Z research potential: 4 cause(s), 1 debate(s), 3 brief(s)",
+   "2026-10-04T14:18:03Z extensions: 3 proposal(s) validated by autoexperiment"
   ]
  },
  "links": {
@@ -1736,23 +1686,23 @@
  "related": [],
  "addenda": [
   {
-   "id": "H1a",
-   "base": "H1",
-   "responds_to": "R1",
-   "label": "exclude low political-knowledge respondents (pk_score<1), full estimates and CIs",
-   "status": "run",
-   "approved_by": "unattended (--yes)"
-  },
-  {
    "id": "H2a",
    "base": "H2",
-   "responds_to": "R4",
-   "label": "unadjusted difference in means, no covariates, same weights",
+   "responds_to": "R2",
+   "label": "Unadjusted, unweighted difference in means, pooled and per arm",
    "status": "run",
-   "approved_by": "unattended (--yes)"
+   "approved_by": "agent"
+  },
+  {
+   "id": "H1a",
+   "base": "H1",
+   "responds_to": "R3",
+   "label": "unadjusted, unweighted difference in means for all arms vs control",
+   "status": "run",
+   "approved_by": "agent"
   }
  ],
- "responses": "responses.md",
+ "responses": null,
  "extensions": [
   {
    "id": "advance_design",
@@ -1761,14 +1711,14 @@
    "brief_id": "advance_design",
    "mode": "survey_experiment",
    "debate": "D1",
-   "why": "Fixes the measurement failure: collects item-level real/AI judgments plus a confidence rating so d' and criterion can be estimated (U1), and gives a clean replication of the two nominal effects (U2).",
-   "title": "Signal-detection replication of labels and literacy guide",
-   "hypothesis": "Automated labels and the literacy guide raise d' relative to control; if the effects are only criterion shifts, d' will not differ and c will move toward more AI responses.",
-   "primary_outcome": "Sensitivity d' and criterion c from a multilevel signal-detection model (probit mixed model of AI judgment on true item status, arm, and their interaction, with random effects for respondent and item).",
+   "why": "Fixes measurement: computes sensitivity and criterion from AI and real post responses, and adds confidence ratings.",
+   "title": "Discernment vs response bias in AI labels",
+   "hypothesis": "Automated Flagging raises d' relative to control; any increase in AI responses (a more liberal criterion) is separate from sensitivity, and the stated error rate reduces reliance on labels.",
+   "primary_outcome": "d' computed from AI and real post responses (log-linear corrected), with criterion c as co-primary.",
    "conditions": [
     "Control",
-    "Automated detector label",
-    "AI Literacy Guide"
+    "Automated Flagging",
+    "Automated Flagging with error rate"
    ],
    "status": "proposed",
    "built_at": null,
@@ -1776,8 +1726,7 @@
    "svg": "extensions/advance_design.svg",
    "text": "extensions/advance_design.txt",
    "addresses": [
-    "U1",
-    "U2"
+    "U1"
    ]
   },
   {
@@ -1787,22 +1736,21 @@
    "brief_id": "generalizability_conditional",
    "mode": "survey_experiment",
    "debate": null,
-   "why": "Addresses the missing moderator: E2 was empty and underpowered, and the high-familiarity halves have n=38 or fewer in some arms.",
-   "title": "Does label benefit depend on stimulus difficulty and AI familiarity?",
-   "hypothesis": "H1: automated labels raise d' relative to control (0.035 minimum effect). H2: the label gain is smaller for hard (recent-generator) stimuli. H3: the label gain differs by ai_scale (high vs low familiarity).",
-   "primary_outcome": "Discernment d' (z(hit rate) minus z(false-alarm rate)) across the 8 posts, with condition by difficulty and condition by ai_scale interaction tests.",
+   "why": "Fixes the sample and missing-moderator causes by testing where the one robust effect holds.",
+   "title": "Label effect by label reliability and prior AI skill",
+   "hypothesis": "Labels at 95% accuracy raise accuracy over control; labels at 70% accuracy raise it less or not at all, and may lower accuracy on posts the labels mislabel. The benefit is larger for low-familiarity respondents.",
+   "primary_outcome": "Share of posts judged correctly, reported separately for AI posts and real posts, and by image versus video.",
    "conditions": [
-    "Control",
-    "Automated label"
+    "No labels",
+    "95% accurate labels",
+    "70% accurate labels"
    ],
    "status": "proposed",
    "built_at": null,
    "qsf": "extensions/generalizability_conditional.qsf",
    "svg": "extensions/generalizability_conditional.svg",
    "text": "extensions/generalizability_conditional.txt",
-   "addresses": [
-    "U2"
-   ]
+   "addresses": []
   },
   {
    "id": "theoretical_debate",
@@ -1811,17 +1759,15 @@
    "brief_id": "theoretical_debate",
    "mode": "survey_experiment",
    "debate": "D1",
-   "why": "Discriminates the two positions of D1 by separating bias from sensitivity. If interventions work, d' rises under any base rate. If the effects are bias, they vanish or flip when the share of AI items changes.",
-   "title": "Discernment vs response bias: manipulating base rates",
-   "hypothesis": "If the interventions improve discernment, d' rises relative to control at both base rates and the intervention by base-rate interaction on d' is near zero. If they only bias responses toward answering AI, d' does not differ and c shifts toward AI responses, and this shift shrinks or reverses when 80% of items are AI.",
-   "primary_outcome": "Signal-detection sensitivity d' per respondent, with criterion c as co-primary, computed from 20 item-level AI/authentic judgments.",
+   "why": "Fixes design and power: contrasts only the best-supported system arm with the best user-side arm in a focused comparison.",
+   "title": "Platform labels vs user training head to head",
+   "hypothesis": "H1 (s-frame): Automated Flagging yields higher total accuracy than the AI Literacy Guide. H2: the combined arm exceeds either single arm (additive effects). Rival (i-frame): the Guide matches labels, particularly at 1 week.",
+   "primary_outcome": "Total accuracy (share of 24 posts judged correctly) at wave 1, contrast labels vs guide.",
    "conditions": [
-    "Control, 20% AI",
-    "Control, 80% AI",
-    "Breathing, 20% AI",
-    "Breathing, 80% AI",
-    "Guide, 20% AI",
-    "Guide, 80% AI"
+    "Control",
+    "Automated Flagging",
+    "AI Literacy Guide",
+    "Labels plus Guide"
    ],
    "status": "proposed",
    "built_at": null,
@@ -1834,46 +1780,46 @@
   }
  ],
  "potential": {
-  "verdict": "A follow-up is worthwhile but narrow. The pooled H1 effect is about 1 point and the two positive effects are nominal and near their MDEs, so the study mostly shows that these interventions are weak. The open question is whether anything improves discernment rather than bias, and the existing data cannot answer it. Run advance_design first: item-level signal detection, a registered multiplicity plan, and about 420 per arm. It settles U1 and U2 together. Run the base-rate design next only if d' shows a gain.",
+  "verdict": "A follow-up is worth running, but narrowly. The only robust result is Automated Flagging (+3.2 to +4.4 points), while the other nominal effects vanish without covariates. Run the advance_design brief first: it tests whether the label effect is real discernment or a shift toward answering 'AI', and it is sized to the observed effect. The head-to-head debate brief should follow. The literature retrieved is thin on AI-media detection, so the i-frame vs s-frame debate rests on one contesting source (Chater & Loewenstein) and should be treated as framing, not established disagreement.",
   "causes": [
-   "measurement",
    "power",
    "analysis",
+   "measurement",
    "design"
   ],
   "debates": [
-   "Can individual-level interventions meaningfully improve resistance to misinformation?"
+   "Individual-level vs system-level fixes"
   ],
   "briefs": [
    {
     "id": "advance_design",
     "mode": "survey_experiment",
-    "title": "Signal-detection replication of labels and literacy guide",
+    "title": "Discernment vs response bias in AI labels",
     "needs_qsf": true
    },
    {
     "id": "theoretical_debate",
     "mode": "survey_experiment",
-    "title": "Discernment vs response bias: manipulating base rates",
+    "title": "Platform labels vs user training head to head",
     "needs_qsf": true
    },
    {
     "id": "generalizability_conditional",
     "mode": "survey_experiment",
-    "title": "Does label benefit depend on stimulus difficulty and AI familiarity?",
+    "title": "Label effect by label reliability and prior AI skill",
     "needs_qsf": true
    }
   ]
  },
  "review": "review.json",
  "review_claims": {
-  "supported": 8,
-  "total": 12,
-  "open_analytical": 2,
+  "supported": 9,
+  "total": 11,
+  "open_analytical": 1,
   "on_revised_text": true
  },
- "review_round": 2,
- "review_rounds": 2,
+ "review_round": 1,
+ "review_rounds": 1,
  "badges": [
   {
    "name": "provenance",
@@ -1885,7 +1831,7 @@
   {
    "name": "review",
    "label": "review",
-   "value": "round 2 · 8/12 claims supported",
+   "value": "9/11 claims supported",
    "color": "amber",
    "href": null
   },

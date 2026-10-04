@@ -760,44 +760,51 @@
   ],
   "addenda": [
     {
-      "base": "H1",
-      "label": "exclude low political-knowledge respondents (pk_score<1), full estimates and CIs",
-      "rationale": "The reviewer notes the exclusion is a low-knowledge screen, not an attention check, so it should be labelled that way and reported with estimates, SEs and CIs. This re-runs H1 excluding pk_score<1, so readers can see whether effects shrink or just get noisier.",
-      "delta": {
-        "exclusions": [
-          "pk_score >= 1"
-        ]
-      },
-      "expected": "Point estimates similar to the registered analysis with wider CIs would suggest lost precision, not a vanished effect. Sign changes or large shifts in estimates would worry a reader.",
-      "id": "H1a",
-      "responds_to": "R1",
-      "issue": "The E1 table has empty est/se/p columns for every arm, yet the text claims that Automated Flagging (p=0.004) and AI Literacy Guide (p=0.043) became nonsignificant. Nothing displayed supports this. The 'attention-check failure' label is also misleading: pk_score<1 is a knowledge-question failure, not an attention check, and may be post-treatment-correlated or confounded with ability. Dropping 30% of the sample is not a clean robustness test.",
-      "status": "run",
-      "proposed_at": "2026-10-03T12:31:05Z",
-      "approved_by": "unattended (--yes)"
-    },
-    {
       "base": "H2",
-      "label": "unadjusted difference in means, no covariates, same weights",
-      "rationale": "Reviewer suspects the Lin interaction model and covariate leverage drive the heterogeneous arm SEs (e.g., Breathing Exercise). Re-fitting without covariates shows whether arm estimates, SEs and the pooled effect hold up without covariate adjustment.",
+      "label": "Unadjusted, unweighted difference in means, pooled and per arm",
+      "rationale": "The reviewer suspects covariate adjustment (Lin model) or IPW weights drive the gap between the Breathing Exercise estimate and its raw mean difference. Re-fitting as a plain unweighted difference in means with no covariates shows raw estimates that can be reconciled with the adjusted ones.",
       "delta": {
         "estimator": {
           "kind": "diff_means",
           "robust": "HC2",
           "cluster": null,
-          "weights": "ipw",
+          "weights": null,
           "covariates": [],
           "continuous": [],
           "categorical": []
         }
       },
-      "expected": "Similar arm estimates and more uniform SEs, with a pooled effect near -0.11, would reassure; large shifts in SEs or estimates would point to covariate leverage or outliers in the Lin model.",
+      "expected": "If the unadjusted pooled and Breathing Exercise estimates match the raw means (about -0.04 for Breathing Exercise) and the pooled effect is near zero, the registered result depends on the adjustment or weights and should be read cautiously. If they are similar to the adjusted ones, the result is robust.",
+      "final": true,
       "id": "H2a",
-      "responds_to": "R4",
-      "issue": "The text says the other ten arms had estimates 'between −0.16 and 0.00', but the pooled random-effects result (−0.11, p=0.026) is reported as significant and tied to nothing in the narrative. The Breathing Exercise result (−0.54) has an SE of 0.23 that is much larger than the other arms' SEs, and arm-level SEs vary oddly (0.116 to 0.280), which suggests the Lin interaction model or outliers are driving them.",
+      "responds_to": "R2",
+      "issue": "The pooled estimate of -0.11 (p=.026) is called 'a small shift', yet no individual arm besides Breathing Exercise differs from zero. The Breathing Exercise estimate (-0.54) is larger than its own arm mean difference (4.146 vs 4.187 = -0.04), which suggests covariate adjustment or weighting drives it. The raw means and the adjusted estimates are not reconciled anywhere.",
       "status": "run",
-      "proposed_at": "2026-10-03T12:31:12Z",
-      "approved_by": "unattended (--yes)"
+      "proposed_at": "2026-10-04T14:03:49Z",
+      "approved_by": "agent"
+    },
+    {
+      "base": "H1",
+      "label": "unadjusted, unweighted difference in means for all arms vs control",
+      "rationale": "The reviewer worries the significant H1 effects depend on the IPW weights and covariate interactions. An unweighted, covariate-free difference in means shows the raw effects and whether the weights drive the results.",
+      "delta": {
+        "estimator": {
+          "kind": "diff_means",
+          "robust": "HC2",
+          "cluster": null,
+          "weights": null,
+          "covariates": [],
+          "continuous": [],
+          "categorical": []
+        }
+      },
+      "expected": "Reassuring if raw estimates match the adjusted ones in sign and rough size. Worrying if they are near zero, as the raw means suggest, because that would mean the weights or interactions drive the results.",
+      "id": "H1a",
+      "responds_to": "R3",
+      "issue": "The mean_arm values in the CSVs do not match the estimates. Mindfulness is -3.9 points adjusted but its raw arm mean is higher than control (0.696 vs 0.693), and the Guide's raw difference is only 0.6 points against an adjusted +4.7. The significant H1 results therefore depend on the weighted, covariate-interacted model.",
+      "status": "run",
+      "proposed_at": "2026-10-04T14:03:53Z",
+      "approved_by": "agent"
     }
   ]
 }

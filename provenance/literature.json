@@ -1,70 +1,55 @@
 {
- "text": "Prior findings offer partial, indirect support for the study's hypotheses. Lewandowsky and van der Linden (2021) document that inoculation and prebunking interventions can shift attitudes toward misinformation, providing a basis for expecting effects on attitudes (H2) and trust in online information (H4). Ecker et al. (2022) identify psychological drivers that make misinformation beliefs resistant to correction, suggesting that attitude and trust outcomes may be harder to move than detection accuracy (H1). Capraro et al. (2024) frame generative AI as a new vector for (mis)information, contextualizing why detection of AI-generated posts (H5) and recognition of authentic posts (H6) are relevant outcomes. The retrieved list is thin on work directly addressing human detection of AI-generated text specifically; most supporting evidence is about misinformation more broadly.\n\nA live disagreement concerns the sufficiency of individual-level interventions. Chater and Loewenstein (2022) argue that focusing on individual-level behavioral solutions has led policy astray and that system-level changes are necessary, which contests the premise that the study's individual-level design can produce meaningful effects on any of its outcomes. Ecker et al. (2022) reinforce this skepticism by showing that belief correction is psychologically difficult. The study's controlled intervention design can speak to whether individual-level changes in detection accuracy, confidence, attitudes, or trust are detectable at all, but it cannot adjudicate the broader claim that such changes are insufficient without system-level reform.",
+ "text": "Prior findings relevant to the study's hypotheses are limited and mostly indirect. Lewandowsky et al. (2017) and Wang et al. (2019) document that misinformation spreads widely and that people are poor at identifying false claims, providing general support for the premise that detection accuracy (H1) and trust in online information (H4) are malleable and in need of intervention. Pluviano et al. (2020) show that source expertise and trustworthiness cues shape recollection of misinformation, which is tangentially relevant to H1 and H4 but does not address AI-generated content specifically. No retrieved work directly examines interventions aimed at detecting AI-generated text or posts, so the list is thin for the study's core domain.\n\nThe most pointed disagreement in the retrieved set concerns whether individual-level interventions can meaningfully shift information-processing outcomes. Chater and Loewenstein (2022) argue that focusing on individual-level solutions has led behavioral public policy astray, implying that the study's design—targeting individual participants with brief interventions—may be insufficient to produce the changes hypothesized in H1–H6. The study's design can speak to this debate by testing whether, in the specific and novel domain of AI-generated content, individual-level interventions nonetheless produce measurable effects on detection accuracy, confidence, and trust, or whether the null results anticipated by the i-frame critique hold.",
  "works": [
   {
-   "id": "https://openalex.org/W4206236567",
-   "title": "The psychological drivers of misinformation belief and its resistance to correction",
+   "id": "https://openalex.org/W3016902371",
+   "title": "Using social and behavioural science to support COVID-19 pandemic response",
    "authors": [
+    "Jay Joseph Van Bavel",
+    "Katherine Baicker",
+    "Paulo S. Boggio",
+    "Valerio Capraro"
+   ],
+   "year": 2020,
+   "doi": "10.1038/s41562-020-0884-z",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 5218,
+   "abstract": "",
+   "stance": "supporting",
+   "query": "inoculation intervention detection accuracy misinformation false content"
+  },
+  {
+   "id": "https://openalex.org/W2760944227",
+   "title": "Beyond misinformation: Understanding and coping with the “post-truth” era.",
+   "authors": [
+    "Stephan Lewandowsky",
     "Ullrich K. H. Ecker",
-    "Stephan Lewandowsky",
-    "John Cook",
-    "Philipp Schmid"
+    "John Cook"
    ],
-   "year": 2022,
-   "doi": "10.1038/s44159-021-00006-y",
-   "venue": "Nature Reviews Psychology",
-   "cited_by": 1393,
-   "abstract": "",
+   "year": 2017,
+   "doi": "10.1016/j.jarmac.2017.07.008",
+   "venue": "Journal of Applied Research in Memory and Cognition",
+   "cited_by": 2025,
+   "abstract": "The terms \"post-truth\" and \"fake news\" have become increasingly prevalent in public discourse over the last year. This article explores the growing abundance of misinformation, how it influences people, and how to counter it. We examine the ways in which misinformation can have an adverse impact on society. We summarize how people respond to corrections of misinformation, and what kinds of correct",
    "stance": "supporting",
-   "query": "inoculation theory deepfake detection accuracy"
+   "query": "inoculation intervention detection accuracy misinformation false content"
   },
   {
-   "id": "https://openalex.org/W3130700834",
-   "title": "Countering Misinformation and Fake News Through Inoculation and Prebunking",
+   "id": "https://openalex.org/W2974087526",
+   "title": "Systematic Literature Review on the Spread of Health-related Misinformation on Social Media",
    "authors": [
-    "Stephan Lewandowsky",
-    "Sander van der Linden"
+    "Yuxi Wang",
+    "Martin McKee",
+    "Aleksandra Torbica",
+    "David Stückler"
    ],
-   "year": 2021,
-   "doi": "10.1080/10463283.2021.1876983",
-   "venue": "European Review of Social Psychology",
-   "cited_by": 794,
-   "abstract": "There has been increasing concern with the growing infusion of misinformation, or “fake news”, into public discourse and politics in many western democracies. Our article first briefly reviews the current state of the literature on conventional countermeasures to misinformation. We then explore proactive measures to prevent misinformation from finding traction in the first place that is based on t",
+   "year": 2019,
+   "doi": "10.1016/j.socscimed.2019.112552",
+   "venue": "Social Science & Medicine",
+   "cited_by": 1893,
+   "abstract": "Contemporary commentators describe the current period as \"an era of fake news\" in which misinformation, generated intentionally or unintentionally, spreads rapidly. Although affecting all areas of life, it poses particular problems in the health arena, where it can delay or prevent effective care, in some cases threatening the lives of individuals. While examples of the rapid spread of misinformat",
    "stance": "supporting",
-   "query": "inoculation theory deepfake detection accuracy"
-  },
-  {
-   "id": "https://openalex.org/W4319983294",
-   "title": "Fake news, disinformation and misinformation in social media: a review",
-   "authors": [
-    "Esma Aı̈meur",
-    "Sabrine Amri",
-    "Gilles Brassard"
-   ],
-   "year": 2023,
-   "doi": "10.1007/s13278-023-01028-5",
-   "venue": "Social Network Analysis and Mining",
-   "cited_by": 773,
-   "abstract": "",
-   "stance": "supporting",
-   "query": "inoculation theory deepfake detection accuracy"
-  },
-  {
-   "id": "https://openalex.org/W4381848566",
-   "title": "Connecting the dots in trustworthy Artificial Intelligence: From AI principles, ethics, and key requirements to responsible AI systems and regulation",
-   "authors": [
-    "Natalia Díaz-Rodríguez",
-    "Javier Del Ser",
-    "Mark Coeckelbergh",
-    "Marcos López de Prado"
-   ],
-   "year": 2023,
-   "doi": "10.1016/j.inffus.2023.101896",
-   "venue": "Information Fusion",
-   "cited_by": 763,
-   "abstract": "Trustworthy Artificial Intelligence (AI) is based on seven technical requirements sustained over three main pillars that should be met throughout the system’s entire life cycle: it should be (1) lawful, (2) ethical, and (3) robust, both from a technical and a social perspective. However, attaining truly trustworthy AI concerns a wider vision that comprises the trustworthiness of all processes and ",
-   "stance": "contesting",
-   "query": "misinformation intervention backfire effect AI literacy"
+   "query": "inoculation intervention detection accuracy misinformation false content"
   },
   {
    "id": "https://openalex.org/W4294628862",
@@ -76,117 +61,131 @@
    "year": 2022,
    "doi": "10.1017/s0140525x22002023",
    "venue": "Behavioral and Brain Sciences",
-   "cited_by": 584,
+   "cited_by": 585,
    "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
    "stance": "contesting",
-   "query": "misinformation intervention backfire effect AI literacy"
+   "query": "inoculation backfire effect overconfidence detection accuracy null"
   },
   {
-   "id": "https://openalex.org/W4399518864",
-   "title": "The impact of generative artificial intelligence on socioeconomic inequalities and policy making",
+   "id": "https://openalex.org/W4226385226",
+   "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
    "authors": [
-    "Valerio Capraro",
-    "Austin Lentsch",
-    "Daron Acemoğlu",
-    "Selin Akgün"
+    "Nick Chater",
+    "George F. Loewenstein"
+   ],
+   "year": 2022,
+   "doi": "10.2139/ssrn.4046264",
+   "venue": "SSRN Electronic Journal",
+   "cited_by": 189,
+   "abstract": "",
+   "stance": "contesting",
+   "query": "inoculation backfire effect overconfidence detection accuracy null"
+  },
+  {
+   "id": "https://openalex.org/W3019296942",
+   "title": "The effects of source expertise and trustworthiness on recollection: the case of vaccine misinformation",
+   "authors": [
+    "Sara Pluviano",
+    "Sergio Della Sala",
+    "Caroline A. Watt"
+   ],
+   "year": 2020,
+   "doi": "10.1007/s10339-020-00974-8",
+   "venue": "Cognitive Processing",
+   "cited_by": 49,
+   "abstract": "",
+   "stance": "contesting",
+   "query": "inoculation backfire effect overconfidence detection accuracy null"
+  },
+  {
+   "id": "https://openalex.org/W3049618663",
+   "title": "Machine learning in additive manufacturing: State-of-the-art and perspectives",
+   "authors": [
+    "Chengcheng Wang",
+    "Xipeng Tan",
+    "Shu Beng Tor",
+    "C.S. Lim"
+   ],
+   "year": 2020,
+   "doi": "10.1016/j.addma.2020.101538",
+   "venue": "Additive manufacturing",
+   "cited_by": 700,
+   "abstract": "",
+   "stance": "method",
+   "query": "survey experiment multiple treatment arms detection accuracy Lin estimator regression adjustment"
+  },
+  {
+   "id": "https://openalex.org/W2801697966",
+   "title": "Empirical Comparison of Publication Bias Tests in Meta-Analysis",
+   "authors": [
+    "Lifeng Lin",
+    "Haitao Chu",
+    "Mohammad Hassan Murad",
+    "Chuan Hong"
+   ],
+   "year": 2018,
+   "doi": "10.1007/s11606-018-4425-7",
+   "venue": "Journal of General Internal Medicine",
+   "cited_by": 485,
+   "abstract": "",
+   "stance": "method",
+   "query": "survey experiment multiple treatment arms detection accuracy Lin estimator regression adjustment"
+  },
+  {
+   "id": "https://openalex.org/W4392201174",
+   "title": "Advancing Precision Medicine: A Review of Innovative In Silico Approaches for Drug Development, Clinical Pharmacology and Personalized Healthcare",
+   "authors": [
+    "Lara Marques",
+    "Bárbara Costa",
+    "Mariana Pereira",
+    "Abigail Silva"
    ],
    "year": 2024,
-   "doi": "10.1093/pnasnexus/pgae191",
-   "venue": "PNAS Nexus",
-   "cited_by": 355,
-   "abstract": "Abstract Generative artificial intelligence (AI) has the potential to both exacerbate and ameliorate existing socioeconomic inequalities. In this article, we provide a state-of-the-art interdisciplinary overview of the potential impacts of generative AI on (mis)information and three information-intensive domains: work, education, and healthcare. Our goal is to highlight how generative AI could wor",
-   "stance": "contesting",
-   "query": "misinformation intervention backfire effect AI literacy"
-  },
-  {
-   "id": "https://openalex.org/W2171811563",
-   "title": "SPIRIT 2013 explanation and elaboration: guidance for protocols of clinical trials",
-   "authors": [
-    "A.-W. Chan",
-    "Jennifer Tetzlaff",
-    "Peter Christian Gøtzsche",
-    "Douglas G. Altman"
-   ],
-   "year": 2013,
-   "doi": "10.1136/bmj.e7586",
-   "venue": "BMJ",
-   "cited_by": 7142,
-   "abstract": "High quality protocols facilitate proper conduct, reporting, and external review of clinical trials. However, the completeness of trial protocols is often inadequate. To help improve the content and quality of protocols, an international group of stakeholders developed the SPIRIT 2013 Statement (Standard Protocol Items: Recommendations for Interventional Trials). The SPIRIT Statement provides guid",
+   "doi": "10.3390/pharmaceutics16030332",
+   "venue": "Pharmaceutics",
+   "cited_by": 384,
+   "abstract": "The landscape of medical treatments is undergoing a transformative shift. Precision medicine has ushered in a revolutionary era in healthcare by individualizing diagnostics and treatments according to each patient's uniquely evolving health status. This groundbreaking method of tailoring disease prevention and treatment considers individual variations in genes, environments, and lifestyles. The go",
    "stance": "method",
-   "query": "Lin estimator randomized controlled trial survey intervention effect size"
+   "query": "survey experiment multiple treatment arms detection accuracy Lin estimator regression adjustment"
   },
   {
-   "id": "https://openalex.org/W2470481127",
-   "title": "Global Prevalence of Chronic Kidney Disease – A Systematic Review and Meta-Analysis",
+   "id": "https://openalex.org/W3035680161",
+   "title": "COVID-19 and the workplace: Implications, issues, and insights for future research and action.",
    "authors": [
-    "Nathan R. Hill",
-    "Samuel Fatoba",
-    "Jason Lee Oke",
-    "Jennifer A. Hirst"
+    "Kevin M. Kniffin",
+    "Jayanth Narayanan",
+    "Frederik Anseel",
+    "John Antonakis"
    ],
-   "year": 2016,
-   "doi": "10.1371/journal.pone.0158765",
-   "venue": "PLoS ONE",
-   "cited_by": 4122,
-   "abstract": "Chronic kidney disease (CKD) is a global health burden with a high economic cost to health systems and is an independent risk factor for cardiovascular disease (CVD). All stages of CKD are associated with increased risks of cardiovascular morbidity, premature mortality, and/or decreased quality of life. CKD is usually asymptomatic until later stages and accurate prevalence data are lacking. Thus w",
-   "stance": "method",
-   "query": "Lin estimator randomized controlled trial survey intervention effect size"
-  },
-  {
-   "id": "https://openalex.org/W2155329925",
-   "title": "The Preventable Causes of Death in the United States: Comparative Risk Assessment of Dietary, Lifestyle, and Metabolic Risk Factors",
-   "authors": [
-    "Goodarz Danaei",
-    "Eric L. Ding",
-    "Dariush Mozaffarian",
-    "Ben Taylor"
-   ],
-   "year": 2009,
-   "doi": "10.1371/journal.pmed.1000058",
-   "venue": "PLoS Medicine",
-   "cited_by": 2890,
-   "abstract": "BACKGROUND: Knowledge of the number of deaths caused by risk factors is needed for health policy and priority setting. Our aim was to estimate the mortality effects of the following 12 modifiable dietary, lifestyle, and metabolic risk factors in the United States (US) using consistent and comparable methods: high blood glucose, low-density lipoprotein (LDL) cholesterol, and blood pressure; overwei",
-   "stance": "method",
-   "query": "Lin estimator randomized controlled trial survey intervention effect size"
-  },
-  {
-   "id": "https://openalex.org/W2161374186",
-   "title": "Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015 statement",
-   "authors": [
-    "PRISMA-P Group",
-    "David Moher",
-    "Larissa Shamseer",
-    "Mike J Clarke"
-   ],
-   "year": 2015,
-   "doi": "10.1186/2046-4053-4-1",
-   "venue": "Systematic Reviews",
-   "cited_by": 27160,
-   "abstract": "Systematic reviews should build on a protocol that describes the rationale, hypothesis, and planned methods of the review; few reviews report whether a protocol exists. Detailed, well-described protocols can facilitate the understanding and appraisal of the review methods, as well as the detection of modifications to methods and selective reporting in completed reviews. We describe the development",
+   "year": 2020,
+   "doi": "10.1037/amp0000716",
+   "venue": "American Psychologist",
+   "cited_by": 1653,
+   "abstract": "The impacts of COVID-19 on workers and workplaces across the globe have been dramatic. This broad review of prior research rooted in work and organizational psychology, and related fields, is intended to make sense of the implications for employees, teams, and work organizations. This review and preview of relevant literatures focuses on (a) emergent changes in work practices (e.g., working from h",
    "stance": "citing",
-   "query": "cites:W2171811563"
+   "query": "cites:W3016902371"
   }
  ],
  "queries": [
-  "inoculation theory deepfake detection accuracy",
-  "accuracy nudge AI-generated content identification",
-  "misinformation intervention backfire effect AI literacy",
-  "media literacy intervention null effect synthetic media detection",
-  "Lin estimator randomized controlled trial survey intervention effect size"
+  "inoculation intervention detection accuracy misinformation false content",
+  "accuracy nudge trust online information media literacy intervention effect",
+  "inoculation backfire effect overconfidence detection accuracy null",
+  "intervention transfer domain specificity AI-generated content detection distinct misinformation",
+  "survey experiment multiple treatment arms detection accuracy Lin estimator regression adjustment"
  ],
  "query_sets": {
   "supporting": [
-   "inoculation theory deepfake detection accuracy",
-   "accuracy nudge AI-generated content identification"
+   "inoculation intervention detection accuracy misinformation false content",
+   "accuracy nudge trust online information media literacy intervention effect"
   ],
   "contesting": [
-   "misinformation intervention backfire effect AI literacy",
-   "media literacy intervention null effect synthetic media detection"
+   "inoculation backfire effect overconfidence detection accuracy null",
+   "intervention transfer domain specificity AI-generated content detection distinct misinformation"
   ],
   "method": [
-   "Lin estimator randomized controlled trial survey intervention effect size"
+   "survey experiment multiple treatment arms detection accuracy Lin estimator regression adjustment"
   ]
  },
- "debate_hint": "Whether individual-level interventions can meaningfully shift detection accuracy, attitudes, or trust toward AI-generated content, or whether such effects are too small to matter without system-level changes.",
+ "debate_hint": "Whether individual-level interventions can shift information-detection and trust outcomes, or whether system-level changes are required (Chater & Loewenstein, 2022, vs. the study's interventionist design).",
  "degraded": null
 }

@@ -1,0 +1,208 @@
+import importlib.util, pathlib
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
+
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as smf
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+
+os.makedirs('results', exist_ok=True)
+os.makedirs('figures', exist_ok=True)
+
+df = pd.read_csv('data/clean.csv')
+
+# Convert numeric columns
+num_cols = ['total_score', 'pk_score', 'political_interest', 'fake_score', 'real_score',
+            'ai_attitudes', 'ai_confidence', 'trust_online', 'media_trust', 'age',
+            'gender_m', 'white', 'hisp', 'afam_black', 'asian', 'ipw', 'treat', 'ai_scale']
+for c in num_cols:
+    if c in df.columns:
+        df[c] = pd.to_numeric(df[c], errors='coerce')
+
+# Get H1 hypothesis
+h1 = [h for h in reg.HYPOTHESES if h.get('outcome') == 'total_score'][0]
+est = h1['estimator']
+covariates = est['covariates']
+
+print(f"[debug] est={est!r}")
+print(f"[debug] covariates={covariates!r}")
+
+# ============================================================
+# E1: Robustness to attention-check failures (pk_score == 0)
+# Rationale: Verify that significant H1 effects are not driven by
+# inattentive respondents who failed both attention checks.
+# ============================================================
+df_full = df.dropna(subset=['total_score']).copy()
+df_att = df_full[df_full['pk_score'] > 0].copy()
+
+f_orig, d_orig = reg.build_formula('total_score', est, covariates, df_full)
+res_orig = reg.fit(d_orig, f_orig, est)
+
+f_att, d_att = reg.build_formula('total_score', est, covariates, df_att)
+res_att = reg.fit(d_att, f_att, est)
+
+# Extract arm-level estimates
+arm_params = sorted(
+    [p for p in res_orig.params.index if 'T.' in str(p) and 'arm_code' in str(p)],
+    key=lambda x: int(str(x).split('T.')[1].rstrip(']'))
+)
+
+print(f"[debug] arm_params found: {arm_params}")
+
+rows = []
+for p in arm_params:
+    arm_num = str(p).split('T.')[1].rstrip(']')
+    rows.append({
+        'arm': arm_num,
+        'estimate_original': res_orig.params.get(p, np.nan),
+        'se_original': res_orig.bse.get(p, np.nan),
+        'estimate_robust': res_att.params.get(p, np.nan),
+        'se_robust': res_att.bse.get(p, np.nan),
+    })
+
+e1_df = pd.DataFrame(rows)
+e1_df['n_original'] = len(df_full)
+e1_df['n_robust'] = len(df_att)
+e1_df.to_csv('results/E1_attention_check_robustness.csv', index=False)
+
+# Check SE stability
+for _, r in e1_df.iterrows():
+    if r['se_original'] > 0 and r['se_robust'] > 0:
+        ratio = r['se_robust'] / r['se_original']
+        if ratio > 2 or ratio < 0.5:
+            print(f"[WARNING] E1 arm {r['arm']}: SE ratio = {ratio:.2f} (possible misspecification)")
+
+sig_arms = ['3', '6', '10']
+for a in sig_arms:
+    row = e1_df[e1_df['arm'] == a].iloc[0]
+    print(f"E1: Arm {a}: orig={row['estimate_original']:.3f} (SE={row['se_original']:.3f}), "
+          f"robust={row['estimate_robust']:.3f} (SE={row['se_robust']:.3f}), "
+          f"n: {int(row['n_original'])} -> {int(row['n_robust'])}")
+
+# Figure 1: Forest plot for significant arms
+fig, ax = plt.subplots(figsize=(8, 3.5))
+c_orig = '#2171b5'
+c_rob = '#d6604d'
+for i, a in enumerate(sig_arms):
+    row = e1_df[e1_df['arm'] == a].iloc[0]
+    y = len(sig_arms) - 1 - i
+    ax.errorbar(row['estimate_original'], y + 0.13, xerr=1.96 * row['se_original'],
+                fmt='o', color=c_orig, capsize=4, markersize=5, linestyle='none')
+    ax.errorbar(row['estimate_robust'], y - 0.13, xerr=1.96 * row['se_robust'],
+                fmt='s', color=c_rob, capsize=4, markersize=5, linestyle='none')
+    x_max = max(row['estimate_original'] + 1.96 * row['se_original'],
+                row['estimate_robust'] + 1.96 * row['se_robust'])
+    ax.text(x_max + 0.008, y + 0.13, f"{row['estimate_original']:+.3f}",
+            va='center', fontsize=8, color=c_orig)
+    ax.text(x_max + 0.008, y - 0.13, f"{row['estimate_robust']:+.3f}",
+            va='center', fontsize=8, color=c_rob)
+
+ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
+ax.set_yticks(range(len(sig_arms)))
+ax.set_yticklabels([f"Arm {a}" for a in reversed(sig_arms)])
+ax.set_xlabel("Effect on total_score (95% CI)")
+ax.set_title("E1: H1 effects — full sample vs. excluding attention-check failures")
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.tick_params(left=False)
+ax.text(0.98, 0.02, '\u25cf full sample    \u25a0 excl. pk_score=0',
+        transform=ax.transAxes, ha='right', va='bottom', fontsize=8, color='#333333')
+plt.tight_layout()
+plt.savefig('figures/E1_attention_check.png', dpi=200)
+plt.close()
+
+# ============================================================
+# E2: Heterogeneity by age
+# Rationale: Older respondents may have different baseline exposure to
+# AI-generated media, potentially moderating intervention effectiveness.
+# ============================================================
+cov_e2 = ['media_trust', 'political_interest', 'gender_m', 'white', 'hisp', 'afam_black']
+df_e2 = df.dropna(subset=['total_score', 'age'] + cov_e2).copy()
+df_e2['age_c'] = df_e2['age'] - df_e2['age'].mean()
+
+formula_e2 = ("total_score ~ treat * age_c + " + " + ".join(cov_e2))
+res_e2 = smf.wls(formula_e2, data=df_e2, weights=df_e2['ipw']).fit(cov_type='HC2')
+
+treat_coef = res_e2.params.get('treat', np.nan)
+treat_se = res_e2.bse.get('treat', np.nan)
+treat_p = res_e2.pvalues.get('treat', np.nan)
+interact_coef = res_e2.params.get('treat:age_c', np.nan)
+interact_se = res_e2.bse.get('treat:age_c', np.nan)
+interact_p = res_e2.pvalues.get('treat:age_c', np.nan)
+
+e2_df = pd.DataFrame([
+    {'term': 'treat (ATE at mean age)', 'estimate': treat_coef,
+     'std_error': treat_se, 'p_value': treat_p},
+    {'term': 'treat:age_c (moderation per yr)', 'estimate': interact_coef,
+     'std_error': interact_se, 'p_value': interact_p},
+])
+e2_df.to_csv('results/E2_age_heterogeneity.csv', index=False)
+
+print(f"E2: ATE at mean age = {treat_coef:.3f} (SE={treat_se:.3f}, p={treat_p:.3f}), "
+      f"moderation by age = {interact_coef:.4f} (SE={interact_se:.4f}, p={interact_p:.3f}), "
+      f"n={len(df_e2)}")
+
+# ============================================================
+# E3: Placebo on attention-check score (pk_score)
+# Rationale: If interventions shift attention-check performance, it
+# suggests they alter general engagement rather than AI discernment.
+# ============================================================
+df_e3 = df.dropna(subset=['pk_score']).copy()
+f_e3, d_e3 = reg.build_formula('pk_score', est, covariates, df_e3)
+res_e3 = reg.fit(d_e3, f_e3, est)
+
+arm_params_e3 = sorted(
+    [p for p in res_e3.params.index if 'T.' in str(p) and 'arm_code' in str(p)],
+    key=lambda x: int(str(x).split('T.')[1].rstrip(']'))
+)
+
+rows_e3 = []
+for p in arm_params_e3:
+    arm_num = str(p).split('T.')[1].rstrip(']')
+    rows_e3.append({
+        'arm': arm_num,
+        'estimate': res_e3.params.get(p, np.nan),
+        'std_error': res_e3.bse.get(p, np.nan),
+        'p_value': res_e3.pvalues.get(p, np.nan),
+    })
+
+e3_df = pd.DataFrame(rows_e3)
+e3_df.to_csv('results/E3_placebo_pk_score.csv', index=False)
+
+n_sig = int((e3_df['p_value'] < 0.05).sum())
+print(f"E3: Placebo on pk_score — {n_sig}/11 arms significant at p<0.05 "
+      f"(expected ~0.05 by chance)")
+for _, row in e3_df[e3_df['p_value'] < 0.10].iterrows():
+    print(f"  Arm {row['arm']}: est={row['estimate']:.3f}, SE={row['std_error']:.3f}, p={row['p_value']:.3f}")
+
+# Figure 2: Placebo bar chart
+fig, ax = plt.subplots(figsize=(8, 4))
+arms_plot = e3_df['arm'].astype(int).values
+ests = e3_df['estimate'].values
+ses = e3_df['std_error'].values
+colors = ['#d6604d' if p < 0.05 else '#2171b5' for p in e3_df['p_value']]
+
+ax.barh(arms_plot - 1, ests, xerr=1.96 * ses, height=0.6,
+        color=colors, capsize=3, alpha=0.85)
+ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
+ax.set_yticks(arms_plot - 1)
+ax.set_yticklabels([f"Arm {a}" for a in arms_plot])
+ax.set_xlabel("Effect on pk_score (95% CI)")
+ax.set_title("E3: Placebo — intervention effects on attention-check score")
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.tick_params(left=False)
+ax.text(0.98, 0.02, 'red = p<0.05', transform=ax.transAxes,
+        ha='right', va='bottom', fontsize=8, color='#333333')
+plt.tight_layout()
+plt.savefig('figures/E3_placebo_pk_score.png', dpi=200)
+plt.close()
+
+print("Done.")

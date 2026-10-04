@@ -1,34 +1,40 @@
 {
  "id": "generalizability_conditional",
  "kind": "boundary",
- "title": "Does label benefit depend on stimulus difficulty and AI familiarity?",
- "rationale": "Automated Flagging raised accuracy by 4.4 points (p=0.004) in the source study, but the familiarity heterogeneity table (E2) was empty and some high-familiarity arm halves had n=38 or fewer. This follow-up tests whether the gain holds across easy vs hard stimuli and across prior AI familiarity, with enough power for an interaction test.",
- "contribution": "Tests whether the automated-label gain is conditional on stimulus difficulty and prior AI familiarity, using a preregistered moderator and an adequately powered sample.",
+ "title": "Label effect by label reliability and prior AI skill",
+ "rationale": "Automated Flagging was the one robust gain (+4.4 points, 95% CI [1.4, 7.3], p=0.004; control n=181 of 2,030 analysed), but the labels' accuracy was not varied and no moderator such as AI familiarity was tested. This design tests whether the benefit holds when labels are 95% versus 70% accurate, across AI familiarity levels, and for images versus videos.",
+ "contribution": "Maps the conditions (label reliability, AI familiarity, media type) under which automated AI labels improve discernment on both AI and real posts.",
  "limitations": [
-  "Interaction tests need several hundred respondents per cell, so the interaction may remain underpowered.",
-  "Oversampling high-familiarity respondents may limit generalisation to the whole population.",
-  "Generator age is only a proxy for difficulty.",
-  "Self-reported familiarity may be noisy."
+  "Labels are simulated, not real detector outputs.",
+  "Short post-exposure task on an online panel; 12 posts limit stimulus-level precision.",
+  "Familiarity is self-reported and the strata are approximate.",
+  "Power targets the main effect (MDE about 0.03), not the interactions."
  ],
  "design": {
-  "title": "Automated labels by stimulus difficulty and AI familiarity",
-  "overview": "Respondents first report AI familiarity (ai_scale), with high-familiarity respondents oversampled. They are then randomised to a control or an automated AI-detection label. Each respondent judges 8 posts (images and text) in a within-person mix of older-generator (easy) and recent-generator (hard) AI outputs and authentic items. The outcome is d' and its interaction with difficulty and with familiarity.",
-  "hypothesis": "H1: automated labels raise d' relative to control (0.035 minimum effect). H2: the label gain is smaller for hard (recent-generator) stimuli. H3: the label gain differs by ai_scale (high vs low familiarity).",
-  "primaryOutcome": "Discernment d' (z(hit rate) minus z(false-alarm rate)) across the 8 posts, with condition by difficulty and condition by ai_scale interaction tests.",
-  "comparison": "Control vs automated label, crossed within person with stimulus difficulty (older vs recent generator), and moderated by ai_scale (pre-treatment).",
-  "population": "US online panel adults, with high AI-familiarity respondents oversampled.",
+  "title": "Automated labels: reliability, AI familiarity and media type",
+  "overview": "Respondents report AI familiarity, then are randomised to no labels, labels that are 95% accurate, or labels that are 70% accurate. They judge 12 posts (6 images, 6 videos; half AI-generated, half real) and say whether each is AI-generated. Recruitment is stratified by AI familiarity.",
+  "hypothesis": "Labels at 95% accuracy raise accuracy over control; labels at 70% accuracy raise it less or not at all, and may lower accuracy on posts the labels mislabel. The benefit is larger for low-familiarity respondents.",
+  "primaryOutcome": "Share of posts judged correctly, reported separately for AI posts and real posts, and by image versus video.",
+  "comparison": "Each label arm versus control; 95% versus 70% accuracy; interaction with ai_scale tercile and with media type.",
+  "population": "US online panel adults, stratified into low, medium and high AI familiarity based on the ai_scale screener.",
   "conditions": [
    {
     "id": "c_control",
-    "title": "Control",
-    "description": "Posts shown with no label.",
+    "title": "No labels",
+    "description": "Posts are shown without labels.",
     "nodeId": "arm_control"
    },
    {
-    "id": "c_label",
-    "title": "Automated label",
-    "description": "Each post carries a machine-learning AI-detection label.",
-    "nodeId": "arm_label"
+    "id": "c_high",
+    "title": "95% accurate labels",
+    "description": "Automated labels on each post; participants are told the detector is correct about 95% of the time.",
+    "nodeId": "arm_high"
+   },
+   {
+    "id": "c_low",
+    "title": "70% accurate labels",
+    "description": "Automated labels on each post; participants are told the detector is correct about 70% of the time.",
+    "nodeId": "arm_low"
    }
   ],
   "blocks": [
@@ -39,7 +45,7 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to take part in a research study about how people judge online media. Participation is voluntary and responses are anonymous. Do you agree to participate?",
+      "text": "You are invited to a research study about judging online images and videos. It takes about 10 minutes, is voluntary, and your answers are anonymous. Do you agree to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
@@ -61,61 +67,44 @@
     ]
    },
    {
-    "id": "b_pre",
-    "title": "Pre-treatment",
+    "id": "b_ai",
+    "title": "AI familiarity",
     "questions": [
      {
       "id": "q_ai_scale",
-      "type": "Matrix",
-      "text": "Please rate how much you agree with each statement about your use of AI.",
+      "type": "MC",
+      "text": "How familiar are you with artificial intelligence tools that create images or videos?",
       "tag": "ai_scale",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "s1",
-        "text": "Strongly disagree",
+        "id": "a1",
+        "text": "Not at all familiar",
         "recode": "1"
        },
        {
-        "id": "s2",
-        "text": "Disagree",
+        "id": "a2",
+        "text": "Slightly familiar",
         "recode": "2"
        },
        {
-        "id": "s3",
-        "text": "Neither",
+        "id": "a3",
+        "text": "Moderately familiar",
         "recode": "3"
        },
        {
-        "id": "s4",
-        "text": "Agree",
+        "id": "a4",
+        "text": "Very familiar",
         "recode": "4"
        },
        {
-        "id": "s5",
-        "text": "Strongly agree",
+        "id": "a5",
+        "text": "Extremely familiar",
         "recode": "5"
        }
       ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "I use AI chatbots often."
-       },
-       {
-        "id": "r2",
-        "text": "I use AI image generation tools often."
-       },
-       {
-        "id": "r3",
-        "text": "I understand how generative AI works."
-       },
-       {
-        "id": "r4",
-        "text": "I often see AI-generated content online."
-       }
-      ],
+      "rows": [],
       "sourceQuestionId": ""
      },
      {
@@ -168,103 +157,65 @@
     ]
    },
    {
-    "id": "b_intro",
-    "title": "Task intro",
-    "questions": [
-     {
-      "id": "q_intro",
-      "type": "DB",
-      "text": "Next you will see 8 posts. For each, mark whether it was generated by AI or is authentic. Go with your gut if unsure.",
-      "tag": "task_intro",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
     "id": "b_ctrl",
-    "title": "Control feed",
+    "title": "Control instructions",
     "questions": [
      {
-      "id": "q_c1",
+      "id": "q_ctrl_txt",
       "type": "DB",
-      "text": "{{ed:ctrl_post1}}",
-      "tag": "ctrl_post1_show",
+      "text": "Next you will see 12 images and videos. Decide whether each is AI-generated. No labels are shown.",
+      "tag": "ctrl_intro",
       "multiple": false,
       "required": false,
       "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_c1r",
-      "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "ctrl_post1_resp",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ai",
-        "text": "AI-generated",
-        "recode": "1"
-       },
-       {
-        "id": "real",
-        "text": "Authentic",
-        "recode": "0"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_c2",
-      "type": "DB",
-      "text": "{{ed:ctrl_post2}}",
-      "tag": "ctrl_post2_show",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_c2r",
-      "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "ctrl_post2_resp",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ai",
-        "text": "AI-generated",
-        "recode": "1"
-       },
-       {
-        "id": "real",
-        "text": "Authentic",
-        "recode": "0"
-       }
-      ],
       "rows": [],
       "sourceQuestionId": ""
      }
     ]
    },
    {
-    "id": "b_lab",
-    "title": "Labelled feed",
+    "id": "b_high",
+    "title": "95% label instructions",
     "questions": [
      {
-      "id": "q_l1",
+      "id": "q_high_txt",
       "type": "DB",
-      "text": "{{ed:lab_post1}}",
-      "tag": "lab_post1_show",
+      "text": "Next you will see 12 images and videos. Each carries an automated AI-detection label. The detector is correct about 95% of the time. Decide whether each is AI-generated.",
+      "tag": "high_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_low",
+    "title": "70% label instructions",
+    "questions": [
+     {
+      "id": "q_low_txt",
+      "type": "DB",
+      "text": "Next you will see 12 images and videos. Each carries an automated AI-detection label. The detector is correct about 70% of the time. Decide whether each is AI-generated.",
+      "tag": "low_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_posts",
+    "title": "Posts",
+    "questions": [
+     {
+      "id": "q_p1_show",
+      "type": "DB",
+      "text": "{{ed:post1}}",
+      "tag": "post1_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -272,10 +223,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_l1r",
+      "id": "q_p1",
       "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "lab_post1_resp",
+      "text": "Is this image AI-generated?",
+      "tag": "post1_judge",
       "multiple": false,
       "required": true,
       "choices": [
@@ -286,7 +237,7 @@
        },
        {
         "id": "real",
-        "text": "Authentic",
+        "text": "Not AI-generated",
         "recode": "0"
        }
       ],
@@ -294,10 +245,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_l2",
+      "id": "q_p2_show",
       "type": "DB",
-      "text": "{{ed:lab_post2}}",
-      "tag": "lab_post2_show",
+      "text": "{{ed:post2}}",
+      "tag": "post2_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -305,10 +256,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_l2r",
+      "id": "q_p2",
       "type": "MC",
-      "text": "Is this post AI-generated or authentic?",
-      "tag": "lab_post2_resp",
+      "text": "Is this video AI-generated?",
+      "tag": "post2_judge",
       "multiple": false,
       "required": true,
       "choices": [
@@ -319,7 +270,73 @@
        },
        {
         "id": "real",
-        "text": "Authentic",
+        "text": "Not AI-generated",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p3_show",
+      "type": "DB",
+      "text": "{{ed:post3}}",
+      "tag": "post3_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p3",
+      "type": "MC",
+      "text": "Is this image AI-generated?",
+      "tag": "post3_judge",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Not AI-generated",
+        "recode": "0"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p4_show",
+      "type": "DB",
+      "text": "{{ed:post4}}",
+      "tag": "post4_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_p4",
+      "type": "MC",
+      "text": "Is this video AI-generated?",
+      "tag": "post4_judge",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "ai",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "real",
+        "text": "Not AI-generated",
         "recode": "0"
        }
       ],
@@ -334,8 +351,8 @@
     "questions": [
      {
       "id": "q_conf",
-      "type": "Matrix",
-      "text": "Please answer the following question about artificial intelligence.",
+      "type": "MC",
+      "text": "I feel confident in my ability to detect artificial intelligence.",
       "tag": "ai_confidence",
       "multiple": false,
       "required": true,
@@ -376,12 +393,7 @@
         "recode": "7"
        }
       ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "I feel confident in my ability to detect artificial intelligence."
-       }
-      ],
+      "rows": [],
       "sourceQuestionId": "QID3"
      }
     ]
@@ -393,7 +405,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some posts were AI-generated and some were authentic. Labels shown in this study were part of an experiment and may not have been accurate. Contact the research team with any questions.",
+      "text": "Thank you. Any labels and accuracy figures shown were part of the experiment and were simulated. Some posts were AI-generated and others were authentic.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -430,9 +442,9 @@
     "operator": "equals"
    },
    {
-    "id": "n_branch",
+    "id": "n_br",
     "type": "branch",
-    "label": "Non-consent",
+    "label": "No consent",
     "children": [
      "n_end"
     ],
@@ -444,23 +456,11 @@
     "operator": "selected"
    },
    {
-    "id": "n_pre",
+    "id": "n_ai",
     "type": "block",
-    "label": "Pre",
+    "label": "AI familiarity",
     "children": [],
-    "blockId": "b_pre",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_intro",
-    "type": "block",
-    "label": "Intro",
-    "children": [],
-    "blockId": "b_intro",
+    "blockId": "b_ai",
     "field": "",
     "value": "",
     "questionId": "",
@@ -470,10 +470,11 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Condition",
+    "label": "Label arm",
     "children": [
      "arm_control",
-     "arm_label"
+     "arm_high",
+     "arm_low"
     ],
     "blockId": "",
     "field": "",
@@ -488,8 +489,6 @@
     "label": "Control",
     "children": [
      "set_control",
-     "e_c1",
-     "e_c2",
      "t_control"
     ],
     "blockId": "",
@@ -502,7 +501,7 @@
    {
     "id": "set_control",
     "type": "embedded",
-    "label": "Set condition",
+    "label": "Set control",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -512,33 +511,9 @@
     "operator": "equals"
    },
    {
-    "id": "e_c1",
-    "type": "embedded",
-    "label": "Control post 1 (older generator image)",
-    "children": [],
-    "blockId": "",
-    "field": "ctrl_post1",
-    "value": "[IMAGE: an AI-generated image from an older generator, shown as a social media post with no label]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_c2",
-    "type": "embedded",
-    "label": "Control post 2 (recent generator text)",
-    "children": [],
-    "blockId": "",
-    "field": "ctrl_post2",
-    "value": "[IMAGE: a screenshot of a social media text post written by a recent language model, with no label]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
     "id": "t_control",
     "type": "block",
-    "label": "Control feed",
+    "label": "Control text",
     "children": [],
     "blockId": "b_ctrl",
     "field": "",
@@ -548,14 +523,12 @@
     "operator": "equals"
    },
    {
-    "id": "arm_label",
+    "id": "arm_high",
     "type": "group",
-    "label": "Automated label",
+    "label": "95%",
     "children": [
-     "set_label",
-     "e_l1",
-     "e_l2",
-     "t_label"
+     "set_high",
+     "t_high"
     ],
     "blockId": "",
     "field": "",
@@ -565,47 +538,122 @@
     "operator": "equals"
    },
    {
-    "id": "set_label",
+    "id": "set_high",
     "type": "embedded",
-    "label": "Set condition",
+    "label": "Set high",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "automated_label",
+    "value": "label95",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "e_l1",
-    "type": "embedded",
-    "label": "Label post 1",
-    "children": [],
-    "blockId": "",
-    "field": "lab_post1",
-    "value": "[IMAGE: an AI-generated image from a recent generator, shown as a social media post with a banner reading 'Automated AI-detection: likely AI-generated']",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "e_l2",
-    "type": "embedded",
-    "label": "Label post 2",
-    "children": [],
-    "blockId": "",
-    "field": "lab_post2",
-    "value": "[IMAGE: a screenshot of an authentic social media text post with a banner reading 'Automated AI-detection: likely authentic']",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "t_label",
+    "id": "t_high",
     "type": "block",
-    "label": "Labelled feed",
+    "label": "95% text",
     "children": [],
-    "blockId": "b_lab",
+    "blockId": "b_high",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_low",
+    "type": "group",
+    "label": "70%",
+    "children": [
+     "set_low",
+     "t_low"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_low",
+    "type": "embedded",
+    "label": "Set low",
+    "children": [],
+    "blockId": "",
+    "field": "condition",
+    "value": "label70",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_low",
+    "type": "block",
+    "label": "70% text",
+    "children": [],
+    "blockId": "b_low",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e1",
+    "type": "embedded",
+    "label": "Post 1",
+    "children": [],
+    "blockId": "",
+    "field": "post1",
+    "value": "[IMAGE: a photorealistic scene, AI-generated, with a label per condition]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e2",
+    "type": "embedded",
+    "label": "Post 2",
+    "children": [],
+    "blockId": "",
+    "field": "post2",
+    "value": "[VIDEO: a 10-second authentic news-style clip, with a label per condition]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e3",
+    "type": "embedded",
+    "label": "Post 3",
+    "children": [],
+    "blockId": "",
+    "field": "post3",
+    "value": "[IMAGE: an authentic photograph, with a label per condition]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "e4",
+    "type": "embedded",
+    "label": "Post 4",
+    "children": [],
+    "blockId": "",
+    "field": "post4",
+    "value": "[VIDEO: a 10-second AI-generated clip, with a label per condition]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_posts",
+    "type": "block",
+    "label": "Posts",
+    "children": [],
+    "blockId": "b_posts",
     "field": "",
     "value": "",
     "questionId": "",
@@ -625,7 +673,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -639,41 +687,44 @@
   ],
   "roots": [
    "n_consent",
-   "n_branch",
-   "n_pre",
-   "n_intro",
+   "n_br",
+   "n_ai",
    "r1",
+   "e1",
+   "e2",
+   "e3",
+   "e4",
+   "n_posts",
    "n_out",
-   "n_debrief"
+   "n_deb"
   ],
   "assumptions": [
-   "Power target: about 500 per arm to detect 0.035 at 80% power (source H1 Automated Flagging effect 0.044); a halved interaction would need several hundred per cell, so total N is about 1,000, with high-familiarity respondents oversampled via panel quotas.",
-   "ai_scale is measured pre-treatment, with a median split and continuous analysis both preregistered.",
-   "Only two example posts per arm are shown in the flow; the full 8-post feed (4 older-generator, 4 recent-generator; image and text; half authentic) follows the same pattern with randomised order and fixed label accuracy.",
-   "d' is computed per respondent with a log-linear correction; a multiplicity plan (Holm across H1-H3) is preregistered.",
-   "Platform: online US panel, about 10 minutes."
+   "About 350 per arm (about 1,050 total) gives an MDE of about 0.03 at 80% power with SD 0.13, matching the observed Automated Flagging effect of +0.032 raw.",
+   "Recruitment is stratified into ai_scale terciles using the screener; the interaction tests are underpowered.",
+   "The instrument shows 4 posts for brevity; the fielded version would use 12 (6 images, 6 videos, half AI-generated). Label correctness is set so that exactly 95% or 70% of labels are right.",
+   "A US online panel is used; compensation follows panel norms for a 10-minute survey."
   ],
   "unresolved": [
-   "The actual image and text stimuli, including older vs recent generator outputs, must be supplied by the research team.",
-   "The automated label accuracy rate and wording must be fixed by the research team.",
-   "Compensation and IRB approval number must be supplied by the research team."
+   "The research team must supply the image and video files and the label overlays.",
+   "IRB approval number and participant compensation must be supplied.",
+   "The panel's ability to stratify on ai_scale before randomisation must be confirmed."
   ],
   "evidence": [
    {
     "id": "ev1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "Automated Flagging raised accuracy by 4.4 points; familiarity heterogeneity table was empty.",
+    "claim": "Automated Flagging raised accuracy by 4.4 points",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    },
    {
     "id": "ev2",
-    "title": "Pre-registration of the source study",
+    "title": "Pre-registration",
     "url": "https://aspredicted.org/q2eh95.pdf",
-    "claim": "Registered design and outcomes without a multiplicity correction.",
+    "claim": "the registered design and outcomes",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    }
   ]
  }
