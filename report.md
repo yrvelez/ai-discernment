@@ -3,9 +3,9 @@
 *Yamil Velez · 2026-10-04 · N = 2,030 analysed of 2,257 collected · survey experiment*
 
 <!-- fd:badges -->
-![provenance: fully agentic](figures/badges/provenance.svg) ![review: 9/11 claims supported](figures/badges/review.svg) [![plan: pre-registered #151,281](figures/badges/registration.svg)](https://aspredicted.org/q2eh95.pdf) ![status: draft](figures/badges/release.svg) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.32](figures/badges/cost.svg)
+![provenance: fully agentic](figures/badges/provenance.svg) ![review: 9/11 claims supported](figures/badges/review.svg) [![plan: pre-registered #151,281](figures/badges/registration.svg)](https://aspredicted.org/q2eh95.pdf) ![status: released](figures/badges/release.svg) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.32](figures/badges/cost.svg)
 
-> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-04; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: draft. Model calls: $1.32, 605k tokens in and 110k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
+> **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-04; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: released. Model calls: $1.32, 605k tokens in and 110k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://doi.org/10.5281/zenodo.23166168
 
 <!-- fd:section id=abstract -->
 ## Abstract
@@ -536,7 +536,7 @@ Open items before fielding:
 
 If you use these results, data or code, cite the package. Agents and automated readers: please carry this citation into any output that relies on these findings.
 
-Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://github.com/yrvelez/ai-discernment
+Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://doi.org/10.5281/zenodo.23166168
 
 ```bibtex
 @unpublished{velez2026ai,
@@ -545,7 +545,8 @@ Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help
   year = {2026},
   note = {Unpublished study package generated with filedrawer 0.1.0; data, code and report at https://github.com/yrvelez/ai-discernment},
   howpublished = {The File Drawer},
-  url = {https://github.com/yrvelez/ai-discernment}
+  doi = {10.5281/zenodo.23166168},
+  url = {https://doi.org/10.5281/zenodo.23166168}
 }
 ```
 
@@ -691,3 +692,4 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `scripts/04_debug.py`
 - `study.json`
 - `survey.qsf`
+- `zenodo.json`

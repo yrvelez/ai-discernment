@@ -1432,7 +1432,8 @@
    "supported": true
   }
  ],
- "release_status": "draft",
+ "release_status": "released",
+ "released": "2026-10-05",
  "license": {
   "code": "MIT",
   "content": "CC-BY-4.0"
@@ -1678,6 +1679,8 @@
    "2026-10-04T14:18:03Z extensions: 3 proposal(s) validated by autoexperiment"
   ]
  },
+ "doi": "10.5281/zenodo.23166168",
+ "doi_version": "10.5281/zenodo.23166169",
  "links": {
   "folder": "https://github.com/yrvelez/ai-discernment/tree/main",
   "report": "https://github.com/yrvelez/ai-discernment/blob/main/report.md",
@@ -1845,8 +1848,8 @@
   {
    "name": "release",
    "label": "status",
-   "value": "draft",
-   "color": "amber",
+   "value": "released",
+   "color": "green",
    "href": null
   },
   {

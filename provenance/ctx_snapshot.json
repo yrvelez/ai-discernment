@@ -7,12 +7,13 @@
    "Yamil Velez"
   ],
   "synthetic": false,
-  "release_status": "draft",
+  "release_status": "released",
   "repo_url": "https://github.com/yrvelez/ai-discernment",
   "branch": "main",
   "package_at_root": true,
   "n_raw": 2257,
-  "n_analysis": 2030
+  "n_analysis": 2030,
+  "released": "2026-10-05"
  },
  "pap_source": "author-supplied pap.json",
  "data_columns": [

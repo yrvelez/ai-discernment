@@ -1,0 +1,32 @@
+{
+ "sandbox": {
+  "doi": "10.5072/zenodo.614480",
+  "concept_doi": "10.5072/zenodo.614479",
+  "published": true,
+  "url": "https://sandbox.zenodo.org/records/614480",
+  "reserved_at": "2026-10-05T15:26:37Z",
+  "record_id": 614480,
+  "published_at": "2026-10-05T15:26:39Z",
+  "versions": [
+   {
+    "doi": "10.5072/zenodo.614480",
+    "date": "2026-10-05"
+   }
+  ]
+ },
+ "production": {
+  "doi": "10.5281/zenodo.23166169",
+  "concept_doi": "10.5281/zenodo.23166168",
+  "published": true,
+  "url": "https://zenodo.org/records/23166169",
+  "reserved_at": "2026-10-05T15:27:22Z",
+  "record_id": 23166169,
+  "published_at": "2026-10-05T15:27:26Z",
+  "versions": [
+   {
+    "doi": "10.5281/zenodo.23166169",
+    "date": "2026-10-05"
+   }
+  ]
+ }
+}
