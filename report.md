@@ -3,7 +3,7 @@
 *Yamil Velez · 2026-10-04 · N = 2,030 analysed of 2,257 collected · survey experiment*
 
 <!-- fd:badges -->
-![provenance: fully agentic](figures/badges/provenance.svg) ![review: 9/11 claims supported](figures/badges/review.svg) [![plan: pre-registered #151,281](figures/badges/registration.svg)](https://aspredicted.org/q2eh95.pdf) ![status: released](figures/badges/release.svg) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.32](figures/badges/cost.svg)
+![provenance: fully agentic](figures/badges/provenance.svg) ![review: 9/11 claims supported](figures/badges/review.svg) [![plan: pre-registered #151,281](figures/badges/registration.svg)](https://aspredicted.org/q2eh95.pdf) ![status: released](figures/badges/release.svg) [![DOI: 10.5281/zenodo.23166168](figures/badges/doi.svg)](https://doi.org/10.5281/zenodo.23166168) ![design: survey experiment](figures/badges/design.svg) ![data: open data](figures/badges/data.svg) ![model calls: $1.32](figures/badges/cost.svg)
 
 > **Provenance: FULLY AGENTIC — no human review recorded.** filedrawer 0.1.0, 2026-10-04; orchestrator `anthropic/claude-sonnet-5.5`, standard `qwen/qwen3.8-27b`, zero data retention requested. Reviewer pass: yes. Human steps recorded: 0. Release status: released. Model calls: $1.32, 605k tokens in and 110k out. Cite as: Velez, Y. (2026). Improving AI Discernment: do misinformation interventions help people spot AI-generated media? [Unpublished study package, generated with filedrawer 0.1.0]. The File Drawer. https://doi.org/10.5281/zenodo.23166168
 
@@ -625,6 +625,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `figures/badges/cost.svg`
 - `figures/badges/data.svg`
 - `figures/badges/design.svg`
+- `figures/badges/doi.svg`
 - `figures/badges/provenance.svg`
 - `figures/badges/registration.svg`
 - `figures/badges/release.svg`
