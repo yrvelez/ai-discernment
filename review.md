@@ -1,110 +1,75 @@
-# Automated review: Light Pass, Advanced Pass (methodology + statistics)
+# Automated review: Light Pass
 
-Models: light `anthropic/claude-sonnet-5.5`, advanced:methodology `qwen/qwen3.8-27b`, advanced:statistics `qwen/qwen3.8-27b`, orchestrator `anthropic/claude-sonnet-5.5`. The registered data support one reasonably clear result: Automated Flagging raised total accuracy by about 4.4 points. The AI Literacy Guide (p=0.043) and Mindfulness (p=0.032) results are borderline and uncorrected across 44 registered tests. The pooled accuracy effect is null, and the confidence, attitude and trust findings are isolated arm-level results. The most important caveat is that several significant arm effects do not match the raw arm-versus-control mean differences, so they depend on the weighted, covariate-interacted model, and the report does not reconcile the two. The H5 and H6 results are exploratory and cannot separate discernment from a shift toward answering 'AI'.
+Models: light `anthropic/claude-sonnet-5.5`, orchestrator `anthropic/claude-sonnet-5.5`. The arm-level estimates in the text match the tables. Automated Flagging (+4.4), the AI Literacy Guide (+4.7) and Mindfulness (−3.9) are significant on accuracy at uncorrected p-values, and the pooled accuracy effect is null. The main caveat is that 44 registered tests were run with no correction, so the Guide (p = 0.043) and Mindfulness (p = 0.032) results are fragile. Some wording overreaches, notably that exploratory and uncorrected findings are described as raising or lowering outcomes, and the Key findings sentence on Breathing Exercise and the Accuracy Nudge omits the Guide. The pooled CIs are not tabulated but follow from the pooled estimate and SE.
 
-**Review outcome (round 1): 9 of 11 claims supported by the results after the agent's corrections; 1 analytical issue without a robustness check.**
+**Review outcome (round 1): 12 of 12 claims supported by the results after the agent's corrections.**
 
-- **high** R1 (analytical) [declined] — Abstract / H1 / Key findings: The headline says Automated Flagging and the Guide 'raised' accuracy, and the abstract notes the uncorrected tests only in passing. With 44 uncorrected registered tests and 3 significant H1 arms, only Automated Flagging (p=.004) is plausibly robust; the Guide (p=.043) and Mindfulness (p=.032) would not survive any correction. The Key findings list them as plain findings.
-  - Suggested fix: Report multiplicity-adjusted p-values (Holm/BH) per outcome family, and word the Guide and Mindfulness results as tentative.
-  - Disposition: The registered plan specifies no multiple-testing correction, so adjusted p-values are not added; the wording is softened instead (editorial).
-- **medium** R2 (analytical) [address] — H2: The pooled estimate of -0.11 (p=.026) is called 'a small shift', yet no individual arm besides Breathing Exercise differs from zero. The Breathing Exercise estimate (-0.54) is larger than its own arm mean difference (4.146 vs 4.187 = -0.04), which suggests covariate adjustment or weighting drives it. The raw means and the adjusted estimates are not reconciled anywhere.
-  - Suggested fix: Show unadjusted and adjusted estimates, check sensitivity to the Lin interaction model and the IPW weights, and explain the discrepancy.
-  - Disposition: Unadjusted and unweighted estimates can be fitted on the same data to show where the Breathing Exercise estimate comes from.
-- **medium** R3 (analytical) [address] — H1 tables: The mean_arm values in the CSVs do not match the estimates. Mindfulness is -3.9 points adjusted but its raw arm mean is higher than control (0.696 vs 0.693), and the Guide's raw difference is only 0.6 points against an adjusted +4.7. The significant H1 results therefore depend on the weighted, covariate-interacted model.
-  - Suggested fix: Report unadjusted, unweighted differences alongside the adjusted results, and state that the IPW weights are model-dependent (what they correct for). Also check whether the IPW weights are influential.
-  - Disposition: A robustness re-fit with raw differences, no weights and no interactions, plus a check of weight influence, answers this directly.
-- **medium** R4 (analytical) [unresolved] — H5: The pooled H5 effect is reported with p = 0.000, and the text emphasises the Breathing Exercise and Nudge as raising detection of AI posts. This is exploratory, and H6 shows no matching gain for authentic posts. The AI Literacy Guide result (CI [0.000, 0.157], p=.049) is borderline. Higher AI-detection scores could reflect a shift toward answering 'AI' more often (response bias) rather than better discernment, which would make this an accuracy gain only in name.
-  - Suggested fix: Report p<0.001 rather than 0.000, and analyse sensitivity/specificity or d' to separate discernment from response bias. Qualify the Key finding.
-  - Disposition: Sensitivity and d' need per-post responses and truth labels that the tables do not provide, so response bias cannot be separated from discernment here; only the p-value formatting is editorial.
-- **medium** R5 (presentational) [editorial] — Design: The control group has n=181 but this is not stated in the report ('whose size is not given in the tables'). The arms are very unbalanced (78 to 333), and the report does not explain the allocation or whether the 227 exclusions differed by arm.
-  - Suggested fix: State the control n, give the exclusion criteria, and show attrition/exclusion by arm.
-  - Disposition: The control n of 181 is in the tables, so the report only needs to state it and describe the exclusions; exclusion counts by arm cannot be shown from these tables.
-- **low** R6 (analytical) [address] — Design / Registration: Data existed at registration, and the registered date (2023-11-15) falls after fielding (Oct–Nov 2023). The claim that 'later batches followed the plan' is unverified, and no analysis separates pre- and post-registration batches.
-  - Suggested fix: Report which share of the data predates registration, and run a sensitivity analysis on post-registration data only.
-  - Disposition: A post-registration-batch-only re-fit is possible if a batch indicator exists in the data.
-- **low** R7 (presentational) [editorial] — Related work: The related-work section lists irrelevant retrieved items (additive manufacturing, drug development, publication-bias tests) and draws only weak links to the study. It also describes the null results as 'anticipated' by the i-frame critique.
-  - Suggested fix: Remove irrelevant citations and drop the claim that nulls were anticipated.
-  - Disposition: Irrelevant citations and the claim that nulls were anticipated should be removed.
-- **low** R8 (presentational) [editorial] — H4: The pooled p=.060 and the single arm at p=.023 are described as 'unchanged in the data's resolution', which is vague. The CIs also exclude effects that could matter, but the report does not discuss this.
-  - Suggested fix: Rephrase in terms of the CI bounds (effects larger than about 0.27 are ruled out).
-  - Disposition: The H4 prose can be rewritten in terms of the CI bounds.
-- **medium** K1 (presentational, claims) [editorial] — Abstract: Overstated claim: "the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])". H1 row 10: 0.047, p=0.043. The raw arm mean is 0.699 vs 0.693 for control, a gap of only 0.6 points, so the result depends on the adjusted model.
-  - Suggested fix: Call it tentative, borderline and model-dependent, and report the unadjusted difference beside it.
+- **medium** R1 (presentational) [editorial] — Abstract / H1 / Key findings: The text gives a pooled accuracy difference of +1.0 point with 95% CI [−0.3, +2.4]. The table shows only pooled estimate 0.010, SE 0.007 and p 0.132. No CI appears in any table. The implied CI is about [−0.003, 0.023], so the stated bounds roughly match but are not tabulated.
+  - Suggested fix: Report the pooled estimate as 1.0 point (SE 0.7, p = 0.132), or add the CI to the table.
+  - Disposition: The pooled CI is derivable from the estimate and SE, so only reporting needs fixing.
+- **low** R2 (presentational) [editorial] — H5: The text gives the AI Literacy Guide CI as [0.04, 15.7]. The table shows [0.000, 0.157], so the lower bound is about 0.0 points, not 0.04. The p-value is 0.0488, consistent with a lower bound very near zero.
+  - Suggested fix: Write the CI as [0.0, 15.7] points.
+  - Disposition: The H5 Guide CI lower bound should read 0.0 as in the table.
+- **low** R3 (presentational) [editorial] — H2: The text gives the pooled AI attitudes estimate as −0.11 (95% CI [−0.21, −0.01]). The table has only −0.111 (SE 0.050, p = 0.026), and no CI is tabulated.
+  - Suggested fix: Report the pooled estimate as −0.11 (SE 0.05, p = 0.026), or add the CI to the table.
+  - Disposition: Report the pooled SE and p, or add the CI to the table.
+- **low** R4 (presentational) [editorial] — H3 / H4: The pooled CIs in the text (H3: [−0.32, +0.06]; H4: [−0.08, +0.00]) do not appear in any table. Only the pooled estimates, SEs and p-values do.
+  - Suggested fix: Report the pooled estimates with SE and p, or add the CIs to the table.
+  - Disposition: The pooled CIs for H3 and H4 need tabulating or replacing with SE and p.
+- **medium** K1 (presentational, claims) [editorial] — Abstract: Overstated claim: "AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])". H1 table: 0.047, CI [0.002, 0.092], p = 0.043; the interval barely excludes zero and is uncorrected across 11 arms
+  - Suggested fix: Say the Guide estimate is borderline and uncorrected.
   - Disposition: claim checked against the tables by the checking agent
-- **medium** K2 (presentational, claims) [editorial] — Abstract: Overstated claim: "Mindfulness lowered it by 3.9 points (95% CI [-7.4, -0.3])". H1 row 6: -0.039, p=0.032. The raw arm mean is 0.696 vs 0.693 for control, which is higher, not lower.
-  - Suggested fix: Describe it as a borderline adjusted estimate that the raw means do not reproduce.
+- **medium** K2 (presentational, claims) [editorial] — Key findings: Overstated claim: "Several arms also lowered confidence in AI detection". H3: only Flagging and Infographic 2 are significantly negative; Inoculation is significantly positive
+  - Suggested fix: Say two arms lowered confidence and one (Inoculation) raised it.
   - Disposition: claim checked against the tables by the checking agent
-- **medium** K3 (presentational, claims) [editorial] — H2: Overstated claim: "Breathing Exercise lowered attitudes by 0.54 scale points". H2 row 5: -0.543, p=0.018. The raw means are 4.146 vs 4.187, a gap of about 0.04, so the estimate comes from the adjusted model.
-  - Suggested fix: Flag it as an isolated adjusted estimate that the raw means do not support, and give the unadjusted difference.
-  - Disposition: claim checked against the tables by the checking agent
-- **medium** K4 (presentational, claims) [editorial] — H2: Overstated claim: "The pooled estimate was -0.11 (95% CI [-0.21, -0.01]), a small shift". H2 pooled: -0.111, p=0.026. Ten of the 11 arms have intervals spanning zero, and the result is uncorrected.
-  - Suggested fix: Describe it as a marginal pooled estimate that is not robust.
-  - Disposition: claim checked against the tables by the checking agent
-- **medium** K5 (presentational, claims) [editorial] — Key findings: Overstated claim: "Exploratory splits suggest the Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts". H5 rows 5 and 4: 0.091 (p=0.003) and 0.066 (p=0.014). H6 shows no matching gain for authentic posts, and response bias is not excluded.
-  - Suggested fix: Say these arms raised the share of AI posts identified, and that this may reflect a greater tendency to answer 'AI' rather than better discernment.
-  - Disposition: claim checked against the tables by the checking agent
-- **medium** K6 (presentational, claims) [editorial] — H5: Overstated claim: "The pooled H5 effect, p = 0.000". The pooled estimate is 0.038, SE 0.011; a p-value of exactly zero is a rounding artefact.
-  - Suggested fix: Report p<0.001 and label the result exploratory.
+- **medium** K3 (presentational, claims) [editorial] — H5: Overstated claim: "AI Literacy Guide 7.9 points higher, CI [0.04, 15.7]". H5 table: CI [0.000, 0.157], p = 0.0488
+  - Suggested fix: Write the CI as [0.0, 15.7].
   - Disposition: claim checked against the tables by the checking agent
 
 ## Claim checks (checking agent)
 
-- **supported** (Abstract): "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])" — H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004; raw means 0.726 vs 0.693 point the same way.
-- **overstated** (Abstract): "the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])" — H1 row 10: 0.047, p=0.043. The raw arm mean is 0.699 vs 0.693 for control, a gap of only 0.6 points, so the result depends on the adjusted model.
-- **overstated** (Abstract): "Mindfulness lowered it by 3.9 points (95% CI [-7.4, -0.3])" — H1 row 6: -0.039, p=0.032. The raw arm mean is 0.696 vs 0.693 for control, which is higher, not lower.
-- **supported** (Abstract): "Pooled across arms, accuracy was not distinguishable from control (+1.0 point)" — H1 pooled: 0.010, SE 0.007, p=0.132.
-- **overstated** (H2): "Breathing Exercise lowered attitudes by 0.54 scale points" — H2 row 5: -0.543, p=0.018. The raw means are 4.146 vs 4.187, a gap of about 0.04, so the estimate comes from the adjusted model.
-- **overstated** (H2): "The pooled estimate was -0.11 (95% CI [-0.21, -0.01]), a small shift" — H2 pooled: -0.111, p=0.026. Ten of the 11 arms have intervals spanning zero, and the result is uncorrected.
-- **supported** (H3): "Inoculation raised confidence by 0.51; Flagging lowered it by 0.53; AI Literacy Infographic 2 lowered it by 0.69" — H3 rows 7, 1 and 9: 0.509 (p=0.007), -0.525 (p=0.012), -0.686 (p=0.010). The tests are uncorrected and the Inoculation arm has only n=77.
-- **supported** (H4): "Only the AI Literacy Infographic differed on trust, at 0.15 points lower" — H4 row 8: -0.146, p=0.0235. The pooled estimate is -0.038, p=0.060.
-- **overstated** (Key findings): "Exploratory splits suggest the Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts" — H5 rows 5 and 4: 0.091 (p=0.003) and 0.066 (p=0.014). H6 shows no matching gain for authentic posts, and response bias is not excluded.
-- **overstated** (H5): "The pooled H5 effect, p = 0.000" — The pooled estimate is 0.038, SE 0.011; a p-value of exactly zero is a rounding artefact.
+- **supported** (Abstract): "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])" — H1 table: 0.044, CI [0.014, 0.073], p = 0.0035
+- **overstated** (Abstract): "AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2])" — H1 table: 0.047, CI [0.002, 0.092], p = 0.043; the interval barely excludes zero and is uncorrected across 11 arms
+- **supported** (Abstract): "Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])" — H1 table: −0.039, CI [−0.074, −0.003], p = 0.032
+- **supported** (Abstract): "Pooled across arms, accuracy was not distinguishable from control (+1.0 point, 95% CI [−0.3, +2.4])" — H1 pooled: 0.010, SE 0.007, p = 0.132; the implied CI is about [−0.003, 0.024]
+- **supported** (Abstract): "Some arms lowered attitudes toward AI or confidence in detection" — H2 Breathing Exercise −0.543, p = 0.018; H3 Flagging −0.525 and Infographic 2 −0.686
+- **supported** (Key findings): "Most interventions did not measurably improve accuracy" — H1: 8 of 11 arms have CIs including zero
+- **supported** (Key findings): "Breathing Exercise and the AI Accuracy Nudge raised detection of AI-generated posts" — H5: Breathing Exercise 0.091, p = 0.0027; Nudge 0.066, p = 0.0135; labelled exploratory
+- **overstated** (Key findings): "Several arms also lowered confidence in AI detection" — H3: only Flagging and Infographic 2 are significantly negative; Inoculation is significantly positive
+- **supported** (H2): "Attitudes pooled 0.11 points lower (95% CI [−0.21, −0.01], p = 0.026)" — H2 pooled −0.111, SE 0.050, p = 0.026
+- **overstated** (H5): "AI Literacy Guide 7.9 points higher, CI [0.04, 15.7]" — H5 table: CI [0.000, 0.157], p = 0.0488
+- **supported** (Key findings): "44 arm-level tests ... no multiplicity correction" — 4 outcomes × 11 arms = 44; the plan specifies no correction
 
 ## Corrections requested by the checking agent
 
-- Soften the Guide, Mindfulness and Breathing Exercise results to tentative, and note that the raw means do not reproduce them.
-- State the control n=181 and the exclusion counts (2,257 collected, 2,030 analysed).
-- Replace 'p = 0.000' with 'p<0.001' throughout.
-- Remove the irrelevant citations (additive manufacturing, drug development, publication-bias tests) and the statement that nulls were 'anticipated'.
-- In H4, rewrite 'unchanged in the data's resolution' using the CI bounds (effects beyond about 0.27 ruled out for the most precise arms).
+- Tabulate the pooled CIs or report pooled SEs instead.
 
 ## Corrections made by the writing agent
 
-- K1: Abstract and takeaways call the Guide result tentative and borderline; the unadjusted difference (+0.6 points) is given in H1 and H1a.
-- K2: Mindfulness is described as a borderline adjusted estimate that the raw means do not reproduce.
-- K3: Breathing Exercise flagged as isolated and adjusted-only; raw difference of about 0.04 given.
-- K4: Pooled attitude estimate described as marginal, not robust, and uncorrected.
-- K5: Takeaway and H5 say the arms raised the share of AI posts identified, possibly via response bias.
-- K6: There is no 'p = 0.000' or pooled H5 figure in the table-based text, so nothing to replace; no pooled H5 p-value was added, as it is not in the tables.
-- G1: Guide, Mindfulness and Breathing Exercise softened, with note that raw means do not reproduce them.
-- G2: Control n=181 and the 2,257 collected / 2,030 analysed counts stated.
-- G3: No 'p = 0.000' appears in the revised text.
-- G4: The draft had no related-work section or 'anticipated nulls' claim, so nothing to remove.
-- G5: H4 rewritten using the CI bounds (about 0.27).
-- R5: Control n stated; exclusion criteria and by-arm exclusions are not in the tables, and the text says so.
-- R7: No related-work section is present; nothing to change.
-- R8: H4 rephrased in terms of CI bounds.
-- F1: The H5 text contains no pooled estimate or 'p = 0.000'; the p-values shown (0.003, 0.014, 0.049) come from the table, so nothing needed changing. No pooled H5 figure was added because it is not in the tables.
-- R1: Declined; no multiple-testing correction was registered, so the uncorrected-tests caveat stays as written.
+- K1: Abstract and takeaway now call the AI Literacy Guide estimate borderline and uncorrected.
+- G1: Pooled CIs removed from the text; pooled estimates are given with SE or p-value instead.
+- K2: Takeaway now says two arms lowered confidence and Inoculation raised it.
+- K3: H5 Guide CI written as [0.0, 15.7].
+- R1: Pooled accuracy reported as 1.0 point (SE 0.7, p = 0.132) in the abstract, H1 and takeaways.
+- R2: Same fix as K3; H5 CI is [0.0, 15.7].
+- R3: Pooled attitudes reported as −0.11 (SE 0.05, p = 0.026).
+- R4: H3 and H4 pooled estimates now given with p-values only, no CIs.
+- F1: Replaced the '±2 points' phrasing in H1 with the actual range of the eight non-significant arms (−1.0 to +2.0 points), matching the table.
+- Other earlier items: no further changes.
 
 ## Claim re-check on the corrected text
 
-Add an uncorrected/small-arm caveat to the H3 confidence results and report the pooled H5 p-value as p<0.001 instead of 0.000.
+No further rewording is needed; all previously flagged issues are resolved and the new claims match the tables.
 
-- **supported** (Abstract, re-check of C1): "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])" — H1_arms row 3: 0.044, CI [0.014, 0.073], p=0.004. H1a unadjusted is +3.2 points (p=0.028), same direction.
-- **supported** (Abstract, re-check of C2/C3): "The AI Literacy Guide (+4.7 points) and Mindfulness (−3.9 points) are borderline adjusted estimates that the raw means do not reproduce, so they are tentative." — H1 rows 10 and 6: 0.047 (p=0.043) and -0.039 (p=0.032). Raw arm means are 0.699 and 0.696 vs 0.693 control; H1a gives +0.6 and +0.2.
-- **supported** (Abstract, re-check of C4): "Pooled across arms, total accuracy was not distinguishable from control (+1.0 point, 95% CI [−0.3, +2.4])" — H1 pooled: 0.010, SE 0.007, p=0.132.
-- **supported** (H2, re-check of C5): "The Breathing Exercise estimate was −0.54 scale points ... isolated and tentative: the raw means differ by only about 0.04" — H2 row 5: -0.543, p=0.018; raw means 4.146 vs 4.187; H2a gives -0.04 (CI [-0.32, 0.24]).
-- **supported** (H2, re-check of C6): "The pooled estimate was −0.11 (95% CI [−0.21, −0.01], p = 0.026), a marginal result that is not robust" — H2 pooled -0.111, p=0.026; H2a unadjusted pooled -0.038, p=0.356.
-- **overstated** (H3, re-check of C7): "Inoculation raised it by 0.51 points; Flagging lowered it by 0.53; AI Literacy Infographic 2 by 0.69" — H3 rows 7, 1, 9: 0.509 (p=0.007), -0.525 (p=0.012), -0.686 (p=0.010). Numbers match, but the uncorrected and small-arm caveat (Inoculation n=77) is not attached in this section.
-- **supported** (H4, re-check of C8): "Only the AI Literacy Infographic differed on trust in online information, at 0.15 points lower than control" — H4 row 8: -0.146, p=0.0235; pooled -0.038, p=0.060; single arm flagged as weak evidence.
-- **supported** (Key findings, re-check of C9): "Exploratory: the Breathing Exercise and AI Accuracy Nudge raised the share of AI posts identified. This may reflect a greater tendency to answer 'AI'" — H5 rows 5 and 4: 0.091 (p=0.003), 0.066 (p=0.014); H6 shows no matching gain; response-bias caveat included.
-- **overstated** (H5, re-check of C10): "Pooling the 11 arm effects ... gives 0.038 (SE 0.011, p = 0.000)" — Pooled 0.038, SE 0.011; p of exactly 0.000 is a rounding artefact. Same p=0.000 print persists.
-- **supported** (H1a): "Without covariates or weights, Automated Flagging remained higher, at +3.2 points (95% CI [0.3, 6.2], p = 0.028)" — H1a row 3: 0.032, CI [0.003, 0.062], p=0.028.
-- **supported** (Key findings): "Flagging and AI Literacy Infographic 2 lowered confidence in AI detection." — H3 rows 1 and 9: -0.525 (p=0.012) and -0.686 (p=0.010).
-
-## Unresolved questions (candidates for extensions)
-
-- U1: Do the exploratory gains in AI-post detection reflect better discernment or a greater tendency to answer 'AI'? (Only share-correct scores are reported, with no per-post responses to compute sensitivity, specificity or d'.)
-
-Analytical issues can be answered with robustness addenda: `filedrawer address <study>` proposes one per issue for approval.
+- **supported** (Abstract, re-check of C1): "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3])" — H1 table: 0.044, CI [0.014, 0.073], p = 0.0035
+- **supported** (Abstract, re-check of C2): "The AI Literacy Guide estimate (4.7 points, 95% CI [0.2, 9.2]) was borderline and uncorrected for multiple tests" — H1 table: 0.047, CI [0.002, 0.092], p = 0.043; now worded as borderline and uncorrected
+- **supported** (Abstract, re-check of C3): "Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3])" — H1 table: −0.039, CI [−0.074, −0.003], p = 0.032
+- **supported** (Abstract, re-check of C4): "Pooled across arms, accuracy was not distinguishable from control (+1.0 point, SE 0.7, p = 0.132)" — H1 pooled: 0.010, SE 0.007, p = 0.132
+- **supported** (Abstract, re-check of C5): "Some arms lowered attitudes toward AI or confidence in detection" — H2 Breathing Exercise −0.543, p = 0.018; H3 Flagging −0.525 and Infographic 2 −0.686
+- **supported** (Key findings, re-check of C6): "Most interventions did not measurably improve people's accuracy; pooled 1.0 point higher (SE 0.7, p = 0.132)" — H1: 9 of 11 arms have no significant improvement; pooled p = 0.132
+- **supported** (Key findings, re-check of C7): "Breathing Exercise and the AI Accuracy Nudge raised detection of AI-generated posts, but these tests were not planned" — H5: Breathing 0.091, p = 0.0027; Nudge 0.066, p = 0.0135; labelled exploratory
+- **supported** (Key findings, re-check of C8): "Two arms lowered confidence in AI detection, and one (Inoculation) raised it" — H3: Flagging −0.525 and Infographic 2 −0.686 significant negative; Inoculation +0.509, p = 0.007
+- **supported** (H2, re-check of C9): "Pooled across arms, attitudes were 0.11 points lower (SE 0.05, p = 0.026)" — H2 pooled −0.111, SE 0.050, p = 0.026
+- **supported** (H5, re-check of C10): "The AI Literacy Guide was 7.9 points higher, with an interval barely excluding zero (95% CI [0.0, 15.7], p = 0.049)" — H5 table: 0.079, CI [0.000, 0.157], p = 0.0488
+- **supported** (Key findings, re-check of C11): "44 registered arm-level tests were run with no multiplicity correction" — 4 outcomes × 11 arms = 44; no correction in the plan
+- **supported** (H2): "Pooled shift in attitudes is small; Breathing Exercise lowered attitudes by 0.54 (p = 0.018); the other ten arms not distinguishable from control" — H2 table: Breathing −0.543, CI [−0.994, −0.092]; all other CIs include zero

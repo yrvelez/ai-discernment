@@ -1,39 +1,44 @@
 {
  "got_right": [
-  "Eleven interventions were randomised against one shared control in a registered design (AsPredicted #151,281), with both Lin-adjusted and unadjusted models. This exposed that the Guide (+4.7) and Mindfulness (−3.9) adjusted effects vanish in raw means (+0.6, +0.2).",
-  "Automated Flagging is the one result that survives both specifications: +4.4 points adjusted (p=0.004) and +3.2 unadjusted (p=0.028).",
-  "Splitting accuracy into AI-post and real-post detection (H5/H6) separates better discernment from a shift in response bias, which total accuracy hides.",
-  "Reporting the pooled random-effects estimate (+1.0 point, CI [−0.3, 2.4]) and the uncorrected test count (44 registered, 22 post hoc) keeps the overall null honest."
+  "Randomised 11 interventions against a shared control with a registered plan (AsPredicted #151,281), using Lin covariate adjustment and HC2 SEs. This gives a clean, comparable arm-by-arm estimate on four outcomes.",
+  "Reported every arm for every outcome with CIs, and said plainly that the 44 registered tests were uncorrected and the pooled effect on accuracy was null (+1.0 point, SE 0.7, p = 0.132).",
+  "Split accuracy into AI-post detection and authentic-post recognition, and flagged the split as post hoc. This exposes a possible response-bias pattern: Breathing Exercise +9.1 points on detection with authentic recognition −4.8, and Infographic 2 −6.1 on authentic.",
+  "Included self-reported confidence and trust alongside accuracy, so the study can show calibration or backfire effects such as Inoculation raising confidence by 0.51 with no accuracy gain."
  ],
  "why_it_did_not_land": [
   {
    "cause": "power",
-   "detail": "The control group has only 181 respondents and several arms have under 100. Most arms cannot detect effects below about 3.5 to 5 points, so the 1 to 2 point effects seen are undetectable.",
-   "evidence": "H1 MDEs: 0.032 (AI Accuracy Nudge) to 0.052 (Inoculation, Infographic 2); observed non-significant arms are mostly 0.01 to 0.02."
+   "detail": "Per-arm MDEs on accuracy are 3.2 to 5.2 points, about as large as the only significant effects. The significant arms are therefore likely overestimates, and the small arms cannot rule out realistic effects.",
+   "evidence": "Power table H1: MDE 0.0318 (Nudge) to 0.0517 (Inoculation, n=78); Automated Flagging 0.044 vs MDE 0.042; Guide 0.047 vs MDE 0.039."
   },
   {
    "cause": "analysis",
-   "detail": "About 44 uncorrected arm tests, and the nominal wins (Guide, Mindfulness, Breathing on attitudes) depend on the covariate model. They are not credible effects.",
-   "evidence": "H1 Guide p=0.043 adjusted vs 0.671 unadjusted; H2 Breathing −0.54 adjusted vs −0.04 in H2a."
+   "detail": "Three of 11 accuracy arms cross p<0.05 with no multiplicity correction. Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction, and only Automated Flagging (p=0.004) is arguably robust. The pooled null contradicts a broad effect.",
+   "evidence": "H1 table; pooled +0.010, p=0.132; 44 registered tests uncorrected."
   },
   {
    "cause": "measurement",
-   "detail": "Total accuracy mixes sensitivity and bias. Arms raising AI-post detection may just make people say 'AI' more often, and no signal-detection measure separates the two.",
-   "evidence": "H5 Breathing +9.1 and Nudge +6.6 on AI posts, with H6 real-post estimates of −4.8 and −1.8 and no total-accuracy gain (+1.5, +2.0)."
+   "detail": "Total accuracy mixes detecting AI posts with accepting real ones, so a shift in scepticism looks like discernment gain or loss. Discernment (sensitivity) and bias were never separated, and the split outcomes were unregistered.",
+   "evidence": "H5 Breathing +0.091 on AI posts but H6 −0.048 on real posts, with H1 only +0.015."
   },
   {
    "cause": "design",
-   "detail": "Arms are unbalanced and bundle different mechanisms (labels, priming, education). Outcomes are measured immediately after a one-off exposure, so persistence and real behaviour are untested.",
-   "evidence": "Arm n from 78 to 333; the design lists 11 heterogeneous arms with a single post-exposure feed."
+   "detail": "Arms vary in content, dose and timing (labels in the feed vs pre-feed exercises), and the design cannot say which component works. Arm sizes are unbalanced (78 to 333) against a control of 181, and some data were collected before registration.",
+   "evidence": "Arms ranged 78–333 against n=181 control; registration note on batches 1–2."
+  },
+  {
+   "cause": "framing",
+   "detail": "The literature retrieved is almost entirely off-topic, so the study is not positioned against prior work on inoculation, accuracy nudges or AI-detection literacy. The only live framing, i-frame versus s-frame, is not something the design tests.",
+   "evidence": "Related work: only Chater & Loewenstein and Ruggeri et al. are relevant; no AI-detection papers retrieved."
   }
  ],
  "debates": [
   {
    "id": "D1",
-   "label": "Individual-level vs system-level fixes",
-   "position_a": "Brief individual-level interventions can improve people's handling of misinformation.",
-   "position_b": "Individual-level (i-frame) interventions are weak and distract from structural, system-level remedies.",
-   "what_this_study_says": "It leans toward b. Only platform-supplied labels (Automated Flagging, +4.4) moved accuracy. User-side education and mindfulness did nothing reliable. The arms are too heterogeneous and underpowered to settle it.",
+   "label": "Individual-level (i-frame) fixes vs system-level (s-frame) change",
+   "position_a": "Cheap individual-level interventions such as labels, nudges and literacy content can measurably improve people's handling of AI-generated media.",
+   "position_b": "Individual-level levers yield small, inconsistent effects, and meaningful change needs system-level measures such as platform-level or provenance infrastructure.",
+   "what_this_study_says": "Leans to b for educational and mindfulness-type interventions: pooled accuracy +1.0 point (p=0.132), with several arms null or harmful. Automated Flagging (+4.4), a system-supplied label, is the clearest gain, which weakly fits the s-frame view. The study cannot test system-level effects.",
    "works": [
     {
      "id": "10.1017/s0140525x22002023",
@@ -44,8 +49,12 @@
      "side": "b"
     },
     {
-     "id": "10.1016/j.jarmac.2017.07.008",
-     "side": "a"
+     "id": "10.1038/s41586-023-06840-9",
+     "side": "b"
+    },
+    {
+     "id": "10.3310/hta11430",
+     "side": "neutral"
     }
    ]
   }
@@ -55,17 +64,17 @@
    "id": "advance_design",
    "kind_legacy": "mechanism",
    "mode": "survey_experiment",
-   "title": "Discernment vs response bias in AI labels",
-   "question": "Does Automated Flagging improve true discernment (d') or only shift willingness to answer 'AI'?",
-   "why_this_fixes_the_failure": "Fixes measurement: computes sensitivity and criterion from AI and real post responses, and adds confidence ratings.",
-   "debate": null,
+   "title": "Separating discernment from response bias in machine-label interventions",
+   "question": "Does Automated Flagging improve true discernment (sensitivity) rather than just shifting willingness to call posts AI-generated?",
+   "why_this_fixes_the_failure": "Fixes measurement and power. It registers signal-detection outcomes (d′ and criterion) and replicates the one robust arm with an adequate sample.",
+   "debate": "D1",
    "addresses": [],
-   "design_sketch": "Arms: control, Automated Flagging, and Automated Flagging with a stated label error rate (e.g. 80% accurate). Each respondent judges 24 posts, half AI-generated, with a per-item confidence rating. Outcomes are d' and criterion, plus a sharing intention. Recruit a US online panel.",
+   "design_sketch": "Arms: Control, Automated Flagging, and Automated Flagging with 80% label accuracy versus 100%, plus a Guide arm as the best-performing education comparator. Respondents judge 40 posts balanced real and AI, with a confidence rating per post. Outcomes are d′, criterion and total accuracy, all registered, with Holm correction across arms. A US online panel with a pre-feed attention check.",
    "moderator_or_condition": null,
    "power_target": {
-    "n_per_arm": 400,
+    "n_per_arm": 230,
     "mde": 0.03,
-    "basis": "Observed Automated Flagging effect 0.032 to 0.044 on total accuracy; H1 MDE at n=127/181 was 0.042; n=400/arm gives about 0.028 for SD 0.13."
+    "basis": "H1 Automated Flagging estimate 0.044, observed SD ~0.13; 80% power for ~0.04 needs ~165 per arm, inflated for Holm correction and the weaker label-accuracy arms"
    },
    "needs_qsf": true
   },
@@ -73,17 +82,17 @@
    "id": "theoretical_debate",
    "kind_legacy": "alternative",
    "mode": "survey_experiment",
-   "title": "Platform labels vs user training head to head",
-   "question": "Do system-supplied cues outperform individual-level training on AI detection, as the s-frame view implies?",
-   "why_this_fixes_the_failure": "Fixes design and power: contrasts only the best-supported system arm with the best user-side arm in a focused comparison.",
+   "title": "Individual literacy vs system-supplied cue: which carries the effect?",
+   "question": "Is the accuracy gain from machine labels due to external information (s-frame) or to changed individual vigilance (i-frame)?",
+   "why_this_fixes_the_failure": "Fixes design confounding: it separates cue content from attention or priming effects, which the original arms bundled.",
    "debate": "D1",
    "addresses": [],
-   "design_sketch": "Four arms: control, Automated Flagging, AI Literacy Guide, and both combined. Outcomes are accuracy on AI and real posts, assessed immediately and again after 1 week. Pre-register the contrast labels vs guide and test the additive combination.",
+   "design_sketch": "2x2 between-subjects: label present or absent, crossed with literacy training (Guide) present or absent, plus a placebo-label arm showing uninformative labels. If gain comes only with real labels, the s-frame reading is supported; if training alone or the placebo helps, vigilance explains it. Outcomes are accuracy and d′ on 40 posts.",
    "moderator_or_condition": null,
    "power_target": {
-    "n_per_arm": 450,
-    "mde": 0.027,
-    "basis": "Observed Guide-vs-control raw difference 0.006 and adjusted 0.047; size to detect a 0.03 label-vs-guide gap (H1 SD about 0.13)."
+    "n_per_arm": 300,
+    "mde": 0.033,
+    "basis": "H1 MDE for n≈290 vs 181 arms was 0.034; interaction contrast needs the larger cells"
    },
    "needs_qsf": true
   },
@@ -91,21 +100,21 @@
    "id": "generalizability_conditional",
    "kind_legacy": "boundary",
    "mode": "survey_experiment",
-   "title": "Label effect by label reliability and prior AI skill",
-   "question": "Does the Automated Flagging benefit hold when labels are imperfect and across respondents with different AI familiarity?",
-   "why_this_fixes_the_failure": "Fixes the sample and missing-moderator causes by testing where the one robust effect holds.",
+   "title": "Does the label effect hold for newer generators and low-trust respondents?",
+   "question": "Does the Automated Flagging gain persist across stimulus realism (older vs current-generation synthetic media) and baseline media trust?",
+   "why_this_fixes_the_failure": "Fixes sample and stimulus limits: the 2023 stimuli and US panel may not generalise, and the pooled null may hide moderation.",
    "debate": null,
    "addresses": [],
-   "design_sketch": "Randomise label reliability (95% vs 70% accurate) crossed with a control, using video and image stimuli. Stratify recruitment by the AI-familiarity scale (ai_scale). Outcome is accuracy on both AI and real posts.",
-   "moderator_or_condition": "Label reliability and AI familiarity (ai_scale), with stimulus type (image vs video)",
+   "design_sketch": "Control vs Automated Flagging, with the post set randomised between 2023-era and current-generation synthetic images and video. Media trust and AI familiarity are measured pre-treatment and used as registered moderators. Outcomes are accuracy and d′, with a re-contact two weeks later for durability on a subsample.",
+   "moderator_or_condition": "Generator realism (2023 vs current) and baseline media trust (pre-registered median split)",
    "power_target": {
     "n_per_arm": 350,
-    "mde": 0.03,
-    "basis": "Observed Automated Flagging +0.032 raw; n=350/arm gives MDE about 0.03 at SD 0.13."
+    "mde": 0.04,
+    "basis": "Interaction effects need roughly 4x the n of the main effect 0.044; MDE for the 0.0318–0.042 range in H1"
    },
    "needs_qsf": true
   }
  ],
- "verdict": "A follow-up is worth running, but narrowly. The only robust result is Automated Flagging (+3.2 to +4.4 points), while the other nominal effects vanish without covariates. Run the advance_design brief first: it tests whether the label effect is real discernment or a shift toward answering 'AI', and it is sized to the observed effect. The head-to-head debate brief should follow. The literature retrieved is thin on AI-media detection, so the i-frame vs s-frame debate rests on one contesting source (Chater & Loewenstein) and should be treated as framing, not established disagreement.",
+ "verdict": "A follow-up is worth running, but narrowly: only Automated Flagging (+4.4, p=0.004) looks like a real accuracy gain, and the pooled null (+1.0) and uncorrected tests warn against reading the rest. Run advance_design first. It replicates the label effect at adequate power and splits discernment from bias, which the current total accuracy score cannot do. The literature retrieved is mostly off-topic, so the only live debate is the i-frame versus s-frame framing, and the second brief tests it only indirectly.",
  "model": "anthropic/claude-sonnet-5.5"
 }

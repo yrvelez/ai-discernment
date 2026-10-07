@@ -1,208 +1,312 @@
+"""Exploratory analyses for the AI Discernment survey experiment."""
 import importlib.util, pathlib
-_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
-reg = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(reg)
-
-import pandas as pd
 import numpy as np
+import pandas as pd
 import statsmodels.formula.api as smf
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import os
 
-os.makedirs('results', exist_ok=True)
-os.makedirs('figures', exist_ok=True)
+_spec = importlib.util.spec_from_file_location('reg', pathlib.Path(__file__).with_name('03_registered.py'))
+reg = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(reg)
 
+# ── Load data ──────────────────────────────────────────────────────────────────
 df = pd.read_csv('data/clean.csv')
+for col in ['total_score', 'fake_score', 'real_score', 'ai_scale', 'ipw', 'arm_code',
+            'political_interest', 'age', 'gender_m', 'white', 'afam_black', 'hisp',
+            'ai_attitudes', 'ai_confidence', 'trust_online']:
+    if col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Convert numeric columns
-num_cols = ['total_score', 'pk_score', 'political_interest', 'fake_score', 'real_score',
-            'ai_attitudes', 'ai_confidence', 'trust_online', 'media_trust', 'age',
-            'gender_m', 'white', 'hisp', 'afam_black', 'asian', 'ipw', 'treat']
-for c in num_cols:
-    if c in df.columns:
-        df[c] = pd.to_numeric(df[c], errors='coerce')
+# ── Figure style helper ────────────────────────────────────────────────────────
+def style_ax(ax):
+    for spine in ['top', 'right', 'left']:
+        ax.spines[spine].set_visible(False)
+    ax.spines['bottom'].set_color('#333333')
+    ax.tick_params(colors='#333333')
+    ax.set_facecolor('white')
+    fig = ax.get_figure()
+    fig.patch.set_facecolor('white')
 
-# Get H1 hypothesis
-h1 = [h for h in reg.HYPOTHESES if h.get('outcome') == 'total_score'][0]
-est = h1['estimator']
-covariates = h1.get('covariates', [])
+ACCENT = '#2171b5'
+INK = '#333333'
 
-print(f"[debug] est={est!r}")
-print(f"[debug] covariates={covariates!r}")
-print(f"[debug] h1 keys={list(h1.keys())}")
+# ═══════════════════════════════════════════════════════════════════════════════
+# E1: Heterogeneity of H1 (total_score) by political interest
+# Rationale: Political interest is a plausible moderator of media-literacy
+# interventions; respondents with higher interest may benefit more from
+# informational treatments.
+# ═══════════════════════════════════════════════════════════════════════════════
+h1 = next(h for h in reg.HYPOTHESES if h['outcome'] == 'total_score')
+est_h1 = h1['estimator']
 
-# ============================================================
-# E1: Robustness to attention-check failures (pk_score == 0)
-# Rationale: Verify that significant H1 effects are not driven by
-# inattentive respondents who failed both attention checks.
-# ============================================================
-df_full = df.dropna(subset=['total_score']).copy()
-df_att = df_full[df_full['pk_score'] > 0].copy()
+# Build interaction: arm × political_interest (centered)
+d1 = df.dropna(subset=['total_score', 'political_interest']).copy()
+d1['pi_c'] = d1['political_interest'] - d1['political_interest'].mean()
 
-f_orig, d_orig = reg.build_formula('total_score', est, covariates, df_full)
-res_orig = reg.fit(d_orig, f_orig, est)
+# Use the registered formula structure but add interaction with pi_c
+# The registered formula uses C(arm_code, Treatment(reference='0')) * (media...)
+# We'll build: total_score ~ C(arm_code, Treatment(reference='0')) * pi_c + covariates
+# Actually, let's use reg.build_formula with an augmented covariate set.
+# Simpler: fit manually with the same structure.
 
-f_att, d_att = reg.build_formula('total_score', est, covariates, df_att)
-res_att = reg.fit(d_att, f_att, est)
+# Get the registered formula to understand covariates
+formula_h1, d1b = reg.build_formula('total_score', est_h1, h1.get('covariates', []), d1)
 
-# Extract arm-level estimates
-arm_params = sorted(
-    [p for p in res_orig.params.index if 'T.' in str(p) and 'arm_code' in str(p)],
-    key=lambda x: int(str(x).split('T.')[1].rstrip(']'))
-)
+# Now add the interaction: replace the main arm effect with arm * pi_c
+# We need to parse what build_formula gives us and add pi_c interaction
+# Let's just build it directly:
+arm_var = "C(arm_code, Treatment(reference='0'))"
+# Extract covariates from the formula (everything after the arm term)
+# The formula looks like: total_score ~ C(arm_code,...) * (media_trust + ...) + covariates
+# Let's just use the formula as-is and add * pi_c to the arm term
+# Actually the safest approach: use the formula from build_formula and add interaction
 
-rows = []
-for p in arm_params:
-    arm_num = str(p).split('T.')[1].rstrip(']')
-    rows.append({
-        'arm': arm_num,
-        'estimate_original': res_orig.params.get(p, np.nan),
-        'se_original': res_orig.bse.get(p, np.nan),
-        'estimate_robust': res_att.params.get(p, np.nan),
-        'se_robust': res_att.bse.get(p, np.nan),
-    })
+# Let me check what formula_h1 looks like and augment it
+# The formula should be something like:
+# total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust + ...) + cov1 + cov2 ...
+# We want: total_score ~ C(arm_code, Treatment(reference='0')) * (pi_c + media_trust + ...) + cov1 + cov2 ...
 
-e1_df = pd.DataFrame(rows)
-e1_df['n_original'] = len(df_full)
-e1_df['n_robust'] = len(df_att)
-e1_df.to_csv('results/E1_attention_check_robustness.csv', index=False)
+# Parse: split on '~'
+lhs, rhs = formula_h1.split('~')
+rhs = rhs.strip()
 
-# Check SE stability
-for _, r in e1_df.iterrows():
-    if r['se_original'] > 0 and r['se_robust'] > 0:
-        ratio = r['se_robust'] / r['se_original']
-        if ratio > 2 or ratio < 0.5:
-            print(f"[WARNING] E1 arm {r['arm']}: SE ratio = {ratio:.2f} (possible misspecification)")
+# Find the arm term and add pi_c to its interaction
+# The arm term is "C(arm_code, Treatment(reference='0'))"
+# If it's followed by * (...), add pi_c inside the parens
+# Otherwise, create the interaction
 
-sig_arms = ['3', '6', '10']
-for a in sig_arms:
-    row = e1_df[e1_df['arm'] == a].iloc[0]
-    print(f"E1: Arm {a}: orig={row['estimate_original']:.3f} (SE={row['se_original']:.3f}), "
-          f"robust={row['estimate_robust']:.3f} (SE={row['se_robust']:.3f}), "
-          f"n: {int(row['n_original'])} -> {int(row['n_robust'])}")
+import re
+arm_pattern = r"C\(arm_code, Treatment\(reference='0'\)\)"
+m = re.search(arm_pattern, rhs)
+if m:
+    arm_str = m.group(0)
+    # Check if there's a * after it
+    after_arm = rhs[m.end():]
+    if after_arm.strip().startswith('*'):
+        # Find the closing paren of the interaction
+        # e.g., " * (media_trust + ...)"
+        paren_start = after_arm.index('(')
+        paren_end = after_arm.index(')', paren_start)
+        inner = after_arm[paren_start+1:paren_end].strip()
+        new_inner = f"pi_c + {inner}"
+        new_rhs = rhs[:m.start()] + arm_str + after_arm[:paren_start+1] + new_inner + after_arm[paren_end:]
+    else:
+        # No interaction, just add * pi_c
+        new_rhs = rhs[:m.end()] + " * pi_c" + after_arm
+else:
+    new_rhs = rhs
 
-# Figure 1: Forest plot for significant arms
-fig, ax = plt.subplots(figsize=(8, 3.5))
-c_orig = '#2171b5'
-c_rob = '#d6604d'
-for i, a in enumerate(sig_arms):
-    row = e1_df[e1_df['arm'] == a].iloc[0]
-    y = len(sig_arms) - 1 - i
-    ax.errorbar(row['estimate_original'], y + 0.13, xerr=1.96 * row['se_original'],
-                fmt='o', color=c_orig, capsize=4, markersize=5, linestyle='none')
-    ax.errorbar(row['estimate_robust'], y - 0.13, xerr=1.96 * row['se_robust'],
-                fmt='s', color=c_rob, capsize=4, markersize=5, linestyle='none')
-    # Direct labels
-    x_max = max(row['estimate_original'] + 1.96 * row['se_original'],
-                row['estimate_robust'] + 1.96 * row['se_robust'])
-    ax.text(x_max + 0.008, y + 0.13, f"{row['estimate_original']:+.3f}",
-            va='center', fontsize=8, color=c_orig)
-    ax.text(x_max + 0.008, y - 0.13, f"{row['estimate_robust']:+.3f}",
-            va='center', fontsize=8, color=c_rob)
+formula_e1 = f"{lhs.strip()} ~ {new_rhs}"
 
-ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
-ax.set_yticks(range(len(sig_arms)))
-ax.set_yticklabels([f"Arm {a}" for a in reversed(sig_arms)])
-ax.set_xlabel("Effect on total_score (95% CI)")
-ax.set_title("E1: H1 effects — full sample vs. excluding attention-check failures")
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.tick_params(left=False)
-ax.text(0.98, 0.02, '\u25cf full sample    \u25a0 excl. pk_score=0',
-        transform=ax.transAxes, ha='right', va='bottom', fontsize=8, color='#333333')
+res_e1 = reg.fit(d1b, formula_e1, est_h1)
+
+# Extract arm × pi_c interaction terms
+params = res_e1.params
+bse = res_e1.bse
+pvals = res_e1.pvalues
+
+# Find interaction terms (contain both arm and pi_c)
+arm_labels = {
+    1: 'Flagging', 2: 'Provenance', 3: 'Automated Flagging', 4: 'AI Accuracy Nudge',
+    5: 'Breathing Exercise', 6: 'Mindfulness', 7: 'Inoculation',
+    8: 'AI Literacy Infographic', 9: 'AI Literacy Infographic 2',
+    10: 'AI Literacy Guide', 11: 'AI Text Video'
+}
+
+rows_e1 = []
+for arm_code, label in arm_labels.items():
+    # Look for the interaction term
+    # Term name pattern: C(arm_code, Treatment(reference='0'))[T.<arm>]:pi_c
+    term_name = f"C(arm_code, Treatment(reference='0'))[T.{arm_code}]:pi_c"
+    if term_name in params.index:
+        rows_e1.append({
+            'arm_code': arm_code,
+            'arm_label': label,
+            'interaction_estimate': params[term_name],
+            'interaction_se': bse[term_name],
+            'interaction_p': pvals[term_name],
+        })
+    else:
+        rows_e1.append({
+            'arm_code': arm_code,
+            'arm_label': label,
+            'interaction_estimate': np.nan,
+            'interaction_se': np.nan,
+            'interaction_p': np.nan,
+        })
+
+e1_df = pd.DataFrame(rows_e1)
+e1_df.to_csv('results/E1_heterogeneity_political_interest.csv', index=False)
+
+# Figure: forest plot of interaction terms
+fig, ax = plt.subplots(figsize=(8, 5))
+y_pos = np.arange(len(e1_df))[::-1]
+estimates = e1_df['interaction_estimate'].values
+ses = e1_df['interaction_se'].values
+labels = e1_df['arm_label'].values
+
+ax.hlines(y_pos, estimates - 1.96*ses, estimates + 1.96*ses, color=INK, alpha=0.5, linewidth=1.5)
+ax.scatter(estimates, y_pos, color=ACCENT, s=30, zorder=3)
+ax.axvline(0, color='#999999', linewidth=0.8, linestyle='--')
+ax.set_yticks(y_pos)
+ax.set_yticklabels(labels, fontsize=9, color=INK)
+ax.set_xlabel('Interaction effect (per 1 SD political interest)', fontsize=10, color=INK)
+ax.set_title('H1 × Political Interest: Treatment Effect Heterogeneity', fontsize=11, color=INK, pad=10)
+style_ax(ax)
 plt.tight_layout()
-plt.savefig('figures/E1_attention_check.png', dpi=200)
+plt.savefig('figures/E1_heterogeneity_political_interest.png', dpi=200, bbox_inches='tight')
 plt.close()
 
-# ============================================================
-# E2: Heterogeneity by age
-# Rationale: Older respondents may have different baseline exposure to
-# AI-generated media, potentially moderating intervention effectiveness.
-# ============================================================
-cov_e2 = ['media_trust', 'political_interest', 'gender_m', 'white', 'hisp', 'afam_black']
-df_e2 = df.dropna(subset=['total_score', 'age'] + cov_e2).copy()
-df_e2['age_c'] = df_e2['age'] - df_e2['age'].mean()
+sig_e1 = e1_df[e1_df['interaction_p'] < 0.10]
+print(f"E1: {len(sig_e1)} of 11 arms show significant (p<.10) political-interest heterogeneity in H1; "
+      f"max |interaction| = {e1_df['interaction_estimate'].abs().max():.3f}")
 
-formula_e2 = ("total_score ~ treat * age_c + " + " + ".join(cov_e2))
-res_e2 = smf.wls(formula_e2, data=df_e2, weights=df_e2['ipw']).fit(cov_type='HC2')
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2: Robustness of H1 to excluding attention-check failures (pk_score < 1)
+# Rationale: Respondents who fail both attention checks may not have engaged
+# with the task, potentially attenuating true treatment effects.
+# ═══════════════════════════════════════════════════════════════════════════════
+# Original sample
+formula_orig, d_orig = reg.build_formula('total_score', est_h1, h1.get('covariates', []), df)
+res_orig = reg.fit(d_orig, formula_orig, est_h1)
 
-treat_coef = res_e2.params.get('treat', np.nan)
-treat_se = res_e2.bse.get('treat', np.nan)
-treat_p = res_e2.pvalues.get('treat', np.nan)
-interact_coef = res_e2.params.get('treat:age_c', np.nan)
-interact_se = res_e2.bse.get('treat:age_c', np.nan)
-interact_p = res_e2.pvalues.get('treat:age_c', np.nan)
+# Excluded sample: pk_score < 1 (failed at least one attention check)
+d_excl = df[df['pk_score'] >= 1].copy()
+formula_excl, d_excl_b = reg.build_formula('total_score', est_h1, h1.get('covariates', []), d_excl)
+res_excl = reg.fit(d_excl_b, formula_excl, est_h1)
 
-e2_df = pd.DataFrame([
-    {'term': 'treat (ATE at mean age)', 'estimate': treat_coef,
-     'std_error': treat_se, 'p_value': treat_p},
-    {'term': 'treat:age_c (moderation per yr)', 'estimate': interact_coef,
-     'std_error': interact_se, 'p_value': interact_p},
-])
-e2_df.to_csv('results/E2_age_heterogeneity.csv', index=False)
+# Extract arm-level estimates from both
+rows_e2 = []
+for arm_code, label in arm_labels.items():
+    term = f"C(arm_code, Treatment(reference='0'))[T.{arm_code}]"
+    est_o = res_orig.params.get(term, np.nan)
+    se_o = res_orig.bse.get(term, np.nan)
+    p_o = res_orig.pvalues.get(term, np.nan)
+    est_x = res_excl.params.get(term, np.nan)
+    se_x = res_excl.bse.get(term, np.nan)
+    p_x = res_excl.pvalues.get(term, np.nan)
+    rows_e2.append({
+        'arm_code': arm_code,
+        'arm_label': label,
+        'est_original': est_o,
+        'se_original': se_o,
+        'p_original': p_o,
+        'est_excl': est_x,
+        'se_excl': se_x,
+        'p_excl': p_x,
+        'se_ratio': se_x / se_o if se_o > 0 else np.nan,
+    })
 
-print(f"E2: ATE at mean age = {treat_coef:.3f} (SE={treat_se:.3f}, p={treat_p:.3f}), "
-      f"moderation by age = {interact_coef:.4f} (SE={interact_se:.4f}, p={interact_p:.3f}), "
-      f"n={len(df_e2)}")
+e2_df = pd.DataFrame(rows_e2)
+e2_df.to_csv('results/E2_robustness_attention_checks.csv', index=False)
 
-# ============================================================
-# E3: Placebo on attention-check score (pk_score)
-# Rationale: If interventions shift attention-check performance, it
-# suggests they alter general engagement rather than AI discernment.
-# ============================================================
-df_e3 = df.dropna(subset=['pk_score']).copy()
-f_e3, d_e3 = reg.build_formula('pk_score', est, covariates, df_e3)
-res_e3 = reg.fit(d_e3, f_e3, est)
+n_orig = len(d_orig)
+n_excl = len(d_excl_b)
+n_dropped = n_orig - n_excl
+print(f"E2: Excluding {n_dropped} attention-check failures (pk_score<1) changes n from {n_orig} to {n_excl_b}; "
+      f"max |Δestimate| across arms = {np.nanmax(np.abs(e2_df['est_excl'] - e2_df['est_original'])):.3f}; "
+      f"max SE ratio = {e2_df['se_ratio'].max():.2f}")
 
-arm_params_e3 = sorted(
-    [p for p in res_e3.params.index if 'T.' in str(p) and 'arm_code' in str(p)],
-    key=lambda x: int(str(x).split('T.')[1].rstrip(']'))
-)
+# ═══════════════════════════════════════════════════════════════════════════════
+# E3: Dose-response check — AI familiarity (ai_scale) as a continuous predictor
+# Rationale: If interventions work by increasing AI familiarity, we expect
+# baseline AI familiarity to predict total_score independently of treatment,
+# and possibly to moderate treatment effects.
+# ═══════════════════════════════════════════════════════════════════════════════
+d3 = df.dropna(subset=['total_score', 'ai_scale']).copy()
+d3['ai_scale_c'] = d3['ai_scale'] - d3['ai_scale'].mean()
+
+# Fit: total_score ~ arm * ai_scale_c + covariates (same structure as H1)
+formula_e3, d3b = reg.build_formula('total_score', est_h1, h1.get('covariates', []), d3)
+
+# Add ai_scale_c interaction
+lhs3, rhs3 = formula_e3.split('~')
+rhs3 = rhs3.strip()
+m3 = re.search(arm_pattern, rhs3)
+if m3:
+    arm_str3 = m3.group(0)
+    after_arm3 = rhs3[m3.end():]
+    if after_arm3.strip().startswith('*'):
+        paren_start3 = after_arm3.index('(')
+        paren_end3 = after_arm3.index(')', paren_start3)
+        inner3 = after_arm3[paren_start3+1:paren_end3].strip()
+        new_inner3 = f"ai_scale_c + {inner3}"
+        new_rhs3 = rhs3[:m3.start()] + arm_str3 + after_arm3[:paren_start3+1] + new_inner3 + after_arm3[paren_end3:]
+    else:
+        new_rhs3 = rhs3[:m3.end()] + " * ai_scale_c" + after_arm3
+else:
+    new_rhs3 = rhs3
+
+formula_e3_final = f"{lhs3.strip()} ~ {new_rhs3}"
+res_e3 = reg.fit(d3b, formula_e3_final, est_h1)
+
+# Extract: main effect of ai_scale_c and arm × ai_scale_c interactions
+params3 = res_e3.params
+bse3 = res_e3.bse
+pvals3 = res_e3.pvalues
+
+# Main effect of ai_scale_c
+ai_main_est = params3.get('ai_scale_c', np.nan)
+ai_main_se = bse3.get('ai_scale_c', np.nan)
+ai_main_p = pvals3.get('ai_scale_c', np.nan)
 
 rows_e3 = []
-for p in arm_params_e3:
-    arm_num = str(p).split('T.')[1].rstrip(']')
-    rows_e3.append({
-        'arm': arm_num,
-        'estimate': res_e3.params.get(p, np.nan),
-        'std_error': res_e3.bse.get(p, np.nan),
-        'p_value': res_e3.pvalues.get(p, np.nan),
-    })
+for arm_code, label in arm_labels.items():
+    term_name = f"C(arm_code, Treatment(reference='0'))[T.{arm_code}]:ai_scale_c"
+    if term_name in params3.index:
+        rows_e3.append({
+            'arm_code': arm_code,
+            'arm_label': label,
+            'interaction_estimate': params3[term_name],
+            'interaction_se': bse3[term_name],
+            'interaction_p': pvals3[term_name],
+        })
+    else:
+        rows_e3.append({
+            'arm_code': arm_code,
+            'arm_label': label,
+            'interaction_estimate': np.nan,
+            'interaction_se': np.nan,
+            'interaction_p': np.nan,
+        })
 
 e3_df = pd.DataFrame(rows_e3)
-e3_df.to_csv('results/E3_placebo_pk_score.csv', index=False)
+# Add a row for the main effect
+e3_df = pd.concat([
+    pd.DataFrame([{
+        'arm_code': 'main',
+        'arm_label': 'AI familiarity main effect',
+        'interaction_estimate': ai_main_est,
+        'interaction_se': ai_main_se,
+        'interaction_p': ai_main_p,
+    }]),
+    e3_df
+], ignore_index=True)
 
-n_sig = int((e3_df['p_value'] < 0.05).sum())
-print(f"E3: Placebo on pk_score — {n_sig}/11 arms significant at p<0.05 "
-      f"(expected ~0.05 by chance)")
-for _, row in e3_df[e3_df['p_value'] < 0.10].iterrows():
-    print(f"  Arm {row['arm']}: est={row['estimate']:.3f}, SE={row['std_error']:.3f}, p={row['p_value']:.3f}")
+e3_df.to_csv('results/E3_ai_familiarity_dose.csv', index=False)
 
-# Figure 2: Placebo bar chart
-fig, ax = plt.subplots(figsize=(8, 4))
-arms_plot = e3_df['arm'].astype(int).values
-ests = e3_df['estimate'].values
-ses = e3_df['std_error'].values
-colors = ['#d6604d' if p < 0.05 else '#2171b5' for p in e3_df['p_value']]
+# Figure: forest plot
+fig, ax = plt.subplots(figsize=(8, 5.5))
+y_pos3 = np.arange(len(e3_df))[::-1]
+est3 = e3_df['interaction_estimate'].values
+se3 = e3_df['interaction_se'].values
+labels3 = e3_df['arm_label'].values
 
-ax.barh(arms_plot - 1, ests, xerr=1.96 * ses, height=0.6,
-        color=colors, capsize=3, alpha=0.85)
-ax.axvline(0, color='#999999', linewidth=0.7, linestyle='--')
-ax.set_yticks(arms_plot - 1)
-ax.set_yticklabels([f"Arm {a}" for a in arms_plot])
-ax.set_xlabel("Effect on pk_score (95% CI)")
-ax.set_title("E3: Placebo — intervention effects on attention-check score")
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.tick_params(left=False)
-ax.text(0.98, 0.02, 'red = p<0.05', transform=ax.transAxes,
-        ha='right', va='bottom', fontsize=8, color='#333333')
+ax.hlines(y_pos3, est3 - 1.96*se3, est3 + 1.96*se3, color=INK, alpha=0.5, linewidth=1.5)
+ax.scatter(est3, y_pos3, color=ACCENT, s=30, zorder=3)
+ax.axvline(0, color='#999999', linewidth=0.8, linestyle='--')
+ax.set_yticks(y_pos3)
+ax.set_yticklabels(labels3, fontsize=9, color=INK)
+ax.set_xlabel('Effect per 1 SD AI familiarity', fontsize=10, color=INK)
+ax.set_title('AI Familiarity: Main Effect & Treatment Interactions on total_score', fontsize=11, color=INK, pad=10)
+style_ax(ax)
 plt.tight_layout()
-plt.savefig('figures/E3_placebo_pk_score.png', dpi=200)
+plt.savefig('figures/E3_ai_familiarity_dose.png', dpi=200, bbox_inches='tight')
 plt.close()
 
-print("Done.")
+print(f"E3: AI familiarity main effect on total_score = {ai_main_est:.3f} (SE={ai_main_se:.3f}, p={ai_main_p:.3f}); "
+      f"{(e3_df['interaction_p'] < 0.10).sum()} of 11 arms show significant (p<.10) AI-familiarity moderation")
+
+print("\nAll exploratory analyses complete.")

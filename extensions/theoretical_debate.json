@@ -1,46 +1,53 @@
 {
  "id": "theoretical_debate",
  "kind": "alternative",
- "title": "Platform labels vs user training head to head",
- "rationale": "In the source study only Automated Flagging moved accuracy (+4.4 points, 95% CI [1.4, 7.3]), while the AI Literacy Guide was borderline and model-dependent (adjusted +4.7, raw difference about 0.006). Arms were heterogeneous and some had only 78-102 respondents, so the i-frame vs s-frame debate was not settled. This design compares only the best system arm with the best user arm, plus their combination, with per-post responses and a 1-week follow-up.",
- "contribution": "A focused, adequately powered test of whether system-supplied labels outperform user training, and whether the two add up, using per-post responses so discernment can be separated from response bias.",
+ "title": "Individual literacy vs system-supplied cue: which carries the effect?",
+ "rationale": "In the source study, Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while pooled accuracy was only +1.0 point (SE 0.7, p=0.132). The original arms bundled cue content with attention and priming, so it is unclear whether the gain comes from external information (s-frame) or changed vigilance (i-frame).",
+ "contribution": "Separates the information content of a machine label from vigilance and priming effects, using a 2x2 design plus a placebo-label arm.",
  "limitations": [
-  "Online sample; the follow-up loses respondents to attrition.",
-  "The Guide's source effect was tentative, so it may be a weak representative of user-side fixes.",
-  "Labels are simulated and shown only in the feed; real platform exposure differs.",
-  "The follow-up posts must be new items, which limits direct comparability with the first wave."
+  "US online panel only.",
+  "Outcomes are measured immediately, so durability is unknown.",
+  "The placebo label may be read as a real cue.",
+  "Platform-level systemic change is still not tested, only a system-supplied cue.",
+  "The 5-arm layout is not a full factorial. The placebo arm has no crossed Guide cell."
  ],
  "design": {
-  "title": "Platform labels vs user training head to head",
-  "overview": "Respondents are randomised to control, Automated Flagging labels, an AI Literacy Guide, or both. They judge 24 posts (12 AI, 12 real) immediately and a new set of 24 after one week. Per-post responses allow accuracy on AI and real posts and a response-bias check.",
-  "hypothesis": "H1 (s-frame): Automated Flagging yields higher total accuracy than the AI Literacy Guide. H2: the combined arm exceeds either single arm (additive effects). Rival (i-frame): the Guide matches labels, particularly at 1 week.",
-  "primaryOutcome": "Total accuracy (share of 24 posts judged correctly) at wave 1, contrast labels vs guide.",
-  "comparison": "Pre-registered: Labels vs Guide. Then Both vs each single arm, and each arm vs control. Secondary: accuracy on AI posts and real posts, and wave 2 (1 week) accuracy.",
-  "population": "US adults from an online panel, about 450 per arm (1,800 total) at wave 1.",
+  "title": "Label vs literacy training: 2x2 plus placebo label",
+  "overview": "Respondents are randomised to one of five arms: control, real label only, Guide only, real label plus Guide, or placebo label. All see the same 40-post feed and judge each post as AI-generated or authentic. Accuracy and d-prime are computed from the judgments.",
+  "hypothesis": "H1 (s-frame): real labels raise accuracy and d-prime, while the Guide alone and the placebo label do not. H2 (i-frame): the Guide alone or the placebo label raises accuracy and d-prime comparably to real labels. H3: the label x Guide interaction is positive if training makes labels more useful.",
+  "primaryOutcome": "Accuracy: share of 40 posts judged correctly, with d-prime as a co-primary outcome.",
+  "comparison": "Real label vs control; Guide vs control; placebo vs control; real label vs placebo; label x Guide interaction in the 2x2 cells (control, label, Guide, label plus Guide).",
+  "population": "US adults on an online panel, about 300 per arm (1,500 total).",
   "conditions": [
    {
     "id": "c_control",
     "title": "Control",
-    "description": "No intervention before the feed.",
+    "description": "No label, no Guide.",
     "nodeId": "arm_control"
    },
    {
-    "id": "c_labels",
-    "title": "Automated Flagging",
-    "description": "Posts carry machine-learning AI-detection labels.",
-    "nodeId": "arm_labels"
+    "id": "c_label",
+    "title": "Real label",
+    "description": "Posts carry machine-learning detection labels.",
+    "nodeId": "arm_label"
    },
    {
     "id": "c_guide",
-    "title": "AI Literacy Guide",
-    "description": "A guide with examples of AI artifacts is shown before the feed.",
+    "title": "Guide only",
+    "description": "AI Literacy Guide before the feed, no labels.",
     "nodeId": "arm_guide"
    },
    {
     "id": "c_both",
-    "title": "Labels plus Guide",
-    "description": "Both the guide and the labels.",
+    "title": "Label plus Guide",
+    "description": "Guide before the feed and real labels on posts.",
     "nodeId": "arm_both"
+   },
+   {
+    "id": "c_placebo",
+    "title": "Placebo label",
+    "description": "Posts carry uninformative labels unrelated to AI status.",
+    "nodeId": "arm_placebo"
    }
   ],
   "blocks": [
@@ -51,7 +58,7 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "This is a Columbia University research study on how people judge online media. Participation is voluntary and you may stop at any time. Do you consent to participate?",
+      "text": "You are invited to take part in a research study about how people judge online media. It takes about 10 minutes and participation is voluntary. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
@@ -77,7 +84,7 @@
     "title": "Pre-treatment",
     "questions": [
      {
-      "id": "q_conf_pre",
+      "id": "q_media_conf",
       "type": "MC",
       "text": "In general, how much trust and confidence do you have in the news media when it comes to reporting the news fully, accurately and fairly?",
       "tag": "media_confidence",
@@ -117,67 +124,11 @@
      {
       "id": "q_guide",
       "type": "DB",
-      "text": "{{ed:guide_stim}}",
-      "tag": "guide_view",
+      "text": "Please read this guide on how to spot AI-generated images and videos. It describes common artifacts such as distorted hands, inconsistent lighting, garbled text and unnatural motion, with examples. Take your time; you will then view a feed of posts.",
+      "tag": "guide_text",
       "multiple": false,
       "required": false,
       "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
-    "id": "b_nolabel_intro",
-    "title": "Task intro",
-    "questions": [
-     {
-      "id": "q_intro",
-      "type": "DB",
-      "text": "Now we would like to see if you can detect content generated by artificial intelligence. For each post, mark whether it is AI-generated or real. If unsure, go with your gut.",
-      "tag": "task_intro",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     }
-    ]
-   },
-   {
-    "id": "b_feed_plain",
-    "title": "Feed without labels",
-    "questions": [
-     {
-      "id": "q_feed_plain",
-      "type": "DB",
-      "text": "{{ed:feed_plain}}",
-      "tag": "feed_plain_view",
-      "multiple": false,
-      "required": false,
-      "choices": [],
-      "rows": [],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_judge_plain",
-      "type": "MC",
-      "text": "Was the last post AI-generated or real?",
-      "tag": "judge_plain",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ai",
-        "text": "AI-generated",
-        "recode": "1"
-       },
-       {
-        "id": "real",
-        "text": "Real",
-        "recode": "0"
-       }
-      ],
       "rows": [],
       "sourceQuestionId": ""
      }
@@ -185,38 +136,50 @@
    },
    {
     "id": "b_feed_label",
-    "title": "Feed with labels",
+    "title": "Feed with real labels",
     "questions": [
      {
       "id": "q_feed_label",
       "type": "DB",
-      "text": "{{ed:feed_label}}",
-      "tag": "feed_label_view",
+      "text": "Next you will see 40 posts. Each post carries a label from an automated AI-detection system, which is accurate about 80% of the time. [IMAGE: example feed post with a detection label reading 'Likely AI-generated' or 'Likely authentic']. For each of the 40 posts, mark whether it is AI-generated or authentic.",
+      "tag": "feed_label",
       "multiple": false,
       "required": false,
       "choices": [],
       "rows": [],
       "sourceQuestionId": ""
-     },
+     }
+    ]
+   },
+   {
+    "id": "b_feed_placebo",
+    "title": "Feed with placebo labels",
+    "questions": [
      {
-      "id": "q_judge_label",
-      "type": "MC",
-      "text": "Was the last post AI-generated or real?",
-      "tag": "judge_label",
+      "id": "q_feed_placebo",
+      "type": "DB",
+      "text": "Next you will see 40 posts. Each post carries a label from an automated system showing a content category. [IMAGE: example feed post with a label reading 'Category: Lifestyle' or 'Category: Entertainment']. For each of the 40 posts, mark whether it is AI-generated or authentic.",
+      "tag": "feed_placebo",
       "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "ai",
-        "text": "AI-generated",
-        "recode": "1"
-       },
-       {
-        "id": "real",
-        "text": "Real",
-        "recode": "0"
-       }
-      ],
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_feed_none",
+    "title": "Feed without labels",
+    "questions": [
+     {
+      "id": "q_feed_none",
+      "type": "DB",
+      "text": "Next you will see 40 posts. [IMAGE: example feed post with no label]. For each of the 40 posts, mark whether it is AI-generated or authentic. If you are unsure, go with your gut.",
+      "tag": "feed_none",
+      "multiple": false,
+      "required": false,
+      "choices": [],
       "rows": [],
       "sourceQuestionId": ""
      }
@@ -227,7 +190,7 @@
     "title": "Outcomes",
     "questions": [
      {
-      "id": "q_confid",
+      "id": "q_conf",
       "type": "MC",
       "text": "I feel confident in my ability to detect artificial intelligence.",
       "tag": "ai_confidence",
@@ -272,6 +235,38 @@
       ],
       "rows": [],
       "sourceQuestionId": "QID3"
+     },
+     {
+      "id": "q_rely",
+      "type": "MC",
+      "text": "How much did you rely on labels or tips rather than your own inspection of each post?",
+      "tag": "reliance",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "c1",
+        "text": "Not at all",
+        "recode": "1"
+       },
+       {
+        "id": "c2",
+        "text": "A little",
+        "recode": "2"
+       },
+       {
+        "id": "c3",
+        "text": "Somewhat",
+        "recode": "3"
+       },
+       {
+        "id": "c4",
+        "text": "A great deal",
+        "recode": "4"
+       }
+      ],
+      "rows": [],
+      "sourceQuestionId": ""
      }
     ]
    },
@@ -282,7 +277,7 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. Some labels and guidance in this study were part of an experiment and labels may not have been accurate. We will invite you back in one week for a short follow-up with new posts.",
+      "text": "Thank you. This study tested what helps people recognise AI-generated media. Some labels shown were uninformative or only partly accurate by design. Your quiz score reflects your answers only.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
@@ -307,19 +302,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_end",
-    "type": "end",
-    "label": "End non-consent",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_branch",
+    "id": "n_br",
     "type": "branch",
     "label": "Non-consent",
     "children": [
@@ -331,6 +314,18 @@
     "questionId": "q_consent",
     "choiceId": "no",
     "operator": "selected"
+   },
+   {
+    "id": "n_end",
+    "type": "end",
+    "label": "End",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
    },
    {
     "id": "n_pre",
@@ -347,12 +342,13 @@
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Arm",
+    "label": "Arms",
     "children": [
      "arm_control",
-     "arm_labels",
+     "arm_label",
      "arm_guide",
-     "arm_both"
+     "arm_both",
+     "arm_placebo"
     ],
     "blockId": "",
     "field": "",
@@ -367,9 +363,7 @@
     "label": "Control",
     "children": [
      "set_control",
-     "set_cfeed",
-     "n_intro_c",
-     "n_feed_plain_c"
+     "t_control"
     ],
     "blockId": "",
     "field": "",
@@ -391,23 +385,11 @@
     "operator": "equals"
    },
    {
-    "id": "set_cfeed",
-    "type": "embedded",
-    "label": "feed",
-    "children": [],
-    "blockId": "",
-    "field": "feed_plain",
-    "value": "[IMAGE: simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no labels]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_intro_c",
+    "id": "t_control",
     "type": "block",
-    "label": "Intro",
+    "label": "Feed none",
     "children": [],
-    "blockId": "b_nolabel_intro",
+    "blockId": "b_feed_none",
     "field": "",
     "value": "",
     "questionId": "",
@@ -415,26 +397,12 @@
     "operator": "equals"
    },
    {
-    "id": "n_feed_plain_c",
-    "type": "block",
-    "label": "Feed",
-    "children": [],
-    "blockId": "b_feed_plain",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "arm_labels",
+    "id": "arm_label",
     "type": "group",
-    "label": "Labels",
+    "label": "Label",
     "children": [
-     "set_labels",
-     "set_lfeed",
-     "n_intro_l",
-     "n_feed_label_l"
+     "set_label",
+     "t_label"
     ],
     "blockId": "",
     "field": "",
@@ -444,45 +412,21 @@
     "operator": "equals"
    },
    {
-    "id": "set_labels",
+    "id": "set_label",
     "type": "embedded",
     "label": "cond",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "labels",
+    "value": "label",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "set_lfeed",
-    "type": "embedded",
-    "label": "feed",
-    "children": [],
-    "blockId": "",
-    "field": "feed_label",
-    "value": "[IMAGE: simulated feed of 24 posts, each carrying an automated AI-detection label such as 'Likely AI-generated' or 'Likely real']",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_intro_l",
+    "id": "t_label",
     "type": "block",
-    "label": "Intro",
-    "children": [],
-    "blockId": "b_nolabel_intro",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_feed_label_l",
-    "type": "block",
-    "label": "Feed",
+    "label": "Feed label",
     "children": [],
     "blockId": "b_feed_label",
     "field": "",
@@ -497,11 +441,8 @@
     "label": "Guide",
     "children": [
      "set_guide",
-     "set_gstim",
-     "n_guide_g",
-     "set_gfeed",
-     "n_intro_g",
-     "n_feed_plain_g"
+     "t_guide",
+     "t_guide_feed"
     ],
     "blockId": "",
     "field": "",
@@ -523,19 +464,7 @@
     "operator": "equals"
    },
    {
-    "id": "set_gstim",
-    "type": "embedded",
-    "label": "guide",
-    "children": [],
-    "blockId": "",
-    "field": "guide_stim",
-    "value": "[IMAGE: AI Literacy Guide with annotated examples of AI artifacts in images and videos]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_guide_g",
+    "id": "t_guide",
     "type": "block",
     "label": "Guide",
     "children": [],
@@ -547,35 +476,11 @@
     "operator": "equals"
    },
    {
-    "id": "set_gfeed",
-    "type": "embedded",
-    "label": "feed",
-    "children": [],
-    "blockId": "",
-    "field": "feed_plain",
-    "value": "[IMAGE: simulated social media feed of 24 posts, 12 AI-generated and 12 real, with no labels]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_intro_g",
+    "id": "t_guide_feed",
     "type": "block",
-    "label": "Intro",
+    "label": "Feed none",
     "children": [],
-    "blockId": "b_nolabel_intro",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_feed_plain_g",
-    "type": "block",
-    "label": "Feed",
-    "children": [],
-    "blockId": "b_feed_plain",
+    "blockId": "b_feed_none",
     "field": "",
     "value": "",
     "questionId": "",
@@ -588,11 +493,8 @@
     "label": "Both",
     "children": [
      "set_both",
-     "set_bstim",
-     "n_guide_b",
-     "set_bfeed",
-     "n_intro_b",
-     "n_feed_label_b"
+     "t_both",
+     "t_both_feed"
     ],
     "blockId": "",
     "field": "",
@@ -614,19 +516,7 @@
     "operator": "equals"
    },
    {
-    "id": "set_bstim",
-    "type": "embedded",
-    "label": "guide",
-    "children": [],
-    "blockId": "",
-    "field": "guide_stim",
-    "value": "[IMAGE: AI Literacy Guide with annotated examples of AI artifacts in images and videos]",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_guide_b",
+    "id": "t_both",
     "type": "block",
     "label": "Guide",
     "children": [],
@@ -638,23 +528,11 @@
     "operator": "equals"
    },
    {
-    "id": "set_bfeed",
-    "type": "embedded",
-    "label": "feed",
-    "children": [],
-    "blockId": "",
-    "field": "feed_label",
-    "value": "[IMAGE: simulated feed of 24 posts, each carrying an automated AI-detection label such as 'Likely AI-generated' or 'Likely real']",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_intro_b",
+    "id": "t_both_feed",
     "type": "block",
-    "label": "Intro",
+    "label": "Feed label",
     "children": [],
-    "blockId": "b_nolabel_intro",
+    "blockId": "b_feed_label",
     "field": "",
     "value": "",
     "questionId": "",
@@ -662,11 +540,38 @@
     "operator": "equals"
    },
    {
-    "id": "n_feed_label_b",
-    "type": "block",
-    "label": "Feed",
+    "id": "arm_placebo",
+    "type": "group",
+    "label": "Placebo",
+    "children": [
+     "set_placebo",
+     "t_placebo"
+    ],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "set_placebo",
+    "type": "embedded",
+    "label": "cond",
     "children": [],
-    "blockId": "b_feed_label",
+    "blockId": "",
+    "field": "condition",
+    "value": "placebo",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "t_placebo",
+    "type": "block",
+    "label": "Feed placebo",
+    "children": [],
+    "blockId": "b_feed_placebo",
     "field": "",
     "value": "",
     "questionId": "",
@@ -700,40 +605,40 @@
   ],
   "roots": [
    "n_consent",
-   "n_branch",
+   "n_br",
    "n_pre",
    "r1",
    "n_out",
    "n_debrief"
   ],
   "assumptions": [
-   "Power: about 450 per arm to detect 0.027 at 80% power; sized to detect a 0.03 label-vs-guide gap (H1 SD about 0.13). Observed Guide-vs-control raw difference 0.006, adjusted 0.047.",
-   "Recruit about 600 per arm to allow for attrition at the 1-week follow-up.",
-   "Per-post responses are recorded in the feed platform (24 posts, one judgment each) so d' and criterion can be computed; the single judgment question stands in for each post.",
-   "Wave 2 uses a new set of 24 posts with the same arm and, for labelled arms, labels; the guide is not re-shown.",
-   "Platform: online panel; about 10 minutes at wave 1, 5 minutes at wave 2."
+   "Power: about 300 per arm to detect 0.033 at 80% power; the source H1 MDE was 0.034 for n≈290 vs 181 arms, and the interaction contrast needs the larger cells. Total about 1,500.",
+   "Accuracy and d-prime are computed from the 40 post-level judgments, with 20 AI-generated and 20 authentic posts.",
+   "Real labels are about 80% accurate, matching a realistic detector.",
+   "Platform: online panel, about 10 minutes. Compensation follows panel norms.",
+   "Report pooled SEs and CIs for contrasts, and correct for the few planned comparisons."
   ],
   "unresolved": [
-   "The actual media files, labels and guide must be supplied by the research team.",
-   "IRB approval number and compensation need to be set.",
-   "The wave 2 invitation and recontact procedure must be built."
+   "The 40 post media files and their ground-truth labels must be supplied by the research team.",
+   "The Guide content and the real and placebo label assets must be produced.",
+   "IRB number and compensation are to be supplied."
   ],
   "evidence": [
    {
     "id": "e1",
-    "title": "Source study package",
-    "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "Automated Flagging +4.4; Guide borderline",
+    "title": "i-frame and s-frame",
+    "url": "https://doi.org/10.1017/s0140525x22002023",
+    "claim": "Frames the debate between individual-level and system-level solutions.",
     "excerpt": "",
-    "origin": "web"
+    "origin": "supplied"
    },
    {
     "id": "e2",
-    "title": "The i-frame and the s-frame",
-    "url": "https://doi.org/10.1017/s0140525x22002023",
-    "claim": "The debate between individual-level and system-level solutions",
+    "title": "Source study package",
+    "url": "https://github.com/yrvelez/ai-discernment",
+    "claim": "The source study this extension builds on.",
     "excerpt": "",
-    "origin": "web"
+    "origin": "supplied"
    }
   ]
  }
