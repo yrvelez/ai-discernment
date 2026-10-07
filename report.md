@@ -601,9 +601,6 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `scripts/01_tidy.py`
 - `scripts/02_clean.py`
 - `scripts/03_registered.py`
-- `scripts/debug2.py`
-- `scripts/debug3.py`
-- `scripts/debug_formula.py`
 - `study.json`
 - `survey.qsf`
 - `zenodo.json`
