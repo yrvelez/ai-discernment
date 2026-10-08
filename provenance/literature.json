@@ -1,192 +1,111 @@
 {
- "text": "The retrieved list is thin and largely off-topic (genomics, microbiology, pharmacology), so direct prior findings on the study's hypotheses are scarce. The closest relevant evidence concerns whether individual-level behavioral interventions produce meaningful, generalizable effects. Chater and Loewenstein (2022) argue that an influential i-frame tradition—targeting individual cognition without modifying the surrounding system—has led behavioral public policy astray, which directly challenges the premise that interventions like those tested here (H1–H6) will yield robust shifts in detection accuracy, attitudes, confidence, or trust. Ruggeri et al. (2023) assessed 747 pandemic-related behavioral-science articles and found the evidence base to be thin and often inconsistent, further tempering expectations for small-scale intervention effects. No retrieved work directly addresses AI-detection accuracy or attitudes toward AI-generated content.\n\nThe live disagreement is between the i-frame assumption embedded in the study's design and the s-frame critique of Chater and Loewenstein (2022): the study tests whether individual-level levers shift measurable outcomes, while that critique holds such levers are insufficient without system-level change. Ruggeri et al. (2023) add a second layer of skepticism by showing that even when individual-level interventions are tested, effects are frequently underpowered or inconsistent. The study's controlled design with multiple outcomes can speak to whether the specific interventions produce detectable individual-level effects, but it cannot resolve the broader s-frame question of whether those effects translate into system-level outcomes. Methodologically, Keogh-Brown et al. (2007) flag contamination as a persistent threat in educational-intervention trials, relevant here if interventions involve shareable information.",
+ "text": "The search found little closely related work: the retrieved items address ChatGPT in assessment, misinformation belief, and replicability in general rather than detection of AI-generated posts, interventions, or trust in online content.",
  "works": [
   {
-   "id": "https://openalex.org/W2321872593",
-   "title": "How many biological replicates are needed in an RNA-seq experiment and which differential expression tool should you use?",
+   "id": "https://openalex.org/W4317910584",
+   "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
    "authors": [
-    "Nick Schurch",
-    "Pietá Schofield",
-    "Marek Gierliński",
-    "Christian Cole"
-   ],
-   "year": 2016,
-   "doi": "10.1261/rna.053959.115",
-   "venue": "RNA",
-   "cited_by": 1061,
-   "abstract": "RNA-seq is now the technology of choice for genome-wide differential gene expression experiments, but it is not clear how many biological replicates are needed to ensure valid biological interpretation of the results or which statistical tools are best for analyzing the data. An RNA-seq experiment with 48 biological replicates in each of two conditions was performed to answer these questions and p",
-   "stance": "supporting",
-   "query": "inoculation AI-generated media detection accuracy experimental"
-  },
-  {
-   "id": "https://openalex.org/W2553095014",
-   "title": "Critical review on biofilm methods",
-   "authors": [
-    "Joana Azeredo",
-    "Nuno F. Azevedo",
-    "Romain Briandet",
-    "Nuno Cerca"
-   ],
-   "year": 2016,
-   "doi": "10.1080/1040841x.2016.1208146",
-   "venue": "Critical Reviews in Microbiology",
-   "cited_by": 1058,
-   "abstract": "Biofilms are widespread in nature and constitute an important strategy implemented by microorganisms to survive in sometimes harsh environmental conditions. They can be beneficial or have a negative impact particularly when formed in industrial settings or on medical devices. As such, research into the formation and elimination of biofilms is important for many disciplines. Several new methodologi",
-   "stance": "supporting",
-   "query": "inoculation AI-generated media detection accuracy experimental"
-  },
-  {
-   "id": "https://openalex.org/W2549670165",
-   "title": "RETRACTED ARTICLE: Culture of previously uncultured members of the human gut microbiota by culturomics",
-   "authors": [
-    "Jean‐Christophe Lagier",
-    "S. Khelaifia",
-    "Maryam Tidjani Alou",
-    "Sokhna Ndongo"
-   ],
-   "year": 2016,
-   "doi": "10.1038/nmicrobiol.2016.203",
-   "venue": "Nature Microbiology",
-   "cited_by": 968,
-   "abstract": "Abstract Metagenomics revolutionized the understanding of the relations among the human microbiome, health and diseases, but generated a countless number of sequences that have not been assigned to a known microorganism1. The pure culture of prokaryotes, neglected in recent decades, remains essential to elucidating the role of these organisms2. We recently introduced microbial culturomics, a cultu",
-   "stance": "supporting",
-   "query": "inoculation AI-generated media detection accuracy experimental"
-  },
-  {
-   "id": "https://openalex.org/W4294628862",
-   "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
-   "authors": [
-    "Nick Chater",
-    "George F. Loewenstein"
-   ],
-   "year": 2022,
-   "doi": "10.1017/s0140525x22002023",
-   "venue": "Behavioral and Brain Sciences",
-   "cited_by": 586,
-   "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
-   "stance": "contesting",
-   "query": "inoculation backfire overconfidence misinformation intervention null effect"
-  },
-  {
-   "id": "https://openalex.org/W4226385226",
-   "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
-   "authors": [
-    "Nick Chater",
-    "George F. Loewenstein"
-   ],
-   "year": 2022,
-   "doi": "10.2139/ssrn.4046264",
-   "venue": "SSRN Electronic Journal",
-   "cited_by": 189,
-   "abstract": "",
-   "stance": "contesting",
-   "query": "inoculation backfire overconfidence misinformation intervention null effect"
-  },
-  {
-   "id": "https://openalex.org/W4389670743",
-   "title": "A synthesis of evidence for policy from behavioural science during COVID-19",
-   "authors": [
-    "Kai Ruggeri",
-    "Friederike Stock",
-    "S. Alexander Haslam",
-    "Valerio Capraro"
+    "Jürgen Rudolph",
+    "Samson Tan",
+    "Shannon Tan"
    ],
    "year": 2023,
-   "doi": "10.1038/s41586-023-06840-9",
-   "venue": "Nature",
-   "cited_by": 120,
-   "abstract": "proposed 19 policy recommendations ('claims') detailing how evidence from behavioural science could contribute to efforts to reduce impacts and end the COVID-19 pandemic. Here we assess 747 pandemic-related research articles that empirically investigated those claims. We report the scale of evidence and whether evidence supports them to indicate applicability for policymaking. Two independent team",
+   "doi": "10.37074/jalt.2023.6.1.9",
+   "venue": "Journal of Applied Learning & Teaching",
+   "cited_by": 1773,
+   "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to ",
+   "stance": "supporting",
+   "query": "misinformation intervention deepfake detection accuracy"
+  },
+  {
+   "id": "https://openalex.org/W4206236567",
+   "title": "The psychological drivers of misinformation belief and its resistance to correction",
+   "authors": [
+    "Ullrich K. H. Ecker",
+    "Stephan Lewandowsky",
+    "John Cook",
+    "Philipp Schmid"
+   ],
+   "year": 2022,
+   "doi": "10.1038/s44159-021-00006-y",
+   "venue": "Nature Reviews Psychology",
+   "cited_by": 1357,
+   "abstract": "",
+   "stance": "supporting",
+   "query": "misinformation intervention deepfake detection accuracy"
+  },
+  {
+   "id": "https://openalex.org/W3128392043",
+   "title": "Measuring the impact of COVID-19 vaccine misinformation on vaccination intent in the UK and USA",
+   "authors": [
+    "Sahil Loomba",
+    "Alexandre de Figueiredo",
+    "Simon J. Piatek",
+    "Kristen de Graaf"
+   ],
+   "year": 2021,
+   "doi": "10.1038/s41562-021-01056-1",
+   "venue": "Nature Human Behaviour",
+   "cited_by": 1805,
+   "abstract": "",
    "stance": "contesting",
-   "query": "inoculation backfire overconfidence misinformation intervention null effect"
+   "query": "accuracy nudge null effect misinformation intervention"
   },
   {
-   "id": "https://openalex.org/W4392201174",
-   "title": "Advancing Precision Medicine: A Review of Innovative In Silico Approaches for Drug Development, Clinical Pharmacology and Personalized Healthcare",
+   "id": "https://openalex.org/W3161588210",
+   "title": "Replicability, Robustness, and Reproducibility in Psychological Science",
    "authors": [
-    "Lara Marques",
-    "Bárbara Costa",
-    "Mariana Pereira",
-    "Abigail Silva"
+    "Brian A. Nosek",
+    "Tom Elis Hardwicke",
+    "Hannah Moshontz",
+    "Aurélien Allard"
    ],
-   "year": 2024,
-   "doi": "10.3390/pharmaceutics16030332",
-   "venue": "Pharmaceutics",
-   "cited_by": 384,
-   "abstract": "The landscape of medical treatments is undergoing a transformative shift. Precision medicine has ushered in a revolutionary era in healthcare by individualizing diagnostics and treatments according to each patient's uniquely evolving health status. This groundbreaking method of tailoring disease prevention and treatment considers individual variations in genes, environments, and lifestyles. The go",
-   "stance": "method",
-   "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+   "year": 2021,
+   "doi": "10.1146/annurev-psych-020821-114157",
+   "venue": "Annual Review of Psychology",
+   "cited_by": 794,
+   "abstract": "Replication-an important, uncommon, and misunderstood practice-is gaining appreciation in psychology. Achieving replicability is important for making research progress. If findings are not replicable, then prediction and theory development are stifled. If findings are replicable, then interrogation of their meaning and validity can advance knowledge. Assessing replicability can be productive for g",
+   "stance": "contesting",
+   "query": "accuracy nudge null effect misinformation intervention"
   },
   {
-   "id": "https://openalex.org/W3121171074",
-   "title": "A Survey of Learning Causality with Data",
+   "id": "https://openalex.org/W2563852449",
+   "title": "Social Data: Biases, Methodological Pitfalls, and Ethical Boundaries",
    "authors": [
-    "Ruocheng Guo",
-    "Lu Cheng",
-    "Jundong Li",
-    "P. Richard Hahn"
+    "Alexandra Olteanu",
+    "Carlos Castillo",
+    "Fernando Díaz",
+    "Emre Kıcıman"
    ],
-   "year": 2020,
-   "doi": "10.1145/3397269",
-   "venue": "ACM Computing Surveys",
-   "cited_by": 224,
-   "abstract": "This work considers the question of how convenient access to copious data impacts our ability to learn causal effects and relations. In what ways is learning causality in the era of big data different from—or the same as—the traditional one? To answer this question, this survey provides a comprehensive and structured review of both traditional and frontier methods in learning causality and relatio",
-   "stance": "method",
-   "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
-  },
-  {
-   "id": "https://openalex.org/W2111740157",
-   "title": "Contamination in trials of educational interventions",
-   "authors": [
-    "Marcus Richard Keogh-Brown",
-    "Max Oscar Bachmann",
-    "Lee Shepstone",
-    "Catherine Elizabeth Hewitt"
-   ],
-   "year": 2007,
-   "doi": "10.3310/hta11430",
-   "venue": "Health Technology Assessment",
-   "cited_by": 180,
-   "abstract": "T he Health Technology Assessment (HTA) programme, now part of the National Institute for Health Research (NIHR), was set up in 1993.It produces high-quality research information on the costs, effectiveness and broader impact of health technologies for those who use, manage and provide care in the NHS.'Health technologies' are broadly defined to include all interventions used to promote health, pr",
-   "stance": "method",
-   "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
-  },
-  {
-   "id": "https://openalex.org/W2611138580",
-   "title": "Multi-omics approaches to disease",
-   "authors": [
-    "Yehudit Hasin-Brumshtein",
-    "Marcus Michael Seldin",
-    "Aldons Jake Lusis"
-   ],
-   "year": 2017,
-   "doi": "10.1186/s13059-017-1215-1",
-   "venue": "Genome biology",
-   "cited_by": 3031,
-   "abstract": "High-throughput technologies have revolutionized medical research. The advent of genotyping arrays enabled large-scale genome-wide association studies and methods for examining global transcript levels, which gave rise to the field of \"integrative genetics\". Other omics technologies, such as proteomics and metabolomics, are now often incorporated into the everyday methodology of biological researc",
-   "stance": "citing",
-   "query": "cites:W2321872593"
+   "year": 2019,
+   "doi": "10.3389/fdata.2019.00013",
+   "venue": "Frontiers in Big Data",
+   "cited_by": 742,
+   "abstract": "Social data in digital form, including user-generated content, expressed or implicit relations between people, and behavioral traces, are at the core of popular applications and platforms, driving the research agenda of many researchers. The promises of social data are many, including understanding ``what the world thinks'' about a social issue, brand, celebrity, or other entity, as well as enabli",
+   "stance": "contesting",
+   "query": "accuracy nudge null effect misinformation intervention"
   }
  ],
  "queries": [
-  "inoculation AI-generated media detection accuracy experimental",
-  "accuracy nudge misinformation detection confidence trust survey",
-  "inoculation backfire overconfidence misinformation intervention null effect",
-  "misinformation intervention transfer generalization failure deepfake detection",
-  "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+  "misinformation intervention deepfake detection accuracy",
+  "inoculation prebunking AI-generated media discernment",
+  "accuracy nudge null effect misinformation intervention",
+  "AI literacy training no improvement detecting synthetic media",
+  "Lin estimator survey experiment treatment effect heterogeneity"
  ],
  "query_sets": {
   "supporting": [
-   "inoculation AI-generated media detection accuracy experimental",
-   "accuracy nudge misinformation detection confidence trust survey"
+   "misinformation intervention deepfake detection accuracy",
+   "inoculation prebunking AI-generated media discernment"
   ],
   "contesting": [
-   "inoculation backfire overconfidence misinformation intervention null effect",
-   "misinformation intervention transfer generalization failure deepfake detection"
+   "accuracy nudge null effect misinformation intervention",
+   "AI literacy training no improvement detecting synthetic media"
   ],
   "method": [
-   "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+   "Lin estimator survey experiment treatment effect heterogeneity"
   ]
  },
- "debate_hint": "Whether individual-level behavioral interventions (i-frame) can produce meaningful shifts in AI-detection and trust outcomes, or whether only system-level (s-frame) changes will do so.",
+ "debate_hint": "",
  "degraded": null
 }

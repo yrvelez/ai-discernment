@@ -1,1 +1,0 @@
-Individual literacy vs system-supplied cue: which carries the effect?. 5 conditions: Control, Real label, Guide only, Label plus Guide, Placebo label. Primary outcome: Accuracy: share of 40 posts judged correctly, with d-prime as a co-primary outcome.. Population: US adults on an online panel, about 300 per arm (1,500 total).

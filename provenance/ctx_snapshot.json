@@ -100,197 +100,135 @@
   "trust_online_6",
   "trust_online_7"
  ],
- "exploratory": [],
+ "exploratory": [
+  {
+   "id": "E1",
+   "title": "Accuracy effects restricted to batches 3-4",
+   "rationale": "Batches 3-4 were fielded after the planned analyses were registered, so checking whether the accuracy pattern holds in those batches tests whether the registered result depends on the earlier data collection.",
+   "method": "The planned accuracy model was re-estimated on all respondents and on the subsample from batches 3-4, and each arm's effect relative to control was compared side by side.",
+   "table": "results/E1_batch34_robustness.csv",
+   "figure": null,
+   "finding": "In batches 3-4 (n=1,251), 2 of 11 arm effects on detection accuracy reach p<0.05, versus 3 of 11 in the full sample (n=2,030); the largest standard-error ratio between the two is 1.72, and the sample change exceeds 10% so the stability rule does not apply."
+  },
+  {
+   "id": "E2",
+   "title": "Heterogeneity of accuracy effects by AI-tool familiarity",
+   "rationale": "Familiarity with AI tools is a plausible moderator of how much an intervention can change discernment, and the planned analyses did not examine it.",
+   "method": "The planned accuracy model was extended with an interaction between each arm and a centred familiarity score built from the seven AI-tool recognition items, yielding one slope per arm.",
+   "table": "results/E2_ai_familiarity_heterogeneity.csv",
+   "figure": null,
+   "finding": "Of 11 arm-level familiarity slopes, 2 reach p<0.05 uncorrected (median slope -0.091 per unit of familiarity, range -0.245 to 0.076), so the pattern is weak and should be treated as exploratory."
+  }
+ ],
  "lit": {
-  "text": "The retrieved list is thin and largely off-topic (genomics, microbiology, pharmacology), so direct prior findings on the study's hypotheses are scarce. The closest relevant evidence concerns whether individual-level behavioral interventions produce meaningful, generalizable effects. Chater and Loewenstein (2022) argue that an influential i-frame tradition—targeting individual cognition without modifying the surrounding system—has led behavioral public policy astray, which directly challenges the premise that interventions like those tested here (H1–H6) will yield robust shifts in detection accuracy, attitudes, confidence, or trust. Ruggeri et al. (2023) assessed 747 pandemic-related behavioral-science articles and found the evidence base to be thin and often inconsistent, further tempering expectations for small-scale intervention effects. No retrieved work directly addresses AI-detection accuracy or attitudes toward AI-generated content.\n\nThe live disagreement is between the i-frame assumption embedded in the study's design and the s-frame critique of Chater and Loewenstein (2022): the study tests whether individual-level levers shift measurable outcomes, while that critique holds such levers are insufficient without system-level change. Ruggeri et al. (2023) add a second layer of skepticism by showing that even when individual-level interventions are tested, effects are frequently underpowered or inconsistent. The study's controlled design with multiple outcomes can speak to whether the specific interventions produce detectable individual-level effects, but it cannot resolve the broader s-frame question of whether those effects translate into system-level outcomes. Methodologically, Keogh-Brown et al. (2007) flag contamination as a persistent threat in educational-intervention trials, relevant here if interventions involve shareable information.",
+  "text": "The search found little closely related work: the retrieved items address ChatGPT in assessment, misinformation belief, and replicability in general rather than detection of AI-generated posts, interventions, or trust in online content.",
   "works": [
    {
-    "id": "https://openalex.org/W2321872593",
-    "title": "How many biological replicates are needed in an RNA-seq experiment and which differential expression tool should you use?",
+    "id": "https://openalex.org/W4317910584",
+    "title": "ChatGPT: Bullshit spewer or the end of traditional assessments in higher education?",
     "authors": [
-     "Nick Schurch",
-     "Pietá Schofield",
-     "Marek Gierliński",
-     "Christian Cole"
-    ],
-    "year": 2016,
-    "doi": "10.1261/rna.053959.115",
-    "venue": "RNA",
-    "cited_by": 1061,
-    "abstract": "RNA-seq is now the technology of choice for genome-wide differential gene expression experiments, but it is not clear how many biological replicates are needed to ensure valid biological interpretation of the results or which statistical tools are best for analyzing the data. An RNA-seq experiment with 48 biological replicates in each of two conditions was performed to answer these questions and p",
-    "stance": "supporting",
-    "query": "inoculation AI-generated media detection accuracy experimental"
-   },
-   {
-    "id": "https://openalex.org/W2553095014",
-    "title": "Critical review on biofilm methods",
-    "authors": [
-     "Joana Azeredo",
-     "Nuno F. Azevedo",
-     "Romain Briandet",
-     "Nuno Cerca"
-    ],
-    "year": 2016,
-    "doi": "10.1080/1040841x.2016.1208146",
-    "venue": "Critical Reviews in Microbiology",
-    "cited_by": 1058,
-    "abstract": "Biofilms are widespread in nature and constitute an important strategy implemented by microorganisms to survive in sometimes harsh environmental conditions. They can be beneficial or have a negative impact particularly when formed in industrial settings or on medical devices. As such, research into the formation and elimination of biofilms is important for many disciplines. Several new methodologi",
-    "stance": "supporting",
-    "query": "inoculation AI-generated media detection accuracy experimental"
-   },
-   {
-    "id": "https://openalex.org/W2549670165",
-    "title": "RETRACTED ARTICLE: Culture of previously uncultured members of the human gut microbiota by culturomics",
-    "authors": [
-     "Jean‐Christophe Lagier",
-     "S. Khelaifia",
-     "Maryam Tidjani Alou",
-     "Sokhna Ndongo"
-    ],
-    "year": 2016,
-    "doi": "10.1038/nmicrobiol.2016.203",
-    "venue": "Nature Microbiology",
-    "cited_by": 968,
-    "abstract": "Abstract Metagenomics revolutionized the understanding of the relations among the human microbiome, health and diseases, but generated a countless number of sequences that have not been assigned to a known microorganism1. The pure culture of prokaryotes, neglected in recent decades, remains essential to elucidating the role of these organisms2. We recently introduced microbial culturomics, a cultu",
-    "stance": "supporting",
-    "query": "inoculation AI-generated media detection accuracy experimental"
-   },
-   {
-    "id": "https://openalex.org/W4294628862",
-    "title": "The i-frame and the s-frame: How focusing on individual-level solutions has led behavioral public policy astray",
-    "authors": [
-     "Nick Chater",
-     "George F. Loewenstein"
-    ],
-    "year": 2022,
-    "doi": "10.1017/s0140525x22002023",
-    "venue": "Behavioral and Brain Sciences",
-    "cited_by": 586,
-    "abstract": "An influential line of thinking in behavioral science, to which the two authors have long subscribed, is that many of society's most pressing problems can be addressed cheaply and effectively at the level of the individual, without modifying the system in which the individual operates. We now believe this was a mistake, along with, we suspect, many colleagues in both the academic and policy commun",
-    "stance": "contesting",
-    "query": "inoculation backfire overconfidence misinformation intervention null effect"
-   },
-   {
-    "id": "https://openalex.org/W4226385226",
-    "title": "The i-Frame and the s-Frame: How Focusing on Individual-Level Solutions Has Led Behavioral Public Policy Astray",
-    "authors": [
-     "Nick Chater",
-     "George F. Loewenstein"
-    ],
-    "year": 2022,
-    "doi": "10.2139/ssrn.4046264",
-    "venue": "SSRN Electronic Journal",
-    "cited_by": 189,
-    "abstract": "",
-    "stance": "contesting",
-    "query": "inoculation backfire overconfidence misinformation intervention null effect"
-   },
-   {
-    "id": "https://openalex.org/W4389670743",
-    "title": "A synthesis of evidence for policy from behavioural science during COVID-19",
-    "authors": [
-     "Kai Ruggeri",
-     "Friederike Stock",
-     "S. Alexander Haslam",
-     "Valerio Capraro"
+     "Jürgen Rudolph",
+     "Samson Tan",
+     "Shannon Tan"
     ],
     "year": 2023,
-    "doi": "10.1038/s41586-023-06840-9",
-    "venue": "Nature",
-    "cited_by": 120,
-    "abstract": "proposed 19 policy recommendations ('claims') detailing how evidence from behavioural science could contribute to efforts to reduce impacts and end the COVID-19 pandemic. Here we assess 747 pandemic-related research articles that empirically investigated those claims. We report the scale of evidence and whether evidence supports them to indicate applicability for policymaking. Two independent team",
+    "doi": "10.37074/jalt.2023.6.1.9",
+    "venue": "Journal of Applied Learning & Teaching",
+    "cited_by": 1773,
+    "abstract": "ChatGPT is the world’s most advanced chatbot thus far. Unlike other chatbots, it can create impressive prose within seconds, and it has created much hype and doomsday predictions when it comes to student assessment in higher education and a host of other matters. ChatGPT is a state-of-the-art language model (a variant of OpenAI’s Generative Pretrained Transformer (GPT) language model) designed to ",
+    "stance": "supporting",
+    "query": "misinformation intervention deepfake detection accuracy"
+   },
+   {
+    "id": "https://openalex.org/W4206236567",
+    "title": "The psychological drivers of misinformation belief and its resistance to correction",
+    "authors": [
+     "Ullrich K. H. Ecker",
+     "Stephan Lewandowsky",
+     "John Cook",
+     "Philipp Schmid"
+    ],
+    "year": 2022,
+    "doi": "10.1038/s44159-021-00006-y",
+    "venue": "Nature Reviews Psychology",
+    "cited_by": 1357,
+    "abstract": "",
+    "stance": "supporting",
+    "query": "misinformation intervention deepfake detection accuracy"
+   },
+   {
+    "id": "https://openalex.org/W3128392043",
+    "title": "Measuring the impact of COVID-19 vaccine misinformation on vaccination intent in the UK and USA",
+    "authors": [
+     "Sahil Loomba",
+     "Alexandre de Figueiredo",
+     "Simon J. Piatek",
+     "Kristen de Graaf"
+    ],
+    "year": 2021,
+    "doi": "10.1038/s41562-021-01056-1",
+    "venue": "Nature Human Behaviour",
+    "cited_by": 1805,
+    "abstract": "",
     "stance": "contesting",
-    "query": "inoculation backfire overconfidence misinformation intervention null effect"
+    "query": "accuracy nudge null effect misinformation intervention"
    },
    {
-    "id": "https://openalex.org/W4392201174",
-    "title": "Advancing Precision Medicine: A Review of Innovative In Silico Approaches for Drug Development, Clinical Pharmacology and Personalized Healthcare",
+    "id": "https://openalex.org/W3161588210",
+    "title": "Replicability, Robustness, and Reproducibility in Psychological Science",
     "authors": [
-     "Lara Marques",
-     "Bárbara Costa",
-     "Mariana Pereira",
-     "Abigail Silva"
+     "Brian A. Nosek",
+     "Tom Elis Hardwicke",
+     "Hannah Moshontz",
+     "Aurélien Allard"
     ],
-    "year": 2024,
-    "doi": "10.3390/pharmaceutics16030332",
-    "venue": "Pharmaceutics",
-    "cited_by": 384,
-    "abstract": "The landscape of medical treatments is undergoing a transformative shift. Precision medicine has ushered in a revolutionary era in healthcare by individualizing diagnostics and treatments according to each patient's uniquely evolving health status. This groundbreaking method of tailoring disease prevention and treatment considers individual variations in genes, environments, and lifestyles. The go",
-    "stance": "method",
-    "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+    "year": 2021,
+    "doi": "10.1146/annurev-psych-020821-114157",
+    "venue": "Annual Review of Psychology",
+    "cited_by": 794,
+    "abstract": "Replication-an important, uncommon, and misunderstood practice-is gaining appreciation in psychology. Achieving replicability is important for making research progress. If findings are not replicable, then prediction and theory development are stifled. If findings are replicable, then interrogation of their meaning and validity can advance knowledge. Assessing replicability can be productive for g",
+    "stance": "contesting",
+    "query": "accuracy nudge null effect misinformation intervention"
    },
    {
-    "id": "https://openalex.org/W3121171074",
-    "title": "A Survey of Learning Causality with Data",
+    "id": "https://openalex.org/W2563852449",
+    "title": "Social Data: Biases, Methodological Pitfalls, and Ethical Boundaries",
     "authors": [
-     "Ruocheng Guo",
-     "Lu Cheng",
-     "Jundong Li",
-     "P. Richard Hahn"
+     "Alexandra Olteanu",
+     "Carlos Castillo",
+     "Fernando Díaz",
+     "Emre Kıcıman"
     ],
-    "year": 2020,
-    "doi": "10.1145/3397269",
-    "venue": "ACM Computing Surveys",
-    "cited_by": 224,
-    "abstract": "This work considers the question of how convenient access to copious data impacts our ability to learn causal effects and relations. In what ways is learning causality in the era of big data different from—or the same as—the traditional one? To answer this question, this survey provides a comprehensive and structured review of both traditional and frontier methods in learning causality and relatio",
-    "stance": "method",
-    "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
-   },
-   {
-    "id": "https://openalex.org/W2111740157",
-    "title": "Contamination in trials of educational interventions",
-    "authors": [
-     "Marcus Richard Keogh-Brown",
-     "Max Oscar Bachmann",
-     "Lee Shepstone",
-     "Catherine Elizabeth Hewitt"
-    ],
-    "year": 2007,
-    "doi": "10.3310/hta11430",
-    "venue": "Health Technology Assessment",
-    "cited_by": 180,
-    "abstract": "T he Health Technology Assessment (HTA) programme, now part of the National Institute for Health Research (NIHR), was set up in 1993.It produces high-quality research information on the costs, effectiveness and broader impact of health technologies for those who use, manage and provide care in the NHS.'Health technologies' are broadly defined to include all interventions used to promote health, pr",
-    "stance": "method",
-    "query": "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
-   },
-   {
-    "id": "https://openalex.org/W2611138580",
-    "title": "Multi-omics approaches to disease",
-    "authors": [
-     "Yehudit Hasin-Brumshtein",
-     "Marcus Michael Seldin",
-     "Aldons Jake Lusis"
-    ],
-    "year": 2017,
-    "doi": "10.1186/s13059-017-1215-1",
-    "venue": "Genome biology",
-    "cited_by": 3031,
-    "abstract": "High-throughput technologies have revolutionized medical research. The advent of genotyping arrays enabled large-scale genome-wide association studies and methods for examining global transcript levels, which gave rise to the field of \"integrative genetics\". Other omics technologies, such as proteomics and metabolomics, are now often incorporated into the everyday methodology of biological researc",
-    "stance": "citing",
-    "query": "cites:W2321872593"
+    "year": 2019,
+    "doi": "10.3389/fdata.2019.00013",
+    "venue": "Frontiers in Big Data",
+    "cited_by": 742,
+    "abstract": "Social data in digital form, including user-generated content, expressed or implicit relations between people, and behavioral traces, are at the core of popular applications and platforms, driving the research agenda of many researchers. The promises of social data are many, including understanding ``what the world thinks'' about a social issue, brand, celebrity, or other entity, as well as enabli",
+    "stance": "contesting",
+    "query": "accuracy nudge null effect misinformation intervention"
    }
   ],
   "queries": [
-   "inoculation AI-generated media detection accuracy experimental",
-   "accuracy nudge misinformation detection confidence trust survey",
-   "inoculation backfire overconfidence misinformation intervention null effect",
-   "misinformation intervention transfer generalization failure deepfake detection",
-   "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+   "misinformation intervention deepfake detection accuracy",
+   "inoculation prebunking AI-generated media discernment",
+   "accuracy nudge null effect misinformation intervention",
+   "AI literacy training no improvement detecting synthetic media",
+   "Lin estimator survey experiment treatment effect heterogeneity"
   ],
   "query_sets": {
    "supporting": [
-    "inoculation AI-generated media detection accuracy experimental",
-    "accuracy nudge misinformation detection confidence trust survey"
+    "misinformation intervention deepfake detection accuracy",
+    "inoculation prebunking AI-generated media discernment"
    ],
    "contesting": [
-    "inoculation backfire overconfidence misinformation intervention null effect",
-    "misinformation intervention transfer generalization failure deepfake detection"
+    "accuracy nudge null effect misinformation intervention",
+    "AI literacy training no improvement detecting synthetic media"
    ],
    "method": [
-    "experimental survey multiple treatment arms Lin estimator covariate adjustment detection accuracy"
+    "Lin estimator survey experiment treatment effect heterogeneity"
    ]
   },
-  "debate_hint": "Whether individual-level behavioral interventions (i-frame) can produce meaningful shifts in AI-detection and trust outcomes, or whether only system-level (s-frame) changes will do so.",
+  "debate_hint": "",
   "degraded": null
  },
  "tags": [
@@ -339,39 +277,56 @@
    "tag": "exploratory",
    "differences": [],
    "justification": "no registered counterpart"
+  },
+  {
+   "analysis_id": "E1",
+   "kind": "exploratory",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "proposed by the exploratory agent; not pre-registered"
+  },
+  {
+   "analysis_id": "E2",
+   "kind": "exploratory",
+   "tag": "exploratory",
+   "differences": [],
+   "justification": "proposed by the exploratory agent; not pre-registered"
   }
  ],
  "sections": {
   "takeaways": [
-   "Most interventions did not measurably improve people's accuracy in spotting AI-generated media; pooled across 11 arms, accuracy was 1.0 point higher (SE 0.7, p = 0.132), not distinguishable from zero.",
-   "Registered: Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004). The AI Literacy Guide estimate (4.7 points) is borderline and uncorrected (95% CI [0.2, 9.2]).",
-   "Registered: Mindfulness lowered total accuracy by 3.9 points (95% CI [−7.4, −0.3]). Two arms lowered confidence in AI detection, and one (Inoculation) raised it.",
-   "Exploratory (post hoc): Breathing Exercise and the AI Accuracy Nudge raised detection of AI-generated posts, but these tests were not planned.",
-   "Caveat: 44 registered arm-level tests were run with no multiplicity correction, and several arms are small (under 100), so isolated significant results may be chance."
+   "Most interventions did not measurably improve people's accuracy at spotting AI-generated media; pooled across 11 arms, the accuracy gain was 1.0 point (SE 0.7, p = 0.132; derived 95% CI [−0.3, +2.4]).",
+   "Registered: Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004), and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]).",
+   "Registered: Mindfulness lowered total accuracy by 3.9 points (95% CI [−7.4, −0.3]), so not every intervention helped.",
+   "Exploratory: Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts; these tests were not registered (no registered counterpart).",
+   "Caveat: only 8 of 44 registered arm tests were significant at p < 0.05 without multiplicity correction, and several arms are small, so isolated effects need replication."
   ],
-  "abstract": "Can misinformation interventions help people tell AI-generated media from authentic media? We ran a survey experiment on a US online panel (fielded October to November 2023) in which respondents were randomised to a control or one of 11 interventions before a feed-based discernment task. The analysis sample was 2,030 of 2,257 respondents. Four registered outcomes were total accuracy, attitudes toward AI, confidence in AI detection and trust in online information. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The AI Literacy Guide estimate (4.7 points, 95% CI [0.2, 9.2]) was borderline and uncorrected for multiple tests. Pooled across arms, accuracy was not distinguishable from control (+1.0 point, SE 0.7, p = 0.132). Some arms lowered attitudes toward AI or confidence in detection. Many tests were run without correction for multiple comparisons and several arms were small, so isolated effects should be read cautiously.",
-  "design_notes": "The study was registered on AsPredicted (#151,281) on 15 November 2023. Some data had already been collected at registration, but the later batches followed the plan. Of 2,257 raw respondents, 2,030 entered the analysis. Each arm was compared with the control group, and a few arms lost a handful of rows to missing values on attitude and trust items. Arms ranged from 78 to 333 respondents. Accuracy is a proportion correct. Tests are two-sided, and the p-values given are two-sided. The accuracy-split outcomes (detection of AI-generated posts and recognition of authentic posts) were not registered and are post hoc.",
+  "abstract": "Can misinformation-style interventions help people tell AI-generated media from authentic media? We ran a registered online survey experiment in a US panel, fielded October to November 2023. Eleven interventions, including flagging, provenance, automated detection labels, mindfulness and AI literacy materials, were compared with a no-intervention control on detection accuracy, attitudes toward AI, confidence in detection and trust in online information. Analysis N was 2,030. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The pooled accuracy effect was small and not distinguishable from zero (p = 0.132). Several arms shifted confidence or attitudes in mixed directions. Only 8 of 44 uncorrected registered arm tests were significant, and some arms were small, so isolated effects should be treated cautiously.",
+  "design_notes": "The study was registered with AsPredicted (#151,281, amending an earlier registration); some data existed at registration, and later batches followed the plan. Of 2,257 raw respondents, 2,030 entered the analysis. Each arm was compared with control in a separate regression. Accuracy is a proportion correct, so effects are in percentage points. Attitude, confidence and trust models lost a few respondents per arm to missing values. Registered p-values are two-sided. Pooled confidence intervals are derived from the pooled estimate and its standard error.",
   "results": {
-   "H1": "Two interventions raised total accuracy relative to control. Automated Flagging was 4.4 points higher (95% CI [1.4, 7.3], p = 0.004), and the AI Literacy Guide 4.7 points higher (95% CI [0.2, 9.2], p = 0.043). Mindfulness was 3.9 points lower (95% CI [−7.4, −0.3], p = 0.032). The other eight arms had estimates between −1.0 and +2.0 points, with intervals that include zero. Pooled across arms the difference was +1.0 point (SE 0.7, p = 0.132). With 11 uncorrected comparisons, the Guide and Mindfulness results are near the threshold.",
-   "H2": "Attitudes toward AI were lower after the Breathing Exercise by 0.54 scale points (95% CI [−0.99, −0.09], p = 0.018). The other ten arms were not distinguishable from control, with intervals that include zero. Pooled across arms, attitudes were 0.11 points lower (SE 0.05, p = 0.026). The pooled shift is small, and the single-arm result is one of eleven uncorrected tests.",
-   "H3": "Confidence in detecting AI fell in two arms: AI Literacy Infographic 2 by 0.69 points (95% CI [−1.20, −0.17], p = 0.010) and Flagging by 0.53 points (95% CI [−0.94, −0.12], p = 0.012). Inoculation went the other way, raising confidence by 0.51 points (95% CI [0.14, 0.88], p = 0.007), though that arm is small (77 respondents). The other eight arms were not distinguishable from control. The pooled estimate was −0.13 (p = 0.177).",
-   "H4": "Trust in online information was lower after the AI Literacy Infographic by 0.15 points (95% CI [−0.27, −0.02], p = 0.023). The other ten arms were within about ±0.15 of control and not distinguishable from it. The pooled estimate was −0.04 (p = 0.060). With eleven uncorrected tests, the single-arm result is tentative.",
-   "H5": "This post hoc analysis looked at detection of AI-generated posts. Breathing Exercise raised it by 9.1 points (95% CI [3.2, 15.0], p = 0.003) and the AI Accuracy Nudge by 6.6 points (95% CI [1.4, 11.9], p = 0.014). The AI Literacy Guide was 7.9 points higher, with an interval barely excluding zero (95% CI [0.0, 15.7], p = 0.049). The other eight arms were not distinguishable from control.",
-   "H6": "This post hoc analysis looked at recognition of authentic posts. AI Literacy Infographic 2 lowered it by 6.1 points (95% CI [−11.1, −1.0], p = 0.019). The other ten arms were not distinguishable from control, with intervals that include zero. Given the number of uncorrected tests, this single result is tentative."
+   "H1": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2], p = 0.043). Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3], p = 0.032). The other eight arms were within about ±2 points of control and not distinguishable from it. The pooled effect was +1.0 point (SE 0.7, p = 0.132; derived 95% CI [−0.3, 2.4]).",
+   "H2": "Only Breathing Exercise differed from control on attitudes toward AI, at −0.54 scale points (95% CI [−0.99, −0.09], p = 0.018). The other ten arms were not distinguishable from control. The pooled estimate was −0.11 (SE 0.050, p = 0.026; derived 95% CI [−0.21, −0.01]), a small shift; with many uncorrected tests it should be read cautiously.",
+   "H3": "Confidence in detecting AI fell under Flagging (−0.53, 95% CI [−0.94, −0.12], p = 0.012) and AI Literacy Infographic 2 (−0.69, 95% CI [−1.20, −0.17], p = 0.010). Inoculation raised it by 0.51 (95% CI [0.14, 0.88], p = 0.007), although that arm is small. The remaining eight arms were inconclusive, and the pooled estimate was −0.13 (p = 0.177; 95% CI [−0.32, 0.06]).",
+   "H4": "Trust in online information was lower under the AI Literacy Infographic by 0.15 scale points (95% CI [−0.27, −0.02], p = 0.023). The other ten arms were within about ±0.15 of control and not distinguishable from it. The pooled estimate was −0.04 (p = 0.060; derived 95% CI [−0.08, 0.00]).",
+   "H5": "This analysis was not registered, so it is post hoc. Detection of AI-generated posts was higher under Breathing Exercise (+9.1 points, 95% CI [3.2, 15.0], p = 0.003), AI Accuracy Nudge (+6.6 points, 95% CI [1.4, 11.9], p = 0.014) and AI Literacy Guide (+7.9 points, 95% CI [0.0, 15.7], p = 0.049, borderline). Other arms were inconclusive.",
+   "H6": "This analysis was not registered, so it is post hoc. Recognition of authentic posts was lower under AI Literacy Infographic 2 by 6.1 points (95% CI [−11.1, −1.0], p = 0.019). The other ten arms were not distinguishable from control, including Automated Flagging (+4.0 points, 95% CI [−0.4, 8.4])."
   },
-  "exploratory": {},
-  "limitations": "The study ran 44 arm-level tests on registered outcomes and 22 more post hoc, with no correction for multiple comparisons, so some of the significant results are probably chance. Several arms are small, notably Inoculation (78) and the two AI Literacy Infographics (about 80–100), which limits precision. Some data were collected before registration, though later batches followed the plan. The panel is a US online sample, so the results may not generalise. Outcomes were measured right after the intervention, so durability is unknown. Detection of AI-generated posts and recognition of authentic posts were not registered, and the Breathing Exercise and Flagging patterns across outcomes are hard to interpret.",
+  "exploratory": {
+   "E1": "Restricting to batches 3-4 (n = 1,251), 2 of 11 accuracy effects reached p < 0.05, versus 3 of 11 in the full sample. The sample shrank by more than 10%, so this unreviewed check is not a clean robustness test.",
+   "E2": "Two of 11 arm-by-AI-familiarity interactions on accuracy reached p < 0.05 uncorrected (Provenance and Mindfulness, both negative). The pattern is weak, and this code is unreviewed."
+  },
+  "limitations": "We ran 44 registered arm-level tests without correcting for multiple comparisons; only 8 were significant at p < 0.05, so some are likely chance findings, and the accuracy effects have intervals reaching close to zero. Several arms are small (fewer than 100 respondents in Inoculation and the two infographic arms), which makes estimates imprecise. Some data were collected before registration. The sample is an online US panel, so results may not generalise to other populations or real feeds. Confidence and attitude outcomes are self-reported. Exploratory analyses are post hoc or unreviewed and should not be read as confirmatory.",
   "revision_notes": [
-   "K1: Abstract and takeaway now call the AI Literacy Guide estimate borderline and uncorrected.",
-   "G1: Pooled CIs removed from the text; pooled estimates are given with SE or p-value instead.",
-   "K2: Takeaway now says two arms lowered confidence and Inoculation raised it.",
-   "K3: H5 Guide CI written as [0.0, 15.7].",
-   "R1: Pooled accuracy reported as 1.0 point (SE 0.7, p = 0.132) in the abstract, H1 and takeaways.",
-   "R2: Same fix as K3; H5 CI is [0.0, 15.7].",
-   "R3: Pooled attitudes reported as −0.11 (SE 0.05, p = 0.026).",
-   "R4: H3 and H4 pooled estimates now given with p-values only, no CIs.",
-   "F1: Replaced the '±2 points' phrasing in H1 with the actual range of the eight non-significant arms (−1.0 to +2.0 points), matching the table.",
-   "Other earlier items: no further changes."
+   "G1: Replaced 'six significant registered effects' with 8 of 44 in limitations, takeaways and abstract.",
+   "G2: Takeaway now says the exploratory tests were not registered (no registered counterpart).",
+   "G3: Added p = 0.014 for AI Accuracy Nudge in H5.",
+   "G4: Pooled estimates now given with SE and p where available, and CIs described as derived; SE for H3 pooled not in tables so only p and CI given.",
+   "R1: Stated 8 of 44 significant uncorrected.",
+   "R2: H2 pooled reported as −0.11 (SE 0.050, p = 0.026), CI derived; removed 'not robust' wording.",
+   "R3: H1 pooled given with SE 0.7, p = 0.132, CI derived.",
+   "R4: Nudge p-value added.",
+   "R5: Pooled p = 0.060 added in H4.",
+   "R6: Reworded exploratory bullet."
   ]
  },
  "extensions": [
@@ -379,40 +334,41 @@
    "qsf": "extensions/advance_design.qsf",
    "qsf_errors": [],
    "media": [
-    "judge_posts: set the matrix recode values after import AI-generated=1, Not AI-generated=0"
+    "post1: image stimulus to supply (a social media post with an image, with the automated label shown beside it in l)",
+    "w2post1: image stimulus to supply (a fresh unlabeled social media post with an image)"
    ],
    "id": "advance_design",
    "kind": "mechanism",
-   "title": "Separating discernment from response bias in machine-label interventions",
+   "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
    "brief_id": "advance_design",
    "mode": "survey_experiment",
-   "debate": "D1",
-   "why": "Fixes measurement and power. It registers signal-detection outcomes (d′ and criterion) and replicates the one robust arm with an adequate sample.",
+   "debate": null,
+   "why": "Addresses measurement and power. It separates sensitivity from bias using AI-post and authentic-post responses, and it concentrates the sample on the one arm that held up in the later batches.",
    "power_target": {
-    "n_per_arm": 230,
-    "mde": 0.03,
-    "basis": "H1 Automated Flagging estimate 0.044, observed SD ~0.13; 80% power for ~0.04 needs ~165 per arm, inflated for Holm correction and the weaker label-accuracy arms"
+    "n_per_arm": 400,
+    "mde": 0.028,
+    "basis": "Observed Automated Flagging effect 0.044 (batches 3-4: 0.066); H1 MDE 0.042 at n=127 vs 181, so 400 per arm detects about 0.028 at 80% power"
    },
-   "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p=0.004), but accuracy cannot show whether labels improved sensitivity or merely shifted willingness to say AI; detection and real-content accuracy were not registered. With 44 uncorrected tests and small arms, the effect also needs replication with adequate power.",
-   "contribution": "Decomposes the label effect into d-prime and criterion and tests whether label accuracy matters, bearing on whether a system-supplied cue beats individual-level education.",
+   "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004; batches 3-4: 6.6), but accuracy alone cannot tell whether labels improve sensitivity or just push people to say 'AI'. Only 8 of 44 registered tests were significant, so a larger, focused sample with d-prime and criterion and a label-accuracy manipulation is needed.",
+   "contribution": "Separates sensitivity from response bias for automated AI-detection labels and tests whether the benefit depends on label accuracy and persists without labels.",
    "addresses": [],
    "validated_by": "autoexperiment",
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
    "survey_url": null,
-   "hypothesis": "H1: Automated Flagging raises d-prime relative to control (not only a criterion shift). H2: 80%-accurate labels yield a smaller d-prime gain than 100%-accurate labels. H3: The Guide raises d-prime less than Automated Flagging.",
-   "primary_outcome": "d-prime (sensitivity) from 40 judgments, with criterion and total accuracy as co-registered outcomes.",
-   "comparison": "Each treatment arm vs Control on d-prime, criterion and accuracy with Holm correction across arms; Flagging 100% vs 80% and Flagging vs Guide as planned contrasts. Report pooled and arm-level SEs and CIs.",
+   "hypothesis": "Accurate automated labels increase d-prime relative to control, with little change in criterion; inaccurate labels reduce d-prime and shift criterion.",
+   "primary_outcome": "d-prime computed from AI-post hits and authentic-post false alarms across 24 posts.",
+   "comparison": "Accurate labels vs control, and inaccurate labels vs control and vs accurate labels, on d-prime, criterion, accuracy, AI-post detection and authentic-post detection; wave 2 compares the same measures without labels.",
    "conditions": [
     "Control",
-    "Automated Flagging 100%",
-    "Automated Flagging 80%",
-    "AI Literacy Guide"
+    "Automated Flagging accurate",
+    "Automated Flagging inaccurate"
    ],
    "unresolved": [
-    "The 40 real and AI-generated post media files and the label assignment for the 80% arm must be supplied by the research team.",
-    "IRB approval number and compensation amount."
+    "Actual image and video stimuli and label graphics must be supplied by the research team.",
+    "IRB approval number and compensation amount.",
+    "Wave 2 recontact procedure with the panel provider."
    ],
    "label": "Design advance",
    "text": "extensions/advance_design.txt",
@@ -422,206 +378,119 @@
    "qsf": "extensions/generalizability_conditional.qsf",
    "qsf_errors": [],
    "media": [
-    "post_set: image stimulus to supply (2023-era synthetic or authentic post from the older-generator set)",
-    "post_set: image stimulus to supply (current-generation synthetic or authentic post from the newer-generator set)",
-    "post_label_auto: image stimulus to supply (machine-learning AI-detection label displayed under the post with a detection sc)"
+    "feed_cs: image stimulus to supply (stylised feed with one target post (AI-generated or authentic), no labels)",
+    "feed_fs: image stimulus to supply (stylised feed with one target post carrying an automated AI-detection label)",
+    "feed_cr: image stimulus to supply (realistic mixed feed with non-target posts of varied quality around one target p)",
+    "feed_fr: image stimulus to supply (realistic mixed feed with non-target posts of varied quality; target post carrie)"
    ],
    "id": "generalizability_conditional",
    "kind": "boundary",
-   "title": "Does the label effect hold for newer generators and low-trust respondents?",
+   "title": "Does the Automated Flagging gain depend on AI familiarity and feed realism?",
    "brief_id": "generalizability_conditional",
    "mode": "survey_experiment",
    "debate": null,
-   "why": "Fixes sample and stimulus limits: the 2023 stimuli and US panel may not generalise, and the pooled null may hide moderation.",
+   "why": "Addresses the missing moderator and sample limits. The familiarity moderator was only exploratory and negative in E2, and a stylised feed may overstate effects.",
    "power_target": {
-    "n_per_arm": 350,
-    "mde": 0.04,
-    "basis": "Interaction effects need roughly 4x the n of the main effect 0.044; MDE for the 0.0318–0.042 range in H1"
+    "n_per_arm": 500,
+    "mde": 0.025,
+    "basis": "Observed Automated Flagging effect 0.044; interactions need about 4x the main-effect sample, so use 500 per cell and target a main effect of 0.025"
    },
-   "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004) but the pooled effect across 11 arms was only +1.0 (SE 0.7), and stimuli were 2023-era with a US panel. Realism of current generators and baseline media trust may moderate the label effect, and durability was never measured.",
-   "contribution": "Tests whether the Automated Flagging gain generalises across generator realism and baseline media trust and persists two weeks later.",
+   "rationale": "Automated Flagging raised accuracy by 4.4 points (SE 1.5, p=0.004) in a stylised 24-post feed, but it was one of 44 uncorrected registered tests (8 significant) and the familiarity moderator was only exploratory. A stylised feed may overstate the effect, so this tests whether it holds across familiarity levels and in a realistic mixed feed.",
+   "contribution": "Tests whether the Automated Flagging accuracy gain generalises across AI familiarity and to a more realistic feed.",
    "addresses": [],
    "validated_by": "autoexperiment",
    "status": "proposed",
    "built_at": null,
    "survey_id": null,
    "survey_url": null,
-   "hypothesis": "H1: Automated Flagging raises accuracy and d-prime relative to control. H2: The gain is smaller for current-generation stimuli. H3: The gain differs between low and high baseline media trust (median split, pre-registered).",
-   "primary_outcome": "Accuracy (share of posts judged correctly) and d-prime",
-   "comparison": "Automated Flagging vs Control, crossed with stimulus set (2023 vs current) and median-split media trust; interactions are the focal tests.",
+   "hypothesis": "Automated Flagging raises accuracy in both feeds; the gain is smaller in the realistic feed and does not differ materially between low and high AI familiarity.",
+   "primary_outcome": "Accuracy: share of target posts judged correctly, with AI-post and authentic-post detection reported separately.",
+   "comparison": "Automated Flagging vs control within each feed type; feed x treatment and familiarity x treatment interactions.",
    "conditions": [
-    "Control",
-    "Automated Flagging"
+    "Control, stylised feed",
+    "Automated Flagging, stylised feed",
+    "Control, realistic feed",
+    "Automated Flagging, realistic feed"
    ],
    "unresolved": [
-    "Current-generation synthetic images and video and matched authentic posts must be produced by the research team.",
-    "Compensation, IRB number and the re-contact wave instrument are to be supplied by the research team.",
-    "Exact label accuracy for Automated Flagging must match the source study."
+    "The actual stimulus images/videos, label design, and realistic-feed filler content must be supplied by the research team.",
+    "IRB approval number and compensation amount."
    ],
    "label": "Generalizability",
    "text": "extensions/generalizability_conditional.txt",
    "svg": "extensions/generalizability_conditional.svg"
-  },
-  {
-   "qsf": "extensions/theoretical_debate.qsf",
-   "qsf_errors": [],
-   "media": [],
-   "id": "theoretical_debate",
-   "kind": "alternative",
-   "title": "Individual literacy vs system-supplied cue: which carries the effect?",
-   "brief_id": "theoretical_debate",
-   "mode": "survey_experiment",
-   "debate": "D1",
-   "why": "Fixes design confounding: it separates cue content from attention or priming effects, which the original arms bundled.",
-   "power_target": {
-    "n_per_arm": 300,
-    "mde": 0.033,
-    "basis": "H1 MDE for n≈290 vs 181 arms was 0.034; interaction contrast needs the larger cells"
-   },
-   "rationale": "In the source study, Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while pooled accuracy was only +1.0 point (SE 0.7, p=0.132). The original arms bundled cue content with attention and priming, so it is unclear whether the gain comes from external information (s-frame) or changed vigilance (i-frame).",
-   "contribution": "Separates the information content of a machine label from vigilance and priming effects, using a 2x2 design plus a placebo-label arm.",
-   "addresses": [],
-   "validated_by": "autoexperiment",
-   "status": "proposed",
-   "built_at": null,
-   "survey_id": null,
-   "survey_url": null,
-   "hypothesis": "H1 (s-frame): real labels raise accuracy and d-prime, while the Guide alone and the placebo label do not. H2 (i-frame): the Guide alone or the placebo label raises accuracy and d-prime comparably to real labels. H3: the label x Guide interaction is positive if training makes labels more useful.",
-   "primary_outcome": "Accuracy: share of 40 posts judged correctly, with d-prime as a co-primary outcome.",
-   "comparison": "Real label vs control; Guide vs control; placebo vs control; real label vs placebo; label x Guide interaction in the 2x2 cells (control, label, Guide, label plus Guide).",
-   "conditions": [
-    "Control",
-    "Real label",
-    "Guide only",
-    "Label plus Guide",
-    "Placebo label"
-   ],
-   "unresolved": [
-    "The 40 post media files and their ground-truth labels must be supplied by the research team.",
-    "The Guide content and the real and placebo label assets must be produced.",
-    "IRB number and compensation are to be supplied."
-   ],
-   "label": "Theoretical debate",
-   "text": "extensions/theoretical_debate.txt",
-   "svg": "extensions/theoretical_debate.svg"
   }
  ],
  "sections_draft": {
   "takeaways": [
-   "Most interventions did not measurably improve people's accuracy in spotting AI-generated media; pooled across 11 arms, accuracy was 1.0 point higher (95% CI [−0.3, +2.4]).",
+   "Most interventions did not measurably improve people's accuracy at spotting AI-generated media; pooled across 11 arms, the accuracy gain was 1.0 point (95% CI [−0.3, +2.4]).",
    "Registered: Automated Flagging raised total accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004), and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]).",
-   "Registered: Mindfulness lowered total accuracy by 3.9 points (95% CI [−7.4, −0.3]); several arms also lowered confidence in AI detection.",
-   "Exploratory (post hoc): Breathing Exercise and the AI Accuracy Nudge raised detection of AI-generated posts, but these tests were not planned.",
-   "Caveat: 44 arm-level tests were run with no multiplicity correction, and several arms are small (under 100), so isolated significant results may be chance."
+   "Registered: Mindfulness lowered total accuracy by 3.9 points (95% CI [−7.4, −0.3]), so not every intervention helped.",
+   "Exploratory: Breathing Exercise and AI Accuracy Nudge raised detection of AI-generated posts; these tests were not registered and rest on unreviewed outcomes.",
+   "Caveat: 44 registered arm tests were run without multiplicity correction, and several arms are small, so isolated significant effects need replication."
   ],
-  "abstract": "Can misinformation interventions help people tell AI-generated media from authentic media? We ran a survey experiment on a US online panel (fielded October to November 2023) in which respondents were randomised to a control or one of 11 interventions before a feed-based discernment task. The analysis sample was 2,030 of 2,257 respondents. Four registered outcomes were total accuracy, attitudes toward AI, confidence in AI detection and trust in online information. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). Pooled across arms, accuracy was not distinguishable from control (+1.0 point, 95% CI [−0.3, +2.4]). Some arms lowered attitudes toward AI or confidence in detection. Many tests were run without correction for multiple comparisons and several arms were small, so isolated effects should be read cautiously.",
-  "design_notes": "The study was registered on AsPredicted (#151,281) on 15 November 2023. Some data had already been collected at registration, but the later batches followed the plan. Of 2,257 raw respondents, 2,030 entered the analysis. Each arm was compared with the control group, and a few arms lost a handful of rows to missing values on attitude and trust items. Arms ranged from 78 to 333 respondents. Accuracy is a proportion correct. Tests are two-sided, and the p-values given are two-sided. The accuracy-split outcomes (detection of AI-generated posts and recognition of authentic posts) were not registered and are post hoc.",
+  "abstract": "Can misinformation-style interventions help people tell AI-generated media from authentic media? We ran a registered online survey experiment in a US panel, fielded October to November 2023. Eleven interventions, including flagging, provenance, automated detection labels, mindfulness and AI literacy materials, were compared with a no-intervention control on detection accuracy, attitudes toward AI, confidence in detection and trust in online information. Analysis N was 2,030. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The pooled accuracy effect was small and not distinguishable from zero. Several arms shifted confidence or attitudes in mixed directions. With 44 uncorrected registered tests and some small arms, isolated effects should be treated cautiously.",
+  "design_notes": "The study was registered with AsPredicted (#151,281, amending an earlier registration); some data existed at registration, and later batches followed the plan. Of 2,257 raw respondents, 2,030 entered the analysis, and the control group had the remaining share of those in the 11 treatment arms' complement. Each arm was compared with control in a separate regression. Accuracy is a proportion correct, so effects are in percentage points. Attitude, confidence and trust outcomes were fewer-row models because of missing values, with at most a few respondents lost per arm. Registered p-values are two-sided.",
   "results": {
-   "H1": "Two interventions raised total accuracy relative to control. Automated Flagging was 4.4 points higher (95% CI [1.4, 7.3], p = 0.004), and the AI Literacy Guide 4.7 points higher (95% CI [0.2, 9.2], p = 0.043). Mindfulness was 3.9 points lower (95% CI [−7.4, −0.3], p = 0.032). The other eight arms were within about ±2 points of control, with intervals that include zero. Pooled across arms the difference was +1.0 point (95% CI [−0.3, +2.4]). With 11 uncorrected comparisons, the Guide and Mindfulness results are near the threshold.",
-   "H2": "Attitudes toward AI were lower after the Breathing Exercise by 0.54 scale points (95% CI [−0.99, −0.09], p = 0.018). The other ten arms were not distinguishable from control, with intervals that include zero. Pooled across arms, attitudes were 0.11 points lower (95% CI [−0.21, −0.01], p = 0.026). The pooled shift is small, and the single-arm result is one of eleven uncorrected tests.",
-   "H3": "Confidence in detecting AI fell in two arms: AI Literacy Infographic 2 by 0.69 points (95% CI [−1.20, −0.17], p = 0.010) and Flagging by 0.53 points (95% CI [−0.94, −0.12], p = 0.012). Inoculation went the other way, raising confidence by 0.51 points (95% CI [0.14, 0.88], p = 0.007), though that arm is small (77 respondents). The other eight arms were not distinguishable from control. The pooled estimate was −0.13 (95% CI [−0.32, +0.06]).",
-   "H4": "Trust in online information was lower after the AI Literacy Infographic by 0.15 points (95% CI [−0.27, −0.02], p = 0.023). The other ten arms were within about ±0.15 of control and not distinguishable from it. The pooled estimate was −0.04 (95% CI [−0.08, +0.00], p = 0.060). With eleven uncorrected tests, the single-arm result is tentative.",
-   "H5": "This post hoc analysis looked at detection of AI-generated posts. Breathing Exercise raised it by 9.1 points (95% CI [3.2, 15.0], p = 0.003) and the AI Accuracy Nudge by 6.6 points (95% CI [1.4, 11.9], p = 0.014). The AI Literacy Guide was 7.9 points higher, with an interval barely excluding zero (95% CI [0.04, 15.7], p = 0.049). The other eight arms were not distinguishable from control.",
-   "H6": "This post hoc analysis looked at recognition of authentic posts. AI Literacy Infographic 2 lowered it by 6.1 points (95% CI [−11.1, −1.0], p = 0.019). The other ten arms were not distinguishable from control, with intervals that include zero. Given the number of uncorrected tests, this single result is tentative."
+   "H1": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2], p = 0.043). Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3], p = 0.032). The other eight arms were within about ±2 points of control and not distinguishable from it. The pooled effect was +1.0 point (95% CI [−0.3, 2.4]).",
+   "H2": "Only Breathing Exercise differed from control on attitudes toward AI, at −0.54 scale points (95% CI [−0.99, −0.09], p = 0.018). The other ten arms were not distinguishable from control. The pooled estimate was −0.11 (95% CI [−0.21, −0.01]), a small shift that is not robust to multiple testing.",
+   "H3": "Confidence in detecting AI fell under Flagging (−0.53, 95% CI [−0.94, −0.12], p = 0.012) and AI Literacy Infographic 2 (−0.69, 95% CI [−1.20, −0.17], p = 0.010). Inoculation raised it by 0.51 (95% CI [0.14, 0.88], p = 0.007), although that arm is small. The remaining eight arms were inconclusive, and the pooled estimate was −0.13 (95% CI [−0.32, 0.06]).",
+   "H4": "Trust in online information was lower under the AI Literacy Infographic by 0.15 scale points (95% CI [−0.27, −0.02], p = 0.023). The other ten arms were within about ±0.15 of control and not distinguishable from it. The pooled estimate was −0.04 (95% CI [−0.08, 0.00]).",
+   "H5": "This analysis was not registered, so it is post hoc. Detection of AI-generated posts was higher under Breathing Exercise (+9.1 points, 95% CI [3.2, 15.0], p = 0.003), AI Accuracy Nudge (+6.6 points, 95% CI [1.4, 11.9]) and AI Literacy Guide (+7.9 points, 95% CI [0.0, 15.7], p = 0.049, borderline). Other arms were inconclusive.",
+   "H6": "This analysis was not registered, so it is post hoc. Recognition of authentic posts was lower under AI Literacy Infographic 2 by 6.1 points (95% CI [−11.1, −1.0], p = 0.019). The other ten arms were not distinguishable from control, including Automated Flagging (+4.0 points, 95% CI [−0.4, 8.4])."
   },
-  "exploratory": {},
-  "limitations": "The study ran 44 arm-level tests on registered outcomes and 22 more post hoc, with no correction for multiple comparisons, so some of the significant results are probably chance. Several arms are small, notably Inoculation (78) and the two AI Literacy Infographics (about 80–100), which limits precision. Some data were collected before registration, though later batches followed the plan. The panel is a US online sample, so the results may not generalise. Outcomes were measured right after the intervention, so durability is unknown. Detection of AI-generated posts and recognition of authentic posts were not registered, and the Breathing Exercise and Flagging patterns across outcomes are hard to interpret."
+  "exploratory": {
+   "E1": "Restricting to batches 3-4 (n = 1,251), 2 of 11 accuracy effects reached p < 0.05, versus 3 of 11 in the full sample. The sample shrank by more than 10%, so this unreviewed check is not a clean robustness test.",
+   "E2": "Two of 11 arm-by-AI-familiarity interactions on accuracy reached p < 0.05 uncorrected (Provenance and Mindfulness, both negative). The pattern is weak, and this code is unreviewed."
+  },
+  "limitations": "We ran 44 registered arm-level tests without correcting for multiple comparisons, so some of the six significant registered effects are likely chance findings; the accuracy effects have intervals reaching close to zero. Several arms are small (fewer than 100 respondents in Inoculation and the two infographic arms), which makes estimates imprecise. Some data were collected before registration. The sample is an online US panel, so results may not generalise to other populations or real feeds. Confidence and attitude outcomes are self-reported. Exploratory analyses are post hoc or unreviewed and should not be read as confirmatory."
  },
  "potential": {
   "got_right": [
-   "Randomised 11 interventions against a shared control with a registered plan (AsPredicted #151,281), using Lin covariate adjustment and HC2 SEs. This gives a clean, comparable arm-by-arm estimate on four outcomes.",
-   "Reported every arm for every outcome with CIs, and said plainly that the 44 registered tests were uncorrected and the pooled effect on accuracy was null (+1.0 point, SE 0.7, p = 0.132).",
-   "Split accuracy into AI-post detection and authentic-post recognition, and flagged the split as post hoc. This exposes a possible response-bias pattern: Breathing Exercise +9.1 points on detection with authentic recognition −4.8, and Infographic 2 −6.1 on authentic.",
-   "Included self-reported confidence and trust alongside accuracy, so the study can show calibration or backfire effects such as Inoculation raising confidence by 0.51 with no accuracy gain."
+   "Registered 11-arm design with a shared control and a common outcome (share of 24 posts correct), so interventions are compared on one scale",
+   "Lin covariate-adjusted models with HC2 SEs and a per-arm power table give transparent, comparable estimates; the report states that only 8 of 44 arm tests were significant, uncorrected",
+   "Splitting accuracy into AI-post and authentic-post detection (H5, H6) shows whether gains come from skepticism or real discernment",
+   "Batch 3-4 check (E1): Automated Flagging holds up post-registration (+0.066, p=0.0002)"
   ],
   "why_it_did_not_land": [
    {
     "cause": "power",
-    "detail": "Per-arm MDEs on accuracy are 3.2 to 5.2 points, about as large as the only significant effects. The significant arms are therefore likely overestimates, and the small arms cannot rule out realistic effects.",
-    "evidence": "Power table H1: MDE 0.0318 (Nudge) to 0.0517 (Inoculation, n=78); Automated Flagging 0.044 vs MDE 0.042; Guide 0.047 vs MDE 0.039."
-   },
-   {
-    "cause": "analysis",
-    "detail": "Three of 11 accuracy arms cross p<0.05 with no multiplicity correction. Guide (p=0.043) and Mindfulness (p=0.032) would not survive any correction, and only Automated Flagging (p=0.004) is arguably robust. The pooled null contradicts a broad effect.",
-    "evidence": "H1 table; pooled +0.010, p=0.132; 44 registered tests uncorrected."
+    "detail": "Arms of 78-333 against 181 controls can only detect 3.2-5.2 point effects, larger than most plausible intervention effects. The pooled accuracy effect is +1.0 point, p=0.132, and the 8 significant results are not corrected for 44 tests.",
+    "evidence": "H1 MDEs 0.032-0.052 (Inoculation 0.0517, n=78); observed arm effects mostly under 0.02; pooled 0.010, SE 0.007"
    },
    {
     "cause": "measurement",
-    "detail": "Total accuracy mixes detecting AI posts with accepting real ones, so a shift in scepticism looks like discernment gain or loss. Discernment (sensitivity) and bias were never separated, and the split outcomes were unregistered.",
-    "evidence": "H5 Breathing +0.091 on AI posts but H6 −0.048 on real posts, with H1 only +0.015."
+    "detail": "Total accuracy mixes AI-post and authentic-post detection, so skepticism and discernment cannot be separated. Mindfulness lowers accuracy, and Breathing Exercise raises AI-post detection but its authentic-post estimate is -4.8 points, not significant.",
+    "evidence": "H5 Breathing +0.091 (p=0.003) vs H6 -0.048 (p=0.155); H6 Infographic 2 -0.061 (p=0.019)"
    },
    {
     "cause": "design",
-    "detail": "Arms vary in content, dose and timing (labels in the feed vs pre-feed exercises), and the design cannot say which component works. Arm sizes are unbalanced (78 to 333) against a control of 181, and some data were collected before registration.",
-    "evidence": "Arms ranged 78–333 against n=181 control; registration note on batches 1–2."
+    "detail": "Eleven heterogeneous arms, each small and compared to one modest control group, trade depth for breadth. Whether any single mechanism works is left unclear, and the registration was amended after some data had been collected.",
+    "evidence": "Control n=181; Inoculation 78, Infographic 2 80; registration amended with some data already collected"
    },
    {
-    "cause": "framing",
-    "detail": "The literature retrieved is almost entirely off-topic, so the study is not positioned against prior work on inoculation, accuracy nudges or AI-detection literacy. The only live framing, i-frame versus s-frame, is not something the design tests.",
-    "evidence": "Related work: only Chater & Loewenstein and Ruggeri et al. are relevant; no AI-detection papers retrieved."
+    "cause": "missing_moderator",
+    "detail": "AI familiarity was only examined post hoc. Negative interactions in several arms suggest familiar users benefit less, but the evidence is weak.",
+    "evidence": "E2: 2 of 11 slopes p<0.05 (Mindfulness -0.245, p=0.015; Provenance -0.143, p=0.038); median -0.091"
    }
   ],
-  "debates": [
-   {
-    "id": "D1",
-    "label": "Individual-level (i-frame) fixes vs system-level (s-frame) change",
-    "position_a": "Cheap individual-level interventions such as labels, nudges and literacy content can measurably improve people's handling of AI-generated media.",
-    "position_b": "Individual-level levers yield small, inconsistent effects, and meaningful change needs system-level measures such as platform-level or provenance infrastructure.",
-    "what_this_study_says": "Leans to b for educational and mindfulness-type interventions: pooled accuracy +1.0 point (p=0.132), with several arms null or harmful. Automated Flagging (+4.4), a system-supplied label, is the clearest gain, which weakly fits the s-frame view. The study cannot test system-level effects.",
-    "works": [
-     {
-      "id": "10.1017/s0140525x22002023",
-      "side": "b"
-     },
-     {
-      "id": "10.2139/ssrn.4046264",
-      "side": "b"
-     },
-     {
-      "id": "10.1038/s41586-023-06840-9",
-      "side": "b"
-     },
-     {
-      "id": "10.3310/hta11430",
-      "side": "neutral"
-     }
-    ]
-   }
-  ],
+  "debates": [],
   "briefs": [
    {
     "id": "advance_design",
     "kind_legacy": "mechanism",
     "mode": "survey_experiment",
-    "title": "Separating discernment from response bias in machine-label interventions",
-    "question": "Does Automated Flagging improve true discernment (sensitivity) rather than just shifting willingness to call posts AI-generated?",
-    "why_this_fixes_the_failure": "Fixes measurement and power. It registers signal-detection outcomes (d′ and criterion) and replicates the one robust arm with an adequate sample.",
-    "debate": "D1",
+    "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
+    "question": "Does an automated AI-detection label improve true discernment (sensitivity) rather than shift response bias toward calling posts AI-generated?",
+    "why_this_fixes_the_failure": "Addresses measurement and power. It separates sensitivity from bias using AI-post and authentic-post responses, and it concentrates the sample on the one arm that held up in the later batches.",
+    "debate": null,
     "addresses": [],
-    "design_sketch": "Arms: Control, Automated Flagging, and Automated Flagging with 80% label accuracy versus 100%, plus a Guide arm as the best-performing education comparator. Respondents judge 40 posts balanced real and AI, with a confidence rating per post. Outcomes are d′, criterion and total accuracy, all registered, with Holm correction across arms. A US online panel with a pre-feed attention check.",
+    "design_sketch": "Randomise to control, Automated Flagging with accurate labels, and Automated Flagging with labels that are wrong on a fixed share of posts. Each respondent judges 24 posts, half AI-generated. Outcomes: d-prime and criterion, plus accuracy, AI-post detection and authentic-post detection. Add a delayed second wave of fresh posts without labels to test carryover. US online panel.",
     "moderator_or_condition": null,
     "power_target": {
-     "n_per_arm": 230,
-     "mde": 0.03,
-     "basis": "H1 Automated Flagging estimate 0.044, observed SD ~0.13; 80% power for ~0.04 needs ~165 per arm, inflated for Holm correction and the weaker label-accuracy arms"
-    },
-    "needs_qsf": true
-   },
-   {
-    "id": "theoretical_debate",
-    "kind_legacy": "alternative",
-    "mode": "survey_experiment",
-    "title": "Individual literacy vs system-supplied cue: which carries the effect?",
-    "question": "Is the accuracy gain from machine labels due to external information (s-frame) or to changed individual vigilance (i-frame)?",
-    "why_this_fixes_the_failure": "Fixes design confounding: it separates cue content from attention or priming effects, which the original arms bundled.",
-    "debate": "D1",
-    "addresses": [],
-    "design_sketch": "2x2 between-subjects: label present or absent, crossed with literacy training (Guide) present or absent, plus a placebo-label arm showing uninformative labels. If gain comes only with real labels, the s-frame reading is supported; if training alone or the placebo helps, vigilance explains it. Outcomes are accuracy and d′ on 40 posts.",
-    "moderator_or_condition": null,
-    "power_target": {
-     "n_per_arm": 300,
-     "mde": 0.033,
-     "basis": "H1 MDE for n≈290 vs 181 arms was 0.034; interaction contrast needs the larger cells"
+     "n_per_arm": 400,
+     "mde": 0.028,
+     "basis": "Observed Automated Flagging effect 0.044 (batches 3-4: 0.066); H1 MDE 0.042 at n=127 vs 181, so 400 per arm detects about 0.028 at 80% power"
     },
     "needs_qsf": true
    },
@@ -629,22 +498,22 @@
     "id": "generalizability_conditional",
     "kind_legacy": "boundary",
     "mode": "survey_experiment",
-    "title": "Does the label effect hold for newer generators and low-trust respondents?",
-    "question": "Does the Automated Flagging gain persist across stimulus realism (older vs current-generation synthetic media) and baseline media trust?",
-    "why_this_fixes_the_failure": "Fixes sample and stimulus limits: the 2023 stimuli and US panel may not generalise, and the pooled null may hide moderation.",
+    "title": "Does the Automated Flagging gain depend on AI familiarity and feed realism?",
+    "question": "Does the Automated Flagging accuracy gain hold across levels of AI familiarity and in a more realistic mixed feed?",
+    "why_this_fixes_the_failure": "Addresses the missing moderator and sample limits. The familiarity moderator was only exploratory and negative in E2, and a stylised feed may overstate effects.",
     "debate": null,
     "addresses": [],
-    "design_sketch": "Control vs Automated Flagging, with the post set randomised between 2023-era and current-generation synthetic images and video. Media trust and AI familiarity are measured pre-treatment and used as registered moderators. Outcomes are accuracy and d′, with a re-contact two weeks later for durability on a subsample.",
-    "moderator_or_condition": "Generator realism (2023 vs current) and baseline media trust (pre-registered median split)",
+    "design_sketch": "Run a 2 (control vs Automated Flagging) x 2 (stylised feed vs realistic feed with non-target content and varied post quality) design. Pre-register AI familiarity, measured before treatment, as the moderator. The outcome is accuracy, with AI-post and authentic-post detection reported separately. Stratify recruitment on familiarity.",
+    "moderator_or_condition": "AI-tool familiarity (low vs high) and feed realism (stylised vs mixed realistic feed)",
     "power_target": {
-     "n_per_arm": 350,
-     "mde": 0.04,
-     "basis": "Interaction effects need roughly 4x the n of the main effect 0.044; MDE for the 0.0318–0.042 range in H1"
+     "n_per_arm": 500,
+     "mde": 0.025,
+     "basis": "Observed Automated Flagging effect 0.044; interactions need about 4x the main-effect sample, so use 500 per cell and target a main effect of 0.025"
     },
     "needs_qsf": true
    }
   ],
-  "verdict": "A follow-up is worth running, but narrowly: only Automated Flagging (+4.4, p=0.004) looks like a real accuracy gain, and the pooled null (+1.0) and uncorrected tests warn against reading the rest. Run advance_design first. It replicates the label effect at adequate power and splits discernment from bias, which the current total accuracy score cannot do. The literature retrieved is mostly off-topic, so the only live debate is the i-frame versus s-frame framing, and the second brief tests it only indirectly.",
+  "verdict": "A follow-up is worthwhile but should be narrow. The 11-arm study is underpowered, the pooled accuracy gain is +1.0 point (p=0.132), and only Automated Flagging has some support across batches (Automated Flagging +0.066 in batches 3-4). The retrieved literature is off-topic, so no genuine debate is visible and none is offered. Run the Automated Flagging signal-detection experiment first, with about 400 per arm; the familiarity and feed-realism brief follows if the main effect replicates.",
   "model": "anthropic/claude-sonnet-5.5"
  }
 }

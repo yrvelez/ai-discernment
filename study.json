@@ -5,8 +5,8 @@
  "authors": [
   "Yamil Velez"
  ],
- "summary": "Can misinformation interventions help people tell AI-generated media from authentic media? We ran a survey experiment on a US online panel (fielded October to November 2023) in which respondents were randomised to a control or one of 11 interventions before a feed-based discernment task. The analysis sample was 2,030 of 2,257 respondents. Four registered outcomes were total accuracy, attitudes toward AI, confidence in AI detection and trust in online information. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The AI Literacy Guide estimate (4.7 points, 95% CI [0.2, 9.2]) was borderline and uncorrected for multiple tests. Pooled across arms, accuracy was not distinguishable from control (+1.0 point, SE ",
- "created": "2026-10-07",
+ "summary": "Can misinformation-style interventions help people tell AI-generated media from authentic media? We ran a registered online survey experiment in a US panel, fielded October to November 2023. Eleven interventions, including flagging, provenance, automated detection labels, mindfulness and AI literacy materials, were compared with a no-intervention control on detection accuracy, attitudes toward AI, confidence in detection and trust in online information. Analysis N was 2,030. Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while Mindfulness lowered it by 3.9 points (95% CI [−7.4, −0.3]). The pooled accuracy effect was small and not distinguishable from zero (p = 0.132). Several arms shifted confidence or attit",
+ "created": "2026-10-08",
  "synthetic": false,
  "design": {
   "type": "survey_experiment",
@@ -1092,6 +1092,26 @@
    "i2": 0.4038257317383188,
    "k_arms": 11,
    "supported": false
+  },
+  {
+   "id": "E1",
+   "text": "Accuracy effects restricted to batches 3-4",
+   "tag": "exploratory",
+   "estimate": null,
+   "se": null,
+   "p": null,
+   "n": null,
+   "supported": null
+  },
+  {
+   "id": "E2",
+   "text": "Heterogeneity of accuracy effects by AI-tool familiarity",
+   "tag": "exploratory",
+   "estimate": null,
+   "se": null,
+   "p": null,
+   "n": null,
+   "supported": null
   }
  ],
  "release_status": "draft",
@@ -1105,17 +1125,17 @@
   "reviewer_pass": true,
   "models": {
    "strong": "anthropic/claude-sonnet-5.5",
-   "fast": "qwen/qwen3.8-27b"
+   "fast": "anthropic/claude-haiku-5.5"
   },
   "provider": "openrouter",
   "zero_retention_requested": true,
-  "cost_usd": 0.784991,
+  "cost_usd": 0.489241,
   "tokens": {
-   "in": 472646,
-   "out": 47058
+   "in": 188740,
+   "out": 25048
   },
   "tool_version": "0.1.0",
-  "created": "2026-10-07T02:32:15Z",
+  "created": "2026-10-08T16:01:14Z",
   "pap_source": "author-supplied pap.json",
   "pii": {
    "dropped": [],
@@ -1124,9 +1144,7 @@
    "flagged": {},
    "scan": "header + first data row only, local regex"
   },
-  "degraded": [
-   "exploratory agent produced no analyses; its draft script/tables were removed: scripts/04_exploratory.py, results/E1_heterogeneity_political_interest.csv, results/E2_robustness_attention_checks.csv, results/E3_ai_familiarity_dose.csv"
-  ],
+  "degraded": [],
   "inputs": {
    "raw_csv_sha256": "b8e0c6230d58dcecf3c133690e7eda4d962cac7a684ffeb44ed13779e7407459",
    "pap_sha256": "14139bde61926dfa86b476ed6218fce79e3fb33c470501414372b2cfae4e3537",
@@ -1138,154 +1156,150 @@
    {
     "round": 1,
     "decision": "accept",
-    "k_issues": 3,
+    "k_issues": 0,
     "revised": true,
     "agent_addenda": []
    }
   ],
   "usage_by_agent": {
    "exploratory": {
-    "calls": 10,
-    "in": 275492,
-    "out": 10182,
-    "cost": 0.049562010828000005,
+    "calls": 2,
+    "in": 47258,
+    "out": 2998,
+    "cost": 0.006162552,
     "models": [
-     "qwen/qwen3.8-27b"
+     "anthropic/claude-haiku-5.5"
     ]
    },
    "litreview": {
     "calls": 2,
-    "in": 1956,
-    "out": 2110,
-    "cost": 0.0047533464000000004,
+    "in": 2701,
+    "out": 1092,
+    "cost": 0.000807939,
     "models": [
-     "qwen/qwen3.8-27b"
+     "anthropic/claude-haiku-5.5"
     ]
    },
    "writer": {
     "calls": 1,
-    "in": 10087,
-    "out": 2174,
-    "cost": 0.04149486,
+    "in": 11670,
+    "out": 2135,
+    "cost": 0.0442431,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "reviewer": {
     "calls": 1,
-    "in": 20268,
-    "out": 694,
-    "cost": 0.04700124,
+    "in": 21708,
+    "out": 1095,
+    "cost": 0.05382234,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "review_orchestrator": {
     "calls": 1,
-    "in": 21022,
-    "out": 1629,
-    "cost": 0.05775066,
+    "in": 22713,
+    "out": 1819,
+    "cost": 0.06297984,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "writer_revise": {
-    "calls": 2,
-    "in": 26864,
-    "out": 4786,
-    "cost": 0.10057212,
+    "calls": 1,
+    "in": 15336,
+    "out": 2573,
+    "cost": 0.05583798,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "review_signoff": {
-    "calls": 2,
-    "in": 42199,
-    "out": 2969,
-    "cost": 0.11294712000000001,
+    "calls": 1,
+    "in": 22566,
+    "out": 1359,
+    "cost": 0.05813478,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "potential": {
     "calls": 1,
-    "in": 21981,
-    "out": 2864,
-    "cost": 0.07187598,
+    "in": 22607,
+    "out": 1918,
+    "cost": 0.06375006,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    },
    "extensions": {
-    "calls": 4,
-    "in": 52777,
-    "out": 19650,
-    "cost": 0.29903346000000003,
+    "calls": 2,
+    "in": 22181,
+    "out": 10059,
+    "cost": 0.14350248,
     "models": [
      "anthropic/claude-sonnet-5.5"
     ]
    }
   },
   "stage_seconds": {
-   "ingest": 0.01,
+   "ingest": 0.0,
    "pii": 0.07,
    "tidy": 0.06,
-   "pap": 0.02,
-   "clean": 0.33,
+   "pap": 0.0,
+   "clean": 0.36,
    "registered": 12.5,
    "tag": 0.0,
-   "exploratory": 264.05,
-   "litreview": 40.15,
-   "write": 14.87,
-   "review": 15.0,
+   "exploratory": 16.1,
+   "litreview": 11.52,
+   "write": 15.18,
+   "review": 20.09,
    "robustness": 0.0,
-   "revise": 40.75,
-   "extensions": 127.44,
+   "revise": 21.32,
+   "extensions": 70.32,
    "package": 0.0
   },
-  "total_seconds": 515.3,
+  "total_seconds": 167.5,
   "log": [
-   "2026-10-07T02:32:15Z stage ingest",
-   "2026-10-07T02:32:15Z stage pii",
-   "2026-10-07T02:32:15Z PII scan: no identifier or free-text columns flagged.",
-   "2026-10-07T02:32:15Z stage tidy",
-   "2026-10-07T02:32:15Z stage pap",
-   "2026-10-07T02:32:15Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
-   "2026-10-07T02:32:15Z cleared 70 file(s) from the previous run",
-   "2026-10-07T02:32:15Z stage clean",
-   "2026-10-07T02:32:15Z wrote data/clean.csv: 2030 rows, 72 columns",
-   "2026-10-07T02:32:15Z stage registered",
-   "2026-10-07T02:32:28Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
-   "2026-10-07T02:32:28Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-07T02:32:28Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
-   "2026-10-07T02:32:28Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-07T02:32:28Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
-   "2026-10-07T02:32:28Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-07T02:32:28Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
-   "2026-10-07T02:32:28Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-07T02:32:28Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
-   "2026-10-07T02:32:28Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
-   "2026-10-07T02:32:28Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
-   "2026-10-07T02:32:28Z wrote results/registered_summary.csv (72 rows)",
-   "2026-10-07T02:32:28Z stage tag",
-   "2026-10-07T02:32:28Z stage exploratory",
-   "2026-10-07T02:36:52Z exploratory: no analyses recorded; removed scripts/04_exploratory.py, results/E1_heterogeneity_political_interest.csv, results/E2_robustness_attention_checks.csv, results/E3_ai_familiarity_dose.csv",
-   "2026-10-07T02:36:52Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory",
-   "2026-10-07T02:36:52Z stage litreview",
-   "2026-10-07T02:37:32Z stage write",
-   "2026-10-07T02:37:32Z diagram: template (figures/design.svg)",
-   "2026-10-07T02:37:47Z stage review",
-   "2026-10-07T02:38:02Z review (light): 7 issue(s); provisional decision: minor_revision",
-   "2026-10-07T02:38:02Z stage robustness",
-   "2026-10-07T02:38:02Z stage revise",
-   "2026-10-07T02:38:14Z correction pass 1: 8 note(s) from the writing agent",
-   "2026-10-07T02:38:23Z claim re-check: 11/12 claims supported on the corrected text",
-   "2026-10-07T02:38:34Z correction pass 2: 2 note(s) from the writing agent",
-   "2026-10-07T02:38:42Z claim re-check: 12/12 claims supported on the corrected text",
-   "2026-10-07T02:38:42Z stage extensions",
-   "2026-10-07T02:39:04Z research potential: 5 cause(s), 1 debate(s), 3 brief(s)",
-   "2026-10-07T02:40:50Z extensions: 3 proposal(s) validated by autoexperiment",
-   "2026-10-07T02:40:50Z stage package"
+   "2026-10-08T16:01:14Z stage ingest",
+   "2026-10-08T16:01:14Z stage pii",
+   "2026-10-08T16:01:14Z PII scan: no identifier or free-text columns flagged.",
+   "2026-10-08T16:01:14Z stage tidy",
+   "2026-10-08T16:01:14Z stage pap",
+   "2026-10-08T16:01:14Z pap: loaded author-supplied inputs/pap.json (papreader agent skipped)",
+   "2026-10-08T16:01:14Z stage clean",
+   "2026-10-08T16:01:14Z wrote data/clean.csv: 2030 rows, 72 columns",
+   "2026-10-08T16:01:14Z stage registered",
+   "2026-10-08T16:01:27Z H1: total_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2030, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.010 (SE 0.007, p=0.1322, tau2=0.0002, I2=0.45)",
+   "2026-10-08T16:01:27Z H2: dropped 20 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-08T16:01:27Z H2: ai_attitudes ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2010, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.111 (SE 0.050, p=0.0262, tau2=0.0000, I2=0.00)",
+   "2026-10-08T16:01:27Z H3: dropped 4 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-08T16:01:27Z H3: ai_confidence ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2026, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=-0.131 (SE 0.097, p=0.1768, tau2=0.0602, I2=0.57)",
+   "2026-10-08T16:01:27Z H4: dropped 22 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-08T16:01:27Z H4: trust_online ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2008, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.038 (SE 0.020, p=0.0602, tau2=0.0000, I2=0.00)",
+   "2026-10-08T16:01:27Z H5: dropped 7 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-08T16:01:27Z H5: fake_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2023, HC2 SEs, weights=ipw; 3 arm(s) supported; pooled=0.038 (SE 0.011, p=0.0004, tau2=0.0002, I2=0.18)",
+   "2026-10-08T16:01:27Z H6: dropped 5 of 2030 eligible rows with a missing outcome, covariate, weight or cluster value",
+   "2026-10-08T16:01:27Z H6: real_score ~ C(arm_code, Treatment(reference='0')) * (media_trust_c + pk_score_c + ai_scale_c + political_interest_c) | 11 arms vs Control, N=2025, HC2 SEs, weights=ipw; 1 arm(s) supported; pooled=-0.007 (SE 0.010, p=0.5020, tau2=0.0004, I2=0.40)",
+   "2026-10-08T16:01:27Z wrote results/registered_summary.csv (72 rows)",
+   "2026-10-08T16:01:27Z stage tag",
+   "2026-10-08T16:01:27Z stage exploratory",
+   "2026-10-08T16:01:43Z tags: H1=registered, H2=registered, H3=registered, H4=registered, H5=exploratory, H6=exploratory, E1=exploratory, E2=exploratory",
+   "2026-10-08T16:01:43Z stage litreview",
+   "2026-10-08T16:01:55Z stage write",
+   "2026-10-08T16:01:55Z diagram: template (figures/design.svg)",
+   "2026-10-08T16:02:10Z stage review",
+   "2026-10-08T16:02:30Z review (light): 6 issue(s); provisional decision: accept",
+   "2026-10-08T16:02:30Z stage robustness",
+   "2026-10-08T16:02:30Z stage revise",
+   "2026-10-08T16:02:43Z correction pass 1: 10 note(s) from the writing agent",
+   "2026-10-08T16:02:51Z claim re-check: 12/12 claims supported on the corrected text",
+   "2026-10-08T16:02:51Z stage extensions",
+   "2026-10-08T16:03:06Z research potential: 4 cause(s), 0 debate(s), 2 brief(s)",
+   "2026-10-08T16:04:02Z extensions: 2 proposal(s) validated by autoexperiment",
+   "2026-10-08T16:04:02Z stage package"
   ]
  },
  "doi": "10.5281/zenodo.23166168",
@@ -1305,16 +1319,15 @@
    "label": "Design advance",
    "brief_id": "advance_design",
    "mode": "survey_experiment",
-   "debate": "D1",
-   "why": "Fixes measurement and power. It registers signal-detection outcomes (d′ and criterion) and replicates the one robust arm with an adequate sample.",
-   "title": "Separating discernment from response bias in machine-label interventions",
-   "hypothesis": "H1: Automated Flagging raises d-prime relative to control (not only a criterion shift). H2: 80%-accurate labels yield a smaller d-prime gain than 100%-accurate labels. H3: The Guide raises d-prime less than Automated Flagging.",
-   "primary_outcome": "d-prime (sensitivity) from 40 judgments, with criterion and total accuracy as co-registered outcomes.",
+   "debate": null,
+   "why": "Addresses measurement and power. It separates sensitivity from bias using AI-post and authentic-post responses, and it concentrates the sample on the one arm that held up in the later batches.",
+   "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
+   "hypothesis": "Accurate automated labels increase d-prime relative to control, with little change in criterion; inaccurate labels reduce d-prime and shift criterion.",
+   "primary_outcome": "d-prime computed from AI-post hits and authentic-post false alarms across 24 posts.",
    "conditions": [
     "Control",
-    "Automated Flagging 100%",
-    "Automated Flagging 80%",
-    "AI Literacy Guide"
+    "Automated Flagging accurate",
+    "Automated Flagging inaccurate"
    ],
    "status": "proposed",
    "built_at": null,
@@ -1330,13 +1343,15 @@
    "brief_id": "generalizability_conditional",
    "mode": "survey_experiment",
    "debate": null,
-   "why": "Fixes sample and stimulus limits: the 2023 stimuli and US panel may not generalise, and the pooled null may hide moderation.",
-   "title": "Does the label effect hold for newer generators and low-trust respondents?",
-   "hypothesis": "H1: Automated Flagging raises accuracy and d-prime relative to control. H2: The gain is smaller for current-generation stimuli. H3: The gain differs between low and high baseline media trust (median split, pre-registered).",
-   "primary_outcome": "Accuracy (share of posts judged correctly) and d-prime",
+   "why": "Addresses the missing moderator and sample limits. The familiarity moderator was only exploratory and negative in E2, and a stylised feed may overstate effects.",
+   "title": "Does the Automated Flagging gain depend on AI familiarity and feed realism?",
+   "hypothesis": "Automated Flagging raises accuracy in both feeds; the gain is smaller in the realistic feed and does not differ materially between low and high AI familiarity.",
+   "primary_outcome": "Accuracy: share of target posts judged correctly, with AI-post and authentic-post detection reported separately.",
    "conditions": [
-    "Control",
-    "Automated Flagging"
+    "Control, stylised feed",
+    "Automated Flagging, stylised feed",
+    "Control, realistic feed",
+    "Automated Flagging, realistic feed"
    ],
    "status": "proposed",
    "built_at": null,
@@ -1344,62 +1359,28 @@
    "svg": "extensions/generalizability_conditional.svg",
    "text": "extensions/generalizability_conditional.txt",
    "addresses": []
-  },
-  {
-   "id": "theoretical_debate",
-   "kind": "alternative",
-   "label": "Theoretical debate",
-   "brief_id": "theoretical_debate",
-   "mode": "survey_experiment",
-   "debate": "D1",
-   "why": "Fixes design confounding: it separates cue content from attention or priming effects, which the original arms bundled.",
-   "title": "Individual literacy vs system-supplied cue: which carries the effect?",
-   "hypothesis": "H1 (s-frame): real labels raise accuracy and d-prime, while the Guide alone and the placebo label do not. H2 (i-frame): the Guide alone or the placebo label raises accuracy and d-prime comparably to real labels. H3: the label x Guide interaction is positive if training makes labels more useful.",
-   "primary_outcome": "Accuracy: share of 40 posts judged correctly, with d-prime as a co-primary outcome.",
-   "conditions": [
-    "Control",
-    "Real label",
-    "Guide only",
-    "Label plus Guide",
-    "Placebo label"
-   ],
-   "status": "proposed",
-   "built_at": null,
-   "qsf": "extensions/theoretical_debate.qsf",
-   "svg": "extensions/theoretical_debate.svg",
-   "text": "extensions/theoretical_debate.txt",
-   "addresses": []
   }
  ],
  "potential": {
-  "verdict": "A follow-up is worth running, but narrowly: only Automated Flagging (+4.4, p=0.004) looks like a real accuracy gain, and the pooled null (+1.0) and uncorrected tests warn against reading the rest. Run advance_design first. It replicates the label effect at adequate power and splits discernment from bias, which the current total accuracy score cannot do. The literature retrieved is mostly off-topic, so the only live debate is the i-frame versus s-frame framing, and the second brief tests it only indirectly.",
+  "verdict": "A follow-up is worthwhile but should be narrow. The 11-arm study is underpowered, the pooled accuracy gain is +1.0 point (p=0.132), and only Automated Flagging has some support across batches (Automated Flagging +0.066 in batches 3-4). The retrieved literature is off-topic, so no genuine debate is visible and none is offered. Run the Automated Flagging signal-detection experiment first, with about 400 per arm; the familiarity and feed-realism brief follows if the main effect replicates.",
   "causes": [
    "power",
-   "analysis",
    "measurement",
    "design",
-   "framing"
+   "missing_moderator"
   ],
-  "debates": [
-   "Individual-level (i-frame) fixes vs system-level (s-frame) change"
-  ],
+  "debates": [],
   "briefs": [
    {
     "id": "advance_design",
     "mode": "survey_experiment",
-    "title": "Separating discernment from response bias in machine-label interventions",
-    "needs_qsf": true
-   },
-   {
-    "id": "theoretical_debate",
-    "mode": "survey_experiment",
-    "title": "Individual literacy vs system-supplied cue: which carries the effect?",
+    "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
     "needs_qsf": true
    },
    {
     "id": "generalizability_conditional",
     "mode": "survey_experiment",
-    "title": "Does the label effect hold for newer generators and low-trust respondents?",
+    "title": "Does the Automated Flagging gain depend on AI familiarity and feed realism?",
     "needs_qsf": true
    }
   ]
@@ -1466,7 +1447,7 @@
   {
    "name": "cost",
    "label": "model calls",
-   "value": "$0.78",
+   "value": "$0.49",
    "color": "slate",
    "href": null
   }

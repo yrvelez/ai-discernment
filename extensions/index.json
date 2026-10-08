@@ -3,40 +3,41 @@
   "qsf": "extensions/advance_design.qsf",
   "qsf_errors": [],
   "media": [
-   "judge_posts: set the matrix recode values after import AI-generated=1, Not AI-generated=0"
+   "post1: image stimulus to supply (a social media post with an image, with the automated label shown beside it in l)",
+   "w2post1: image stimulus to supply (a fresh unlabeled social media post with an image)"
   ],
   "id": "advance_design",
   "kind": "mechanism",
-  "title": "Separating discernment from response bias in machine-label interventions",
+  "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
   "brief_id": "advance_design",
   "mode": "survey_experiment",
-  "debate": "D1",
-  "why": "Fixes measurement and power. It registers signal-detection outcomes (d′ and criterion) and replicates the one robust arm with an adequate sample.",
+  "debate": null,
+  "why": "Addresses measurement and power. It separates sensitivity from bias using AI-post and authentic-post responses, and it concentrates the sample on the one arm that held up in the later batches.",
   "power_target": {
-   "n_per_arm": 230,
-   "mde": 0.03,
-   "basis": "H1 Automated Flagging estimate 0.044, observed SD ~0.13; 80% power for ~0.04 needs ~165 per arm, inflated for Holm correction and the weaker label-accuracy arms"
+   "n_per_arm": 400,
+   "mde": 0.028,
+   "basis": "Observed Automated Flagging effect 0.044 (batches 3-4: 0.066); H1 MDE 0.042 at n=127 vs 181, so 400 per arm detects about 0.028 at 80% power"
   },
-  "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p=0.004), but accuracy cannot show whether labels improved sensitivity or merely shifted willingness to say AI; detection and real-content accuracy were not registered. With 44 uncorrected tests and small arms, the effect also needs replication with adequate power.",
-  "contribution": "Decomposes the label effect into d-prime and criterion and tests whether label accuracy matters, bearing on whether a system-supplied cue beats individual-level education.",
+  "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004; batches 3-4: 6.6), but accuracy alone cannot tell whether labels improve sensitivity or just push people to say 'AI'. Only 8 of 44 registered tests were significant, so a larger, focused sample with d-prime and criterion and a label-accuracy manipulation is needed.",
+  "contribution": "Separates sensitivity from response bias for automated AI-detection labels and tests whether the benefit depends on label accuracy and persists without labels.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "H1: Automated Flagging raises d-prime relative to control (not only a criterion shift). H2: 80%-accurate labels yield a smaller d-prime gain than 100%-accurate labels. H3: The Guide raises d-prime less than Automated Flagging.",
-  "primary_outcome": "d-prime (sensitivity) from 40 judgments, with criterion and total accuracy as co-registered outcomes.",
-  "comparison": "Each treatment arm vs Control on d-prime, criterion and accuracy with Holm correction across arms; Flagging 100% vs 80% and Flagging vs Guide as planned contrasts. Report pooled and arm-level SEs and CIs.",
+  "hypothesis": "Accurate automated labels increase d-prime relative to control, with little change in criterion; inaccurate labels reduce d-prime and shift criterion.",
+  "primary_outcome": "d-prime computed from AI-post hits and authentic-post false alarms across 24 posts.",
+  "comparison": "Accurate labels vs control, and inaccurate labels vs control and vs accurate labels, on d-prime, criterion, accuracy, AI-post detection and authentic-post detection; wave 2 compares the same measures without labels.",
   "conditions": [
    "Control",
-   "Automated Flagging 100%",
-   "Automated Flagging 80%",
-   "AI Literacy Guide"
+   "Automated Flagging accurate",
+   "Automated Flagging inaccurate"
   ],
   "unresolved": [
-   "The 40 real and AI-generated post media files and the label assignment for the 80% arm must be supplied by the research team.",
-   "IRB approval number and compensation amount."
+   "Actual image and video stimuli and label graphics must be supplied by the research team.",
+   "IRB approval number and compensation amount.",
+   "Wave 2 recontact procedure with the panel provider."
   ],
   "label": "Design advance",
   "text": "extensions/advance_design.txt",
@@ -46,87 +47,46 @@
   "qsf": "extensions/generalizability_conditional.qsf",
   "qsf_errors": [],
   "media": [
-   "post_set: image stimulus to supply (2023-era synthetic or authentic post from the older-generator set)",
-   "post_set: image stimulus to supply (current-generation synthetic or authentic post from the newer-generator set)",
-   "post_label_auto: image stimulus to supply (machine-learning AI-detection label displayed under the post with a detection sc)"
+   "feed_cs: image stimulus to supply (stylised feed with one target post (AI-generated or authentic), no labels)",
+   "feed_fs: image stimulus to supply (stylised feed with one target post carrying an automated AI-detection label)",
+   "feed_cr: image stimulus to supply (realistic mixed feed with non-target posts of varied quality around one target p)",
+   "feed_fr: image stimulus to supply (realistic mixed feed with non-target posts of varied quality; target post carrie)"
   ],
   "id": "generalizability_conditional",
   "kind": "boundary",
-  "title": "Does the label effect hold for newer generators and low-trust respondents?",
+  "title": "Does the Automated Flagging gain depend on AI familiarity and feed realism?",
   "brief_id": "generalizability_conditional",
   "mode": "survey_experiment",
   "debate": null,
-  "why": "Fixes sample and stimulus limits: the 2023 stimuli and US panel may not generalise, and the pooled null may hide moderation.",
+  "why": "Addresses the missing moderator and sample limits. The familiarity moderator was only exploratory and negative in E2, and a stylised feed may overstate effects.",
   "power_target": {
-   "n_per_arm": 350,
-   "mde": 0.04,
-   "basis": "Interaction effects need roughly 4x the n of the main effect 0.044; MDE for the 0.0318–0.042 range in H1"
+   "n_per_arm": 500,
+   "mde": 0.025,
+   "basis": "Observed Automated Flagging effect 0.044; interactions need about 4x the main-effect sample, so use 500 per cell and target a main effect of 0.025"
   },
-  "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004) but the pooled effect across 11 arms was only +1.0 (SE 0.7), and stimuli were 2023-era with a US panel. Realism of current generators and baseline media trust may moderate the label effect, and durability was never measured.",
-  "contribution": "Tests whether the Automated Flagging gain generalises across generator realism and baseline media trust and persists two weeks later.",
+  "rationale": "Automated Flagging raised accuracy by 4.4 points (SE 1.5, p=0.004) in a stylised 24-post feed, but it was one of 44 uncorrected registered tests (8 significant) and the familiarity moderator was only exploratory. A stylised feed may overstate the effect, so this tests whether it holds across familiarity levels and in a realistic mixed feed.",
+  "contribution": "Tests whether the Automated Flagging accuracy gain generalises across AI familiarity and to a more realistic feed.",
   "addresses": [],
   "validated_by": "autoexperiment",
   "status": "proposed",
   "built_at": null,
   "survey_id": null,
   "survey_url": null,
-  "hypothesis": "H1: Automated Flagging raises accuracy and d-prime relative to control. H2: The gain is smaller for current-generation stimuli. H3: The gain differs between low and high baseline media trust (median split, pre-registered).",
-  "primary_outcome": "Accuracy (share of posts judged correctly) and d-prime",
-  "comparison": "Automated Flagging vs Control, crossed with stimulus set (2023 vs current) and median-split media trust; interactions are the focal tests.",
+  "hypothesis": "Automated Flagging raises accuracy in both feeds; the gain is smaller in the realistic feed and does not differ materially between low and high AI familiarity.",
+  "primary_outcome": "Accuracy: share of target posts judged correctly, with AI-post and authentic-post detection reported separately.",
+  "comparison": "Automated Flagging vs control within each feed type; feed x treatment and familiarity x treatment interactions.",
   "conditions": [
-   "Control",
-   "Automated Flagging"
+   "Control, stylised feed",
+   "Automated Flagging, stylised feed",
+   "Control, realistic feed",
+   "Automated Flagging, realistic feed"
   ],
   "unresolved": [
-   "Current-generation synthetic images and video and matched authentic posts must be produced by the research team.",
-   "Compensation, IRB number and the re-contact wave instrument are to be supplied by the research team.",
-   "Exact label accuracy for Automated Flagging must match the source study."
+   "The actual stimulus images/videos, label design, and realistic-feed filler content must be supplied by the research team.",
+   "IRB approval number and compensation amount."
   ],
   "label": "Generalizability",
   "text": "extensions/generalizability_conditional.txt",
   "svg": "extensions/generalizability_conditional.svg"
- },
- {
-  "qsf": "extensions/theoretical_debate.qsf",
-  "qsf_errors": [],
-  "media": [],
-  "id": "theoretical_debate",
-  "kind": "alternative",
-  "title": "Individual literacy vs system-supplied cue: which carries the effect?",
-  "brief_id": "theoretical_debate",
-  "mode": "survey_experiment",
-  "debate": "D1",
-  "why": "Fixes design confounding: it separates cue content from attention or priming effects, which the original arms bundled.",
-  "power_target": {
-   "n_per_arm": 300,
-   "mde": 0.033,
-   "basis": "H1 MDE for n≈290 vs 181 arms was 0.034; interaction contrast needs the larger cells"
-  },
-  "rationale": "In the source study, Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3]) and the AI Literacy Guide by 4.7 points (95% CI [0.2, 9.2]), while pooled accuracy was only +1.0 point (SE 0.7, p=0.132). The original arms bundled cue content with attention and priming, so it is unclear whether the gain comes from external information (s-frame) or changed vigilance (i-frame).",
-  "contribution": "Separates the information content of a machine label from vigilance and priming effects, using a 2x2 design plus a placebo-label arm.",
-  "addresses": [],
-  "validated_by": "autoexperiment",
-  "status": "proposed",
-  "built_at": null,
-  "survey_id": null,
-  "survey_url": null,
-  "hypothesis": "H1 (s-frame): real labels raise accuracy and d-prime, while the Guide alone and the placebo label do not. H2 (i-frame): the Guide alone or the placebo label raises accuracy and d-prime comparably to real labels. H3: the label x Guide interaction is positive if training makes labels more useful.",
-  "primary_outcome": "Accuracy: share of 40 posts judged correctly, with d-prime as a co-primary outcome.",
-  "comparison": "Real label vs control; Guide vs control; placebo vs control; real label vs placebo; label x Guide interaction in the 2x2 cells (control, label, Guide, label plus Guide).",
-  "conditions": [
-   "Control",
-   "Real label",
-   "Guide only",
-   "Label plus Guide",
-   "Placebo label"
-  ],
-  "unresolved": [
-   "The 40 post media files and their ground-truth labels must be supplied by the research team.",
-   "The Guide content and the real and placebo label assets must be produced.",
-   "IRB number and compensation are to be supplied."
-  ],
-  "label": "Theoretical debate",
-  "text": "extensions/theoretical_debate.txt",
-  "svg": "extensions/theoretical_debate.svg"
  }
 ]

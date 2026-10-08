@@ -1,46 +1,40 @@
 {
  "id": "advance_design",
  "kind": "mechanism",
- "title": "Separating discernment from response bias in machine-label interventions",
- "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p=0.004), but accuracy cannot show whether labels improved sensitivity or merely shifted willingness to say AI; detection and real-content accuracy were not registered. With 44 uncorrected tests and small arms, the effect also needs replication with adequate power.",
- "contribution": "Decomposes the label effect into d-prime and criterion and tests whether label accuracy matters, bearing on whether a system-supplied cue beats individual-level education.",
+ "title": "Automated detection labels with signal-detection outcomes and a label-accuracy manipulation",
+ "rationale": "Automated Flagging raised accuracy by 4.4 points (95% CI [1.4, 7.3], p = 0.004; batches 3-4: 6.6), but accuracy alone cannot tell whether labels improve sensitivity or just push people to say 'AI'. Only 8 of 44 registered tests were significant, so a larger, focused sample with d-prime and criterion and a label-accuracy manipulation is needed.",
+ "contribution": "Separates sensitivity from response bias for automated AI-detection labels and tests whether the benefit depends on label accuracy and persists without labels.",
  "limitations": [
-  "Short-term outcomes only",
-  "US online panel",
-  "Simulated labels are not a real platform-level system",
-  "Guide arm is a single education comparator"
+  "Posts and labels are simulated stimuli in a survey, not a real feed",
+  "Delayed wave suffers attrition",
+  "Fixed label error rate tests only one level of inaccuracy",
+  "Online US panel only"
  ],
  "design": {
-  "title": "Separating discernment from response bias in machine-label interventions",
-  "overview": "Respondents are randomised to Control, Automated Flagging (100% accurate labels), Automated Flagging at 80% accuracy, or the AI Literacy Guide. They judge 40 posts (20 real, 20 AI) and rate confidence in each. Signal-detection d-prime and criterion are computed per person.",
-  "hypothesis": "H1: Automated Flagging raises d-prime relative to control (not only a criterion shift). H2: 80%-accurate labels yield a smaller d-prime gain than 100%-accurate labels. H3: The Guide raises d-prime less than Automated Flagging.",
-  "primaryOutcome": "d-prime (sensitivity) from 40 judgments, with criterion and total accuracy as co-registered outcomes.",
-  "comparison": "Each treatment arm vs Control on d-prime, criterion and accuracy with Holm correction across arms; Flagging 100% vs 80% and Flagging vs Guide as planned contrasts. Report pooled and arm-level SEs and CIs.",
-  "population": "US adults on an online panel, passing a pre-feed attention check.",
+  "title": "Automated detection labels: sensitivity vs bias",
+  "overview": "Respondents are randomised to control, accurate automated labels, or labels wrong on a fixed share (25%) of posts. Each judges 24 posts (12 AI, 12 authentic) and then answers confidence and attitude items. A second wave days later shows fresh unlabeled posts to test carryover.",
+  "hypothesis": "Accurate automated labels increase d-prime relative to control, with little change in criterion; inaccurate labels reduce d-prime and shift criterion.",
+  "primaryOutcome": "d-prime computed from AI-post hits and authentic-post false alarms across 24 posts.",
+  "comparison": "Accurate labels vs control, and inaccurate labels vs control and vs accurate labels, on d-prime, criterion, accuracy, AI-post detection and authentic-post detection; wave 2 compares the same measures without labels.",
+  "population": "US adults from an online panel, about 400 per arm.",
   "conditions": [
    {
     "id": "c_control",
     "title": "Control",
-    "description": "No intervention before the feed.",
+    "description": "No labels on posts.",
     "nodeId": "arm_control"
    },
    {
-    "id": "c_flag100",
-    "title": "Automated Flagging 100%",
-    "description": "Posts carry machine-learning detection labels that are always correct.",
-    "nodeId": "arm_flag100"
+    "id": "c_accurate",
+    "title": "Automated Flagging accurate",
+    "description": "Each post carries an automated AI-detection label that is correct for all posts.",
+    "nodeId": "arm_accurate"
    },
    {
-    "id": "c_flag80",
-    "title": "Automated Flagging 80%",
-    "description": "Posts carry detection labels that are correct for 80% of posts.",
-    "nodeId": "arm_flag80"
-   },
-   {
-    "id": "c_guide",
-    "title": "AI Literacy Guide",
-    "description": "A comprehensive guide with examples of AI artifacts in images and videos.",
-    "nodeId": "arm_guide"
+    "id": "c_wrong",
+    "title": "Automated Flagging inaccurate",
+    "description": "Each post carries an automated label that is wrong on a fixed 25% of posts.",
+    "nodeId": "arm_wrong"
    }
   ],
   "blocks": [
@@ -51,18 +45,18 @@
      {
       "id": "q_consent",
       "type": "MC",
-      "text": "You are invited to a research study on how people judge online media. It takes about 10 minutes and is voluntary. Do you consent to participate?",
+      "text": "You are invited to a research study about how people judge online media. It takes about 10 minutes, is voluntary, and responses are anonymous. Do you consent to participate?",
       "tag": "consent",
       "multiple": false,
       "required": true,
       "choices": [
        {
-        "id": "yes",
+        "id": "c1",
         "text": "I consent",
         "recode": "1"
        },
        {
-        "id": "no",
+        "id": "c2",
         "text": "I do not consent",
         "recode": "0"
        }
@@ -73,57 +67,14 @@
     ]
    },
    {
-    "id": "b_attn",
-    "title": "Attention",
+    "id": "b_control",
+    "title": "Control instructions",
     "questions": [
      {
-      "id": "q_attn",
-      "type": "MC",
-      "text": "People are very busy these days and many do not have time to follow what goes on in the government. We are testing whether people read questions. To show that you've read this much, answer both \"extremely interested\" and \"very interested.\"",
-      "tag": "attention_check",
-      "multiple": true,
-      "required": true,
-      "choices": [
-       {
-        "id": "a1",
-        "text": "Extremely interested",
-        "recode": "1"
-       },
-       {
-        "id": "a2",
-        "text": "Very interested",
-        "recode": "2"
-       },
-       {
-        "id": "a3",
-        "text": "Moderately interested",
-        "recode": "3"
-       },
-       {
-        "id": "a4",
-        "text": "Slightly interested",
-        "recode": "4"
-       },
-       {
-        "id": "a5",
-        "text": "Not interested at all",
-        "recode": "5"
-       }
-      ],
-      "rows": [],
-      "sourceQuestionId": "QID5"
-     }
-    ]
-   },
-   {
-    "id": "b_flagintro",
-    "title": "Label intro",
-    "questions": [
-     {
-      "id": "q_flagintro",
+      "id": "q_ctrl_txt",
       "type": "DB",
-      "text": "In the next section, each post will carry a label from an automated AI-detection system stating whether it is likely AI-generated or likely real. Labels may not always be right.",
-      "tag": "flag_intro",
+      "text": "You will see 24 posts. For each, decide whether it is AI-generated. Go with your gut if unsure.",
+      "tag": "ctrl_intro",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -133,14 +84,14 @@
     ]
    },
    {
-    "id": "b_guide",
-    "title": "Guide",
+    "id": "b_accurate",
+    "title": "Accurate label instructions",
     "questions": [
      {
-      "id": "q_guide",
+      "id": "q_acc_txt",
       "type": "DB",
-      "text": "Please read this guide. It explains common artifacts in AI-generated images and videos, such as distorted hands, inconsistent lighting, garbled text, unnatural textures and odd motion, with side-by-side examples. Take your time before continuing.",
-      "tag": "guide_text",
+      "text": "You will see 24 posts. For each, decide whether it is AI-generated. Each post carries a label from an automated AI-detection system, which will appear beside the post.",
+      "tag": "acc_intro",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -150,14 +101,31 @@
     ]
    },
    {
-    "id": "b_task",
-    "title": "Discernment task",
+    "id": "b_wrong",
+    "title": "Inaccurate label instructions",
     "questions": [
      {
-      "id": "q_task_intro",
+      "id": "q_wr_txt",
       "type": "DB",
-      "text": "You will now see 40 posts, some real and some AI-generated. For each, mark whether it is AI-generated and rate your confidence. If unsure, go with your gut. Posts are shown in random order, and the system supplies labels where applicable.",
-      "tag": "task_intro",
+      "text": "You will see 24 posts. For each, decide whether it is AI-generated. Each post carries a label from an automated AI-detection system, which will appear beside the post. The system is not perfect.",
+      "tag": "wrong_intro",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_feed",
+    "title": "Judgments",
+    "questions": [
+     {
+      "id": "q_post_show",
+      "type": "DB",
+      "text": "{{ed:post1}}",
+      "tag": "post1_show",
       "multiple": false,
       "required": false,
       "choices": [],
@@ -165,10 +133,10 @@
       "sourceQuestionId": ""
      },
      {
-      "id": "q_judge",
-      "type": "Matrix",
-      "text": "For each of the 40 posts shown (images and videos, 20 real and 20 AI-generated), is the post AI-generated?",
-      "tag": "judge_posts",
+      "id": "q_post_judge",
+      "type": "MC",
+      "text": "Is this post AI-generated? (Repeated for each of the 24 posts, shown in random order, 12 AI and 12 authentic.)",
+      "tag": "post1_judge",
       "multiple": false,
       "required": true,
       "choices": [
@@ -183,94 +151,20 @@
         "recode": "0"
        }
       ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "Post 1"
-       },
-       {
-        "id": "r2",
-        "text": "Post 2"
-       },
-       {
-        "id": "r3",
-        "text": "Post 3"
-       },
-       {
-        "id": "r4",
-        "text": "Post 4"
-       },
-       {
-        "id": "r5",
-        "text": "Post 5"
-       }
-      ],
-      "sourceQuestionId": ""
-     },
-     {
-      "id": "q_conf",
-      "type": "Matrix",
-      "text": "How confident are you in each judgment?",
-      "tag": "post_confidence",
-      "multiple": false,
-      "required": true,
-      "choices": [
-       {
-        "id": "c1",
-        "text": "Not at all confident",
-        "recode": "1"
-       },
-       {
-        "id": "c2",
-        "text": "Slightly confident",
-        "recode": "2"
-       },
-       {
-        "id": "c3",
-        "text": "Somewhat confident",
-        "recode": "3"
-       },
-       {
-        "id": "c4",
-        "text": "Very confident",
-        "recode": "4"
-       }
-      ],
-      "rows": [
-       {
-        "id": "r1",
-        "text": "Post 1"
-       },
-       {
-        "id": "r2",
-        "text": "Post 2"
-       },
-       {
-        "id": "r3",
-        "text": "Post 3"
-       },
-       {
-        "id": "r4",
-        "text": "Post 4"
-       },
-       {
-        "id": "r5",
-        "text": "Post 5"
-       }
-      ],
+      "rows": [],
       "sourceQuestionId": ""
      }
     ]
    },
    {
     "id": "b_out",
-    "title": "Follow-up",
+    "title": "Outcomes",
     "questions": [
      {
-      "id": "q_selfconf",
-      "type": "MC",
-      "text": "I feel confident in my ability to detect artificial intelligence.",
-      "tag": "ai_confidence",
+      "id": "q_conf",
+      "type": "Matrix",
+      "text": "Please answer the following questions about artificial intelligence.",
+      "tag": "ai_outcome",
       "multiple": false,
       "required": true,
       "choices": [
@@ -310,7 +204,16 @@
         "recode": "7"
        }
       ],
-      "rows": [],
+      "rows": [
+       {
+        "id": "r1",
+        "text": "I feel confident in my ability to detect artificial intelligence."
+       },
+       {
+        "id": "r2",
+        "text": "I think artificial intelligence technology is a threat to humans."
+       }
+      ],
       "sourceQuestionId": "QID3"
      }
     ]
@@ -322,11 +225,50 @@
      {
       "id": "q_debrief",
       "type": "DB",
-      "text": "Thank you. This study examined whether labels and education help people identify AI-generated media. Some labels shown were deliberately inaccurate, and some posts were AI-generated. Please do not rely on the labels you saw.",
+      "text": "Thank you. Some automated labels you saw may have been deliberately inaccurate to study how labels affect judgments. Please do not rely on them. You may be invited to a short follow-up in a few days.",
       "tag": "debrief",
       "multiple": false,
       "required": false,
       "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     }
+    ]
+   },
+   {
+    "id": "b_w2",
+    "title": "Wave 2 (delayed, unlabeled)",
+    "questions": [
+     {
+      "id": "q_w2_show",
+      "type": "DB",
+      "text": "{{ed:w2post1}}",
+      "tag": "w2post1_show",
+      "multiple": false,
+      "required": false,
+      "choices": [],
+      "rows": [],
+      "sourceQuestionId": ""
+     },
+     {
+      "id": "q_w2_judge",
+      "type": "MC",
+      "text": "Is this post AI-generated? (Repeated for 12 new unlabeled posts, 6 AI and 6 authentic.)",
+      "tag": "w2post1_judge",
+      "multiple": false,
+      "required": true,
+      "choices": [
+       {
+        "id": "w1",
+        "text": "AI-generated",
+        "recode": "1"
+       },
+       {
+        "id": "w0",
+        "text": "Not AI-generated",
+        "recode": "0"
+       }
+      ],
       "rows": [],
       "sourceQuestionId": ""
      }
@@ -347,9 +289,21 @@
     "operator": "equals"
    },
    {
-    "id": "n_br",
+    "id": "n_end",
+    "type": "end",
+    "label": "End non-consent",
+    "children": [],
+    "blockId": "",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "br_consent",
     "type": "branch",
-    "label": "No consent",
+    "label": "If no consent",
     "children": [
      "n_end"
     ],
@@ -357,42 +311,17 @@
     "field": "",
     "value": "",
     "questionId": "q_consent",
-    "choiceId": "no",
+    "choiceId": "c2",
     "operator": "selected"
-   },
-   {
-    "id": "n_end",
-    "type": "end",
-    "label": "End",
-    "children": [],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_attn",
-    "type": "block",
-    "label": "Attention",
-    "children": [],
-    "blockId": "b_attn",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
    },
    {
     "id": "r1",
     "type": "randomizer",
-    "label": "Arms",
+    "label": "Assign condition",
     "children": [
      "arm_control",
-     "arm_flag100",
-     "arm_flag80",
-     "arm_guide"
+     "arm_accurate",
+     "arm_wrong"
     ],
     "blockId": "",
     "field": "",
@@ -406,7 +335,8 @@
     "type": "group",
     "label": "Control",
     "children": [
-     "set_control"
+     "e_ctrl",
+     "n_ctrl"
     ],
     "blockId": "",
     "field": "",
@@ -416,9 +346,9 @@
     "operator": "equals"
    },
    {
-    "id": "set_control",
+    "id": "e_ctrl",
     "type": "embedded",
-    "label": "set control",
+    "label": "Set control",
     "children": [],
     "blockId": "",
     "field": "condition",
@@ -428,12 +358,24 @@
     "operator": "equals"
    },
    {
-    "id": "arm_flag100",
+    "id": "n_ctrl",
+    "type": "block",
+    "label": "Control intro",
+    "children": [],
+    "blockId": "b_control",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "arm_accurate",
     "type": "group",
-    "label": "Flag100",
+    "label": "Accurate",
     "children": [
-     "set_flag100",
-     "t_flag100"
+     "e_acc",
+     "n_acc"
     ],
     "blockId": "",
     "field": "",
@@ -443,23 +385,23 @@
     "operator": "equals"
    },
    {
-    "id": "set_flag100",
+    "id": "e_acc",
     "type": "embedded",
-    "label": "set flag100",
+    "label": "Set accurate",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "flag100",
+    "value": "accurate",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_flag100",
+    "id": "n_acc",
     "type": "block",
-    "label": "Label intro",
+    "label": "Accurate intro",
     "children": [],
-    "blockId": "b_flagintro",
+    "blockId": "b_accurate",
     "field": "",
     "value": "",
     "questionId": "",
@@ -467,12 +409,12 @@
     "operator": "equals"
    },
    {
-    "id": "arm_flag80",
+    "id": "arm_wrong",
     "type": "group",
-    "label": "Flag80",
+    "label": "Inaccurate",
     "children": [
-     "set_flag80",
-     "t_flag80"
+     "e_wr",
+     "n_wr"
     ],
     "blockId": "",
     "field": "",
@@ -482,23 +424,23 @@
     "operator": "equals"
    },
    {
-    "id": "set_flag80",
+    "id": "e_wr",
     "type": "embedded",
-    "label": "set flag80",
+    "label": "Set inaccurate",
     "children": [],
     "blockId": "",
     "field": "condition",
-    "value": "flag80",
+    "value": "inaccurate",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_flag80",
+    "id": "n_wr",
     "type": "block",
-    "label": "Label intro",
+    "label": "Inaccurate intro",
     "children": [],
-    "blockId": "b_flagintro",
+    "blockId": "b_wrong",
     "field": "",
     "value": "",
     "questionId": "",
@@ -506,50 +448,23 @@
     "operator": "equals"
    },
    {
-    "id": "arm_guide",
-    "type": "group",
-    "label": "Guide",
-    "children": [
-     "set_guide",
-     "t_guide"
-    ],
-    "blockId": "",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "set_guide",
+    "id": "e_post1",
     "type": "embedded",
-    "label": "set guide",
+    "label": "Post stimulus",
     "children": [],
     "blockId": "",
-    "field": "condition",
-    "value": "guide",
+    "field": "post1",
+    "value": "[IMAGE: a social media post with an image, with the automated label shown beside it in labeled arms]",
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
    },
    {
-    "id": "t_guide",
+    "id": "n_feed",
     "type": "block",
-    "label": "Guide",
+    "label": "Judgments",
     "children": [],
-    "blockId": "b_guide",
-    "field": "",
-    "value": "",
-    "questionId": "",
-    "choiceId": "",
-    "operator": "equals"
-   },
-   {
-    "id": "n_task",
-    "type": "block",
-    "label": "Task",
-    "children": [],
-    "blockId": "b_task",
+    "blockId": "b_feed",
     "field": "",
     "value": "",
     "questionId": "",
@@ -559,7 +474,7 @@
    {
     "id": "n_out",
     "type": "block",
-    "label": "Follow-up",
+    "label": "Outcomes",
     "children": [],
     "blockId": "b_out",
     "field": "",
@@ -569,7 +484,7 @@
     "operator": "equals"
    },
    {
-    "id": "n_debrief",
+    "id": "n_deb",
     "type": "block",
     "label": "Debrief",
     "children": [],
@@ -579,43 +494,71 @@
     "questionId": "",
     "choiceId": "",
     "operator": "equals"
+   },
+   {
+    "id": "e_w2",
+    "type": "embedded",
+    "label": "Wave 2 stimulus",
+    "children": [],
+    "blockId": "",
+    "field": "w2post1",
+    "value": "[IMAGE: a fresh unlabeled social media post with an image]",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
+   },
+   {
+    "id": "n_w2",
+    "type": "block",
+    "label": "Wave 2",
+    "children": [],
+    "blockId": "b_w2",
+    "field": "",
+    "value": "",
+    "questionId": "",
+    "choiceId": "",
+    "operator": "equals"
    }
   ],
   "roots": [
    "n_consent",
-   "n_br",
-   "n_attn",
+   "br_consent",
    "r1",
-   "n_task",
+   "e_post1",
+   "n_feed",
    "n_out",
-   "n_debrief"
+   "n_deb",
+   "e_w2",
+   "n_w2"
   ],
   "assumptions": [
-   "Target about 230 per arm (about 920 total) to detect 0.03 at 80% power; H1 Automated Flagging estimate 0.044, observed SD about 0.13; 80% power for about 0.04 needs about 165 per arm, inflated for Holm correction and the weaker 80% label arm.",
-   "The matrix shows 5 sample rows; the deployed task presents all 40 posts one per page with the same two questions each.",
-   "d-prime uses a log-linear correction for extreme hit and false-alarm rates; AI-generated is the signal.",
-   "US online panel; compensation per panel standard."
+   "Sample about 400 per arm (1,200 total): observed Automated Flagging effect 0.044 (batches 3-4: 0.066); H1 MDE 0.042 at n=127 vs 181, so 400 per arm detects about 0.028 at 80% power.",
+   "Posts 24 per respondent, half AI-generated, drawn from the source stimulus pool; the 25% label error rate is split evenly across AI and authentic posts.",
+   "Wave 2 fielded about 7 days later, with 12 fresh unlabeled posts; expect roughly 30% attrition.",
+   "d-prime uses log-linear correction for extreme rates.",
+   "Compensation at standard panel rates."
   ],
   "unresolved": [
-   "The 40 real and AI-generated post media files and the label assignment for the 80% arm must be supplied by the research team.",
-   "IRB approval number and compensation amount."
+   "Actual image and video stimuli and label graphics must be supplied by the research team.",
+   "IRB approval number and compensation amount.",
+   "Wave 2 recontact procedure with the panel provider."
   ],
   "evidence": [
    {
-    "id": "e1",
+    "id": "ev1",
     "title": "Source study package",
     "url": "https://github.com/yrvelez/ai-discernment",
-    "claim": "the source study this extension builds on",
+    "claim": "Automated Flagging raised accuracy and the source outcomes were reused",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    },
    {
-    "id": "e2",
-    "title": "The i-frame and the s-frame",
-    "url": "https://doi.org/10.1017/s0140525x22002023",
-    "claim": "Chater and Loewenstein (2022) frame individual vs system-level solutions",
+    "id": "ev2",
+    "title": "Pre-registration of the source study",
+    "url": "https://aspredicted.org/q2eh95.pdf",
+    "claim": "the registered design and outcomes",
     "excerpt": "",
-    "origin": "supplied"
+    "origin": "web"
    }
   ]
  }
