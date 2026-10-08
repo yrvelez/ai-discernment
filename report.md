@@ -513,6 +513,10 @@ ipw = 1 / pr
 ai_scale = (chatgpt + bing + claude + character + dalle + midjourney + stable_diff) / 7
 ```
 
+### Reviewer pass
+
+The automated review (Light Pass) flagged 6 issue(s); see `review.md`.
+
 ### Reproduction
 
 From the study folder:
@@ -527,12 +531,8 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 
 ### Files
 
-- `AGENTS.md`
 - `CITATION.cff`
-- `README.md`
 - `RUN.md`
-- `address.log`
-- `address_dryrun.log`
 - `codebook.json`
 - `codebook.md`
 - `data/clean.csv`
@@ -563,16 +563,8 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `figures/design.svg`
 - `figures/design.txt`
 - `figures/registered_effects.png`
-- `inputs/pap.json`
-- `inputs/pap.md`
-- `inputs/replication_data.csv`
-- `inputs/survey.qsf`
-- `original/code/create_replication_data.R`
-- `original/code/replication_script.R`
-- `original/site/index.html`
 - `pap.json`
 - `pap.md`
-- `provenance/ctx_snapshot.json`
 - `provenance/literature.json`
 - `provenance/llm_log.jsonl`
 - `provenance/potential.json`
@@ -594,31 +586,11 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 - `results/H6_arms.csv`
 - `results/analysis_tags.csv`
 - `results/registered_summary.csv`
-- `results.prev/H1.csv`
-- `results.prev/H1_arms.csv`
-- `results.prev/H1a.csv`
-- `results.prev/H1a_arms.csv`
-- `results.prev/H2.csv`
-- `results.prev/H2_arms.csv`
-- `results.prev/H2a.csv`
-- `results.prev/H3.csv`
-- `results.prev/H3_arms.csv`
-- `results.prev/H4.csv`
-- `results.prev/H4_arms.csv`
-- `results.prev/H5.csv`
-- `results.prev/H5_arms.csv`
-- `results.prev/H6.csv`
-- `results.prev/H6_arms.csv`
-- `results.prev/analysis_tags.csv`
-- `results.prev/registered_summary.csv`
 - `review.json`
 - `review.md`
-- `run.log`
-- `run.sh`
 - `scripts/01_tidy.py`
 - `scripts/02_clean.py`
 - `scripts/03_registered.py`
 - `scripts/04_exploratory.py`
 - `study.json`
 - `survey.qsf`
-- `zenodo.json`
