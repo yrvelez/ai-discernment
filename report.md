@@ -460,6 +460,12 @@ Open items before fielding:
 - Supply media: feed_fr: image stimulus to supply (realistic mixed feed with non-target posts of varied quality; target post carrie)
 
 
+<!-- fd:section id=acknowledgments -->
+## Acknowledgments
+
+This study was carried out in collaboration with Giulia Travaglini and Zara Riaz.
+
+
 <!-- fd:section id=appendix -->
 ## Technical appendix
 
@@ -531,6 +537,7 @@ Data files: `data/raw_tidy.csv` (tidy export, identifiers removed), `data/clean.
 
 ### Files
 
+- `ACKNOWLEDGMENTS.md`
 - `CITATION.cff`
 - `RUN.md`
 - `codebook.json`

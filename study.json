@@ -1310,6 +1310,7 @@
   "data": "https://github.com/yrvelez/ai-discernment/tree/main/data"
  },
  "related": [],
+ "acknowledgments": "This study was carried out in collaboration with Giulia Travaglini and Zara Riaz.",
  "addenda": [],
  "responses": null,
  "extensions": [
@@ -1390,7 +1391,8 @@
   "supported": 12,
   "total": 12,
   "open_analytical": 0,
-  "on_revised_text": true
+  "on_revised_text": true,
+  "corrected": 0
  },
  "review_round": 1,
  "review_rounds": 1,
